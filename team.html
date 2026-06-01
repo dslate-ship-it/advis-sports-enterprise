@@ -1,0 +1,1856 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meet the Team | The Advisory</title>
+  <meta name="description" content="Meet the team behind The Advisory — led by Jimmie B. Strong, Harvard Law Valedictorian, Vanderbilt professor, and Top 1% Financial Advisor. Enterprise architects for athletes, entertainers, and entrepreneurs.">
+  <link rel="stylesheet" href="css/design-system.css">
+  <link rel="stylesheet" href="css/nav.css">
+  <style>
+
+    body { background-color: var(--near-black); }
+
+    /* ============================================================
+       TEAM HERO — editorial, oversized type
+    ============================================================ */
+    .team-hero {
+      min-height: 72vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 180px var(--container-padding) var(--space-8);
+      position: relative;
+      overflow: hidden;
+      background-color: var(--near-black);
+    }
+
+    .team-hero-noise {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 80% 20%, rgba(184,150,90,0.07) 0%, transparent 55%),
+        radial-gradient(ellipse at 10% 90%, rgba(184,150,90,0.04) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    /* Large ghost text watermark */
+    .team-hero-ghost {
+      position: absolute;
+      bottom: -2rem;
+      right: -2rem;
+      font-family: var(--font-display);
+      font-size: clamp(8rem, 18vw, 22rem);
+      font-weight: 400;
+      letter-spacing: -0.04em;
+      color: rgba(250,248,245,0.025);
+      pointer-events: none;
+      user-select: none;
+      white-space: nowrap;
+      line-height: 1;
+    }
+
+    .team-hero-content {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: var(--space-6);
+      align-items: end;
+    }
+
+    .team-hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(3.5rem, 7vw, 9rem);
+      line-height: 0.88;
+      letter-spacing: -0.02em;
+      color: var(--ivory);
+    }
+
+    .team-hero h1 em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .team-hero-intro {
+      font-family: var(--font-body);
+      font-size: clamp(0.95rem, 1.1vw, 1.0625rem);
+      color: var(--stone);
+      line-height: 1.7;
+      max-width: 40ch;
+    }
+
+    /* Horizontal rule */
+    .section-rule {
+      border: none;
+      height: 1px;
+      background: var(--border-dark);
+      margin: 0;
+    }
+
+    /* ============================================================
+       FOUNDER FEATURE SECTION
+    ============================================================ */
+    .founder-section {
+      background-color: var(--near-black);
+      padding: var(--space-9) 0;
+      border-bottom: 1px solid var(--border-dark);
+    }
+
+    .founder-layout {
+      display: grid;
+      grid-template-columns: 5fr 7fr;
+      gap: var(--space-7);
+      align-items: start;
+    }
+
+    /* Photo column */
+    .founder-photo-col {
+      position: sticky;
+      top: 100px;
+    }
+
+    .founder-primary-img {
+      position: relative;
+      aspect-ratio: 3/4;
+      overflow: hidden;
+      background: var(--surface-dark);
+      margin-bottom: var(--space-3);
+    }
+
+    .founder-primary-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(10%) contrast(1.08);
+      transition: filter 1.2s cubic-bezier(0.16,1,0.3,1),
+                  transform 1.2s cubic-bezier(0.16,1,0.3,1);
+    }
+
+    .founder-primary-img:hover img {
+      filter: grayscale(0%) contrast(1.03);
+      transform: scale(1.02);
+    }
+
+    /* Gold corner accent */
+    .founder-primary-img::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 3rem; height: 3rem;
+      border-top: 2px solid var(--gold);
+      border-left: 2px solid var(--gold);
+      z-index: 2;
+    }
+
+    .founder-img-tag {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 2rem 1.5rem 1.5rem;
+      background: linear-gradient(to top, rgba(13,13,13,0.92) 0%, transparent 100%);
+      z-index: 2;
+    }
+
+    .founder-img-tag .label-track {
+      display: flex;
+      align-items: center;
+      gap: 0.625rem;
+      margin-bottom: 0.375rem;
+    }
+
+    .founder-img-tag .label-track span {
+      font-family: var(--font-sans);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .founder-img-tag .label-track::before {
+      content: '';
+      display: block;
+      width: 1.5rem;
+      height: 1px;
+      background: var(--gold);
+      flex-shrink: 0;
+    }
+
+    .founder-img-tag .img-name {
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 2vw, 2.25rem);
+      color: var(--ivory);
+      line-height: 1.1;
+    }
+
+    /* Secondary proof image */
+    .founder-secondary-img {
+      position: relative;
+      aspect-ratio: 4/3;
+      overflow: hidden;
+      background: var(--surface-dark);
+    }
+
+    .founder-secondary-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(20%) contrast(1.05);
+      transition: filter 1.2s cubic-bezier(0.16,1,0.3,1),
+                  transform 1.2s cubic-bezier(0.16,1,0.3,1);
+    }
+
+    .founder-secondary-img:hover img {
+      filter: grayscale(0%) contrast(1.0);
+      transform: scale(1.03);
+    }
+
+    .founder-secondary-caption {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 1.25rem;
+      background: linear-gradient(to top, rgba(13,13,13,0.88), transparent);
+    }
+
+    /* Bio column */
+    .founder-bio-col {}
+
+    .founder-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 2rem;
+    }
+
+    .founder-eyebrow-line {
+      width: 2rem;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .founder-eyebrow-text {
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .founder-name {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 5vw, 6rem);
+      line-height: 0.9;
+      letter-spacing: -0.02em;
+      color: var(--ivory);
+      margin-bottom: 1rem;
+    }
+
+    .founder-title {
+      font-family: var(--font-sans);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: var(--space-5);
+      padding-bottom: var(--space-5);
+      border-bottom: 1px solid var(--border-dark);
+    }
+
+    .founder-bio p {
+      font-size: clamp(0.9375rem, 1.1vw, 1.0625rem);
+      color: var(--stone);
+      line-height: 1.75;
+      margin-bottom: 1.5rem;
+    }
+
+    .founder-bio p:last-child { margin-bottom: 0; }
+
+    /* Notable clients */
+    .notable-clients {
+      margin-top: var(--space-5);
+      padding-top: var(--space-5);
+      border-top: 1px solid var(--border-dark);
+    }
+
+    .notable-clients-label {
+      font-family: var(--font-sans);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    .clients-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .client-pill {
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      color: var(--stone);
+      border: 1px solid var(--border-dark);
+      padding: 0.35rem 0.875rem;
+      transition: border-color 0.3s, color 0.3s;
+    }
+
+    .client-pill:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    /* Credential strip */
+    .credential-strip {
+      margin-top: var(--space-5);
+    }
+
+    .cred-row {
+      display: grid;
+      grid-template-columns: 2.5rem 1fr;
+      gap: 1rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border-dark);
+      align-items: start;
+    }
+
+    .cred-row:first-child { border-top: 1px solid var(--border-dark); }
+
+    .cred-index {
+      font-family: var(--font-sans);
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.08em;
+      padding-top: 2px;
+    }
+
+    .cred-label {
+      font-size: 0.9375rem;
+      color: var(--stone);
+      line-height: 1.55;
+    }
+
+    .cred-label strong {
+      color: var(--ivory);
+      font-weight: 500;
+    }
+
+    .founder-cta {
+      margin-top: var(--space-5);
+      display: flex;
+      gap: var(--space-2);
+      flex-wrap: wrap;
+    }
+
+    /* ============================================================
+       TEAM MEMBERS — full Jimmie-matched layout
+    ============================================================ */
+    .members-section {
+      background-color: var(--near-black);
+      padding: var(--space-9) 0;
+      border-top: 1px solid var(--border-dark);
+    }
+
+    /* Each member is a full two-column card, same as founder */
+    .member-row {
+      display: grid;
+      grid-template-columns: 5fr 7fr;
+      gap: var(--space-7);
+      align-items: start;
+      padding: var(--space-7) 0;
+      border-bottom: 1px solid var(--border-dark);
+    }
+
+    .member-row:last-child { border-bottom: none; }
+
+    /* Photo column */
+    .member-photo-col { position: relative; }
+
+    .member-primary-img {
+      position: relative;
+      aspect-ratio: 3/4;
+      overflow: hidden;
+      background: linear-gradient(160deg, #1a1a1a 0%, #111111 100%);
+      max-height: 560px;
+    }
+
+    /* Gold corner accent — matches founder */
+    .member-primary-img::before {
+      content: '';
+      position: absolute; top: 0; left: 0;
+      width: 3rem; height: 3rem;
+      border-top: 2px solid var(--gold);
+      border-left: 2px solid var(--gold);
+      z-index: 2;
+    }
+
+    /* Real photo when added — same treatment as founder */
+    .member-primary-img img {
+      width: 100%; height: 100%; object-fit: cover;
+      filter: grayscale(10%) contrast(1.08);
+      transition: filter 1.2s cubic-bezier(0.16,1,0.3,1),
+                  transform 1.2s cubic-bezier(0.16,1,0.3,1);
+    }
+
+    .member-primary-img:hover img {
+      filter: grayscale(0%) contrast(1.03);
+      transform: scale(1.02);
+    }
+
+    /* Placeholder shown until photo is added */
+    .member-img-placeholder {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 1rem;
+    }
+
+    .member-img-placeholder .ph-circle {
+      width: 72px; height: 72px; border-radius: 50%;
+      border: 1.5px dashed rgba(184,150,90,0.3);
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .member-img-placeholder .ph-circle svg {
+      width: 30px; height: 30px; stroke: rgba(184,150,90,0.35);
+    }
+
+    .member-img-placeholder .ph-text {
+      font-family: var(--font-sans); font-size: 0.6rem; font-weight: 600;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: rgba(184,150,90,0.3);
+    }
+
+    /* Caption bar at bottom of photo — matches founder */
+    .member-img-tag {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 2rem 1.5rem 1.5rem;
+      background: linear-gradient(to top, rgba(13,13,13,0.92) 0%, transparent 100%);
+      z-index: 2;
+    }
+
+    .member-img-tag .label-track {
+      display: flex; align-items: center; gap: 0.625rem; margin-bottom: 0.375rem;
+    }
+
+    .member-img-tag .label-track::before {
+      content: ''; display: block; width: 1.5rem; height: 1px;
+      background: var(--gold); flex-shrink: 0;
+    }
+
+    .member-img-tag .label-track span {
+      font-family: var(--font-sans); font-size: 0.65rem; font-weight: 700;
+      letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold);
+    }
+
+    .member-img-tag .img-name {
+      font-family: var(--font-display);
+      font-size: clamp(1.25rem, 2vw, 2rem);
+      color: var(--ivory); line-height: 1.1;
+    }
+
+    /* Bio column */
+    .member-bio-col {}
+
+    .member-eyebrow {
+      display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.75rem;
+    }
+    .member-eyebrow-line { width: 2rem; height: 1px; background: var(--gold); }
+    .member-eyebrow-text {
+      font-family: var(--font-sans); font-size: 0.7rem; font-weight: 700;
+      letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold);
+    }
+
+    .member-name {
+      font-family: var(--font-display);
+      font-size: clamp(2.25rem, 4vw, 4.5rem);
+      line-height: 0.92; letter-spacing: -0.02em;
+      color: var(--ivory); margin-bottom: 0.875rem;
+    }
+
+    .member-position {
+      font-family: var(--font-sans); font-size: 0.8125rem; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold);
+      margin-bottom: var(--space-4); padding-bottom: var(--space-4);
+      border-bottom: 1px solid var(--border-dark);
+    }
+
+    .member-bio-text p {
+      font-size: clamp(0.9rem, 1.05vw, 1rem);
+      color: var(--stone); line-height: 1.75; margin-bottom: 1.25rem;
+    }
+    .member-bio-text p:last-child { margin-bottom: 0; }
+
+    /* Credential strip — identical to founder's */
+    .member-cred-strip { margin-top: var(--space-4); }
+    .member-cred-row {
+      display: grid; grid-template-columns: 2.5rem 1fr;
+      gap: 1rem; padding: 0.875rem 0;
+      border-bottom: 1px solid var(--border-dark); align-items: start;
+    }
+    .member-cred-row:first-child { border-top: 1px solid var(--border-dark); }
+
+    .member-cred-index {
+      font-family: var(--font-sans); font-size: 0.65rem; font-weight: 700;
+      color: var(--gold); letter-spacing: 0.08em; padding-top: 2px;
+    }
+    .member-cred-label { font-size: 0.9375rem; color: var(--stone); line-height: 1.55; }
+    .member-cred-label strong { color: var(--ivory); font-weight: 500; }
+
+    /* CTA — same as founder */
+    .member-cta {
+      margin-top: var(--space-4);
+      display: flex; gap: var(--space-2); flex-wrap: wrap;
+    }
+
+    @media (max-width: 1100px) {
+      .member-row { grid-template-columns: 1fr 1.3fr; }
+    }
+    @media (max-width: 800px) {
+      .member-row { grid-template-columns: 1fr; }
+    }
+
+    /* ============================================================
+       PRACTICE TEAMS GRID
+    ============================================================ */
+    .practice-section {
+      background-color: var(--charcoal);
+      padding: var(--space-9) 0;
+    }
+
+    .section-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-5);
+      align-items: end;
+      margin-bottom: var(--space-6);
+    }
+
+    .section-header-left {}
+
+    .practice-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      border-top: 1px solid var(--border-dark);
+      border-left: 1px solid var(--border-dark);
+    }
+
+    .practice-card {
+      position: relative;
+      border-right: 1px solid var(--border-dark);
+      border-bottom: 1px solid var(--border-dark);
+      padding: var(--space-5) var(--space-4);
+      overflow: hidden;
+      transition: background-color 0.4s cubic-bezier(0.16,1,0.3,1);
+    }
+
+    .practice-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
+    }
+
+    .practice-card:hover {
+      background-color: rgba(184,150,90,0.03);
+    }
+
+    .practice-card:hover::after {
+      transform: scaleX(1);
+    }
+
+    /* Large index number */
+    .practice-num {
+      font-family: var(--font-display);
+      font-size: 4rem;
+      color: rgba(184,150,90,0.12);
+      line-height: 1;
+      margin-bottom: var(--space-3);
+      font-style: italic;
+      transition: color 0.4s;
+    }
+
+    .practice-card:hover .practice-num {
+      color: rgba(184,150,90,0.22);
+    }
+
+    .practice-tag {
+      font-family: var(--font-sans);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.75rem;
+    }
+
+    .practice-name {
+      font-family: var(--font-display);
+      font-size: clamp(1.375rem, 1.8vw, 2rem);
+      color: var(--ivory);
+      line-height: 1.1;
+      margin-bottom: 1rem;
+      transition: color 0.3s;
+    }
+
+    .practice-card:hover .practice-name {
+      color: var(--gold);
+    }
+
+    .practice-desc {
+      font-size: 0.875rem;
+      color: var(--stone);
+      line-height: 1.65;
+      margin-bottom: var(--space-4);
+    }
+
+    /* Specializations accordion */
+    .spec-toggle {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 0;
+      background: transparent;
+      border: none;
+      border-top: 1px solid var(--border-dark);
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      cursor: pointer;
+      transition: color 0.25s;
+    }
+
+    .spec-toggle:hover { color: var(--gold); }
+
+    .spec-toggle .tog-icon {
+      font-size: 1.1rem;
+      font-weight: 300;
+      transition: transform 0.35s cubic-bezier(0.16,1,0.3,1),
+                  color 0.25s;
+    }
+
+    .spec-toggle.open .tog-icon {
+      transform: rotate(45deg);
+      color: var(--gold);
+    }
+
+    .spec-panel {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.55s cubic-bezier(0.16,1,0.3,1);
+    }
+
+    .spec-panel.open {
+      max-height: 500px;
+    }
+
+    .spec-inner {
+      padding: var(--space-3) 0;
+      border-top: 1px solid rgba(184,150,90,0.12);
+    }
+
+    .spec-inner p {
+      font-size: 0.8125rem;
+      color: var(--stone);
+      line-height: 1.65;
+      margin-bottom: 0.75rem;
+    }
+
+    .spec-inner p:last-child { margin-bottom: 0; }
+
+    /* ============================================================
+       ADVISORY NETWORK SECTION
+    ============================================================ */
+    .network-section {
+      background-color: var(--near-black);
+      padding: var(--space-9) 0;
+    }
+
+    .network-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      border-top: 1px solid var(--border-dark);
+      border-left: 1px solid var(--border-dark);
+      margin-top: var(--space-6);
+    }
+
+    .network-item {
+      border-right: 1px solid var(--border-dark);
+      border-bottom: 1px solid var(--border-dark);
+      padding: var(--space-4);
+      transition: background-color 0.35s;
+    }
+
+    .network-item:hover {
+      background-color: rgba(255,255,255,0.015);
+    }
+
+    .network-item:hover .network-name {
+      color: var(--gold);
+    }
+
+    .network-cat {
+      font-family: var(--font-sans);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .network-cat::before {
+      content: '';
+      display: block;
+      width: 1.25rem;
+      height: 1px;
+      background: var(--gold);
+      flex-shrink: 0;
+    }
+
+    .network-name {
+      font-family: var(--font-display);
+      font-size: clamp(1.1rem, 1.5vw, 1.5rem);
+      color: var(--ivory);
+      line-height: 1.1;
+      margin-bottom: 0.75rem;
+      transition: color 0.3s;
+    }
+
+    .network-desc {
+      font-size: 0.8125rem;
+      color: var(--stone);
+      line-height: 1.55;
+    }
+
+    /* ============================================================
+       STATS STRIP
+    ============================================================ */
+    .stats-strip {
+      background: var(--charcoal);
+      border-top: 1px solid var(--border-dark);
+      border-bottom: 1px solid var(--border-dark);
+      padding: var(--space-6) 0;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+    }
+
+    .stat-item {
+      padding: 0 var(--space-5);
+      border-right: 1px solid var(--border-dark);
+    }
+
+    .stat-item:first-child { padding-left: 0; }
+    .stat-item:last-child { border-right: none; }
+
+    .stat-num {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 5vw, 6rem);
+      line-height: 0.85;
+      letter-spacing: -0.03em;
+      color: var(--ivory);
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-num em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .stat-label {
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ============================================================
+       JOIN / CTA SECTION
+    ============================================================ */
+    .team-cta-section {
+      background: var(--near-black);
+      padding: var(--space-9) 0;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .team-cta-ghost {
+      position: absolute;
+      bottom: -4rem;
+      left: -2rem;
+      font-family: var(--font-display);
+      font-size: clamp(8rem, 20vw, 28rem);
+      line-height: 1;
+      color: rgba(250,248,245,0.02);
+      pointer-events: none;
+      user-select: none;
+      white-space: nowrap;
+    }
+
+    .team-cta-layout {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: var(--space-6);
+      align-items: center;
+    }
+
+    .team-cta-headline {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 5vw, 6rem);
+      line-height: 0.9;
+      letter-spacing: -0.02em;
+      color: var(--ivory);
+      margin-bottom: 1.25rem;
+    }
+
+    .team-cta-headline em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .team-cta-body {
+      font-size: clamp(0.9rem, 1.1vw, 1.0rem);
+      color: var(--stone);
+      line-height: 1.7;
+      max-width: 52ch;
+    }
+
+    .team-cta-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 0.875rem;
+      flex-shrink: 0;
+    }
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 1100px) {
+      .founder-layout { grid-template-columns: 1fr 1.3fr; }
+      .practice-grid { grid-template-columns: repeat(2, 1fr); }
+      .network-grid { grid-template-columns: repeat(2, 1fr); }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .stat-item { padding: var(--space-3); border-right: none; border-bottom: 1px solid var(--border-dark); }
+    }
+
+    @media (max-width: 800px) {
+      .team-hero-content { grid-template-columns: 1fr; }
+      .founder-layout { grid-template-columns: 1fr; }
+      .founder-photo-col { position: static; }
+      .section-header { grid-template-columns: 1fr; }
+      .practice-grid { grid-template-columns: 1fr; }
+      .network-grid { grid-template-columns: 1fr; }
+      .team-cta-layout { grid-template-columns: 1fr; }
+      .team-cta-actions { flex-direction: row; flex-wrap: wrap; }
+    }
+
+    @media (max-width: 600px) {
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       HEADER
+  ============================================================ -->
+  <header class="site-header" id="site-header">
+    <div class="container header-inner">
+      <a href="home.html" class="site-logo">
+        <div class="logo-icon">
+          <img src="images/social-proof-1.jpg" alt="The Advisory" width="32" height="32" onerror="this.style.display='none'">
+        </div>
+        <div class="logo-text">
+          <span class="logo-name">The Advisory</span>
+          <span class="logo-sub">Enterprise Management</span>
+        </div>
+      </a>
+      <nav class="primary-nav">
+        <ul>
+          <li class="nav-item">
+            <a href="#" class="nav-link">Who We Serve
+              <svg class="chevron" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4l4 4 4-4"/></svg>
+            </a>
+            <ul class="dropdown">
+              <li class="dropdown-item"><a href="sports.html" class="dropdown-link">Professional Athletes</a></li>
+              <li class="dropdown-item"><a href="nil.html" class="dropdown-link">NIL Athletes</a></li>
+              <li class="dropdown-item"><a href="creatives.html" class="dropdown-link">Entertainers &amp; Creatives</a></li>
+              <li class="dropdown-item"><a href="bespoke.html" class="dropdown-link">Bespoke &amp; Entrepreneurs</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
+          <li class="nav-item"><a href="nil.html" class="nav-link">NIL</a></li>
+          <li class="nav-item"><a href="partnerships.html" class="nav-link">Partnerships</a></li>
+          <li class="nav-item active">
+            <a href="about.html" class="nav-link">About
+              <svg class="chevron" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4l4 4 4-4"/></svg>
+            </a>
+            <ul class="dropdown">
+              <li class="dropdown-item"><a href="about.html" class="dropdown-link">About The Advisory</a></li>
+              <li class="dropdown-item active"><a href="team.html" class="dropdown-link">Meet the Team</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <div class="header-cta">
+        <a href="contact.html" class="btn btn--ghost">Start a Conversation</a>
+      </div>
+      <button class="mobile-toggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+  <div class="mobile-nav-overlay"></div>
+  <nav class="mobile-nav">
+    <ul>
+      <li class="mobile-nav-item">
+        <button class="mobile-nav-trigger" data-submenu="mt-serve">
+          <span>Who We Serve</span>
+          <svg class="m-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 8l5 5 5-5"/></svg>
+        </button>
+        <div class="mobile-submenu" id="mt-serve">
+          <a href="sports.html" class="mobile-submenu-link">Professional Athletes</a>
+          <a href="nil.html" class="mobile-submenu-link">NIL Athletes</a>
+          <a href="creatives.html" class="mobile-submenu-link">Entertainers &amp; Creatives</a>
+          <a href="bespoke.html" class="mobile-submenu-link">Bespoke &amp; Entrepreneurs</a>
+        </div>
+      </li>
+      <li class="mobile-nav-item"><button class="mobile-nav-trigger"><a href="services.html">Services</a></button></li>
+      <li class="mobile-nav-item"><button class="mobile-nav-trigger"><a href="nil.html">NIL</a></button></li>
+      <li class="mobile-nav-item"><button class="mobile-nav-trigger"><a href="partnerships.html">Partnerships</a></button></li>
+      <li class="mobile-nav-item">
+        <button class="mobile-nav-trigger" data-submenu="mt-about">
+          <span>About</span>
+          <svg class="m-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 8l5 5 5-5"/></svg>
+        </button>
+        <div class="mobile-submenu" id="mt-about">
+          <a href="about.html" class="mobile-submenu-link">About The Advisory</a>
+          <a href="team.html" class="mobile-submenu-link">Meet the Team</a>
+        </div>
+      </li>
+    </ul>
+    <div class="mobile-nav-cta">
+      <a href="contact.html" class="btn btn--primary">Start a Conversation</a>
+    </div>
+  </nav>
+
+  <!-- ============================================================
+       TEAM HERO
+  ============================================================ -->
+  <section class="team-hero">
+    <div class="team-hero-noise"></div>
+    <span class="team-hero-ghost" aria-hidden="true">Team</span>
+
+    <div class="container">
+      <div class="team-hero-content">
+        <div class="reveal">
+          <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:2rem;">
+            <span style="display:block;width:2rem;height:1px;background:var(--gold);flex-shrink:0;"></span>
+            <span style="font-family:var(--font-sans);font-size:0.7rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);">The Advisory Team</span>
+          </div>
+          <h1>The enterprise<br>architects <em>behind</em><br>the firm.</h1>
+        </div>
+
+        <div class="reveal reveal-delay-2" style="align-self:end;padding-bottom:0.5rem;">
+          <p class="team-hero-intro" style="margin-bottom:1.5rem;">
+            The Advisory is built on a conviction: the people who create the world's most exceptional value
+            in sports and entertainment deserve institutional-grade talent in their corner.
+          </p>
+          <p class="team-hero-intro" style="color:var(--muted);">
+            Legal mastery. Financial intelligence. Operational precision. In the hands of advisors
+            who have earned the trust of global icons.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-rule">
+
+  <!-- ============================================================
+       STATS STRIP
+  ============================================================ -->
+  <div class="stats-strip">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item reveal">
+          <div class="stat-num">Top&nbsp;<em>1%</em></div>
+          <div class="stat-label">National Financial Advisor Ranking</div>
+        </div>
+        <div class="stat-item reveal reveal-delay-1">
+          <div class="stat-num"><em>$2.3</em>B<span style="font-size:clamp(1.5rem,2vw,2.5rem);font-style:normal;color:var(--muted)">+</span></div>
+          <div class="stat-label">NIL Market We Navigate Daily</div>
+        </div>
+        <div class="stat-item reveal reveal-delay-2">
+          <div class="stat-num"><em>5</em></div>
+          <div class="stat-label">Core Enterprise Practice Areas</div>
+        </div>
+        <div class="stat-item reveal reveal-delay-3">
+          <div class="stat-num"><em>1</em></div>
+          <div class="stat-label">Law School Valedictorian on Staff</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       FOUNDER FEATURE
+  ============================================================ -->
+  <section class="founder-section" id="founder">
+    <div class="container">
+      <div class="founder-layout">
+
+        <!-- Photo column -->
+        <div class="founder-photo-col reveal">
+          <div class="founder-primary-img">
+            <img src="images/social-proof-enhanced-1.jpg"
+                 alt="Jimmie B. Strong — Founder &amp; Managing Partner, The Advisory"
+                 loading="lazy"
+                 onerror="this.src='images/social-proof-2.jpg'">
+            <div class="founder-img-tag">
+              <div class="label-track">
+                <span>Founder &amp; Managing Partner</span>
+              </div>
+              <div class="img-name">Jimmie B. Strong</div>
+            </div>
+          </div>
+
+          <div class="founder-secondary-img">
+            <img src="images/social-proof-enhanced-2.jpg"
+                 alt="The Advisory — Courtside with a client"
+                 loading="lazy"
+                 onerror="this.src='images/social-proof-3.jpg'">
+            <div class="founder-secondary-caption">
+              <span style="font-family:var(--font-sans);font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--stone);">Client Relationship &nbsp;·&nbsp; Courtside</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bio column -->
+        <div class="founder-bio-col reveal reveal-delay-1">
+
+          <div class="founder-eyebrow">
+            <div class="founder-eyebrow-line"></div>
+            <span class="founder-eyebrow-text">Founder &amp; Managing Partner</span>
+          </div>
+
+          <h2 class="founder-name">Jimmie<br>B. Strong</h2>
+          <div class="founder-title">Founder &amp; Managing Partner — The Advisory</div>
+
+          <div class="founder-bio">
+            <p>
+              Jimmie B. Strong founded The Advisory on a singular conviction: that the athletes,
+              entertainers, and entrepreneurs who create the world's most exceptional personal value
+              deserve the same institutional-grade enterprise management that global corporations
+              take for granted.
+            </p>
+            <p>
+              His path to founding The Advisory is as rare as the clients he serves. A Harvard Law
+              School Valedictorian, Jimmie combined legal precision with an equally rigorous background
+              in financial advisory — ultimately earning recognition as a Top 1% Financial Advisor
+              nationally while simultaneously building his practice in sports and entertainment law.
+            </p>
+            <p>
+              At Vanderbilt University, where he serves on the faculty, Jimmie teaches the intersection
+              of business strategy and legal structure — the same framework that underpins every
+              engagement at The Advisory. His clients have included Floyd Mayweather, Mookie Betts,
+              Jalen Ramsey, Jaren Jackson Jr., and the late Jim Brown.
+            </p>
+            <p>
+              Jimmie's philosophy is simple and uncompromising: you should keep what you earn,
+              own what you create, and understand your enterprise at every stage.
+              The Advisory exists to make that possible.
+            </p>
+          </div>
+
+          <div class="credential-strip">
+            <div class="cred-row">
+              <div class="cred-index">01</div>
+              <div class="cred-label"><strong>Harvard Law School</strong> — Valedictorian, J.D.</div>
+            </div>
+            <div class="cred-row">
+              <div class="cred-index">02</div>
+              <div class="cred-label"><strong>Vanderbilt University</strong> — Faculty, Business Law &amp; Strategy</div>
+            </div>
+            <div class="cred-row">
+              <div class="cred-index">03</div>
+              <div class="cred-label"><strong>Top 1% Financial Advisor</strong> — Nationally ranked</div>
+            </div>
+            <div class="cred-row">
+              <div class="cred-index">04</div>
+              <div class="cred-label"><strong>Specializations:</strong> Sports law, entertainment law, NIL strategy, enterprise advisory, family governance, deal structuring</div>
+            </div>
+          </div>
+
+          <div class="notable-clients">
+            <div class="notable-clients-label">Notable Client Relationships</div>
+            <div class="clients-list">
+              <span class="client-pill">Floyd Mayweather</span>
+              <span class="client-pill">Mookie Betts</span>
+              <span class="client-pill">Jalen Ramsey</span>
+              <span class="client-pill">Jaren Jackson Jr.</span>
+              <span class="client-pill">Jim Brown</span>
+            </div>
+          </div>
+
+          <div class="founder-cta">
+            <a href="contact.html" class="btn btn--primary">Work With Jimmie</a>
+            <a href="about.html" class="btn btn--ghost">Our Philosophy</a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       TEAM MEMBERS GRID
+  ============================================================ -->
+  <section class="members-section" id="team-members">
+    <div class="container">
+
+      <div class="reveal">
+        <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1.5rem;">
+          <span style="display:block;width:2rem;height:1px;background:var(--gold);flex-shrink:0;"></span>
+          <span style="font-family:var(--font-sans);font-size:0.7rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);">The Advisory Team</span>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-5);align-items:end;margin-bottom:0;">
+          <h2 class="display-md text-white">The people behind<br>the practice.</h2>
+          <p class="body-md text-stone" style="max-width:40ch;">Each member of The Advisory team brings institutional-grade expertise, a commitment to conflict-free advisory, and a singular focus on protecting and growing your enterprise.</p>
+        </div>
+      </div>
+
+      <!-- ─────────────────────────────────────────────────────────
+           MEMBER 1 — Contracts & Negotiation
+      ───────────────────────────────────────────────────────── -->
+      <div class="member-row reveal">
+
+        <!-- Photo column -->
+        <div class="member-photo-col">
+          <div class="member-primary-img">
+            <!-- Drop a real <img> tag here when the photo is ready.
+                 Example: <img src="images/team-member-1.jpg" alt="[Name]"> -->
+            <div class="member-img-placeholder">
+              <div class="ph-circle">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+                </svg>
+              </div>
+              <span class="ph-text">Photo Placeholder</span>
+            </div>
+            <div class="member-img-tag">
+              <div class="label-track"><span>Senior Advisor</span></div>
+              <div class="img-name">Team Member</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bio column -->
+        <div class="member-bio-col reveal reveal-delay-1">
+          <div class="member-eyebrow">
+            <div class="member-eyebrow-line"></div>
+            <span class="member-eyebrow-text">Contracts &amp; Negotiation</span>
+          </div>
+          <h3 class="member-name">Team<br>Member</h3>
+          <div class="member-position">Senior Advisor — Contracts &amp; Negotiation</div>
+          <div class="member-bio-text">
+            <p>Placeholder bio — replace with team member's background, expertise, and professional story when ready. This section mirrors the founder profile in format and depth.</p>
+            <p>Describe their approach to client representation, key milestones, and the specific value they bring to The Advisory's enterprise management model.</p>
+          </div>
+          <div class="member-cred-strip">
+            <div class="member-cred-row">
+              <div class="member-cred-index">01</div>
+              <div class="member-cred-label"><strong>Institution</strong> — Degree / Credential placeholder</div>
+            </div>
+            <div class="member-cred-row">
+              <div class="member-cred-index">02</div>
+              <div class="member-cred-label"><strong>Specialization</strong> — Contracts, negotiation, deal structuring</div>
+            </div>
+            <div class="member-cred-row">
+              <div class="member-cred-index">03</div>
+              <div class="member-cred-label"><strong>Industry Focus:</strong> Professional sports, entertainment, business law</div>
+            </div>
+          </div>
+          <div class="member-cta">
+            <a href="contact.html" class="btn btn--primary">Connect</a>
+            <a href="services.html" class="btn btn--ghost">View Services</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─────────────────────────────────────────────────────────
+           MEMBER 2 — Tax & Entity Strategy
+      ───────────────────────────────────────────────────────── -->
+      <div class="member-row reveal">
+        <div class="member-photo-col">
+          <div class="member-primary-img">
+            <div class="member-img-placeholder">
+              <div class="ph-circle">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+                </svg>
+              </div>
+              <span class="ph-text">Photo Placeholder</span>
+            </div>
+            <div class="member-img-tag">
+              <div class="label-track"><span>Lead Advisor</span></div>
+              <div class="img-name">Team Member</div>
+            </div>
+          </div>
+        </div>
+        <div class="member-bio-col reveal reveal-delay-1">
+          <div class="member-eyebrow">
+            <div class="member-eyebrow-line"></div>
+            <span class="member-eyebrow-text">Tax &amp; Entity Strategy</span>
+          </div>
+          <h3 class="member-name">Team<br>Member</h3>
+          <div class="member-position">Lead Advisor — Tax &amp; Entity Strategy</div>
+          <div class="member-bio-text">
+            <p>Placeholder bio — replace with team member's background, credentials, and the specific expertise they bring to complex tax and entity structuring engagements.</p>
+            <p>Include their philosophy on protecting client wealth, key partnerships, and track record with high-earning athletes and entertainers.</p>
+          </div>
+          <div class="member-cred-strip">
+            <div class="member-cred-row">
+              <div class="member-cred-index">01</div>
+              <div class="member-cred-label"><strong>Institution</strong> — Degree / Credential placeholder</div>
+            </div>
+            <div class="member-cred-row">
+              <div class="member-cred-index">02</div>
+              <div class="member-cred-label"><strong>Specialization</strong> — Tax optimization, entity formation, wealth preservation</div>
+            </div>
+            <div class="member-cred-row">
+              <div class="member-cred-index">03</div>
+              <div class="member-cred-label"><strong>Certifications:</strong> CPA / placeholder credential</div>
+            </div>
+          </div>
+          <div class="member-cta">
+            <a href="contact.html" class="btn btn--primary">Connect</a>
+            <a href="services.html" class="btn btn--ghost">View Services</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─────────────────────────────────────────────────────────
+           MEMBER 3 — Brand & IP
+      ───────────────────────────────────────────────────────── -->
+      <div class="member-row reveal">
+        <div class="member-photo-col">
+          <div class="member-primary-img">
+            <div class="member-img-placeholder">
+              <div class="ph-circle">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+                </svg>
+              </div>
+              <span class="ph-text">Photo Placeholder</span>
+            </div>
+            <div class="member-img-tag">
+              <div class="label-track"><span>Brand &amp; IP Advisor</span></div>
+              <div class="img-name">Team Member</div>
+            </div>
+          </div>
+        </div>
+        <div class="member-bio-col reveal reveal-delay-1">
+          <div class="member-eyebrow">
+            <div class="member-eyebrow-line"></div>
+            <span class="member-eyebrow-text">Brand &amp; Intellectual Property</span>
+          </div>
+          <h3 class="member-name">Team<br>Member</h3>
+          <div class="member-position">Brand &amp; IP Advisor</div>
+          <div class="member-bio-text">
+            <p>Placeholder bio — replace with the team member's experience in brand architecture, licensing, trademark strategy, and intellectual property protection for elite talent.</p>
+            <p>Detail notable brand partnerships, licensing deals managed, and their approach to turning athlete and entertainer identity into durable IP assets.</p>
+          </div>
+          <div class="member-cred-strip">
+            <div class="member-cred-row">
+              <div class="member-cred-index">01</div>
+              <div class="member-cred-label"><strong>Institution</strong> — Degree / Credential placeholder</div>
+            </div>
+            <div class="member-cred-row">
+              <div class="member-cred-index">02</div>
+              <div class="member-cred-label"><strong>Specialization</strong> — Brand strategy, licensing, trademark, NIL monetization</div>
+            </div>
+            <div class="member-cred-row">
+              <div class="member-cred-index">03</div>
+              <div class="member-cred-label"><strong>Focus Sectors:</strong> Sports, entertainment, media, consumer brands</div>
+            </div>
+          </div>
+          <div class="member-cta">
+            <a href="contact.html" class="btn btn--primary">Connect</a>
+            <a href="services.html" class="btn btn--ghost">View Services</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─────────────────────────────────────────────────────────
+           MEMBER 4 — Family Governance & Wealth
+      ───────────────────────────────────────────────────────── -->
+      <div class="member-row reveal">
+        <div class="member-photo-col">
+          <div class="member-primary-img">
+            <div class="member-img-placeholder">
+              <div class="ph-circle">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+                </svg>
+              </div>
+              <span class="ph-text">Photo Placeholder</span>
+            </div>
+            <div class="member-img-tag">
+              <div class="label-track"><span>Family Governance Advisor</span></div>
+              <div class="img-name">Team Member</div>
+            </div>
+          </div>
+        </div>
+        <div class="member-bio-col reveal reveal-delay-1">
+          <div class="member-eyebrow">
+            <div class="member-eyebrow-line"></div>
+            <span class="member-eyebrow-text">Family Governance &amp; Wealth</span>
+          </div>
+          <h3 class="member-name">Team<br>Member</h3>
+          <div class="member-position">Family Governance &amp; Wealth Advisor</div>
+          <div class="member-bio-text">
+            <p>Placeholder bio — replace with the team member's expertise in multigenerational wealth planning, family governance structures, trust formation, and legacy preservation.</p>
+            <p>Cover their philosophy on protecting generational wealth for high-earning families and their experience in family office advisory.</p>
+          </div>
+          <div class="member-cred-strip">
+            <div class="member-cred-row">
+              <div class="member-cred-index">01</div>
+              <div class="member-cred-label"><strong>Institution</strong> — Degree / Credential placeholder</div>
+            </div>
+            <div class="member-cred-row">
+              <div class="member-cred-index">02</div>
+              <div class="member-cred-label"><strong>Specialization</strong> — Family governance, trusts, wealth transfer, legacy planning</div>
+            </div>
+            <div class="member-cred-row">
+              <div class="member-cred-index">03</div>
+              <div class="member-cred-label"><strong>Certifications:</strong> CFP / placeholder credential</div>
+            </div>
+          </div>
+          <div class="member-cta">
+            <a href="contact.html" class="btn btn--primary">Connect</a>
+            <a href="services.html" class="btn btn--ghost">View Services</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─────────────────────────────────────────────────────────
+           MEMBER 5 — NIL Strategy & Compliance
+      ───────────────────────────────────────────────────────── -->
+      <div class="member-row reveal">
+        <div class="member-photo-col">
+          <div class="member-primary-img">
+            <div class="member-img-placeholder">
+              <div class="ph-circle">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+                </svg>
+              </div>
+              <span class="ph-text">Photo Placeholder</span>
+            </div>
+            <div class="member-img-tag">
+              <div class="label-track"><span>NIL Strategy Advisor</span></div>
+              <div class="img-name">Team Member</div>
+            </div>
+          </div>
+        </div>
+        <div class="member-bio-col reveal reveal-delay-1">
+          <div class="member-eyebrow">
+            <div class="member-eyebrow-line"></div>
+            <span class="member-eyebrow-text">NIL Strategy &amp; Compliance</span>
+          </div>
+          <h3 class="member-name">Team<br>Member</h3>
+          <div class="member-position">NIL Strategy &amp; Compliance Advisor</div>
+          <div class="member-bio-text">
+            <p>Placeholder bio — replace with the team member's background in college athlete NIL monetization, brand deal structuring, compliance navigation, and market valuation.</p>
+            <p>Include their work with collegiate athletes, NIL collectives, and the deals they've helped athletes negotiate within the $2.3B+ NIL market.</p>
+          </div>
+          <div class="member-cred-strip">
+            <div class="member-cred-row">
+              <div class="member-cred-index">01</div>
+              <div class="member-cred-label"><strong>Institution</strong> — Degree / Credential placeholder</div>
+            </div>
+            <div class="member-cred-row">
+              <div class="member-cred-index">02</div>
+              <div class="member-cred-label"><strong>Specialization</strong> — NIL deal structuring, compliance, brand partnerships</div>
+            </div>
+            <div class="member-cred-row">
+              <div class="member-cred-index">03</div>
+              <div class="member-cred-label"><strong>Market Focus:</strong> Collegiate football, basketball, Olympic sports</div>
+            </div>
+          </div>
+          <div class="member-cta">
+            <a href="contact.html" class="btn btn--primary">Connect</a>
+            <a href="nil.html" class="btn btn--ghost">NIL Services</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─────────────────────────────────────────────────────────
+           MEMBER 6 — Deal Diligence & M&A
+      ───────────────────────────────────────────────────────── -->
+      <div class="member-row reveal">
+        <div class="member-photo-col">
+          <div class="member-primary-img">
+            <div class="member-img-placeholder">
+              <div class="ph-circle">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+                </svg>
+              </div>
+              <span class="ph-text">Photo Placeholder</span>
+            </div>
+            <div class="member-img-tag">
+              <div class="label-track"><span>Deal Diligence Advisor</span></div>
+              <div class="img-name">Team Member</div>
+            </div>
+          </div>
+        </div>
+        <div class="member-bio-col reveal reveal-delay-1">
+          <div class="member-eyebrow">
+            <div class="member-eyebrow-line"></div>
+            <span class="member-eyebrow-text">Deal Diligence &amp; M&amp;A</span>
+          </div>
+          <h3 class="member-name">Team<br>Member</h3>
+          <div class="member-position">Deal Diligence &amp; M&amp;A Advisor</div>
+          <div class="member-bio-text">
+            <p>Placeholder bio — replace with the team member's background in transaction advisory, due diligence, investment structuring, and M&amp;A support for athlete-owned and entertainment businesses.</p>
+            <p>Detail their prior deal experience, industries covered, and their methodology for protecting client capital in complex transactions.</p>
+          </div>
+          <div class="member-cred-strip">
+            <div class="member-cred-row">
+              <div class="member-cred-index">01</div>
+              <div class="member-cred-label"><strong>Institution</strong> — Degree / Credential placeholder</div>
+            </div>
+            <div class="member-cred-row">
+              <div class="member-cred-index">02</div>
+              <div class="member-cred-label"><strong>Specialization</strong> — Transaction diligence, M&amp;A advisory, investment structuring</div>
+            </div>
+            <div class="member-cred-row">
+              <div class="member-cred-index">03</div>
+              <div class="member-cred-label"><strong>Deal Focus:</strong> Media rights, real estate, private equity, brand acquisitions</div>
+            </div>
+          </div>
+          <div class="member-cta">
+            <a href="contact.html" class="btn btn--primary">Connect</a>
+            <a href="services.html" class="btn btn--ghost">View Services</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─────────────────────────────────────────────────────────
+           MEMBER 7 — Operations & Client Relations
+      ───────────────────────────────────────────────────────── -->
+      <div class="member-row reveal">
+        <div class="member-photo-col">
+          <div class="member-primary-img">
+            <div class="member-img-placeholder">
+              <div class="ph-circle">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+                </svg>
+              </div>
+              <span class="ph-text">Photo Placeholder</span>
+            </div>
+            <div class="member-img-tag">
+              <div class="label-track"><span>Operations Advisor</span></div>
+              <div class="img-name">Team Member</div>
+            </div>
+          </div>
+        </div>
+        <div class="member-bio-col reveal reveal-delay-1">
+          <div class="member-eyebrow">
+            <div class="member-eyebrow-line"></div>
+            <span class="member-eyebrow-text">Operations &amp; Client Relations</span>
+          </div>
+          <h3 class="member-name">Team<br>Member</h3>
+          <div class="member-position">Operations &amp; Client Relations</div>
+          <div class="member-bio-text">
+            <p>Placeholder bio — replace with the team member's background in enterprise operations, client experience management, and the systems that keep The Advisory running at the highest level.</p>
+            <p>Include their operational philosophy, prior experience managing complex advisory relationships, and how they serve as the connective tissue across The Advisory's practice areas.</p>
+          </div>
+          <div class="member-cred-strip">
+            <div class="member-cred-row">
+              <div class="member-cred-index">01</div>
+              <div class="member-cred-label"><strong>Institution</strong> — Degree / Credential placeholder</div>
+            </div>
+            <div class="member-cred-row">
+              <div class="member-cred-index">02</div>
+              <div class="member-cred-label"><strong>Specialization</strong> — Firm operations, client relations, process architecture</div>
+            </div>
+            <div class="member-cred-row">
+              <div class="member-cred-index">03</div>
+              <div class="member-cred-label"><strong>Background:</strong> Enterprise management, advisory firm operations</div>
+            </div>
+          </div>
+          <div class="member-cta">
+            <a href="contact.html" class="btn btn--primary">Connect</a>
+            <a href="about.html" class="btn btn--ghost">About The Advisory</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PRACTICE TEAMS
+  ============================================================ -->
+  <section class="practice-section" id="practices">
+    <div class="container">
+
+      <div class="section-header reveal">
+        <div class="section-header-left">
+          <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1.5rem;">
+            <span style="display:block;width:2rem;height:1px;background:var(--gold);flex-shrink:0;"></span>
+            <span style="font-family:var(--font-sans);font-size:0.7rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);">Our Practices</span>
+          </div>
+          <h2 class="display-md text-white">
+            The bench behind<br>every engagement.
+          </h2>
+        </div>
+        <div>
+          <p class="body-md text-stone" style="max-width:38ch;">
+            Every client engagement is supported by a cross-functional advisory team —
+            legal, financial, and operational — with the depth to execute at the institutional level.
+          </p>
+        </div>
+      </div>
+
+      <div class="practice-grid">
+
+        <!-- 1: Contracts -->
+        <div class="practice-card reveal">
+          <div class="practice-num">01</div>
+          <div class="practice-tag">Legal Strategy &amp; Compliance</div>
+          <div class="practice-name">Contracts &amp;<br>Negotiation</div>
+          <div class="practice-desc">
+            Our contracts team handles the full lifecycle of deal representation — from term-sheet to close,
+            with institutional rigor and zero conflicts of interest. Every negotiation is backed by
+            Harvard Law-trained analysis.
+          </div>
+          <button class="spec-toggle" onclick="toggleSpec(this)">
+            View Specializations <span class="tog-icon">+</span>
+          </button>
+          <div class="spec-panel">
+            <div class="spec-inner">
+              <p>Athlete and entertainer contract negotiation, endorsement deal structuring, performance clause analysis, renewal pipeline management, deal room coordination, and sports &amp; entertainment law counsel.</p>
+              <p>Every negotiation is backed by Harvard Law-trained analysis and decades of elite representation experience.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2: Tax & Entity -->
+        <div class="practice-card reveal reveal-delay-1">
+          <div class="practice-num">02</div>
+          <div class="practice-tag">Tax Strategy &amp; Entity Architecture</div>
+          <div class="practice-name">Tax &amp;<br>Entity</div>
+          <div class="practice-desc">
+            Our tax team specializes in the unique exposure of athletes and entertainers — multi-state
+            filings, phantom income on NIL, and entity optimization for maximum retention.
+            On average we identify $40K–$85K in annual exposure per new client.
+          </div>
+          <button class="spec-toggle" onclick="toggleSpec(this)">
+            View Specializations <span class="tog-icon">+</span>
+          </button>
+          <div class="spec-panel">
+            <div class="spec-inner">
+              <p>LLC and S-Corp formation, multi-state tax exposure management, self-employment tax strategy (15.3%), phantom income protection, quarterly planning, annual filing management, and IRS-ready documentation.</p>
+              <p>On average, we identify $40,000–$85,000 in annual tax exposure per new client — before they file.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3: Brand & IP -->
+        <div class="practice-card reveal reveal-delay-2">
+          <div class="practice-num">03</div>
+          <div class="practice-tag">Brand, IP &amp; Licensing</div>
+          <div class="practice-name">Brand &amp;<br>IP</div>
+          <div class="practice-desc">
+            Your name, image, and creative output are your most valuable long-term assets.
+            Our IP team builds the ownership, registration, and licensing infrastructure to protect
+            them permanently — starting from day one.
+          </div>
+          <button class="spec-toggle" onclick="toggleSpec(this)">
+            View Specializations <span class="tog-icon">+</span>
+          </button>
+          <div class="spec-panel">
+            <div class="spec-inner">
+              <p>Trademark registration, image rights structuring, publishing and master recordings strategy, brand licensing framework, endorsement compliance, content licensing, and long-term IP estate planning.</p>
+              <p>We build ownership structures from day one — so what you create or become remains yours, permanently.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4: Family Governance -->
+        <div class="practice-card reveal">
+          <div class="practice-num">04</div>
+          <div class="practice-tag">Family Governance &amp; Wealth Planning</div>
+          <div class="practice-name">Family<br>Governance</div>
+          <div class="practice-desc">
+            Our family governance team builds the trust structures, household frameworks, and
+            multi-generational planning that protect your enterprise from becoming an unlimited
+            resource for those around you.
+          </div>
+          <button class="spec-toggle" onclick="toggleSpec(this)">
+            View Specializations <span class="tog-icon">+</span>
+          </button>
+          <div class="spec-panel">
+            <div class="spec-inner">
+              <p>Family trust structures, household financial governance, generosity frameworks, dependents support structuring, estate planning integration, multi-generational wealth documentation, and responsible giving strategy.</p>
+              <p>We help you show up for the people you love — without sacrificing the enterprise you've built.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5: NIL Flight School -->
+        <div class="practice-card reveal reveal-delay-1">
+          <div class="practice-num">05</div>
+          <div class="practice-tag">NIL Strategy &amp; Compliance</div>
+          <div class="practice-name">NIL Flight<br>School™</div>
+          <div class="practice-desc">
+            Our NIL team manages the complete student-athlete lifecycle — from first deal review to
+            long-term brand equity — with real-time compliance monitoring across NCAA, conference,
+            and state requirements.
+          </div>
+          <button class="spec-toggle" onclick="toggleSpec(this)">
+            View Specializations <span class="tog-icon">+</span>
+          </button>
+          <div class="spec-panel">
+            <div class="spec-inner">
+              <p>NIL deal review and negotiation, NCAA and conference compliance, state-specific eligibility monitoring, brand strategy and positioning, multi-deal portfolio management, tax structure for NIL income, and Flight School™ curriculum delivery.</p>
+              <p>We operate in the $2.3B+ NIL market with the same institutional precision we bring to professional sports and entertainment.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6: Diligence & M&A -->
+        <div class="practice-card reveal reveal-delay-2">
+          <div class="practice-num">06</div>
+          <div class="practice-tag">Deal Diligence &amp; M&amp;A Advisory</div>
+          <div class="practice-name">Diligence &amp;<br>Investment</div>
+          <div class="practice-desc">
+            Our diligence team provides independent analysis on investment opportunities, business
+            ventures, and equity deals — with no stake in the outcome and no commissions on
+            deals we evaluate.
+          </div>
+          <button class="spec-toggle" onclick="toggleSpec(this)">
+            View Specializations <span class="tog-icon">+</span>
+          </button>
+          <div class="spec-panel">
+            <div class="spec-inner">
+              <p>Investment opportunity analysis, business due diligence, minority ownership structuring, term sheet analysis, conflict-of-interest auditing, M&amp;A advisory support, exit strategy planning, and post-close integration.</p>
+              <p>Conflict-free advisory is not a policy — it is the architecture of every engagement.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       EXTENDED NETWORK
+  ============================================================ -->
+  <section class="network-section" id="network">
+    <div class="container">
+
+      <div class="reveal" style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-5);align-items:end;">
+        <div>
+          <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1.5rem;">
+            <span style="display:block;width:2rem;height:1px;background:var(--gold);flex-shrink:0;"></span>
+            <span style="font-family:var(--font-sans);font-size:0.7rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);">Extended Network</span>
+          </div>
+          <h2 class="display-md text-white">
+            The network behind<br>The Advisory.
+          </h2>
+        </div>
+        <p class="body-md text-stone" style="max-width:40ch;align-self:end;">
+          We maintain institutional-grade relationships across law, finance, sports, entertainment,
+          and operations — so every client benefits from a network that extends far beyond a single firm.
+        </p>
+      </div>
+
+      <div class="network-grid">
+
+        <div class="network-item reveal">
+          <div class="network-cat">Law &amp; Regulatory</div>
+          <div class="network-name">Sports &amp; Entertainment Law</div>
+          <div class="network-desc">Active relationships with sports law practitioners, entertainment attorneys, and regulatory specialists across all major markets.</div>
+        </div>
+
+        <div class="network-item reveal reveal-delay-1">
+          <div class="network-cat">Financial Services</div>
+          <div class="network-name">Wealth &amp; Investment Advisory</div>
+          <div class="network-desc">Access to independent, conflict-free financial advisory relationships — investment management, insurance, and institutional banking.</div>
+        </div>
+
+        <div class="network-item reveal reveal-delay-2">
+          <div class="network-cat">Sports &amp; Entertainment</div>
+          <div class="network-name">Agent &amp; Management Network</div>
+          <div class="network-desc">Deep professional relationships across all major sports and entertainment verticals — enabling cross-functional collaboration without conflict.</div>
+        </div>
+
+        <div class="network-item reveal reveal-delay-3">
+          <div class="network-cat">Operations &amp; Tax</div>
+          <div class="network-name">Multi-State &amp; International</div>
+          <div class="network-desc">Operational support across multi-state and international tax requirements, entity compliance, and regulatory filing management.</div>
+        </div>
+
+        <div class="network-item reveal">
+          <div class="network-cat">NIL Ecosystem</div>
+          <div class="network-name">Collective &amp; Brand Partners</div>
+          <div class="network-desc">Curated relationships with top NIL collectives, brand partners, licensing platforms, and compliance monitoring services.</div>
+        </div>
+
+        <div class="network-item reveal reveal-delay-1">
+          <div class="network-cat">Media &amp; Communications</div>
+          <div class="network-name">PR &amp; Strategic Narrative</div>
+          <div class="network-desc">Strategic communications relationships to manage reputation, amplify brand positioning, and navigate public crises at speed.</div>
+        </div>
+
+        <div class="network-item reveal reveal-delay-2">
+          <div class="network-cat">Real Estate</div>
+          <div class="network-name">Investment Property Advisory</div>
+          <div class="network-desc">Trusted real estate advisory partnerships for athlete and entertainer asset diversification, acquisition structuring, and portfolio management.</div>
+        </div>
+
+        <div class="network-item reveal reveal-delay-3">
+          <div class="network-cat">Technology &amp; Innovation</div>
+          <div class="network-name">Digital Assets &amp; Ventures</div>
+          <div class="network-desc">Relationships across venture capital, digital assets, tech equity, and sports technology — enabling clients to participate in the modern innovation economy.</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       JOIN CTA
+  ============================================================ -->
+  <section class="team-cta-section">
+    <span class="team-cta-ghost" aria-hidden="true">Join</span>
+    <div class="container">
+      <div class="team-cta-layout reveal">
+        <div>
+          <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:2rem;">
+            <span style="display:block;width:2rem;height:1px;background:var(--gold);flex-shrink:0;"></span>
+            <span style="font-family:var(--font-sans);font-size:0.7rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);">Work With Us</span>
+          </div>
+          <h2 class="team-cta-headline">
+            Part of a team that<br>serves at the <em>highest level.</em>
+          </h2>
+          <p class="team-cta-body">
+            The Advisory selectively grows its advisory and operational team. If you bring institutional-grade
+            expertise in law, finance, or enterprise operations — and share our commitment to
+            conflict-free, client-first advisory — we want to hear from you.
+          </p>
+        </div>
+        <div class="team-cta-actions">
+          <a href="contact.html" class="btn btn--primary">Join Our Team</a>
+          <a href="partnerships.html" class="btn btn--ghost">Partner With Us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="footer-logo">The Advisory</div>
+          <p>Enterprise management for professional athletes, NIL athletes, entertainers, and high-net-worth entrepreneurs.</p>
+          <div style="margin-top:1.5rem">
+            <a href="contact.html" class="btn btn--primary" style="padding:0.65rem 1.25rem;font-size:0.75rem">Start Here</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h5>Who We Serve</h5>
+          <ul>
+            <li><a href="sports.html">Professional Athletes</a></li>
+            <li><a href="nil.html">NIL Athletes</a></li>
+            <li><a href="creatives.html">Entertainers &amp; Creatives</a></li>
+            <li><a href="bespoke.html">Bespoke &amp; Entrepreneurs</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Services</h5>
+          <ul>
+            <li><a href="services.html#contracts">Contracts</a></li>
+            <li><a href="nil.html">NIL Strategy</a></li>
+            <li><a href="services.html#entity">Entity &amp; Tax</a></li>
+            <li><a href="services.html#brand-ip">Brand &amp; IP</a></li>
+            <li><a href="services.html#family-governance">Family Governance</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Company</h5>
+          <ul>
+            <li><a href="about.html">About</a></li>
+            <li><a href="team.html">Meet the Team</a></li>
+            <li><a href="partnerships.html">Partnerships</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 The Advisory. All rights reserved.</p>
+        <div class="footer-legal">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms</a>
+          <a href="#">Disclosures</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    function toggleSpec(btn) {
+      const panel = btn.nextElementSibling;
+      const isOpen = btn.classList.contains('open');
+      // Close all
+      document.querySelectorAll('.spec-toggle').forEach(function(b) {
+        b.classList.remove('open');
+        b.nextElementSibling.classList.remove('open');
+        b.querySelector('.tog-icon').textContent = '+';
+      });
+      // Toggle current
+      if (!isOpen) {
+        btn.classList.add('open');
+        panel.classList.add('open');
+        btn.querySelector('.tog-icon').textContent = '×';
+      }
+    }
+  </script>
+</body>
+</html>

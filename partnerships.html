@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Partnerships | The Advisory</title>
+  <meta name="description" content="The Advisory partners with agents, managers, attorneys, fiduciaries, trainers, advisors, and power connectors. We supply the backend, compliance, and delivery so your clients get professional execution.">
+  <link rel="stylesheet" href="css/design-system.css">
+  <link rel="stylesheet" href="css/nav.css">
+  <style>
+
+    /* PARTNERSHIPS PAGE: Lighter interior feel with whitespace */
+    body { background-color: var(--warm-white); color: var(--body-text); }
+
+    /* Override nav for light page */
+    .site-header.scrolled-light {
+      background-color: rgba(245, 243, 239, 0.94);
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    /* ===== PAGE HERO (dark entry, then opens to light) ===== */
+    .partnerships-hero {
+      background-color: var(--near-black);
+      padding: 160px var(--container-padding) var(--space-8);
+    }
+
+    .partnerships-hero .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-5);
+      align-items: end;
+    }
+
+    .ph-headline {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 6vw, 7rem);
+      line-height: 0.92;
+      letter-spacing: -0.02em;
+      color: var(--ivory);
+    }
+
+    .ph-headline em { font-style: italic; color: var(--gold); }
+
+    .ph-right p {
+      font-size: clamp(0.9rem, 1.1vw, 1.05rem);
+      color: var(--stone);
+      line-height: 1.65;
+      max-width: 40ch;
+      margin-bottom: var(--space-3);
+    }
+
+    /* ===== INTRO STRIP ===== */
+    .partnerships-intro {
+      background-color: var(--ivory);
+      padding: var(--space-7) 0;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .intro-quote {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: clamp(1.5rem, 2.5vw, 2.75rem);
+      line-height: 1.2;
+      color: var(--body-text);
+      max-width: 28ch;
+      border-left: 3px solid var(--gold);
+      padding-left: var(--space-4);
+    }
+
+    /* ===== PARTNERSHIP TIERS ===== */
+    .partnership-tiers {
+      background-color: var(--warm-white);
+      padding: var(--space-8) 0;
+    }
+
+    /* ===== PARTNER CARD (light version) ===== */
+    .partner-tier {
+      background-color: var(--ivory);
+      border: 1px solid var(--border-light);
+      padding: var(--space-5) var(--space-5);
+      transition: box-shadow var(--duration-base) var(--ease-smooth),
+                  transform var(--duration-base) var(--ease-smooth);
+      position: relative;
+    }
+
+    .partner-tier:hover {
+      box-shadow: 0 12px 48px rgba(0,0,0,0.08);
+      transform: translateY(-2px);
+    }
+
+    .partner-tier-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: var(--space-3);
+      margin-bottom: var(--space-4);
+      padding-bottom: var(--space-3);
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .partner-tier-tag {
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      display: inline-block;
+      margin-bottom: 0.75rem;
+    }
+
+    .partner-tier-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 2.5vw, 2.25rem);
+      color: var(--body-text);
+      line-height: 1.1;
+    }
+
+    .partner-tier-audience {
+      font-family: var(--font-sans);
+      font-size: 0.8125rem;
+      color: var(--muted);
+      max-width: 28ch;
+      text-align: right;
+    }
+
+    .partner-value {
+      margin-bottom: var(--space-3);
+    }
+
+    .partner-value-label {
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .partner-value p {
+      font-size: 0.9375rem;
+      color: var(--body-text);
+      line-height: 1.6;
+    }
+
+    .partner-examples {
+      margin-top: var(--space-3);
+    }
+
+    .partner-examples-label {
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+    }
+
+    .partner-examples ul {
+      display: flex;
+      flex-direction: column;
+      gap: 0.625rem;
+    }
+
+    .partner-examples ul li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      font-size: 0.875rem;
+      color: var(--body-text);
+      line-height: 1.5;
+    }
+
+    .partner-examples ul li::before {
+      content: '—';
+      color: var(--gold);
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* ===== WHO PARTNERSHIPS ARE FOR ===== */
+    .for-whom {
+      background-color: var(--charcoal);
+      padding: var(--space-8) 0;
+    }
+
+    .for-whom-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-4);
+      margin-top: var(--space-5);
+    }
+
+    .for-whom-item {
+      padding: var(--space-4);
+      border: 1px solid var(--border-dark);
+      transition: border-color var(--duration-base) var(--ease-smooth);
+    }
+
+    .for-whom-item:hover {
+      border-color: var(--gold);
+    }
+
+    .fwi-role {
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.75rem;
+    }
+
+    .fwi-title {
+      font-family: var(--font-sans);
+      font-size: clamp(1rem, 1.3vw, 1.25rem);
+      font-weight: 600;
+      color: var(--ivory);
+      margin-bottom: 0.5rem;
+    }
+
+    .fwi-desc {
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    /* ===== HOW IT WORKS ===== */
+    .how-it-works {
+      background-color: var(--warm-white);
+      padding: var(--space-8) 0;
+    }
+
+    .how-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      margin-top: var(--space-5);
+      border-left: 1px solid var(--border-light);
+      border-top: 1px solid var(--border-light);
+    }
+
+    .how-step {
+      border-right: 1px solid var(--border-light);
+      border-bottom: 1px solid var(--border-light);
+      padding: var(--space-4);
+    }
+
+    .step-num {
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+
+    .step-title {
+      font-family: var(--font-sans);
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--body-text);
+      margin-bottom: 0.5rem;
+    }
+
+    .step-desc {
+      font-size: 0.8125rem;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    /* ===== COMPLIANCE STRIP ===== */
+    .compliance-strip {
+      background-color: var(--ivory);
+      padding: var(--space-6) 0;
+      border-top: 1px solid var(--border-light);
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      .partnerships-hero .container { grid-template-columns: 1fr; }
+      .for-whom-grid { grid-template-columns: 1fr; }
+      .how-steps { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .how-steps { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER — light version -->
+  <header class="site-header light-header" id="site-header">
+    <div class="container header-inner">
+      <a href="home.html" class="site-logo">
+        <div class="logo-text">
+          <span class="logo-name" style="color: var(--near-black);">The Advisory</span>
+          <span class="logo-sub">Enterprise Management</span>
+        </div>
+      </a>
+      <nav class="primary-nav">
+        <ul>
+          <li class="nav-item">
+            <a href="#" class="nav-link" style="color: rgba(44,44,44,0.65);">Who We Serve
+              <svg class="chevron" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4l4 4 4-4"/></svg>
+            </a>
+            <ul class="dropdown">
+              <li class="dropdown-item"><a href="sports.html" class="dropdown-link">Professional Athletes</a></li>
+              <li class="dropdown-item"><a href="nil.html" class="dropdown-link">NIL Athletes</a></li>
+              <li class="dropdown-item"><a href="creatives.html" class="dropdown-link">Entertainers &amp; Creatives</a></li>
+              <li class="dropdown-item"><a href="bespoke.html" class="dropdown-link">Bespoke &amp; Entrepreneurs</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a href="services.html" class="nav-link" style="color: rgba(44,44,44,0.65);">Services</a></li>
+          <li class="nav-item"><a href="nil.html" class="nav-link" style="color: rgba(44,44,44,0.65);">NIL</a></li>
+          <li class="nav-item active">
+            <a href="partnerships.html" class="nav-link" style="color: var(--body-text);">Partnerships</a>
+          </li>
+          <li class="nav-item"><a href="about.html" class="nav-link" style="color: rgba(44,44,44,0.65);">About<svg class="chevron" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4l4 4 4-4"/></svg></a><ul class="dropdown"><li class="dropdown-item"><a href="about.html" class="dropdown-link">About The Advisory</a></li><li class="dropdown-item"><a href="team.html" class="dropdown-link">Meet the Team</a></li></ul></li>
+        </ul>
+      </nav>
+      <div class="header-cta">
+        <a href="contact.html" class="btn btn--ghost-dark">Start a Conversation</a>
+      </div>
+      <button class="mobile-toggle" aria-label="Toggle menu" style="--ivory: var(--body-text);">
+        <span style="background-color: var(--body-text);"></span>
+        <span style="background-color: var(--body-text);"></span>
+        <span style="background-color: var(--body-text);"></span>
+      </button>
+    </div>
+  </header>
+  <div class="mobile-nav-overlay"></div>
+  <nav class="mobile-nav">
+    <ul>
+      <li class="mobile-nav-item"><button class="mobile-nav-trigger" data-submenu="mp-serve"><span>Who We Serve</span><svg class="m-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 8l5 5 5-5"/></svg></button>
+        <div class="mobile-submenu" id="mp-serve">
+          <a href="sports.html" class="mobile-submenu-link">Professional Athletes</a>
+          <a href="nil.html" class="mobile-submenu-link">NIL Athletes</a>
+          <a href="creatives.html" class="mobile-submenu-link">Entertainers &amp; Creatives</a>
+          <a href="bespoke.html" class="mobile-submenu-link">Bespoke &amp; Entrepreneurs</a>
+        </div>
+      </li>
+      <li class="mobile-nav-item"><button class="mobile-nav-trigger"><a href="services.html">Services</a></button></li>
+      <li class="mobile-nav-item"><button class="mobile-nav-trigger"><a href="nil.html">NIL</a></button></li>
+      <li class="mobile-nav-item"><button class="mobile-nav-trigger"><a href="partnerships.html">Partnerships</a></button></li>
+      <li class="mobile-nav-item"><button class="mobile-nav-trigger"><a href="about.html">About</a></button></li>
+    </ul>
+    <div class="mobile-nav-cta"><a href="contact.html" class="btn btn--primary">Start a Conversation</a></div>
+  </nav>
+
+  <!-- ============================================================
+       PARTNERSHIPS HERO: Dark entry
+  ============================================================ -->
+  <section class="partnerships-hero">
+    <div class="container">
+      <div class="reveal">
+        <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.75rem;">
+          <span style="display:block;width:2rem;height:1px;background:var(--gold)"></span>
+          <span class="label text-gold">Partnerships</span>
+        </div>
+        <h1 class="ph-headline">
+          Build together.<br><em>Keep</em> your<br>relationships.
+        </h1>
+      </div>
+
+      <div class="ph-right reveal reveal-delay-2">
+        <p>
+          We collaborate without stepping on your toes. You lead the relationship;
+          we supply the legal, business, and operational backbone — so your athletes,
+          creatives, and high-net-worth contacts experience professional outcomes end-to-end.
+        </p>
+        <a href="contact.html" class="btn btn--primary">Explore Partnership</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       INTRO QUOTE STRIP
+  ============================================================ -->
+  <section class="partnerships-intro">
+    <div class="container">
+      <blockquote class="intro-quote reveal">
+        "We provide the bench, governance, and delivery behind them."
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       WHO PARTNERSHIPS ARE FOR
+  ============================================================ -->
+  <section class="for-whom" id="agents-managers">
+    <div class="container">
+      <div class="reveal">
+        <div class="eyebrow"><span class="label">Who This Is For</span></div>
+        <h2 class="display-md text-white" style="max-width: 18ch; margin-bottom: 0;">Every professional who already serves talent.</h2>
+      </div>
+
+      <div class="for-whom-grid">
+
+        <div class="for-whom-item reveal" id="agents-managers">
+          <div class="fwi-role">Tier 1</div>
+          <div class="fwi-title">Agents, Managers, Attorneys &amp; Fiduciaries</div>
+          <div class="fwi-desc">Licensed representatives serving athletes, creatives, and HNW clients who want deeper bench strength without adding headcount. Stronger outcomes, faster cycles, fewer operational bottlenecks — without diluting your client relationship.</div>
+        </div>
+
+        <div class="for-whom-item reveal reveal-delay-1" id="advisors">
+          <div class="fwi-role">Tier 2</div>
+          <div class="fwi-title">Trainers, Advisors, Coaches &amp; PR/Media</div>
+          <div class="fwi-desc">Providers already embedded with talent, teams, or HNW households who need a trusted, business-first back office. Stickier relationships, cleaner execution, and measurable lift in client satisfaction.</div>
+        </div>
+
+        <div class="for-whom-item reveal reveal-delay-2" id="connectors">
+          <div class="fwi-role">Tier 3</div>
+          <div class="fwi-title">Movers &amp; Shakers</div>
+          <div class="fwi-desc">Non-professionals and community builders who regularly meet athletes, creatives, and HNWIs and want a professional engine behind their introductions. Monetize connectivity responsibly while adding real value to your relationships.</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PARTNERSHIP TIERS (detailed, light section)
+       NOTE: Customer Success section intentionally OMITTED per brief
+  ============================================================ -->
+  <section class="partnership-tiers">
+    <div class="container">
+
+      <div class="reveal" style="margin-bottom: var(--space-6);">
+        <div class="eyebrow" style="--gold: #B8965A; color: var(--gold);">
+          <span style="display:block;width:2rem;height:1px;background:#B8965A;flex-shrink:0;"></span>
+          <span class="label" style="color: var(--muted);">Partnership Value</span>
+        </div>
+        <h2 class="heading-xl" style="color: var(--body-text); max-width: 18ch;">How We Partner<br>With You</h2>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-4);">
+
+        <!-- AGENTS / MANAGERS / ATTORNEYS / FIDUCIARIES -->
+        <div class="partner-tier reveal">
+          <div class="partner-tier-header">
+            <div>
+              <div class="partner-tier-tag">Tier 1</div>
+              <div class="partner-tier-title">Agents, Managers, Attorneys &amp; Fiduciaries</div>
+            </div>
+            <div class="partner-tier-audience">
+              For licensed representatives serving athletes, creatives, and HNW clients
+            </div>
+          </div>
+
+          <div class="partner-value">
+            <div class="partner-value-label">Value to You</div>
+            <p>Stronger outcomes, faster cycles, fewer operational bottlenecks — without diluting your client relationship.</p>
+          </div>
+
+          <div class="partner-examples">
+            <div class="partner-examples-label">How We Partner</div>
+            <ul>
+              <li>White-label or co-branded delivery across contracts, NIL, IP, entity/tax posture, diligence, and M&amp;A support.</li>
+              <li>Deal rooms, term-sheet drafting, performance tracking, and renewal pipelines your clients can actually use.</li>
+              <li>Clear swim lanes: you lead the relationship; we staff the workstreams and report to you.</li>
+              <li>Compliant commercial models (referral/fee-share/outsourced support) structured to applicable rules and firm policies.</li>
+            </ul>
+          </div>
+
+          <a href="contact.html" class="btn btn--ghost-dark" style="margin-top: var(--space-4); width: 100%; justify-content: center;">Explore Partnership</a>
+        </div>
+
+        <!-- TRAINERS / PERFORMANCE STAFF / ADVISORS / COACHES -->
+        <div class="partner-tier reveal reveal-delay-1">
+          <div class="partner-tier-header">
+            <div>
+              <div class="partner-tier-tag">Tier 2</div>
+              <div class="partner-tier-title">Trainers, Advisors, Coaches &amp; PR/Media</div>
+            </div>
+            <div class="partner-tier-audience">
+              For providers embedded with talent, teams, or HNW households
+            </div>
+          </div>
+
+          <div class="partner-value">
+            <div class="partner-value-label">Value to You</div>
+            <p>Stickier relationships, cleaner execution, and measurable lift in client satisfaction.</p>
+          </div>
+
+          <div class="partner-examples">
+            <div class="partner-examples-label">How We Partner</div>
+            <ul>
+              <li>One operations backbone: entities, contracts, clearances, scheduling, and payment flows tied to your client's release/season cadence.</li>
+              <li>Cross-functional coordination (legal, finance, operations) so your plan doesn't stall at handoffs.</li>
+              <li>Simple reporting your client reads: what's signed, what's owed, what's next.</li>
+              <li>Introducer economics where permitted — always documented, always above board.</li>
+            </ul>
+          </div>
+
+          <a href="contact.html" class="btn btn--ghost-dark" style="margin-top: var(--space-4); width: 100%; justify-content: center;">Explore Partnership</a>
+        </div>
+
+        <!-- MOVERS & SHAKERS -->
+        <div class="partner-tier reveal reveal-delay-2">
+          <div class="partner-tier-header">
+            <div>
+              <div class="partner-tier-tag">Tier 3</div>
+              <div class="partner-tier-title">Movers &amp; Shakers</div>
+            </div>
+            <div class="partner-tier-audience">
+              For non-professionals who regularly meet athletes, creatives, and HNWIs
+            </div>
+          </div>
+
+          <div class="partner-value">
+            <div class="partner-value-label">Value to You</div>
+            <p>Monetize connectivity responsibly while adding real value to your relationships.</p>
+          </div>
+
+          <div class="partner-examples">
+            <div class="partner-examples-label">How We Partner</div>
+            <ul>
+              <li>A vetted path to help your contacts — no pressure, no scripts; we handle scoping, paperwork, and delivery.</li>
+              <li>Introducer agreements with transparent terms; compliance and disclosures handled by us.</li>
+              <li>First-look intake: fast triage, clear next steps, status visibility for you and your contact.</li>
+              <li>If a fit, we build a repeatable lane around your network, ethically and sustainably.</li>
+            </ul>
+          </div>
+
+          <a href="contact.html" class="btn btn--ghost-dark" style="margin-top: var(--space-4); width: 100%; justify-content: center;">Explore Partnership</a>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       HOW IT WORKS
+  ============================================================ -->
+  <section class="how-it-works">
+    <div class="container">
+
+      <div class="reveal" style="margin-bottom: 0;">
+        <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.25rem;">
+          <span style="display:block;width:2rem;height:1px;background:var(--gold);flex-shrink:0;"></span>
+          <span class="label" style="color: var(--muted);">Process</span>
+        </div>
+        <h2 class="heading-xl" style="color: var(--body-text);">From introduction to execution.</h2>
+      </div>
+
+      <div class="how-steps reveal">
+        <div class="how-step">
+          <div class="step-num">Step 01</div>
+          <div class="step-title">Initial Conversation</div>
+          <div class="step-desc">We learn your relationship with your client and identify the right partnership structure for you both.</div>
+        </div>
+        <div class="how-step">
+          <div class="step-num">Step 02</div>
+          <div class="step-title">Scope &amp; Structure</div>
+          <div class="step-desc">We define the engagement: services needed, swim lanes, commercial model, and reporting structure.</div>
+        </div>
+        <div class="how-step">
+          <div class="step-num">Step 03</div>
+          <div class="step-title">Agreement &amp; Onboarding</div>
+          <div class="step-desc">Compliant documentation executed. Client onboarded with The Advisory's full service delivery behind you.</div>
+        </div>
+        <div class="how-step">
+          <div class="step-num">Step 04</div>
+          <div class="step-title">Ongoing Delivery</div>
+          <div class="step-desc">We execute. You maintain the relationship. Your client gets world-class outcomes. You get measurable value added to your practice.</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       COMPLIANCE NOTE
+  ============================================================ -->
+  <section class="compliance-strip">
+    <div class="container">
+      <div style="display: grid; grid-template-columns: auto 1fr; gap: var(--space-4); align-items: center;" class="reveal">
+        <div style="width: 3rem; height: 3rem; border: 1px solid var(--border-light); display: flex; align-items: center; justify-content: center; color: var(--gold); font-size: 1.25rem; flex-shrink: 0;">✓</div>
+        <div>
+          <div class="label" style="color: var(--muted); margin-bottom: 0.5rem;">Compliance First</div>
+          <p style="font-size: 0.9375rem; color: var(--body-text); max-width: 60ch;">All partnership structures are built to applicable legal and regulatory standards. Commercial models are documented, disclosed, and above board — always. We protect your compliance position as much as we protect your client's.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CTA
+  ============================================================ -->
+  <section style="background-color: var(--near-black); padding: var(--space-8) 0;">
+    <div class="container">
+      <div style="display: grid; grid-template-columns: 1fr auto; gap: var(--space-4); align-items: center;" class="reveal">
+        <div>
+          <h2 class="display-md text-white" style="margin-bottom: 0.75rem;">Start a partnership conversation.</h2>
+          <p style="color: var(--stone); font-size: 0.9375rem; max-width: 44ch;">Tell us about your practice and the clients you serve. We'll determine together whether The Advisory is the right back office for your front office.</p>
+        </div>
+        <a href="contact.html" class="btn btn--primary">Get in Touch</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="footer-logo">The Advisory</div>
+          <p>Enterprise management for professional athletes, NIL athletes, entertainers, and high-net-worth entrepreneurs.</p>
+          <div style="margin-top:1.5rem"><a href="contact.html" class="btn btn--primary" style="padding:0.65rem 1.25rem;font-size:0.75rem">Start Here</a></div>
+        </div>
+        <div class="footer-col"><h5>Who We Serve</h5><ul><li><a href="sports.html">Professional Athletes</a></li><li><a href="nil.html">NIL Athletes</a></li><li><a href="creatives.html">Entertainers &amp; Creatives</a></li><li><a href="bespoke.html">Bespoke &amp; Entrepreneurs</a></li></ul></div>
+        <div class="footer-col"><h5>Services</h5><ul><li><a href="services.html#contracts">Contracts</a></li><li><a href="nil.html">NIL Strategy</a></li><li><a href="services.html#entity">Entity &amp; Tax</a></li><li><a href="services.html#brand-ip">Brand &amp; IP</a></li><li><a href="services.html#family-governance">Family Governance</a></li></ul></div>
+        <div class="footer-col"><h5>Company</h5><ul><li><a href="about.html">About</a></li><li><a href="team.html">Meet the Team</a></li><li><a href="partnerships.html">Partnerships</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 The Advisory. All rights reserved.</p>
+        <div class="footer-legal"><a href="#">Privacy Policy</a><a href="#">Terms</a><a href="#">Disclosures</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

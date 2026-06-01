@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bespoke &amp; Entrepreneurs | The Advisory</title>
+  <meta name="description" content="The Advisory's bespoke advisory for high-net-worth entrepreneurs, enterprise founders, and those who require institutional management of complex personal and business enterprise.">
+  <link rel="stylesheet" href="css/design-system.css">
+  <link rel="stylesheet" href="css/nav.css">
+  <style>
+    body { background-color: var(--near-black); }
+
+    /* ===== BESPOKE HERO ===== */
+    .bespoke-hero {
+      position: relative;
+      padding: 160px var(--container-padding) var(--space-8);
+      background-color: var(--near-black);
+      overflow: hidden;
+    }
+
+    .bespoke-bg {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 80% 30%, rgba(184,150,90,0.06) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .bespoke-hero-layout {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-5);
+      align-items: end;
+    }
+
+    .bh-headline {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 6vw, 7.5rem);
+      line-height: 0.9;
+      letter-spacing: -0.02em;
+      color: var(--ivory);
+    }
+
+    .bh-headline em { font-style: italic; color: var(--gold); }
+
+    /* ===== WHAT BESPOKE MEANS ===== */
+    .bespoke-definition {
+      background-color: var(--charcoal);
+      padding: var(--space-8) 0;
+    }
+
+    .bd-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-6);
+      align-items: center;
+    }
+
+    /* ===== WHO IT'S FOR ===== */
+    .bespoke-clients {
+      background-color: var(--near-black);
+      padding: var(--space-8) 0;
+    }
+
+    .bc-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-4);
+      margin-top: var(--space-5);
+    }
+
+    .bc-item {
+      padding: var(--space-4);
+      border: 1px solid var(--border-dark);
+      transition: border-color var(--duration-base) var(--ease-smooth);
+    }
+
+    .bc-item:hover { border-color: var(--gold); }
+
+    .bc-label {
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.75rem;
+    }
+
+    .bc-title {
+      font-family: var(--font-sans);
+      font-size: clamp(1rem, 1.3vw, 1.2rem);
+      font-weight: 600;
+      color: var(--ivory);
+      margin-bottom: 0.5rem;
+    }
+
+    .bc-desc {
+      font-size: 0.875rem;
+      color: var(--stone);
+      line-height: 1.6;
+    }
+
+    /* ===== VIDEO SECTION (Creatives video for bespoke entrepreneurs) ===== */
+    .bespoke-video-section {
+      position: relative;
+      aspect-ratio: 16/9;
+      max-height: 700px;
+      overflow: hidden;
+      background-color: var(--near-black);
+    }
+
+    .bespoke-video-section iframe {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 177.78vh;
+      min-width: 100%;
+      height: 100%;
+      min-height: 56.25vw;
+      border: none;
+      pointer-events: none;
+    }
+
+    .bespoke-video-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(13,13,13,0.55);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1;
+    }
+
+    .bespoke-video-text {
+      text-align: center;
+      z-index: 2;
+      position: relative;
+    }
+
+    .bespoke-video-text h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 5vw, 6rem);
+      line-height: 1.0;
+      color: var(--ivory);
+      max-width: 16ch;
+      margin: 0 auto var(--space-3);
+    }
+
+    .bespoke-video-text h2 em { font-style: italic; color: var(--gold); }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      .bespoke-hero-layout { grid-template-columns: 1fr; }
+      .bd-layout { grid-template-columns: 1fr; }
+      .bc-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header" id="site-header">
+    <div class="container header-inner">
+      <a href="home.html" class="site-logo"><div class="logo-text"><span class="logo-name">The Advisory</span><span class="logo-sub">Enterprise Management</span></div></a>
+      <nav class="primary-nav">
+        <ul>
+          <li class="nav-item active"><a href="#" class="nav-link">Who We Serve<svg class="chevron" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4l4 4 4-4"/></svg></a>
+            <ul class="dropdown">
+              <li class="dropdown-item"><a href="sports.html" class="dropdown-link">Professional Athletes</a></li>
+              <li class="dropdown-item"><a href="nil.html" class="dropdown-link">NIL Athletes</a></li>
+              <li class="dropdown-item"><a href="creatives.html" class="dropdown-link">Entertainers &amp; Creatives</a></li>
+              <li class="dropdown-item"><a href="bespoke.html" class="dropdown-link">Bespoke &amp; Entrepreneurs</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
+          <li class="nav-item"><a href="nil.html" class="nav-link">NIL</a></li>
+          <li class="nav-item"><a href="partnerships.html" class="nav-link">Partnerships</a></li>
+          <li class="nav-item"><a href="about.html" class="nav-link">About<svg class="chevron" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4l4 4 4-4"/></svg></a><ul class="dropdown"><li class="dropdown-item"><a href="about.html" class="dropdown-link">About The Advisory</a></li><li class="dropdown-item"><a href="team.html" class="dropdown-link">Meet the Team</a></li></ul></li>
+        </ul>
+      </nav>
+      <div class="header-cta"><a href="contact.html" class="btn btn--ghost">Start a Conversation</a></div>
+      <button class="mobile-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+  <div class="mobile-nav-overlay"></div>
+  <nav class="mobile-nav">
+    <ul>
+      <li class="mobile-nav-item"><button class="mobile-nav-trigger" data-submenu="mb-serve"><span>Who We Serve</span><svg class="m-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 8l5 5 5-5"/></svg></button>
+        <div class="mobile-submenu" id="mb-serve">
+          <a href="sports.html" class="mobile-submenu-link">Professional Athletes</a>
+          <a href="nil.html" class="mobile-submenu-link">NIL Athletes</a>
+          <a href="creatives.html" class="mobile-submenu-link">Entertainers &amp; Creatives</a>
+          <a href="bespoke.html" class="mobile-submenu-link">Bespoke &amp; Entrepreneurs</a>
+        </div>
+      </li>
+      <li class="mobile-nav-item"><button class="mobile-nav-trigger"><a href="services.html">Services</a></button></li>
+      <li class="mobile-nav-item"><button class="mobile-nav-trigger"><a href="nil.html">NIL</a></button></li>
+      <li class="mobile-nav-item"><button class="mobile-nav-trigger"><a href="partnerships.html">Partnerships</a></button></li>
+      <li class="mobile-nav-item"><button class="mobile-nav-trigger"><a href="about.html">About</a></button></li>
+    </ul>
+    <div class="mobile-nav-cta"><a href="contact.html" class="btn btn--primary">Start a Conversation</a></div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="bespoke-hero">
+    <div class="bespoke-bg"></div>
+    <div class="container">
+      <div class="bespoke-hero-layout">
+        <div class="reveal">
+          <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1.75rem;">
+            <span style="display:block;width:2rem;height:1px;background:var(--gold)"></span>
+            <span class="label text-gold">Bespoke &amp; Entrepreneurs</span>
+          </div>
+          <h1 class="bh-headline">
+            Built for<br>those who<br>built <em>something</em><br>worth protecting.
+          </h1>
+        </div>
+        <div class="reveal reveal-delay-2">
+          <p class="body-lg text-stone" style="max-width: 42ch; margin-bottom: var(--space-3);">
+            Not every exceptional person is an athlete or an entertainer. Some are enterprise founders,
+            operators, and high-net-worth individuals who have created unusual personal value —
+            and need an advisory relationship that matches the complexity of what they've built.
+          </p>
+          <a href="contact.html" class="btn btn--primary">Explore Representation</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT BESPOKE MEANS -->
+  <section class="bespoke-definition">
+    <div class="container">
+      <div class="bd-layout">
+        <div class="reveal">
+          <div class="eyebrow"><span class="label">What Bespoke Means</span></div>
+          <h2 class="display-md text-white" style="margin-bottom: var(--space-3);">
+            Not a product.<br>Not a package.<br><em style="color: var(--gold); font-style: italic;">A relationship.</em>
+          </h2>
+          <p class="body-md text-stone">
+            Bespoke clients receive a fully customized advisory relationship. No predefined tiers,
+            no templated deliverables. We learn your enterprise, your goals, your complexity —
+            and we build the advisory structure around it.
+          </p>
+        </div>
+        <div class="reveal reveal-delay-2">
+          <div class="lane-card">
+            <span class="lane-number">01</span>
+            <div>
+              <div class="lane-title">Complete Enterprise Assessment</div>
+              <div class="lane-desc">We start by mapping your entire enterprise — legal, financial, structural, operational — and identifying every risk and opportunity.</div>
+            </div>
+            <span class="lane-arrow">→</span>
+          </div>
+          <div class="lane-card">
+            <span class="lane-number">02</span>
+            <div>
+              <div class="lane-title">Custom Advisory Architecture</div>
+              <div class="lane-desc">We design a service engagement that reflects your actual needs — not a standard package. Every deliverable has a purpose.</div>
+            </div>
+            <span class="lane-arrow">→</span>
+          </div>
+          <div class="lane-card">
+            <span class="lane-number">03</span>
+            <div>
+              <div class="lane-title">Ongoing Institutional Partnership</div>
+              <div class="lane-desc">Bespoke relationships are built for the long term. We become part of your advisory infrastructure — not a vendor you call when something goes wrong.</div>
+            </div>
+            <span class="lane-arrow">→</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VIDEO SECTION: Creatives/Bespoke/Enterprise Entrepreneurs -->
+  <div class="bespoke-video-section">
+    <!-- Video ONLY for creatives/bespoke/enterprise entrepreneurs -->
+    <iframe
+      src="https://player.vimeo.com/video/1173897349?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1&background=1"
+      frameborder="0"
+      allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+      referrerpolicy="strict-origin-when-cross-origin"
+      title="The Advisory Bespoke"></iframe>
+    <div class="bespoke-video-overlay">
+      <div class="bespoke-video-text">
+        <h2>
+          Excellence is not an<br>accident. It is a <em>system.</em>
+        </h2>
+        <a href="contact.html" class="btn btn--primary">Start a Conversation</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHO IT'S FOR -->
+  <section class="bespoke-clients">
+    <div class="container">
+      <div class="reveal" style="margin-bottom: 0;">
+        <div class="eyebrow"><span class="label">Who Bespoke Is For</span></div>
+        <h2 class="display-md text-white" style="max-width: 16ch;">Those who have built enough to require the best.</h2>
+      </div>
+
+      <div class="bc-grid">
+        <div class="bc-item reveal">
+          <div class="bc-label">HNW Founders</div>
+          <div class="bc-title">Enterprise Entrepreneurs</div>
+          <div class="bc-desc">Business owners and operators whose personal and business enterprise have grown complex enough to require dedicated institutional management.</div>
+        </div>
+        <div class="bc-item reveal reveal-delay-1">
+          <div class="bc-label">Creative Entrepreneurs</div>
+          <div class="bc-title">Artist-Operators</div>
+          <div class="bc-desc">Entertainers and creators who have built businesses around their identity — label deals, brand equity, licensing portfolios, and multiple revenue streams.</div>
+        </div>
+        <div class="bc-item reveal">
+          <div class="bc-label">Family Enterprise</div>
+          <div class="bc-title">Multi-Generational Wealth</div>
+          <div class="bc-desc">Families who have accumulated significant wealth and need governance structures, trust architecture, and consistent advisory to protect it across generations.</div>
+        </div>
+        <div class="bc-item reveal reveal-delay-1">
+          <div class="bc-label">Transition Clients</div>
+          <div class="bc-title">Post-Career Athletes &amp; Entertainers</div>
+          <div class="bc-desc">Professional athletes and entertainers transitioning into their next chapter — new businesses, investments, boards, and identity redefinition.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section style="background-color: var(--charcoal); padding: var(--space-8) 0;">
+    <div class="container">
+      <div style="text-align: center; max-width: 560px; margin: 0 auto;" class="reveal">
+        <h2 class="display-md text-white" style="margin-bottom: var(--space-3);">The right firm<br>for your enterprise.</h2>
+        <p style="color: var(--stone); margin-bottom: var(--space-4);">We'll start with a conversation and tell you honestly whether we're the right fit. No obligation, no pressure.</p>
+        <a href="contact.html" class="btn btn--primary" style="padding: 1rem 2.5rem;">Start a Conversation</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="footer-logo">The Advisory</div>
+          <p>Enterprise management for professional athletes, NIL athletes, entertainers, and high-net-worth entrepreneurs.</p>
+          <div style="margin-top:1.5rem"><a href="contact.html" class="btn btn--primary" style="padding:0.65rem 1.25rem;font-size:0.75rem">Start Here</a></div>
+        </div>
+        <div class="footer-col"><h5>Who We Serve</h5><ul><li><a href="sports.html">Professional Athletes</a></li><li><a href="nil.html">NIL Athletes</a></li><li><a href="creatives.html">Entertainers &amp; Creatives</a></li><li><a href="bespoke.html">Bespoke &amp; Entrepreneurs</a></li></ul></div>
+        <div class="footer-col"><h5>Services</h5><ul><li><a href="services.html#contracts">Contracts</a></li><li><a href="nil.html">NIL Strategy</a></li><li><a href="services.html#entity">Entity &amp; Tax</a></li><li><a href="services.html#brand-ip">Brand &amp; IP</a></li></ul></div>
+        <div class="footer-col"><h5>Company</h5><ul><li><a href="about.html">About</a></li><li><a href="partnerships.html">Partnerships</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 The Advisory. All rights reserved.</p>
+        <div class="footer-legal"><a href="#">Privacy Policy</a><a href="#">Terms</a><a href="#">Disclosures</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact | The Advisory</title>
+  <meta name="description" content="Start a conversation with The Advisory. We work with a selective group of athletes, entertainers, and entrepreneurs each year. Begin your Redshirt consultation today.">
+  <link rel="stylesheet" href="css/design-system.css">
+  <link rel="stylesheet" href="css/nav.css">
+  <style>
+    body { background-color: var(--warm-white); color: var(--body-text); }
+
+    /* CONTACT: Light page */
+    .contact-hero {
+      background-color: var(--near-black);
+      padding: 160px var(--container-padding) var(--space-8);
+    }
+
+    .contact-hero-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-5);
+      align-items: end;
+    }
+
+    .ch-headline {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 5.5vw, 6.5rem);
+      line-height: 0.92;
+      letter-spacing: -0.02em;
+      color: var(--ivory);
+    }
+
+    .ch-headline em { font-style: italic; color: var(--gold); }
+
+    /* ===== CONTACT FORM SECTION ===== */
+    .contact-section {
+      background-color: var(--warm-white);
+      padding: var(--space-8) 0;
+    }
+
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: var(--space-6);
+      align-items: start;
+    }
+
+    /* Form styles */
+    .contact-form {
+      background-color: var(--ivory);
+      border: 1px solid var(--border-light);
+      padding: var(--space-5);
+    }
+
+    .form-group {
+      margin-bottom: var(--space-3);
+    }
+
+    .form-label {
+      display: block;
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .form-input,
+    .form-select,
+    .form-textarea {
+      width: 100%;
+      font-family: var(--font-body);
+      font-size: 0.9375rem;
+      color: var(--body-text);
+      background-color: var(--warm-white);
+      border: 1px solid var(--border-light);
+      padding: 0.875rem 1rem;
+      border-radius: 0;
+      outline: none;
+      transition: border-color var(--duration-base) var(--ease-smooth);
+      -webkit-appearance: none;
+    }
+
+    .form-input:focus,
+    .form-select:focus,
+    .form-textarea:focus {
+      border-color: var(--gold);
+    }
+
+    .form-textarea {
+      min-height: 140px;
+      resize: vertical;
+    }
+
+    .form-select {
+      cursor: pointer;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' fill='none'%3E%3Cpath d='M2 4l4 4 4-4' stroke='%237A7570' stroke-width='1.5'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      padding-right: 2.5rem;
+    }
+
+    .form-submit {
+      width: 100%;
+      padding: 1rem;
+      justify-content: center;
+      font-size: 0.875rem;
+    }
+
+    .form-note {
+      font-size: 0.8125rem;
+      color: var(--muted);
+      text-align: center;
+      margin-top: 1rem;
+      line-height: 1.5;
+    }
+
+    /* Contact sidebar info */
+    .contact-info-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 2.5vw, 2.5rem);
+      color: var(--body-text);
+      line-height: 1.1;
+      margin-bottom: var(--space-4);
+    }
+
+    .contact-info-title em { font-style: italic; color: var(--gold); }
+
+    .intake-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-top: var(--space-4);
+    }
+
+    .intake-step {
+      display: grid;
+      grid-template-columns: 2.5rem 1fr;
+      gap: var(--space-2);
+      padding: var(--space-2) 0;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .intake-step:last-child { border-bottom: none; }
+
+    .intake-num {
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      color: var(--gold);
+      text-transform: uppercase;
+      padding-top: 3px;
+    }
+
+    .intake-text {
+      font-size: 0.875rem;
+      color: var(--body-text);
+      line-height: 1.55;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      .contact-hero-layout { grid-template-columns: 1fr; }
+      .contact-layout { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER: light -->
+  <header class="site-header light-header" id="site-header">
+    <div class="container header-inner">
+      <a href="home.html" class="site-logo">
+        <div class="logo-text">
+          <span class="logo-name" style="color: var(--near-black);">The Advisory</span>
+          <span class="logo-sub">Enterprise Management</span>
+        </div>
+      </a>
+      <nav class="primary-nav">
+        <ul>
+          <li class="nav-item"><a href="#" class="nav-link" style="color:rgba(44,44,44,0.65);">Who We Serve<svg class="chevron" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4l4 4 4-4"/></svg></a>
+            <ul class="dropdown">
+              <li class="dropdown-item"><a href="sports.html" class="dropdown-link">Professional Athletes</a></li>
+              <li class="dropdown-item"><a href="nil.html" class="dropdown-link">NIL Athletes</a></li>
+              <li class="dropdown-item"><a href="creatives.html" class="dropdown-link">Entertainers &amp; Creatives</a></li>
+              <li class="dropdown-item"><a href="bespoke.html" class="dropdown-link">Bespoke &amp; Entrepreneurs</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a href="services.html" class="nav-link" style="color:rgba(44,44,44,0.65);">Services</a></li>
+          <li class="nav-item"><a href="nil.html" class="nav-link" style="color:rgba(44,44,44,0.65);">NIL</a></li>
+          <li class="nav-item"><a href="partnerships.html" class="nav-link" style="color:rgba(44,44,44,0.65);">Partnerships</a></li>
+          <li class="nav-item"><a href="about.html" class="nav-link" style="color:rgba(44,44,44,0.65);">About<svg class="chevron" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4l4 4 4-4"/></svg></a><ul class="dropdown"><li class="dropdown-item"><a href="about.html" class="dropdown-link">About The Advisory</a></li><li class="dropdown-item"><a href="team.html" class="dropdown-link">Meet the Team</a></li></ul></li>
+        </ul>
+      </nav>
+      <div class="header-cta"><a href="contact.html" class="btn btn--ghost-dark">Contact</a></div>
+      <button class="mobile-toggle" aria-label="Toggle menu">
+        <span style="background-color:var(--body-text)"></span>
+        <span style="background-color:var(--body-text)"></span>
+        <span style="background-color:var(--body-text)"></span>
+      </button>
+    </div>
+  </header>
+  <div class="mobile-nav-overlay"></div>
+  <nav class="mobile-nav">
+    <ul>
+      <li class="mobile-nav-item"><button class="mobile-nav-trigger" data-submenu="mct-serve"><span>Who We Serve</span><svg class="m-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 8l5 5 5-5"/></svg></button>
+        <div class="mobile-submenu" id="mct-serve">
+          <a href="sports.html" class="mobile-submenu-link">Professional Athletes</a>
+          <a href="nil.html" class="mobile-submenu-link">NIL Athletes</a>
+          <a href="creatives.html" class="mobile-submenu-link">Entertainers &amp; Creatives</a>
+          <a href="bespoke.html" class="mobile-submenu-link">Bespoke &amp; Entrepreneurs</a>
+        </div>
+      </li>
+      <li class="mobile-nav-item"><button class="mobile-nav-trigger"><a href="services.html">Services</a></button></li>
+      <li class="mobile-nav-item"><button class="mobile-nav-trigger"><a href="nil.html">NIL</a></button></li>
+      <li class="mobile-nav-item"><button class="mobile-nav-trigger"><a href="partnerships.html">Partnerships</a></button></li>
+      <li class="mobile-nav-item"><button class="mobile-nav-trigger"><a href="about.html">About</a></button></li>
+    </ul>
+    <div class="mobile-nav-cta"><a href="contact.html" class="btn btn--primary">Start a Conversation</a></div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="contact-hero">
+    <div class="container">
+      <div class="contact-hero-layout">
+        <div class="reveal">
+          <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1.75rem;">
+            <span style="display:block;width:2rem;height:1px;background:var(--gold)"></span>
+            <span class="label text-gold">Start a Conversation</span>
+          </div>
+          <h1 class="ch-headline">
+            Let's build<br>something<br><em>worth</em><br>protecting.
+          </h1>
+        </div>
+        <div class="reveal reveal-delay-2">
+          <p class="body-lg text-stone" style="max-width: 42ch; margin-bottom: var(--space-3);">
+            We work with a selective group of athletes, entertainers, and entrepreneurs each year.
+            The first step is a brief conversation about where you are and where you're going.
+          </p>
+          <p class="body-md text-stone" style="max-width: 42ch;">
+            No pressure. No scripts. Just an honest conversation about whether we're the right
+            firm for your enterprise.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT SECTION -->
+  <section class="contact-section">
+    <div class="container">
+      <div class="contact-layout">
+
+        <!-- SIDEBAR INFO -->
+        <div class="reveal">
+          <h2 class="contact-info-title">
+            What happens<br>when you <em>reach out.</em>
+          </h2>
+          <p style="font-size: 0.9375rem; color: var(--muted); max-width: 34ch; margin-bottom: var(--space-2);">
+            Our intake process is fast, clear, and built to respect your time.
+          </p>
+
+          <div class="intake-steps">
+            <div class="intake-step">
+              <span class="intake-num">01</span>
+              <div class="intake-text"><strong>We review your submission</strong> within 48 hours and confirm receipt.</div>
+            </div>
+            <div class="intake-step">
+              <span class="intake-num">02</span>
+              <div class="intake-text"><strong>We schedule a brief call</strong> — typically 20–30 minutes — to understand your current situation and goals.</div>
+            </div>
+            <div class="intake-step">
+              <span class="intake-num">03</span>
+              <div class="intake-text"><strong>We present a clear picture</strong> of what your enterprise looks like today, and what it should look like — no obligation.</div>
+            </div>
+            <div class="intake-step">
+              <span class="intake-num">04</span>
+              <div class="intake-text"><strong>If there's a fit</strong>, we outline the engagement structure and move forward together.</div>
+            </div>
+          </div>
+
+          <div style="margin-top: var(--space-4); padding: var(--space-3); border-left: 2px solid var(--gold); background-color: rgba(184,150,90,0.04);">
+            <div style="font-family:var(--font-sans);font-size:0.75rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:0.5rem;">NIL Athletes</div>
+            <p style="font-size:0.875rem;color:var(--body-text);">Start with our free Redshirt consultation — a no-obligation risk assessment and strategy session. Select "NIL / Student-Athlete" below.</p>
+          </div>
+        </div>
+
+        <!-- CONTACT FORM -->
+        <div class="reveal reveal-delay-1">
+          <div class="contact-form">
+            <form id="contact-form" onsubmit="handleFormSubmit(event)">
+
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-2);">
+                <div class="form-group">
+                  <label class="form-label" for="first-name">First Name</label>
+                  <input class="form-input" type="text" id="first-name" name="first_name" placeholder="First name" required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="last-name">Last Name</label>
+                  <input class="form-input" type="text" id="last-name" name="last_name" placeholder="Last name" required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="email">Email Address</label>
+                <input class="form-input" type="email" id="email" name="email" placeholder="your@email.com" required>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="phone">Phone Number</label>
+                <input class="form-input" type="tel" id="phone" name="phone" placeholder="+1 (000) 000-0000">
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="inquiry-type">I Am A</label>
+                <select class="form-select" id="inquiry-type" name="inquiry_type" required>
+                  <option value="" disabled selected>Select your category</option>
+                  <option value="pro-athlete">Professional Athlete</option>
+                  <option value="nil-athlete">NIL / Student-Athlete</option>
+                  <option value="entertainer">Entertainer / Creative</option>
+                  <option value="entrepreneur">High-Net-Worth Entrepreneur</option>
+                  <option value="agent-manager">Agent or Manager</option>
+                  <option value="attorney-fiduciary">Attorney or Fiduciary</option>
+                  <option value="trainer-advisor">Trainer or Advisor</option>
+                  <option value="connector">Power Connector</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="sport-field">Sport / Field / Industry</label>
+                <input class="form-input" type="text" id="sport-field" name="sport_field" placeholder="e.g. NFL, Music, Real Estate, Basketball">
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="primary-need">Primary Need</label>
+                <select class="form-select" id="primary-need" name="primary_need">
+                  <option value="" disabled selected>What brings you here?</option>
+                  <option value="nil">NIL Strategy &amp; Compliance</option>
+                  <option value="contracts">Contract / Deal Representation</option>
+                  <option value="entity-tax">Entity &amp; Tax Structure</option>
+                  <option value="brand-ip">Brand &amp; IP Protection</option>
+                  <option value="family-gov">Family Governance</option>
+                  <option value="diligence">Deal Diligence / Investment</option>
+                  <option value="partnership">Partnership / Referral</option>
+                  <option value="full-service">Full-Service Representation</option>
+                  <option value="general">General Inquiry</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="message">Anything Else We Should Know</label>
+                <textarea class="form-textarea" id="message" name="message" placeholder="Tell us a bit about your current situation or what you're trying to accomplish..."></textarea>
+              </div>
+
+              <button type="submit" class="btn btn--primary form-submit">
+                Submit Your Inquiry
+              </button>
+
+              <p class="form-note">
+                All inquiries are confidential. We respond within 48 hours.
+              </p>
+
+            </form>
+
+            <div id="form-success" style="display:none; text-align:center; padding: var(--space-5);">
+              <div style="font-size: 1.5rem; margin-bottom: 1rem;">✓</div>
+              <h3 style="font-family: var(--font-display); font-size: 1.75rem; color: var(--body-text); margin-bottom: 0.75rem;">We received your inquiry.</h3>
+              <p style="color: var(--muted); font-size: 0.9375rem;">We'll be in touch within 48 hours. Thank you for taking the first step.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="footer-logo">The Advisory</div>
+          <p>Enterprise management for professional athletes, NIL athletes, entertainers, and high-net-worth entrepreneurs.</p>
+        </div>
+        <div class="footer-col"><h5>Who We Serve</h5><ul><li><a href="sports.html">Professional Athletes</a></li><li><a href="nil.html">NIL Athletes</a></li><li><a href="creatives.html">Entertainers &amp; Creatives</a></li><li><a href="bespoke.html">Bespoke &amp; Entrepreneurs</a></li></ul></div>
+        <div class="footer-col"><h5>Services</h5><ul><li><a href="services.html#contracts">Contracts</a></li><li><a href="nil.html">NIL Strategy</a></li><li><a href="services.html#entity">Entity &amp; Tax</a></li><li><a href="services.html#brand-ip">Brand &amp; IP</a></li></ul></div>
+        <div class="footer-col"><h5>Company</h5><ul><li><a href="about.html">About</a></li><li><a href="partnerships.html">Partnerships</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 The Advisory. All rights reserved.</p>
+        <div class="footer-legal"><a href="#">Privacy Policy</a><a href="#">Terms</a><a href="#">Disclosures</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      const form = document.getElementById('contact-form');
+      const success = document.getElementById('form-success');
+      form.style.display = 'none';
+      success.style.display = 'block';
+    }
+  </script>
+</body>
+</html>

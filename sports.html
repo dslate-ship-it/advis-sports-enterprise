@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Professional Athletes | The Advisory</title>
+  <meta name="description" content="The Advisory serves professional athletes with full-service enterprise management — contracts, representation, NIL, entity structure, brand, and family governance.">
+  <link rel="stylesheet" href="css/design-system.css">
+  <link rel="stylesheet" href="css/nav.css">
+  <style>
+    body { background-color: var(--near-black); }
+
+    /* ===== SPORTS HERO: full-screen video ===== */
+    .sports-hero {
+      position: relative;
+      height: 100vh;
+      min-height: 680px;
+      max-height: 1080px;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+      background-color: var(--near-black);
+    }
+
+    .sports-hero-video {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .sports-hero-video iframe {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 177.78vh;
+      min-width: 100%;
+      height: 100%;
+      min-height: 56.25vw;
+      border: none;
+      pointer-events: none;
+    }
+
+    .sports-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(13,13,13,1) 0%,
+        rgba(13,13,13,0.6) 35%,
+        rgba(13,13,13,0.2) 100%
+      );
+      z-index: 1;
+    }
+
+    .sports-hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 0 var(--container-padding) var(--space-7);
+      max-width: var(--container-max);
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .sports-hero-headline {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 8vw, 9.5rem);
+      line-height: 0.88;
+      letter-spacing: -0.02em;
+      color: var(--ivory);
+      margin-bottom: var(--space-3);
+    }
+
+    .sports-hero-headline em { font-style: italic; color: var(--gold); }
+
+    .sports-hero-sub {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: var(--space-4);
+      align-items: flex-end;
+    }
+
+    /* ===== WHAT WE DO FOR PRO ATHLETES ===== */
+    .pro-services {
+      background-color: var(--charcoal);
+      padding: var(--space-8) 0;
+    }
+
+    .pro-services-layout {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: var(--space-6);
+      align-items: start;
+    }
+
+    /* ===== PROOF + TRUST ===== */
+    .proof-band {
+      background-color: var(--near-black);
+      padding: var(--space-8) 0;
+    }
+
+    .proof-band-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-6);
+      align-items: center;
+    }
+
+    /* ===== THE APPROACH ===== */
+    .approach-section {
+      background-color: var(--surface-dark);
+      padding: var(--space-8) 0;
+    }
+
+    .approach-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-4);
+      margin-top: var(--space-5);
+    }
+
+    .approach-item {
+      padding: var(--space-4) 0;
+      border-top: 1px solid var(--border-dark);
+    }
+
+    .approach-num {
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .approach-title {
+      font-family: var(--font-sans);
+      font-size: clamp(1rem, 1.3vw, 1.2rem);
+      font-weight: 600;
+      color: var(--ivory);
+      margin-bottom: 0.75rem;
+    }
+
+    .approach-desc {
+      font-size: 0.875rem;
+      color: var(--stone);
+      line-height: 1.6;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      .sports-hero-sub { grid-template-columns: 1fr; }
+      .pro-services-layout { grid-template-columns: 1fr; }
+      .proof-band-layout { grid-template-columns: 1fr; }
+      .approach-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 600px) {
+      .approach-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header" id="site-header">
+    <div class="container header-inner">
+      <a href="home.html" class="site-logo">
+        <div class="logo-text">
+          <span class="logo-name">The Advisory</span>
+          <span class="logo-sub">Enterprise Management</span>
+        </div>
+      </a>
+      <nav class="primary-nav">
+        <ul>
+          <li class="nav-item active">
+            <a href="#" class="nav-link">Who We Serve
+              <svg class="chevron" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4l4 4 4-4"/></svg>
+            </a>
+            <ul class="dropdown">
+              <li class="dropdown-item"><a href="sports.html" class="dropdown-link">Professional Athletes</a></li>
+              <li class="dropdown-item"><a href="nil.html" class="dropdown-link">NIL Athletes</a></li>
+              <li class="dropdown-item"><a href="creatives.html" class="dropdown-link">Entertainers &amp; Creatives</a></li>
+              <li class="dropdown-item"><a href="bespoke.html" class="dropdown-link">Bespoke &amp; Entrepreneurs</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
+          <li class="nav-item"><a href="nil.html" class="nav-link">NIL</a></li>
+          <li class="nav-item"><a href="partnerships.html" class="nav-link">Partnerships</a></li>
+          <li class="nav-item"><a href="about.html" class="nav-link">About<svg class="chevron" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4l4 4 4-4"/></svg></a><ul class="dropdown"><li class="dropdown-item"><a href="about.html" class="dropdown-link">About The Advisory</a></li><li class="dropdown-item"><a href="team.html" class="dropdown-link">Meet the Team</a></li></ul></li>
+        </ul>
+      </nav>
+      <div class="header-cta">
+        <a href="contact.html" class="btn btn--ghost">Start a Conversation</a>
+      </div>
+      <button class="mobile-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+  <div class="mobile-nav-overlay"></div>
+  <nav class="mobile-nav">
+    <ul>
+      <li class="mobile-nav-item"><button class="mobile-nav-trigger" data-submenu="mn2-serve"><span>Who We Serve</span><svg class="m-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 8l5 5 5-5"/></svg></button>
+        <div class="mobile-submenu" id="mn2-serve">
+          <a href="sports.html" class="mobile-submenu-link">Professional Athletes</a>
+          <a href="nil.html" class="mobile-submenu-link">NIL Athletes</a>
+          <a href="creatives.html" class="mobile-submenu-link">Entertainers &amp; Creatives</a>
+          <a href="bespoke.html" class="mobile-submenu-link">Bespoke &amp; Entrepreneurs</a>
+        </div>
+      </li>
+      <li class="mobile-nav-item"><button class="mobile-nav-trigger"><a href="services.html">Services</a></button></li>
+      <li class="mobile-nav-item"><button class="mobile-nav-trigger"><a href="nil.html">NIL</a></button></li>
+      <li class="mobile-nav-item"><button class="mobile-nav-trigger"><a href="partnerships.html">Partnerships</a></button></li>
+      <li class="mobile-nav-item"><button class="mobile-nav-trigger"><a href="about.html">About</a></button></li>
+    </ul>
+    <div class="mobile-nav-cta"><a href="contact.html" class="btn btn--primary">Start a Conversation</a></div>
+  </nav>
+
+  <!-- ============================================================
+       SPORTS HERO: Video
+  ============================================================ -->
+  <section class="sports-hero">
+    <div class="sports-hero-video">
+      <iframe
+        src="https://player.vimeo.com/video/1173714440?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1&background=1"
+        frameborder="0"
+        allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        title="The Advisory Sports"></iframe>
+    </div>
+    <div class="sports-hero-overlay"></div>
+
+    <div class="sports-hero-content">
+      <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.75rem;">
+        <span style="display:block;width:2rem;height:1px;background:var(--gold)"></span>
+        <span class="label text-gold">Professional Athletes</span>
+      </div>
+
+      <h1 class="sports-hero-headline">
+        The enterprise<br>behind the <em>athlete.</em>
+      </h1>
+
+      <div class="sports-hero-sub">
+        <p style="font-size: clamp(0.9rem, 1.1vw, 1.05rem); color: var(--stone); max-width: 44ch; line-height: 1.65;">
+          Your career has a window. Your enterprise does not.
+          We build systems that extend your value, protect your assets,
+          and create lasting wealth — well beyond the final game.
+        </p>
+        <div style="display: flex; flex-direction: column; gap: 0.875rem;">
+          <a href="contact.html" class="btn btn--primary">Request Representation</a>
+          <a href="services.html" class="btn btn--ghost">View Services</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       WHAT WE DO
+  ============================================================ -->
+  <section class="pro-services">
+    <div class="container">
+      <div class="pro-services-layout">
+
+        <div class="reveal">
+          <div class="eyebrow"><span class="label">What We Do</span></div>
+          <h2 class="display-md text-white" style="margin-bottom: var(--space-3);">Every lane.<br>Every stage.</h2>
+          <p class="body-md text-stone">
+            From rookie contract to post-career portfolio, we manage the complete lifecycle
+            of the professional athlete's enterprise.
+          </p>
+          <a href="contact.html" class="btn btn--text" style="margin-top: var(--space-4); color: var(--gold);">Get Started</a>
+        </div>
+
+        <div class="reveal reveal-delay-1">
+          <div class="lane-card">
+            <span class="lane-number">01</span>
+            <div>
+              <div class="lane-title">Contract &amp; Agent Representation</div>
+              <div class="lane-desc">Deal room management, term-sheet drafting, performance clause analysis, renewal pipelines, and endorsement deal structuring. We negotiate with institutional leverage.</div>
+            </div>
+            <span class="lane-arrow">→</span>
+          </div>
+          <div class="lane-card">
+            <span class="lane-number">02</span>
+            <div>
+              <div class="lane-title">Entity, Tax &amp; Wealth Architecture</div>
+              <div class="lane-desc">LLC/S-Corp formation, multi-state tax management, investment structuring, and long-term wealth architecture. You keep more of what you earn.</div>
+            </div>
+            <span class="lane-arrow">→</span>
+          </div>
+          <div class="lane-card">
+            <span class="lane-number">03</span>
+            <div>
+              <div class="lane-title">Brand, IP &amp; Endorsements</div>
+              <div class="lane-desc">Trademark registration, image rights enforcement, licensing strategy, and endorsement compliance. Your name is your most valuable asset — we treat it that way.</div>
+            </div>
+            <span class="lane-arrow">→</span>
+          </div>
+          <div class="lane-card">
+            <span class="lane-number">04</span>
+            <div>
+              <div class="lane-title">Family Governance &amp; Legacy</div>
+              <div class="lane-desc">Trust structures, generosity frameworks, household governance, and multi-generational wealth documentation. Protecting your family the right way.</div>
+            </div>
+            <span class="lane-arrow">→</span>
+          </div>
+          <div class="lane-card">
+            <span class="lane-number">05</span>
+            <div>
+              <div class="lane-title">Deal Diligence &amp; Investments</div>
+              <div class="lane-desc">Independent due diligence on investment opportunities, business ventures, and minority ownership positions. No conflicts. No commissions on deals we don't recommend.</div>
+            </div>
+            <span class="lane-arrow">→</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SOCIAL PROOF
+  ============================================================ -->
+  <section class="proof-band">
+    <div class="container">
+      <div class="proof-band-layout">
+
+        <div class="reveal">
+          <div class="eyebrow"><span class="label">Client Relationships</span></div>
+          <h2 class="display-md text-white" style="margin-bottom: var(--space-3);">Trusted by global icons.</h2>
+          <p class="body-md text-stone" style="max-width: 40ch; margin-bottom: var(--space-4);">
+            The Advisory has earned the trust of professional athletes, global icons, and
+            high-net-worth individuals who expect nothing less than institutional excellence.
+          </p>
+          <div class="client-list" style="margin-bottom: var(--space-4);">
+            <div class="client-name" style="padding: 1rem 0; border-bottom: 1px solid var(--border-dark); font-family: var(--font-display); font-size: clamp(1.25rem, 2vw, 1.875rem); color: var(--stone); transition: color 0.35s, padding-left 0.35s; cursor: default;" onmouseenter="this.style.color='var(--ivory)';this.style.paddingLeft='0.75rem'" onmouseleave="this.style.color='var(--stone)';this.style.paddingLeft='0'">Floyd Mayweather</div>
+            <div class="client-name" style="padding: 1rem 0; border-bottom: 1px solid var(--border-dark); font-family: var(--font-display); font-size: clamp(1.25rem, 2vw, 1.875rem); color: var(--stone); transition: color 0.35s, padding-left 0.35s; cursor: default;" onmouseenter="this.style.color='var(--ivory)';this.style.paddingLeft='0.75rem'" onmouseleave="this.style.color='var(--stone)';this.style.paddingLeft='0'">Mookie Betts</div>
+            <div class="client-name" style="padding: 1rem 0; border-bottom: 1px solid var(--border-dark); font-family: var(--font-display); font-size: clamp(1.25rem, 2vw, 1.875rem); color: var(--stone); transition: color 0.35s, padding-left 0.35s; cursor: default;" onmouseenter="this.style.color='var(--ivory)';this.style.paddingLeft='0.75rem'" onmouseleave="this.style.color='var(--stone)';this.style.paddingLeft='0'">Jalen Ramsey</div>
+            <div class="client-name" style="padding: 1rem 0; border-bottom: 1px solid var(--border-dark); font-family: var(--font-display); font-size: clamp(1.25rem, 2vw, 1.875rem); color: var(--stone); transition: color 0.35s, padding-left 0.35s; cursor: default;" onmouseenter="this.style.color='var(--ivory)';this.style.paddingLeft='0.75rem'" onmouseleave="this.style.color='var(--stone)';this.style.paddingLeft='0'">Jaren Jackson Jr.</div>
+            <div class="client-name" style="padding: 1rem 0; font-family: var(--font-display); font-size: clamp(1.25rem, 2vw, 1.875rem); color: var(--stone); transition: color 0.35s, padding-left 0.35s; cursor: default; border-top: 1px solid var(--border-dark);" onmouseenter="this.style.color='var(--ivory)';this.style.paddingLeft='0.75rem'" onmouseleave="this.style.color='var(--stone)';this.style.paddingLeft='0'">Jim Brown (1936 — 2023)</div>
+          </div>
+          <a href="about.html" class="btn btn--ghost">About Our Leadership</a>
+        </div>
+
+        <div class="reveal reveal-delay-2">
+          <div class="social-proof-image" style="aspect-ratio: 3/4; overflow: hidden; position: relative;">
+            <img src="images/social-proof-enhanced-2.jpg"
+                 alt="The Advisory — courtside with professional clients"
+                 loading="lazy"
+                 onerror="this.src='images/social-proof-3.jpg'"
+                 style="width:100%; height:100%; object-fit: cover; filter: grayscale(15%) contrast(1.05); transition: all 0.9s cubic-bezier(0.16,1,0.3,1);"
+                 onmouseenter="this.style.filter='grayscale(0%) contrast(1.0)'; this.style.transform='scale(1.03)'"
+                 onmouseleave="this.style.filter='grayscale(15%) contrast(1.05)'; this.style.transform='scale(1)'">
+            <div style="position:absolute;bottom:0;left:0;right:0;padding:1.5rem;background:linear-gradient(to top,rgba(13,13,13,0.85),transparent);">
+              <span style="font-family:var(--font-sans);font-size:0.7rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--stone);">Client Event · The Advisory</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       OUR APPROACH
+  ============================================================ -->
+  <section class="approach-section">
+    <div class="container">
+      <div class="reveal" style="margin-bottom: var(--space-5);">
+        <div class="eyebrow"><span class="label">How We Work</span></div>
+        <h2 class="display-md text-white">A different standard<br>of representation.</h2>
+      </div>
+      <div class="approach-grid">
+        <div class="approach-item reveal">
+          <div class="approach-num">Principle 01</div>
+          <div class="approach-title">Clear Swim Lanes</div>
+          <div class="approach-desc">You lead the relationship. We staff the workstreams and report to you. No confusion about who does what — ever.</div>
+        </div>
+        <div class="approach-item reveal reveal-delay-1">
+          <div class="approach-num">Principle 02</div>
+          <div class="approach-title">No Conflicts</div>
+          <div class="approach-desc">We do not earn commissions on investments we recommend. We do not represent brands you may endorse. Our only incentive is your outcome.</div>
+        </div>
+        <div class="approach-item reveal reveal-delay-2">
+          <div class="approach-num">Principle 03</div>
+          <div class="approach-title">Institutional Leverage</div>
+          <div class="approach-desc">We negotiate with the credibility of decades of elite representation. Led by Jimmie B. Strong — Harvard Law Valedictorian, Top 1% Financial Advisor, Vanderbilt Professor.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CTA
+  ============================================================ -->
+  <section class="section section--charcoal" style="padding: var(--space-8) 0;">
+    <div class="container">
+      <div style="display: grid; grid-template-columns: 1fr auto; gap: var(--space-4); align-items: center;" class="reveal">
+        <div>
+          <h2 class="display-md text-white" style="margin-bottom: 0.75rem;">Ready to build your enterprise?</h2>
+          <p style="color: var(--stone); font-size: 0.9375rem; max-width: 44ch;">We work with a selective group of athletes and entrepreneurs each year. Start a conversation to explore fit.</p>
+        </div>
+        <a href="contact.html" class="btn btn--primary">Request Representation</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="footer-logo">The Advisory</div>
+          <p>Enterprise management for professional athletes, NIL athletes, entertainers, and high-net-worth entrepreneurs.</p>
+          <div style="margin-top:1.5rem"><a href="contact.html" class="btn btn--primary" style="padding:0.65rem 1.25rem;font-size:0.75rem">Start Here</a></div>
+        </div>
+        <div class="footer-col"><h5>Who We Serve</h5><ul><li><a href="sports.html">Professional Athletes</a></li><li><a href="nil.html">NIL Athletes</a></li><li><a href="creatives.html">Entertainers &amp; Creatives</a></li><li><a href="bespoke.html">Bespoke &amp; Entrepreneurs</a></li></ul></div>
+        <div class="footer-col"><h5>Services</h5><ul><li><a href="services.html#contracts">Contracts</a></li><li><a href="nil.html">NIL Strategy</a></li><li><a href="services.html#entity">Entity &amp; Tax</a></li><li><a href="services.html#brand-ip">Brand &amp; IP</a></li><li><a href="services.html#family-governance">Family Governance</a></li></ul></div>
+        <div class="footer-col"><h5>Company</h5><ul><li><a href="about.html">About</a></li><li><a href="partnerships.html">Partnerships</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 The Advisory. All rights reserved.</p>
+        <div class="footer-legal"><a href="#">Privacy Policy</a><a href="#">Terms</a><a href="#">Disclosures</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

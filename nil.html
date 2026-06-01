@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NIL — Name, Image &amp; Likeness | The Advisory</title>
+  <meta name="description" content="The Advisory's NIL Flight School™ — enterprise-grade NIL strategy, compliance, contracts, and tax structure for student-athletes navigating the $2.3B NIL market.">
+  <link rel="stylesheet" href="css/design-system.css">
+  <link rel="stylesheet" href="css/nav.css">
+  <style>
+
+    body { background-color: var(--near-black); }
+
+    /* ===== NIL HERO: Video + stencil concept ===== */
+    .nil-hero {
+      position: relative;
+      height: 100vh;
+      min-height: 680px;
+      max-height: 1080px;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+      background-color: var(--near-black);
+    }
+
+    .nil-hero-video {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .nil-hero-video iframe {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 177.78vh; /* 16:9 at full height */
+      min-width: 100%;
+      height: 100%;
+      min-height: 56.25vw; /* 16:9 at full width */
+      border: none;
+      pointer-events: none;
+    }
+
+    .nil-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(13,13,13,1) 0%,
+        rgba(13,13,13,0.7) 40%,
+        rgba(13,13,13,0.3) 100%
+      );
+      z-index: 1;
+    }
+
+    /* STENCIL EFFECT: Logo cut through imagery (inspired by McDougall NIL concept) */
+    .nil-hero-stencil {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .stencil-text {
+      font-family: var(--font-sans);
+      font-size: clamp(8rem, 22vw, 28rem);
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      text-transform: uppercase;
+      /* Cut-out effect: transparent text revealing video behind */
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(184,150,90,0.15);
+      opacity: 0.7;
+      user-select: none;
+      white-space: nowrap;
+    }
+
+    .nil-hero-content {
+      position: relative;
+      z-index: 3;
+      padding: 0 var(--container-padding) var(--space-7);
+      max-width: var(--container-max);
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .nil-hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .nil-hero-headline {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 8vw, 9rem);
+      line-height: 0.9;
+      letter-spacing: -0.02em;
+      color: var(--ivory);
+      margin-bottom: var(--space-3);
+    }
+
+    .nil-hero-headline em { font-style: italic; color: var(--gold); }
+
+    .nil-hero-sub {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: var(--space-4);
+      align-items: flex-end;
+    }
+
+    .nil-hero-desc {
+      font-size: clamp(0.9rem, 1.1vw, 1.05rem);
+      color: var(--stone);
+      max-width: 44ch;
+      line-height: 1.65;
+    }
+
+    /* ===== PROBLEM STATEMENT ===== */
+    .problem-section {
+      background-color: var(--charcoal);
+      padding: var(--space-8) 0;
+    }
+
+    .problem-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-6);
+      align-items: start;
+    }
+
+    .problem-headline {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 3.5vw, 4rem);
+      line-height: 1.05;
+      color: var(--ivory);
+    }
+
+    .problem-headline em { font-style: italic; color: var(--gold); }
+
+    .killer-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-3);
+      margin-top: var(--space-4);
+    }
+
+    .killer-card {
+      background-color: rgba(255,255,255,0.03);
+      border: 1px solid var(--border-dark);
+      border-left: 2px solid var(--gold);
+      padding: var(--space-3);
+    }
+
+    .killer-title {
+      font-family: var(--font-sans);
+      font-size: 0.8125rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+
+    .killer-desc {
+      font-size: 0.875rem;
+      color: var(--stone);
+      line-height: 1.5;
+    }
+
+    /* ===== TIERS ===== */
+    .tiers-section {
+      background-color: var(--near-black);
+      padding: var(--space-8) 0;
+    }
+
+    .tiers-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-3);
+      margin-top: var(--space-5);
+    }
+
+    /* ===== FIVE LANES (NIL version) ===== */
+    .nil-lanes {
+      background-color: var(--surface-dark);
+      padding: var(--space-8) 0;
+    }
+
+    /* ===== FLIGHT SCHOOL ===== */
+    .flight-school {
+      background-color: var(--charcoal);
+      padding: var(--space-8) 0;
+    }
+
+    .flight-school-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-6);
+      align-items: center;
+    }
+
+    .quarter-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-top: var(--space-4);
+    }
+
+    .quarter-item {
+      display: grid;
+      grid-template-columns: 3rem 1fr;
+      gap: var(--space-2);
+      padding: var(--space-3) 0;
+      border-bottom: 1px solid var(--border-dark);
+      transition: background-color var(--duration-base) var(--ease-smooth);
+    }
+
+    .quarter-item:last-child { border-bottom: none; }
+
+    .q-num {
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding-top: 3px;
+    }
+
+    .q-title {
+      font-family: var(--font-sans);
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: var(--ivory);
+      margin-bottom: 0.3rem;
+    }
+
+    .q-desc {
+      font-size: 0.8125rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* ===== STAT CALLOUT ===== */
+    .nil-stat-callout {
+      background-color: var(--gold);
+      padding: var(--space-7) 0;
+    }
+
+    .nil-stat-callout .callout-inner {
+      text-align: center;
+    }
+
+    .callout-headline {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 6vw, 7rem);
+      color: var(--near-black);
+      line-height: 1.0;
+      margin-bottom: var(--space-2);
+    }
+
+    .callout-sub {
+      font-family: var(--font-sans);
+      font-size: clamp(0.9rem, 1.2vw, 1.125rem);
+      color: rgba(13,13,13,0.7);
+      max-width: 40ch;
+      margin: 0 auto var(--space-4);
+    }
+
+    .callout-headline em {
+      font-style: normal;
+      display: block;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      .nil-hero-sub { grid-template-columns: 1fr; }
+      .problem-grid { grid-template-columns: 1fr; }
+      .tiers-grid { grid-template-columns: 1fr; }
+      .flight-school-layout { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .killer-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header" id="site-header">
+    <div class="container header-inner">
+      <a href="home.html" class="site-logo">
+        <div class="logo-text">
+          <span class="logo-name">The Advisory</span>
+          <span class="logo-sub">Enterprise Management</span>
+        </div>
+      </a>
+      <nav class="primary-nav" aria-label="Primary navigation">
+        <ul>
+          <li class="nav-item">
+            <a href="#" class="nav-link">Who We Serve
+              <svg class="chevron" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4l4 4 4-4"/></svg>
+            </a>
+            <ul class="dropdown">
+              <li class="dropdown-item"><a href="sports.html" class="dropdown-link">Professional Athletes</a></li>
+              <li class="dropdown-item"><a href="nil.html" class="dropdown-link">NIL Athletes</a></li>
+              <li class="dropdown-item"><a href="creatives.html" class="dropdown-link">Entertainers &amp; Creatives</a></li>
+              <li class="dropdown-item"><a href="bespoke.html" class="dropdown-link">Bespoke &amp; Entrepreneurs</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
+          <li class="nav-item"><a href="nil.html" class="nav-link active">NIL</a></li>
+          <li class="nav-item"><a href="partnerships.html" class="nav-link">Partnerships</a></li>
+          <li class="nav-item"><a href="about.html" class="nav-link">About<svg class="chevron" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4l4 4 4-4"/></svg></a><ul class="dropdown"><li class="dropdown-item"><a href="about.html" class="dropdown-link">About The Advisory</a></li><li class="dropdown-item"><a href="team.html" class="dropdown-link">Meet the Team</a></li></ul></li>
+        </ul>
+      </nav>
+      <div class="header-cta">
+        <a href="contact.html" class="btn btn--ghost">Start a Conversation</a>
+      </div>
+      <button class="mobile-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+  <div class="mobile-nav-overlay"></div>
+  <nav class="mobile-nav">
+    <ul>
+      <li class="mobile-nav-item"><button class="mobile-nav-trigger" data-submenu="mn-serve"><span>Who We Serve</span><svg class="m-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 8l5 5 5-5"/></svg></button>
+        <div class="mobile-submenu" id="mn-serve">
+          <a href="sports.html" class="mobile-submenu-link">Professional Athletes</a>
+          <a href="nil.html" class="mobile-submenu-link">NIL Athletes</a>
+          <a href="creatives.html" class="mobile-submenu-link">Entertainers &amp; Creatives</a>
+          <a href="bespoke.html" class="mobile-submenu-link">Bespoke &amp; Entrepreneurs</a>
+        </div>
+      </li>
+      <li class="mobile-nav-item"><button class="mobile-nav-trigger"><a href="services.html">Services</a></button></li>
+      <li class="mobile-nav-item"><button class="mobile-nav-trigger"><a href="nil.html">NIL</a></button></li>
+      <li class="mobile-nav-item"><button class="mobile-nav-trigger"><a href="partnerships.html">Partnerships</a></button></li>
+      <li class="mobile-nav-item"><button class="mobile-nav-trigger"><a href="about.html">About</a></button></li>
+    </ul>
+    <div class="mobile-nav-cta"><a href="contact.html" class="btn btn--primary">Start a Conversation</a></div>
+  </nav>
+
+  <!-- ============================================================
+       NIL HERO: Fullscreen video + stencil
+  ============================================================ -->
+  <section class="nil-hero">
+
+    <!-- Vimeo Sports/NIL video -->
+    <div class="nil-hero-video">
+      <iframe
+        src="https://player.vimeo.com/video/1173714440?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1&background=1"
+        width="1920"
+        height="1080"
+        frameborder="0"
+        allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        title="The Advisory NIL"></iframe>
+    </div>
+
+    <div class="nil-hero-overlay"></div>
+
+    <!-- Stencil brand cut-through effect -->
+    <div class="nil-hero-stencil" aria-hidden="true">
+      <span class="stencil-text">NIL</span>
+    </div>
+
+    <div class="nil-hero-content">
+      <div class="nil-hero-eyebrow">
+        <span style="display:block;width:2rem;height:1px;background:var(--gold)"></span>
+        <span class="label text-gold">Name, Image &amp; Likeness</span>
+      </div>
+
+      <h1 class="nil-hero-headline">
+        <em>NIL</em> Flight<br>School™
+      </h1>
+
+      <div class="nil-hero-sub">
+        <p class="nil-hero-desc">
+          You are not just a student-athlete. You are the CEO of your own enterprise.
+          We build the structure, compliance, and strategy to maximize what you earn — and protect every dollar of it.
+        </p>
+        <div style="display: flex; flex-direction: column; gap: 0.875rem;">
+          <a href="#get-started" class="btn btn--primary">Begin Your Assessment</a>
+          <a href="#tiers" class="btn btn--ghost">View Service Tiers</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       MARKET STAT CALLOUT
+  ============================================================ -->
+  <div class="nil-stat-callout">
+    <div class="container callout-inner">
+      <div class="callout-headline">
+        $2.3B+
+        <em style="font-style:normal; font-size: 0.45em; font-family: var(--font-sans); font-weight: 500; letter-spacing: -0.01em;">NIL market and growing.</em>
+      </div>
+      <p class="callout-sub">
+        The opportunity is real. The risk of losing it — from bad contracts, compliance failures,
+        and tax exposure — is equally real. We eliminate the risk.
+      </p>
+      <a href="#tiers" class="btn btn--ghost-dark">Our NIL Services</a>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       THE PROBLEM SECTION
+  ============================================================ -->
+  <section class="problem-section" id="problem">
+    <div class="container">
+
+      <div class="problem-grid">
+
+        <div class="reveal">
+          <div class="eyebrow"><span class="label">The Reality</span></div>
+          <h2 class="problem-headline">
+            Most athletes lose<br>money <em>before</em><br>they make it.
+          </h2>
+          <p class="body-md text-stone" style="margin-top: var(--space-3); max-width: 38ch;">
+            Only 1 in 3 student-athletes receive any financial education. Zero hours of NCAA-mandated
+            training exist. The system was not built to protect you.
+          </p>
+          <p class="body-md text-stone" style="margin-top: 1rem; max-width: 38ch;">
+            The Advisory was built to change that.
+          </p>
+        </div>
+
+        <div class="reveal reveal-delay-2">
+          <div class="label text-stone" style="margin-bottom: var(--space-2);">The Four Killers</div>
+          <div class="killer-grid">
+            <div class="killer-card">
+              <div class="killer-title">Bad Contracts</div>
+              <div class="killer-desc">Agents taking 40%+, unfavorable performance clauses, and rights giveaways that follow you for decades.</div>
+            </div>
+            <div class="killer-card">
+              <div class="killer-title">The Silent Killer</div>
+              <div class="killer-desc">Unplanned tax exposure averaging $40K–$85K per athlete. Multi-state filings. Phantom income on non-cash NIL gifts.</div>
+            </div>
+            <div class="killer-card">
+              <div class="killer-title">The G-Wagon Trap</div>
+              <div class="killer-desc">Buying assets the wrong way — in the wrong name, the wrong structure, at the wrong time.</div>
+            </div>
+            <div class="killer-card">
+              <div class="killer-title">Predatory Advisors</div>
+              <div class="killer-desc">Those who profit from your confusion rather than your clarity. We build systems that eliminate the dependency.</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FIVE LANES (NIL context)
+  ============================================================ -->
+  <section class="nil-lanes" id="lanes">
+    <div class="container">
+
+      <div class="reveal" style="margin-bottom: var(--space-6);">
+        <div class="eyebrow"><span class="label">Our Framework</span></div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-5); align-items: end;">
+          <h2 class="display-md text-white">Five Lanes.<br>One System.</h2>
+          <p class="body-md text-stone" style="max-width: 38ch;">Every student-athlete who enters the NIL market faces the same five vulnerabilities. We turn them into five strengths.</p>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <div class="lane-card" onclick="window.location='services.html#entity'">
+          <span class="lane-number">01</span>
+          <div>
+            <div class="lane-title">Tax Strategy</div>
+            <div class="lane-desc">We identify and eliminate your exposure before you file — multi-state returns, self-employment tax (15.3%), and non-cash NIL gift taxation. Average savings: $40K–$85K annually.</div>
+          </div>
+          <span class="lane-arrow">→</span>
+        </div>
+        <div class="lane-card" onclick="window.location='services.html#contracts'">
+          <span class="lane-number">02</span>
+          <div>
+            <div class="lane-title">Legal Structuring</div>
+            <div class="lane-desc">Entity formation (LLC / S-Corp), contract review and negotiation, dispute prevention, and the structural separation that protects your assets from your liability.</div>
+          </div>
+          <span class="lane-arrow">→</span>
+        </div>
+        <div class="lane-card" onclick="window.location='services.html#brand-ip'">
+          <span class="lane-number">03</span>
+          <div>
+            <div class="lane-title">Brand &amp; IP Ownership</div>
+            <div class="lane-desc">Trademark registration, image rights, licensing terms, and a brand strategy that builds your name equity into an asset you own — not one a brand controls.</div>
+          </div>
+          <span class="lane-arrow">→</span>
+        </div>
+        <div class="lane-card" onclick="window.location='services.html#family-governance'">
+          <span class="lane-number">04</span>
+          <div>
+            <div class="lane-title">Family Governance</div>
+            <div class="lane-desc">You cannot protect your future by funding everyone else's present. We build governance structures that let you show up for your family without sacrificing your security.</div>
+          </div>
+          <span class="lane-arrow">→</span>
+        </div>
+        <div class="lane-card">
+          <span class="lane-number">05</span>
+          <div>
+            <div class="lane-title">NCAA &amp; NIL Compliance</div>
+            <div class="lane-desc">Real-time monitoring of NCAA, conference, and state-level eligibility requirements. We manage every disclosure and filing so you stay eligible and on the field.</div>
+          </div>
+          <span class="lane-arrow">→</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SERVICE TIERS
+  ============================================================ -->
+  <section class="tiers-section" id="tiers">
+    <div class="container">
+
+      <div class="reveal" style="margin-bottom: var(--space-5);">
+        <div class="eyebrow"><span class="label">Service Tiers</span></div>
+        <h2 class="display-md text-white">Meet us where<br>you are.</h2>
+        <p class="body-md text-stone" style="max-width: 42ch; margin-top: var(--space-2);">
+          From first NIL deal to full family office — every level of athlete enterprise is served.
+        </p>
+      </div>
+
+      <div class="tiers-grid">
+
+        <!-- Tier 1: Redshirt -->
+        <div class="tier-card reveal">
+          <div class="tier-name">Redshirt</div>
+          <div class="tier-tagline">
+            For athletes who need clarity before they commit. Our way of giving back — because
+            every athlete deserves to understand their position before they sign anything.
+          </div>
+          <ul class="tier-features">
+            <li>Free strategy consultation</li>
+            <li>NIL risk assessment</li>
+            <li>Tax exposure identification</li>
+            <li>Compliance quick check</li>
+            <li>Recommended next steps</li>
+          </ul>
+          <a href="contact.html" class="btn btn--ghost" style="margin-top: var(--space-4); width: 100%; justify-content: center;">Request Consultation</a>
+        </div>
+
+        <!-- Tier 2: Pro / Flight School -->
+        <div class="tier-card tier-card--featured reveal reveal-delay-1">
+          <div class="tier-badge">Most Chosen</div>
+          <div class="tier-name">Flight School™</div>
+          <div class="tier-tagline">
+            A 4-quarter curriculum and advisory engagement for student-athletes entering or actively
+            participating in the NIL market. Build foundations. Make decisions. Keep what you earn.
+          </div>
+          <ul class="tier-features">
+            <li>4-quarter financial literacy curriculum</li>
+            <li>NIL deal review &amp; negotiation</li>
+            <li>Entity formation &amp; tax filing</li>
+            <li>Brand &amp; IP registration</li>
+            <li>Compliance management</li>
+            <li>Family governance framework</li>
+            <li>Dedicated advisor relationship</li>
+          </ul>
+          <a href="contact.html" class="btn btn--primary" style="margin-top: var(--space-4); width: 100%; justify-content: center;">Start Flight School™</a>
+        </div>
+
+        <!-- Tier 3: All-Star -->
+        <div class="tier-card reveal reveal-delay-2">
+          <div class="tier-name">All-Star</div>
+          <div class="tier-tagline">
+            Full-service family office infrastructure and comprehensive representation.
+            Built for elite-level athletes whose enterprise demands institutional management.
+          </div>
+          <ul class="tier-features">
+            <li>Full agent representation</li>
+            <li>Complete family office structure</li>
+            <li>M&amp;A diligence &amp; investment advisory</li>
+            <li>Long-term wealth architecture</li>
+            <li>Brand licensing &amp; equity strategy</li>
+            <li>Multi-state tax &amp; entity management</li>
+            <li>Dedicated enterprise team</li>
+          </ul>
+          <a href="contact.html" class="btn btn--ghost" style="margin-top: var(--space-4); width: 100%; justify-content: center;">Request All-Star Access</a>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FLIGHT SCHOOL CURRICULUM
+  ============================================================ -->
+  <section class="flight-school" id="flight-school">
+    <div class="container">
+      <div class="flight-school-layout">
+
+        <div class="reveal">
+          <div class="eyebrow"><span class="label">Flight School™ Curriculum</span></div>
+          <h2 class="display-md text-white">
+            Four quarters.<br><em style="font-style:italic; color: var(--gold);">One complete</em><br>enterprise.
+          </h2>
+          <p class="body-md text-stone" style="margin-top: var(--space-3); max-width: 38ch;">
+            Built around the rhythms of your athletic season, Flight School™ moves from
+            foundational literacy to active enterprise management — without disrupting your game.
+          </p>
+          <a href="contact.html" class="btn btn--primary" style="margin-top: var(--space-4);">Start Flight School™</a>
+        </div>
+
+        <div class="reveal reveal-delay-2">
+          <div class="quarter-list">
+            <div class="quarter-item">
+              <span class="q-num">Q1</span>
+              <div>
+                <div class="q-title">Foundation &amp; Assessment</div>
+                <div class="q-desc">Risk assessment, exposure identification, entity review, and building your personal advisory baseline.</div>
+              </div>
+            </div>
+            <div class="quarter-item">
+              <span class="q-num">Q2</span>
+              <div>
+                <div class="q-title">Structure &amp; Protection</div>
+                <div class="q-desc">Entity formation, tax filing preparation, brand registration, and compliance infrastructure setup.</div>
+              </div>
+            </div>
+            <div class="quarter-item">
+              <span class="q-num">Q3</span>
+              <div>
+                <div class="q-title">Deal Management</div>
+                <div class="q-desc">Active NIL deal review, negotiation, compliance checks, family governance structure, and decision frameworks for major purchases.</div>
+              </div>
+            </div>
+            <div class="quarter-item">
+              <span class="q-num">Q4</span>
+              <div>
+                <div class="q-title">Legacy &amp; Scale</div>
+                <div class="q-desc">Long-term brand equity, investment positioning, post-eligibility transition planning, and enterprise scalability review.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CTA / GET STARTED
+  ============================================================ -->
+  <section class="section section--dark" id="get-started" style="padding: var(--space-8) 0;">
+    <div class="container">
+      <div style="text-align: center; max-width: 640px; margin: 0 auto;" class="reveal">
+        <div class="eyebrow" style="justify-content: center;"><span class="label">Take the First Step</span></div>
+        <h2 class="display-md text-white" style="margin-bottom: var(--space-3);">Map your five lanes.<br>Start today.</h2>
+        <p class="body-md text-stone" style="margin-bottom: var(--space-4);">
+          Book your complimentary Redshirt consultation. We will assess your current NIL position,
+          identify your top three risk areas, and give you a clear picture of what your enterprise
+          should look like — no obligation.
+        </p>
+        <a href="contact.html" class="btn btn--primary" style="padding: 1rem 2.5rem;">Begin Your Assessment</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="footer-logo">The Advisory</div>
+          <p>Enterprise management for professional athletes, NIL athletes, entertainers, and high-net-worth entrepreneurs.</p>
+          <div style="margin-top: 1.5rem;"><a href="contact.html" class="btn btn--primary" style="padding: 0.65rem 1.25rem; font-size: 0.75rem;">Start Here</a></div>
+        </div>
+        <div class="footer-col">
+          <h5>Who We Serve</h5>
+          <ul>
+            <li><a href="sports.html">Professional Athletes</a></li>
+            <li><a href="nil.html">NIL Athletes</a></li>
+            <li><a href="creatives.html">Entertainers &amp; Creatives</a></li>
+            <li><a href="bespoke.html">Bespoke &amp; Entrepreneurs</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Services</h5>
+          <ul>
+            <li><a href="services.html#contracts">Contracts</a></li>
+            <li><a href="nil.html">NIL Strategy</a></li>
+            <li><a href="services.html#entity">Entity &amp; Tax</a></li>
+            <li><a href="services.html#brand-ip">Brand &amp; IP</a></li>
+            <li><a href="services.html#family-governance">Family Governance</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Company</h5>
+          <ul>
+            <li><a href="about.html">About</a></li>
+            <li><a href="partnerships.html">Partnerships</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 The Advisory. All rights reserved.</p>
+        <div class="footer-legal"><a href="#">Privacy Policy</a><a href="#">Terms</a><a href="#">Disclosures</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Entertainers &amp; Creatives | The Advisory</title>
+  <meta name="description" content="The Advisory serves entertainers, artists, and bespoke creative entrepreneurs with full-service enterprise management — IP, contracts, entity structure, brand, and legacy.">
+  <link rel="stylesheet" href="css/design-system.css">
+  <link rel="stylesheet" href="css/nav.css">
+  <style>
+    body { background-color: var(--near-black); }
+
+    /* ===== CREATIVES HERO: fullscreen video ===== */
+    .creatives-hero {
+      position: relative;
+      height: 100vh;
+      min-height: 680px;
+      max-height: 1080px;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+      background-color: var(--near-black);
+    }
+
+    .creatives-hero-video {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .creatives-hero-video iframe {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 177.78vh;
+      min-width: 100%;
+      height: 100%;
+      min-height: 56.25vw;
+      border: none;
+      pointer-events: none;
+    }
+
+    .creatives-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(13,13,13,1) 0%,
+        rgba(13,13,13,0.6) 40%,
+        rgba(13,13,13,0.15) 100%
+      );
+      z-index: 1;
+    }
+
+    .creatives-hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 0 var(--container-padding) var(--space-7);
+      max-width: var(--container-max);
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .creatives-hero-headline {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 8vw, 9.5rem);
+      line-height: 0.88;
+      letter-spacing: -0.02em;
+      color: var(--ivory);
+      margin-bottom: var(--space-3);
+    }
+
+    .creatives-hero-headline em { font-style: italic; color: var(--gold); }
+
+    .creatives-hero-sub {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: var(--space-4);
+      align-items: flex-end;
+    }
+
+    /* ===== WHO WE SERVE ===== */
+    .creatives-who {
+      background-color: var(--charcoal);
+      padding: var(--space-7) 0;
+    }
+
+    .who-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      border-left: 1px solid var(--border-dark);
+      border-top: 1px solid var(--border-dark);
+      margin-top: var(--space-5);
+    }
+
+    .who-item {
+      border-right: 1px solid var(--border-dark);
+      border-bottom: 1px solid var(--border-dark);
+      padding: var(--space-4);
+      transition: background-color var(--duration-base) var(--ease-smooth);
+    }
+
+    .who-item:hover {
+      background-color: rgba(184,150,90,0.04);
+    }
+
+    .who-label {
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.75rem;
+    }
+
+    .who-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.25rem, 2vw, 1.875rem);
+      color: var(--ivory);
+      margin-bottom: 0.5rem;
+    }
+
+    .who-desc {
+      font-size: 0.8125rem;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    /* ===== SERVICES FOR CREATIVES ===== */
+    .creatives-services {
+      background-color: var(--near-black);
+      padding: var(--space-8) 0;
+    }
+
+    .creatives-services-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: var(--space-6);
+      align-items: start;
+    }
+
+    /* ===== IP / BRAND FEATURE ===== */
+    .ip-feature {
+      background-color: var(--surface-dark);
+      padding: var(--space-8) 0;
+    }
+
+    .ip-feature-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-6);
+      align-items: center;
+    }
+
+    .ip-items {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-3);
+      margin-top: var(--space-4);
+    }
+
+    .ip-item {
+      padding: var(--space-3);
+      border: 1px solid var(--border-dark);
+      border-top: 2px solid var(--gold);
+      transition: border-color var(--duration-base) var(--ease-smooth);
+    }
+
+    .ip-item:hover {
+      border-color: var(--gold);
+    }
+
+    .ip-item-title {
+      font-family: var(--font-sans);
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--ivory);
+      margin-bottom: 0.5rem;
+    }
+
+    .ip-item-desc {
+      font-size: 0.8125rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* ===== BESPOKE FEATURE QUOTE ===== */
+    .bespoke-quote {
+      background-color: var(--near-black);
+      padding: var(--space-8) 0;
+      border-top: 1px solid var(--border-dark);
+      border-bottom: 1px solid var(--border-dark);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      .creatives-hero-sub { grid-template-columns: 1fr; }
+      .who-grid { grid-template-columns: 1fr 1fr; }
+      .creatives-services-layout { grid-template-columns: 1fr; }
+      .ip-feature-layout { grid-template-columns: 1fr; }
+      .ip-items { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 600px) {
+      .who-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header" id="site-header">
+    <div class="container header-inner">
+      <a href="home.html" class="site-logo">
+        <div class="logo-text">
+          <span class="logo-name">The Advisory</span>
+          <span class="logo-sub">Enterprise Management</span>
+        </div>
+      </a>
+      <nav class="primary-nav">
+        <ul>
+          <li class="nav-item active">
+            <a href="#" class="nav-link">Who We Serve
+              <svg class="chevron" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4l4 4 4-4"/></svg>
+            </a>
+            <ul class="dropdown">
+              <li class="dropdown-item"><a href="sports.html" class="dropdown-link">Professional Athletes</a></li>
+              <li class="dropdown-item"><a href="nil.html" class="dropdown-link">NIL Athletes</a></li>
+              <li class="dropdown-item"><a href="creatives.html" class="dropdown-link">Entertainers &amp; Creatives</a></li>
+              <li class="dropdown-item"><a href="bespoke.html" class="dropdown-link">Bespoke &amp; Entrepreneurs</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
+          <li class="nav-item"><a href="nil.html" class="nav-link">NIL</a></li>
+          <li class="nav-item"><a href="partnerships.html" class="nav-link">Partnerships</a></li>
+          <li class="nav-item"><a href="about.html" class="nav-link">About<svg class="chevron" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4l4 4 4-4"/></svg></a><ul class="dropdown"><li class="dropdown-item"><a href="about.html" class="dropdown-link">About The Advisory</a></li><li class="dropdown-item"><a href="team.html" class="dropdown-link">Meet the Team</a></li></ul></li>
+        </ul>
+      </nav>
+      <div class="header-cta">
+        <a href="contact.html" class="btn btn--ghost">Start a Conversation</a>
+      </div>
+      <button class="mobile-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+  <div class="mobile-nav-overlay"></div>
+  <nav class="mobile-nav">
+    <ul>
+      <li class="mobile-nav-item"><button class="mobile-nav-trigger" data-submenu="mc-serve"><span>Who We Serve</span><svg class="m-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 8l5 5 5-5"/></svg></button>
+        <div class="mobile-submenu" id="mc-serve">
+          <a href="sports.html" class="mobile-submenu-link">Professional Athletes</a>
+          <a href="nil.html" class="mobile-submenu-link">NIL Athletes</a>
+          <a href="creatives.html" class="mobile-submenu-link">Entertainers &amp; Creatives</a>
+          <a href="bespoke.html" class="mobile-submenu-link">Bespoke &amp; Entrepreneurs</a>
+        </div>
+      </li>
+      <li class="mobile-nav-item"><button class="mobile-nav-trigger"><a href="services.html">Services</a></button></li>
+      <li class="mobile-nav-item"><button class="mobile-nav-trigger"><a href="nil.html">NIL</a></button></li>
+      <li class="mobile-nav-item"><button class="mobile-nav-trigger"><a href="partnerships.html">Partnerships</a></button></li>
+      <li class="mobile-nav-item"><button class="mobile-nav-trigger"><a href="about.html">About</a></button></li>
+    </ul>
+    <div class="mobile-nav-cta"><a href="contact.html" class="btn btn--primary">Start a Conversation</a></div>
+  </nav>
+
+  <!-- ============================================================
+       CREATIVES HERO: Creatives/Entertainers Vimeo
+  ============================================================ -->
+  <section class="creatives-hero">
+    <div class="creatives-hero-video">
+      <!-- Video used ONLY for creatives/entertainers/bespoke entrepreneurs -->
+      <iframe
+        src="https://player.vimeo.com/video/1173897349?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1&background=1"
+        frameborder="0"
+        allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        title="The Advisory Creative Enterprise"></iframe>
+    </div>
+    <div class="creatives-hero-overlay"></div>
+
+    <div class="creatives-hero-content">
+      <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.75rem;">
+        <span style="display:block;width:2rem;height:1px;background:var(--gold)"></span>
+        <span class="label text-gold">Entertainers, Creatives &amp; Entrepreneurs</span>
+      </div>
+
+      <h1 class="creatives-hero-headline">
+        The business of<br>creative <em>genius.</em>
+      </h1>
+
+      <div class="creatives-hero-sub">
+        <p style="font-size: clamp(0.9rem, 1.1vw, 1.05rem); color: var(--stone); max-width: 44ch; line-height: 1.65;">
+          Your art, your name, your enterprise. We build the legal, financial, and operational infrastructure
+          that lets creative talent and bespoke entrepreneurs scale and protect what they've built.
+        </p>
+        <div style="display: flex; flex-direction: column; gap: 0.875rem;">
+          <a href="contact.html" class="btn btn--primary">Explore Representation</a>
+          <a href="services.html" class="btn btn--ghost">View Services</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       WHO WE SERVE
+  ============================================================ -->
+  <section class="creatives-who">
+    <div class="container">
+      <div class="reveal">
+        <div class="eyebrow"><span class="label">Our Creative Clientele</span></div>
+        <h2 class="display-md text-white" style="max-width: 18ch;">Built for those whose value is their identity.</h2>
+      </div>
+
+      <div class="who-grid reveal">
+        <div class="who-item">
+          <div class="who-label">Entertainers</div>
+          <div class="who-title">Recording Artists &amp; Musicians</div>
+          <div class="who-desc">Label deals, publishing rights, touring structures, merchandise, and cross-platform IP strategy.</div>
+        </div>
+        <div class="who-item">
+          <div class="who-label">Creatives</div>
+          <div class="who-title">Actors &amp; Talent</div>
+          <div class="who-desc">Contract negotiation, residuals management, brand partnership compliance, and personal IP protection.</div>
+        </div>
+        <div class="who-item">
+          <div class="who-label">Content</div>
+          <div class="who-title">Creators &amp; Influencers</div>
+          <div class="who-desc">Brand deal review, entity structure for creator businesses, tax management across platforms, and licensing.</div>
+        </div>
+        <div class="who-item">
+          <div class="who-label">Entrepreneurs</div>
+          <div class="who-title">Bespoke HNW Clients</div>
+          <div class="who-desc">Full-service family office advisory for high-net-worth entrepreneurs whose success requires institutional management.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SERVICES FOR CREATIVES
+  ============================================================ -->
+  <section class="creatives-services">
+    <div class="container">
+      <div class="creatives-services-layout">
+
+        <div class="reveal">
+          <div class="eyebrow"><span class="label">Services</span></div>
+          <h2 class="display-md text-white" style="margin-bottom: var(--space-3);">One firm.<br>Every lane.</h2>
+          <p class="body-md text-stone" style="max-width: 34ch;">
+            The same institutional intelligence we bring to professional athletes,
+            applied to the full spectrum of creative enterprise.
+          </p>
+          <a href="contact.html" class="btn btn--primary" style="margin-top: var(--space-4);">Start a Conversation</a>
+        </div>
+
+        <div class="reveal reveal-delay-1">
+          <div class="lane-card">
+            <span class="lane-number">01</span>
+            <div>
+              <div class="lane-title">Contract &amp; Deal Representation</div>
+              <div class="lane-desc">Label agreements, brand partnerships, licensing deals, touring contracts, and platform agreements — negotiated with institutional leverage and zero conflicts.</div>
+            </div>
+            <span class="lane-arrow">→</span>
+          </div>
+          <div class="lane-card">
+            <span class="lane-number">02</span>
+            <div>
+              <div class="lane-title">IP &amp; Publishing Management</div>
+              <div class="lane-desc">Trademark registration, publishing rights, image licensing, content licensing, and copyright strategy. We protect what makes you worth something.</div>
+            </div>
+            <span class="lane-arrow">→</span>
+          </div>
+          <div class="lane-card">
+            <span class="lane-number">03</span>
+            <div>
+              <div class="lane-title">Entity &amp; Tax Architecture</div>
+              <div class="lane-desc">LLC and S-Corp formation, multi-state and multi-platform income management, and tax exposure elimination for talent and creator businesses.</div>
+            </div>
+            <span class="lane-arrow">→</span>
+          </div>
+          <div class="lane-card">
+            <span class="lane-number">04</span>
+            <div>
+              <div class="lane-title">Brand Strategy &amp; Equity</div>
+              <div class="lane-desc">Brand positioning, endorsement compliance, licensing strategy, and building long-term brand equity that extends beyond any single deal or era.</div>
+            </div>
+            <span class="lane-arrow">→</span>
+          </div>
+          <div class="lane-card">
+            <span class="lane-number">05</span>
+            <div>
+              <div class="lane-title">Family Governance &amp; Legacy</div>
+              <div class="lane-desc">Multi-generational trust structures, household governance, and responsible generosity frameworks for talent at the top of their earning power.</div>
+            </div>
+            <span class="lane-arrow">→</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       IP FEATURE SECTION
+  ============================================================ -->
+  <section class="ip-feature">
+    <div class="container">
+      <div class="ip-feature-layout">
+
+        <div class="reveal">
+          <div class="eyebrow"><span class="label">Your IP is Your Enterprise</span></div>
+          <h2 class="display-md text-white" style="margin-bottom: var(--space-3);">
+            Own what you<br>create. <em style="color: var(--gold); font-style: italic;">Forever.</em>
+          </h2>
+          <p class="body-md text-stone" style="max-width: 40ch; margin-bottom: var(--space-3);">
+            Most creators don't realize they've given away what matters most until it's too late.
+            We build ownership structures from day one — so your name, your image, your content,
+            and your creative output remain yours.
+          </p>
+          <a href="services.html#brand-ip" class="btn btn--ghost">IP &amp; Brand Services</a>
+        </div>
+
+        <div class="reveal reveal-delay-2">
+          <div class="ip-items">
+            <div class="ip-item">
+              <div class="ip-item-title">Trademark Protection</div>
+              <div class="ip-item-desc">Artist name, stage name, brand marks, and recurring creative elements registered and defended.</div>
+            </div>
+            <div class="ip-item">
+              <div class="ip-item-title">Image Rights</div>
+              <div class="ip-item-desc">Licensing terms that ensure you control how your likeness is used commercially — in every medium.</div>
+            </div>
+            <div class="ip-item">
+              <div class="ip-item-title">Publishing &amp; Masters</div>
+              <div class="ip-item-desc">Publishing ownership strategy, master recordings structure, and royalty pipeline management.</div>
+            </div>
+            <div class="ip-item">
+              <div class="ip-item-title">Content Licensing</div>
+              <div class="ip-item-desc">Platform agreements, brand content licensing, and deals that preserve your creative control.</div>
+            </div>
+            <div class="ip-item">
+              <div class="ip-item-title">Endorsement Compliance</div>
+              <div class="ip-item-desc">FTC, platform, and contractual compliance for brand partnerships, sponsored content, and ambassador deals.</div>
+            </div>
+            <div class="ip-item">
+              <div class="ip-item-title">Exit &amp; Legacy Strategy</div>
+              <div class="ip-item-desc">Long-term IP valuation, estate planning for creative assets, and catalog strategy.</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       BESPOKE QUOTE / STATEMENT
+  ============================================================ -->
+  <section class="bespoke-quote">
+    <div class="container container--narrow" style="text-align: center;" class="reveal">
+      <div class="eyebrow" style="justify-content: center; margin-bottom: var(--space-3);"><span class="label">Our Standard</span></div>
+      <blockquote style="font-family: var(--font-display); font-style: italic; font-size: clamp(1.5rem, 3vw, 3.25rem); line-height: 1.2; color: var(--ivory); max-width: 20ch; margin: 0 auto var(--space-4);">
+        "The same institutional standard we build for global icons — for every client we take."
+      </blockquote>
+      <p style="font-family: var(--font-sans); font-size: 0.875rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold);">
+        Jimmie B. Strong — Founder, The Advisory
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CTA
+  ============================================================ -->
+  <section class="section section--charcoal" style="padding: var(--space-8) 0;">
+    <div class="container">
+      <div style="display: grid; grid-template-columns: 1fr auto; gap: var(--space-4); align-items: center;" class="reveal">
+        <div>
+          <h2 class="display-md text-white" style="margin-bottom: 0.75rem;">Your enterprise deserves better.</h2>
+          <p style="color: var(--stone); font-size: 0.9375rem; max-width: 44ch;">We work with a selective group of creative talent and entrepreneurs each year. Start a conversation to explore fit.</p>
+        </div>
+        <a href="contact.html" class="btn btn--primary">Start a Conversation</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="footer-logo">The Advisory</div>
+          <p>Enterprise management for professional athletes, NIL athletes, entertainers, and high-net-worth entrepreneurs.</p>
+          <div style="margin-top:1.5rem"><a href="contact.html" class="btn btn--primary" style="padding:0.65rem 1.25rem;font-size:0.75rem">Start Here</a></div>
+        </div>
+        <div class="footer-col"><h5>Who We Serve</h5><ul><li><a href="sports.html">Professional Athletes</a></li><li><a href="nil.html">NIL Athletes</a></li><li><a href="creatives.html">Entertainers &amp; Creatives</a></li><li><a href="bespoke.html">Bespoke &amp; Entrepreneurs</a></li></ul></div>
+        <div class="footer-col"><h5>Services</h5><ul><li><a href="services.html#contracts">Contracts</a></li><li><a href="nil.html">NIL Strategy</a></li><li><a href="services.html#entity">Entity &amp; Tax</a></li><li><a href="services.html#brand-ip">Brand &amp; IP</a></li><li><a href="services.html#family-governance">Family Governance</a></li></ul></div>
+        <div class="footer-col"><h5>Company</h5><ul><li><a href="about.html">About</a></li><li><a href="team.html">Meet the Team</a></li><li><a href="partnerships.html">Partnerships</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 The Advisory. All rights reserved.</p>
+        <div class="footer-legal"><a href="#">Privacy Policy</a><a href="#">Terms</a><a href="#">Disclosures</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

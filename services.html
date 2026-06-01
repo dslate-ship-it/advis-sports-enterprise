@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services | The Advisory</title>
+  <meta name="description" content="Full-service enterprise management: contracts, NIL strategy, entity &amp; tax structure, brand &amp; IP, family governance, deal diligence. The Advisory — one firm, every lane.">
+  <link rel="stylesheet" href="css/design-system.css">
+  <link rel="stylesheet" href="css/nav.css">
+  <style>
+    body { background-color: var(--near-black); }
+
+    /* ===== PAGE HERO ===== */
+    .services-hero {
+      padding: 160px var(--container-padding) var(--space-8);
+      background-color: var(--near-black);
+      border-bottom: 1px solid var(--border-dark);
+    }
+
+    .services-hero-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-5);
+      align-items: end;
+    }
+
+    .sh-headline {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 6vw, 7.5rem);
+      line-height: 0.9;
+      letter-spacing: -0.02em;
+      color: var(--ivory);
+    }
+
+    .sh-headline em { font-style: italic; color: var(--gold); }
+
+    /* ===== SERVICE SECTIONS ===== */
+    .service-block {
+      padding: var(--space-8) 0;
+      border-bottom: 1px solid var(--border-dark);
+    }
+
+    .service-block:nth-child(odd) {
+      background-color: var(--charcoal);
+    }
+
+    .service-block:nth-child(even) {
+      background-color: var(--near-black);
+    }
+
+    .service-block-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.8fr;
+      gap: var(--space-6);
+      align-items: start;
+    }
+
+    .service-num {
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+
+    .service-headline {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 3.5vw, 3.75rem);
+      line-height: 1.05;
+      color: var(--ivory);
+      margin-bottom: var(--space-3);
+    }
+
+    .service-headline em { font-style: italic; color: var(--gold); }
+
+    .service-detail {
+      margin-top: var(--space-4);
+    }
+
+    .service-detail-label {
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+    }
+
+    .service-detail ul {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.625rem 2rem;
+    }
+
+    .service-detail ul li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.625rem;
+      font-size: 0.875rem;
+      color: var(--stone);
+      line-height: 1.5;
+    }
+
+    .service-detail ul li::before {
+      content: '→';
+      color: var(--gold);
+      font-size: 0.75rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .service-audiences {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: var(--space-3);
+    }
+
+    .aud-tag {
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.75rem;
+      border: 1px solid rgba(184,150,90,0.3);
+      color: var(--stone);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      .services-hero-layout { grid-template-columns: 1fr; }
+      .service-block-layout { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 600px) {
+      .service-detail ul { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header" id="site-header">
+    <div class="container header-inner">
+      <a href="home.html" class="site-logo"><div class="logo-text"><span class="logo-name">The Advisory</span><span class="logo-sub">Enterprise Management</span></div></a>
+      <nav class="primary-nav">
+        <ul>
+          <li class="nav-item"><a href="#" class="nav-link">Who We Serve<svg class="chevron" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4l4 4 4-4"/></svg></a>
+            <ul class="dropdown">
+              <li class="dropdown-item"><a href="sports.html" class="dropdown-link">Professional Athletes</a></li>
+              <li class="dropdown-item"><a href="nil.html" class="dropdown-link">NIL Athletes</a></li>
+              <li class="dropdown-item"><a href="creatives.html" class="dropdown-link">Entertainers &amp; Creatives</a></li>
+              <li class="dropdown-item"><a href="bespoke.html" class="dropdown-link">Bespoke &amp; Entrepreneurs</a></li>
+            </ul>
+          </li>
+          <li class="nav-item active"><a href="services.html" class="nav-link">Services</a></li>
+          <li class="nav-item"><a href="nil.html" class="nav-link">NIL</a></li>
+          <li class="nav-item"><a href="partnerships.html" class="nav-link">Partnerships</a></li>
+          <li class="nav-item"><a href="about.html" class="nav-link">About<svg class="chevron" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4l4 4 4-4"/></svg></a><ul class="dropdown"><li class="dropdown-item"><a href="about.html" class="dropdown-link">About The Advisory</a></li><li class="dropdown-item"><a href="team.html" class="dropdown-link">Meet the Team</a></li></ul></li>
+        </ul>
+      </nav>
+      <div class="header-cta"><a href="contact.html" class="btn btn--ghost">Start a Conversation</a></div>
+      <button class="mobile-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+  <div class="mobile-nav-overlay"></div>
+  <nav class="mobile-nav">
+    <ul>
+      <li class="mobile-nav-item"><button class="mobile-nav-trigger" data-submenu="ms-serve"><span>Who We Serve</span><svg class="m-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 8l5 5 5-5"/></svg></button>
+        <div class="mobile-submenu" id="ms-serve">
+          <a href="sports.html" class="mobile-submenu-link">Professional Athletes</a>
+          <a href="nil.html" class="mobile-submenu-link">NIL Athletes</a>
+          <a href="creatives.html" class="mobile-submenu-link">Entertainers &amp; Creatives</a>
+          <a href="bespoke.html" class="mobile-submenu-link">Bespoke &amp; Entrepreneurs</a>
+        </div>
+      </li>
+      <li class="mobile-nav-item"><button class="mobile-nav-trigger"><a href="services.html">Services</a></button></li>
+      <li class="mobile-nav-item"><button class="mobile-nav-trigger"><a href="nil.html">NIL</a></button></li>
+      <li class="mobile-nav-item"><button class="mobile-nav-trigger"><a href="partnerships.html">Partnerships</a></button></li>
+      <li class="mobile-nav-item"><button class="mobile-nav-trigger"><a href="about.html">About</a></button></li>
+    </ul>
+    <div class="mobile-nav-cta"><a href="contact.html" class="btn btn--primary">Start a Conversation</a></div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="services-hero">
+    <div class="container">
+      <div class="services-hero-layout">
+        <div class="reveal">
+          <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1.75rem;">
+            <span style="display:block;width:2rem;height:1px;background:var(--gold)"></span>
+            <span class="label text-gold">Services</span>
+          </div>
+          <h1 class="sh-headline">One firm.<br><em>Every</em><br>lane.</h1>
+        </div>
+        <div class="reveal reveal-delay-2">
+          <p class="body-lg text-stone" style="max-width: 42ch; margin-bottom: var(--space-3);">
+            Full-service enterprise management — legal, financial, operational, and strategic —
+            under one roof. No handoffs, no gaps, no excuses.
+          </p>
+          <p class="body-md text-stone" style="max-width: 42ch;">
+            Every service is delivered with institutional rigor and personalized to the individual
+            enterprise of each client we serve.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICE 01: CONTRACTS -->
+  <section class="service-block" id="contracts">
+    <div class="container">
+      <div class="service-block-layout">
+        <div class="reveal">
+          <div class="service-num">Service 01</div>
+          <h2 class="service-headline">Contracts &amp;<br><em>Negotiation</em></h2>
+          <p class="body-md text-stone" style="max-width: 30ch; margin-top: var(--space-2);">We negotiate with institutional leverage and no conflicts of interest.</p>
+          <div class="service-audiences" style="margin-top: var(--space-3);">
+            <span class="aud-tag">Pro Athletes</span>
+            <span class="aud-tag">NIL Athletes</span>
+            <span class="aud-tag">Entertainers</span>
+            <span class="aud-tag">Creatives</span>
+          </div>
+          <a href="contact.html" class="btn btn--ghost" style="margin-top: var(--space-4);">Discuss Your Deal</a>
+        </div>
+        <div class="service-detail reveal reveal-delay-2">
+          <p class="body-md text-stone" style="margin-bottom: var(--space-3); max-width: 50ch;">
+            From rookie contracts to multi-million dollar endorsement agreements — every deal deserves
+            independent review and institutional negotiation. We enter every room with the credibility
+            of decades of elite representation and zero incentive to close a bad deal for you.
+          </p>
+          <div class="service-detail-label">What's Included</div>
+          <ul>
+            <li>Contract review and annotation</li>
+            <li>Negotiation strategy and execution</li>
+            <li>Performance clause optimization</li>
+            <li>Endorsement deal structuring</li>
+            <li>Term-sheet drafting</li>
+            <li>Deal room management</li>
+            <li>Renewal pipeline management</li>
+            <li>Sports &amp; entertainment law counsel</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICE 02: NIL -->
+  <section class="service-block" id="nil-services">
+    <div class="container">
+      <div class="service-block-layout">
+        <div class="reveal">
+          <div class="service-num">Service 02</div>
+          <h2 class="service-headline">NIL Strategy<br>&amp; <em>Compliance</em></h2>
+          <p class="body-md text-stone" style="max-width: 30ch; margin-top: var(--space-2);">From first deal to full enterprise — the complete NIL lifecycle.</p>
+          <div class="service-audiences" style="margin-top: var(--space-3);">
+            <span class="aud-tag">NIL Athletes</span>
+            <span class="aud-tag">Student-Athletes</span>
+          </div>
+          <a href="nil.html" class="btn btn--ghost" style="margin-top: var(--space-4);">NIL Flight School™</a>
+        </div>
+        <div class="service-detail reveal reveal-delay-2">
+          <p class="body-md text-stone" style="margin-bottom: var(--space-3); max-width: 50ch;">
+            The NIL market is $2.3B and growing — but most student-athletes are operating without
+            the structure to protect what they earn. We provide the complete NIL infrastructure:
+            from your first deal to your long-term brand equity strategy.
+          </p>
+          <div class="service-detail-label">What's Included</div>
+          <ul>
+            <li>NIL deal review &amp; negotiation</li>
+            <li>NCAA &amp; conference compliance</li>
+            <li>State-specific eligibility monitoring</li>
+            <li>Brand strategy &amp; positioning</li>
+            <li>NIL disclosure management</li>
+            <li>Multi-deal portfolio management</li>
+            <li>Tax structure for NIL income</li>
+            <li>Flight School™ curriculum</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICE 03: ENTITY & TAX -->
+  <section class="service-block" id="entity">
+    <div class="container">
+      <div class="service-block-layout">
+        <div class="reveal">
+          <div class="service-num">Service 03</div>
+          <h2 class="service-headline">Entity &amp;<br><em>Tax</em> Posture</h2>
+          <p class="body-md text-stone" style="max-width: 30ch; margin-top: var(--space-2);">We identify and close the gap between what you earn and what you keep.</p>
+          <div class="service-audiences" style="margin-top: var(--space-3);">
+            <span class="aud-tag">All Clients</span>
+          </div>
+          <a href="contact.html" class="btn btn--ghost" style="margin-top: var(--space-4);">Tax Assessment</a>
+        </div>
+        <div class="service-detail reveal reveal-delay-2">
+          <p class="body-md text-stone" style="margin-bottom: var(--space-3); max-width: 50ch;">
+            Unplanned tax exposure is the silent killer of athlete wealth. We build the entity structure,
+            filing strategy, and proactive planning that eliminates surprises and positions every dollar
+            you earn for maximum retention and growth.
+          </p>
+          <div class="service-detail-label">What's Included</div>
+          <ul>
+            <li>LLC / S-Corp formation</li>
+            <li>Multi-state tax exposure management</li>
+            <li>Self-employment tax strategy (15.3%)</li>
+            <li>Phantom income &amp; NIL gift taxation</li>
+            <li>Quarterly estimated tax planning</li>
+            <li>Investment structuring</li>
+            <li>Annual filing management</li>
+            <li>IRS-ready documentation</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICE 04: BRAND & IP -->
+  <section class="service-block" id="brand-ip">
+    <div class="container">
+      <div class="service-block-layout">
+        <div class="reveal">
+          <div class="service-num">Service 04</div>
+          <h2 class="service-headline">Brand &amp;<br><em>IP</em> Management</h2>
+          <p class="body-md text-stone" style="max-width: 30ch; margin-top: var(--space-2);">Your name is your most valuable long-term asset. We protect it.</p>
+          <div class="service-audiences" style="margin-top: var(--space-3);">
+            <span class="aud-tag">Athletes</span>
+            <span class="aud-tag">Entertainers</span>
+            <span class="aud-tag">Creatives</span>
+          </div>
+          <a href="contact.html" class="btn btn--ghost" style="margin-top: var(--space-4);">Protect Your IP</a>
+        </div>
+        <div class="service-detail reveal reveal-delay-2">
+          <p class="body-md text-stone" style="margin-bottom: var(--space-3); max-width: 50ch;">
+            Most talent discovers they've given away their most valuable assets after it's too late.
+            We build the ownership structures, registration strategy, and licensing framework that
+            ensures what you create or become is yours — permanently.
+          </p>
+          <div class="service-detail-label">What's Included</div>
+          <ul>
+            <li>Trademark registration</li>
+            <li>Image rights structuring</li>
+            <li>Publishing &amp; master recordings strategy</li>
+            <li>Brand licensing framework</li>
+            <li>Endorsement compliance</li>
+            <li>Content licensing agreements</li>
+            <li>IP estate planning</li>
+            <li>Brand equity &amp; valuation advisory</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICE 05: FAMILY GOVERNANCE -->
+  <section class="service-block" id="family-governance">
+    <div class="container">
+      <div class="service-block-layout">
+        <div class="reveal">
+          <div class="service-num">Service 05</div>
+          <h2 class="service-headline">Family<br><em>Governance</em></h2>
+          <p class="body-md text-stone" style="max-width: 30ch; margin-top: var(--space-2);">Protecting generosity. Preserving the future.</p>
+          <div class="service-audiences" style="margin-top: var(--space-3);">
+            <span class="aud-tag">All Clients</span>
+          </div>
+          <a href="contact.html" class="btn btn--ghost" style="margin-top: var(--space-4);">Governance Review</a>
+        </div>
+        <div class="service-detail reveal reveal-delay-2">
+          <p class="body-md text-stone" style="margin-bottom: var(--space-3); max-width: 50ch;">
+            The G-Wagon trap is not really about the car — it's about the absence of structure.
+            We build governance frameworks that let you show up for the people you love,
+            while protecting the enterprise you've built from becoming a resource that depletes
+            without returning value.
+          </p>
+          <div class="service-detail-label">What's Included</div>
+          <ul>
+            <li>Family trust structures</li>
+            <li>Household financial governance</li>
+            <li>Generosity frameworks &amp; budgets</li>
+            <li>Dependents support structuring</li>
+            <li>Estate planning integration</li>
+            <li>Multi-generational wealth documentation</li>
+            <li>Family financial literacy</li>
+            <li>Responsible giving strategy</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICE 06: DEAL DILIGENCE -->
+  <section class="service-block" id="diligence">
+    <div class="container">
+      <div class="service-block-layout">
+        <div class="reveal">
+          <div class="service-num">Service 06</div>
+          <h2 class="service-headline">Deal Diligence<br>&amp; <em>M&amp;A</em></h2>
+          <p class="body-md text-stone" style="max-width: 30ch; margin-top: var(--space-2);">Independent intelligence before every major decision.</p>
+          <div class="service-audiences" style="margin-top: var(--space-3);">
+            <span class="aud-tag">Pro Athletes</span>
+            <span class="aud-tag">Entrepreneurs</span>
+            <span class="aud-tag">HNW Clients</span>
+          </div>
+          <a href="contact.html" class="btn btn--ghost" style="margin-top: var(--space-4);">Diligence Request</a>
+        </div>
+        <div class="service-detail reveal reveal-delay-2">
+          <p class="body-md text-stone" style="margin-bottom: var(--space-3); max-width: 50ch;">
+            Athletes and entertainers are consistently presented with investment opportunities,
+            business partnerships, and equity deals. The decision to enter or pass requires
+            independent analysis from advisors with no stake in the outcome. We provide that.
+          </p>
+          <div class="service-detail-label">What's Included</div>
+          <ul>
+            <li>Investment opportunity analysis</li>
+            <li>Business due diligence</li>
+            <li>Minority ownership structuring</li>
+            <li>Term sheet analysis</li>
+            <li>Conflict-of-interest auditing</li>
+            <li>M&amp;A advisory &amp; support</li>
+            <li>Exit strategy planning</li>
+            <li>Post-close integration support</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section style="background-color: var(--charcoal); padding: var(--space-8) 0;">
+    <div class="container">
+      <div style="text-align: center; max-width: 600px; margin: 0 auto;" class="reveal">
+        <h2 class="display-md text-white" style="margin-bottom: var(--space-3);">Every lane.<br>One firm.</h2>
+        <p style="color: var(--stone); margin-bottom: var(--space-4);">Start a conversation about what your enterprise needs — and how The Advisory delivers it.</p>
+        <a href="contact.html" class="btn btn--primary" style="padding: 1rem 2.5rem;">Start a Conversation</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="footer-logo">The Advisory</div>
+          <p>Enterprise management for professional athletes, NIL athletes, entertainers, and high-net-worth entrepreneurs.</p>
+          <div style="margin-top:1.5rem"><a href="contact.html" class="btn btn--primary" style="padding:0.65rem 1.25rem;font-size:0.75rem">Start Here</a></div>
+        </div>
+        <div class="footer-col"><h5>Who We Serve</h5><ul><li><a href="sports.html">Professional Athletes</a></li><li><a href="nil.html">NIL Athletes</a></li><li><a href="creatives.html">Entertainers &amp; Creatives</a></li><li><a href="bespoke.html">Bespoke &amp; Entrepreneurs</a></li></ul></div>
+        <div class="footer-col"><h5>Services</h5><ul><li><a href="services.html#contracts">Contracts</a></li><li><a href="nil.html">NIL Strategy</a></li><li><a href="services.html#entity">Entity &amp; Tax</a></li><li><a href="services.html#brand-ip">Brand &amp; IP</a></li><li><a href="services.html#family-governance">Family Governance</a></li><li><a href="services.html#diligence">Deal Diligence</a></li></ul></div>
+        <div class="footer-col"><h5>Company</h5><ul><li><a href="about.html">About</a></li><li><a href="partnerships.html">Partnerships</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 The Advisory. All rights reserved.</p>
+        <div class="footer-legal"><a href="#">Privacy Policy</a><a href="#">Terms</a><a href="#">Disclosures</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

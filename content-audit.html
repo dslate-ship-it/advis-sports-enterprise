@@ -1,0 +1,1897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Advisory — Site Content Audit & Edit Guide</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold:    #B8965A;
+      --black:   #0D0D0D;
+      --charcoal:#1A1A1A;
+      --white:   #FAF8F5;
+      --stone:   #C9C0B0;
+      --border:  #2A2A2A;
+      --green:   #2D6A4F;
+      --red:     #8B2A2A;
+    }
+
+    body {
+      font-family: 'Georgia', serif;
+      background: #F5F3EF;
+      color: #1A1A1A;
+      line-height: 1.6;
+    }
+
+    /* ── COVER PAGE ── */
+    .cover {
+      background: #0D0D0D;
+      color: #FAF8F5;
+      padding: 80px 60px;
+      min-height: 260px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .cover-top { display: flex; justify-content: space-between; align-items: flex-start; }
+    .cover-logo { font-family: 'Georgia', serif; font-size: 1.1rem; letter-spacing: 0.18em; text-transform: uppercase; color: #B8965A; }
+    .cover-sub  { font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(250,248,245,0.4); margin-top: 0.25rem; }
+    .cover-date { font-size: 0.75rem; letter-spacing: 0.1em; color: rgba(250,248,245,0.4); text-align: right; }
+    .cover-headline { font-size: clamp(2rem, 4vw, 3.2rem); line-height: 1.1; font-weight: normal; margin-top: 3rem; }
+    .cover-headline em { color: #B8965A; font-style: italic; }
+    .cover-desc { font-size: 0.95rem; color: rgba(250,248,245,0.55); max-width: 560px; margin-top: 1.5rem; line-height: 1.7; }
+    .cover-instructions {
+      margin-top: 2.5rem;
+      padding: 1.5rem;
+      border-left: 3px solid #B8965A;
+      background: rgba(184,150,90,0.07);
+    }
+    .cover-instructions h3 { font-size: 0.75rem; letter-spacing: 0.16em; text-transform: uppercase; color: #B8965A; margin-bottom: 0.75rem; font-family: 'Arial', sans-serif; }
+    .cover-instructions p  { font-size: 0.875rem; color: rgba(250,248,245,0.65); line-height: 1.65; font-family: 'Arial', sans-serif; }
+    .cover-instructions p + p { margin-top: 0.5rem; }
+
+    /* ── LEGEND ── */
+    .legend {
+      background: #fff;
+      padding: 1.25rem 60px;
+      border-bottom: 2px solid #E8E4DC;
+      display: flex;
+      gap: 2.5rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .legend-title { font-family: 'Arial', sans-serif; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #888; margin-right: 0.5rem; }
+    .badge { display: inline-block; padding: 0.2rem 0.65rem; border-radius: 3px; font-family: 'Arial', sans-serif; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+    .badge-gold   { background: #B8965A; color: #fff; }
+    .badge-green  { background: #2D6A4F; color: #fff; }
+    .badge-blue   { background: #2A5A8B; color: #fff; }
+    .badge-gray   { background: #888; color: #fff; }
+
+    /* ── PAGE SECTION DIVIDER ── */
+    .page-divider {
+      background: #0D0D0D;
+      color: #FAF8F5;
+      padding: 1.25rem 60px;
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      margin-top: 3rem;
+    }
+    .page-divider-num { font-family: 'Arial', sans-serif; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.14em; color: #B8965A; text-transform: uppercase; }
+    .page-divider-name { font-size: 1.1rem; letter-spacing: 0.06em; }
+    .page-divider-file { font-family: 'Arial', sans-serif; font-size: 0.7rem; color: rgba(250,248,245,0.35); margin-left: auto; letter-spacing: 0.06em; }
+
+    /* ── MAIN CONTENT ── */
+    .audit-body { max-width: 1100px; margin: 0 auto; padding: 0 40px 80px; }
+
+    /* ── CONTENT BLOCK ── */
+    .content-block {
+      background: #fff;
+      border: 1px solid #E0DBD0;
+      border-radius: 4px;
+      margin-top: 1.5rem;
+      overflow: hidden;
+    }
+
+    .block-header {
+      display: grid;
+      grid-template-columns: 220px 1fr 160px;
+      gap: 0;
+      border-bottom: 1px solid #E0DBD0;
+    }
+
+    .block-header-cell {
+      padding: 0.75rem 1rem;
+      border-right: 1px solid #E0DBD0;
+      font-family: 'Arial', sans-serif;
+    }
+    .block-header-cell:last-child { border-right: none; }
+
+    .bh-label { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #999; margin-bottom: 0.2rem; }
+    .bh-value { font-size: 0.82rem; font-weight: 700; color: #1A1A1A; }
+    .bh-sub   { font-size: 0.75rem; color: #777; margin-top: 0.15rem; }
+
+    .block-body { padding: 1.25rem 1rem; }
+
+    /* WHAT / WHERE / HOW row */
+    .www-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: #E0DBD0;
+      border: 1px solid #E0DBD0;
+      border-radius: 3px;
+      overflow: hidden;
+      margin-bottom: 1rem;
+    }
+    .www-cell {
+      background: #F9F7F3;
+      padding: 0.75rem 0.875rem;
+    }
+    .www-label { font-family: 'Arial', sans-serif; font-size: 0.58rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #B8965A; margin-bottom: 0.3rem; }
+    .www-text  { font-family: 'Arial', sans-serif; font-size: 0.8rem; color: #333; line-height: 1.45; }
+
+    /* Current text box */
+    .current-text-label {
+      font-family: 'Arial', sans-serif;
+      font-size: 0.6rem; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: #999; margin-bottom: 0.4rem;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .current-text-label::after {
+      content: ''; flex: 1; height: 1px; background: #E0DBD0;
+    }
+    .current-text {
+      background: #F2F0EB;
+      border-left: 3px solid #B8965A;
+      padding: 0.875rem 1rem;
+      font-family: 'Georgia', serif;
+      font-size: 0.875rem;
+      color: #2A2A2A;
+      line-height: 1.7;
+      white-space: pre-wrap;
+      border-radius: 0 3px 3px 0;
+    }
+    .current-text em { font-style: italic; color: #B8965A; }
+    .current-text ul { margin: 0.5rem 0 0 1.25rem; }
+    .current-text li { margin-bottom: 0.2rem; }
+
+    /* Client edit box */
+    .edit-label {
+      font-family: 'Arial', sans-serif;
+      font-size: 0.6rem; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: #2D6A4F; margin: 1rem 0 0.4rem;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .edit-label::after { content: ''; flex: 1; height: 1px; background: #BFD9CC; }
+
+    .edit-box {
+      width: 100%;
+      min-height: 80px;
+      border: 1.5px dashed #B8D4C4;
+      border-radius: 3px;
+      padding: 0.75rem;
+      font-family: 'Georgia', serif;
+      font-size: 0.875rem;
+      color: #1A1A1A;
+      background: #F6FBF8;
+      resize: vertical;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .edit-box:focus { border-color: #2D6A4F; background: #EFF8F2; }
+    .edit-box::placeholder { color: #A8C4B4; font-style: italic; }
+
+    /* Notes row */
+    .notes-row {
+      display: flex; gap: 0.75rem; align-items: flex-start;
+      margin-top: 0.75rem;
+      padding-top: 0.75rem;
+      border-top: 1px solid #E0DBD0;
+    }
+    .notes-label { font-family: 'Arial', sans-serif; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #888; white-space: nowrap; padding-top: 0.5rem; }
+    .notes-input {
+      flex: 1;
+      border: 1px solid #E0DBD0;
+      border-radius: 3px;
+      padding: 0.5rem 0.75rem;
+      font-family: 'Arial', sans-serif;
+      font-size: 0.8rem;
+      color: #444;
+      background: #FAF8F5;
+      outline: none;
+    }
+    .notes-input:focus { border-color: #B8965A; }
+    .notes-input::placeholder { color: #C5BDB0; font-style: italic; }
+
+    /* Status selector */
+    .status-select {
+      border: 1px solid #E0DBD0;
+      border-radius: 3px;
+      padding: 0.5rem 0.75rem;
+      font-family: 'Arial', sans-serif;
+      font-size: 0.75rem;
+      color: #444;
+      background: #FAF8F5;
+      cursor: pointer;
+      outline: none;
+    }
+    .status-select:focus { border-color: #B8965A; }
+
+    /* Section intro */
+    .section-intro {
+      font-family: 'Arial', sans-serif;
+      font-size: 0.8rem;
+      color: #777;
+      padding: 1rem 0 0.25rem;
+      font-style: italic;
+      border-top: 1px solid #E0DBD0;
+      margin-top: 1.5rem;
+    }
+    .section-intro:first-child { border-top: none; margin-top: 0.5rem; }
+
+    /* Print button */
+    .print-bar {
+      background: #fff;
+      border-bottom: 1px solid #E0DBD0;
+      padding: 0.75rem 60px;
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+    .print-btn {
+      background: #0D0D0D;
+      color: #FAF8F5;
+      border: none;
+      padding: 0.55rem 1.25rem;
+      font-family: 'Arial', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-radius: 2px;
+    }
+    .print-btn:hover { background: #B8965A; }
+    .save-note { font-family: 'Arial', sans-serif; font-size: 0.75rem; color: #999; }
+
+    @media print {
+      .print-bar { display: none; }
+      .edit-box, .notes-input, .status-select { border: 1px solid #ccc; background: #fff; }
+      body { background: #fff; }
+    }
+
+    @media (max-width: 768px) {
+      .cover { padding: 40px 24px; }
+      .legend { padding: 1rem 24px; }
+      .page-divider { padding: 1rem 24px; }
+      .audit-body { padding: 0 16px 60px; }
+      .block-header { grid-template-columns: 1fr; }
+      .block-header-cell { border-right: none; border-bottom: 1px solid #E0DBD0; }
+      .www-row { grid-template-columns: 1fr; }
+      .print-bar { padding: 0.75rem 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-top">
+    <div>
+      <div class="cover-logo">The Advisory</div>
+      <div class="cover-sub">Enterprise Management</div>
+    </div>
+    <div class="cover-date">
+      Prepared: May 2026<br>
+      Version: 1.0
+    </div>
+  </div>
+
+  <div>
+    <h1 class="cover-headline">Site Content<br><em>Audit & Edit Guide</em></h1>
+    <p class="cover-desc">
+      A complete reference of every piece of text on the website — organized by page, section location,
+      and display format. Use the edit boxes to write your updated copy, then share back with your team to implement.
+    </p>
+    <div class="cover-instructions">
+      <h3>How To Use This Document</h3>
+      <p>1. Each block shows <strong style="color:#B8965A;">WHAT</strong> the content is, <strong style="color:#B8965A;">WHERE</strong> it sits on the page, and <strong style="color:#B8965A;">HOW</strong> it's displayed to visitors.</p>
+      <p>2. The gold box contains the <strong style="color:#B8965A;">current live text</strong> exactly as it appears on the site.</p>
+      <p>3. Type your changes directly into the <strong style="color:#B8965A;">green "Your Edit" box</strong> below each section. Leave blank if no change needed.</p>
+      <p>4. Use the <strong style="color:#B8965A;">Notes</strong> field for any instructions to your team (e.g. "replace with photo," "confirm this stat," "delete this section").</p>
+      <p>5. When finished, use the <strong style="color:#B8965A;">Print / Save as PDF</strong> button and send the PDF to your team.</p>
+    </div>
+  </div>
+</div>
+
+<!-- PRINT BAR -->
+<div class="print-bar">
+  <button class="print-btn" onclick="window.print()">⬇ Print / Save as PDF</button>
+  <span class="save-note">Use your browser's "Save as PDF" option when printing for best results.</span>
+</div>
+
+<!-- LEGEND -->
+<div class="legend">
+  <span class="legend-title">Content Type Key:</span>
+  <span><span class="badge badge-gold">Headline</span> &nbsp;Main display text</span>
+  <span><span class="badge badge-green">Body Copy</span> &nbsp;Paragraph / description text</span>
+  <span><span class="badge badge-blue">UI Label</span> &nbsp;Button, tag, nav, or form label</span>
+  <span><span class="badge badge-gray">List</span> &nbsp;Bullet or numbered list</span>
+</div>
+
+<div class="audit-body">
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     PAGE 1 — ENTRY / LANDING (index.html)
+═══════════════════════════════════════════════════════════════ -->
+</div>
+<div class="page-divider">
+  <span class="page-divider-num">Page 01</span>
+  <span class="page-divider-name">Entry / Split-Screen Landing Page</span>
+  <span class="page-divider-file">index.html · First page visitors see</span>
+</div>
+<div class="audit-body">
+
+  <p class="section-intro">This is the very first page visitors land on. It has two panels side by side — LAW on the left, Enterprise (Athletes &amp; Entertainers) on the right. No navigation menu. Clicking either panel takes visitors to the relevant section of the site.</p>
+
+  <!-- SPLASH SCREEN -->
+  <div class="content-block">
+    <div class="block-header">
+      <div class="block-header-cell">
+        <div class="bh-label">Section</div>
+        <div class="bh-value">Splash / Loading Screen</div>
+        <div class="bh-sub">Shown for ~1.4 seconds on arrival</div>
+      </div>
+      <div class="block-header-cell">
+        <div class="bh-label">Content Type</div>
+        <div class="bh-value"><span class="badge badge-blue">UI Label</span></div>
+      </div>
+      <div class="block-header-cell">
+        <div class="bh-label">Status</div>
+        <select class="status-select">
+          <option>✅ Keep as-is</option>
+          <option>✏️ Needs edit</option>
+          <option>🗑 Delete</option>
+          <option>❓ Confirm with team</option>
+        </select>
+      </div>
+    </div>
+    <div class="block-body">
+      <div class="www-row">
+        <div class="www-cell"><div class="www-label">What</div><div class="www-text">Splash / intro screen — logo + firm name shown briefly before the split-screen loads</div></div>
+        <div class="www-cell"><div class="www-label">Where</div><div class="www-text">Full screen, dead center. Appears for ~1.4 seconds when the page first loads</div></div>
+        <div class="www-cell"><div class="www-label">How</div><div class="www-text">Logo icon + firm name text + thin gold line, stacked vertically. Fades out automatically</div></div>
+      </div>
+      <div class="current-text-label">Current Live Text</div>
+      <div class="current-text">The Advisory</div>
+      <div class="edit-label">Your Edit (leave blank if no change needed)</div>
+      <textarea class="edit-box" placeholder="Type your updated text here..."></textarea>
+      <div class="notes-row">
+        <span class="notes-label">Notes for team</span>
+        <input class="notes-input" type="text" placeholder="e.g. 'Keep as-is' / 'Change to...' / 'Delete this'">
+      </div>
+    </div>
+  </div>
+
+  <!-- LEFT PANEL: LAW -->
+  <div class="content-block">
+    <div class="block-header">
+      <div class="block-header-cell">
+        <div class="bh-label">Section</div>
+        <div class="bh-value">Left Panel — LAW Side</div>
+        <div class="bh-sub">Visible on hover; links to law firm site</div>
+      </div>
+      <div class="block-header-cell">
+        <div class="bh-label">Content Type</div>
+        <div class="bh-value"><span class="badge badge-gold">Headline</span> + <span class="badge badge-green">Body Copy</span> + <span class="badge badge-blue">UI Label</span></div>
+      </div>
+      <div class="block-header-cell">
+        <div class="bh-label">Status</div>
+        <select class="status-select">
+          <option>✅ Keep as-is</option>
+          <option>✏️ Needs edit</option>
+          <option>🗑 Delete</option>
+          <option>❓ Confirm with team</option>
+        </select>
+      </div>
+    </div>
+    <div class="block-body">
+      <div class="www-row">
+        <div class="www-cell"><div class="www-label">What</div><div class="www-text">Left half of the split-screen. Represents the legal practice — The Advisory PLLC</div></div>
+        <div class="www-cell"><div class="www-label">Where</div><div class="www-text">Left 50% of screen. Content anchored to bottom-left. Revealed on hover</div></div>
+        <div class="www-cell"><div class="www-label">How</div><div class="www-text">Gold category label slides up → headline → body paragraph → "Enter →" button. All hidden until visitor hovers</div></div>
+      </div>
+      <div class="current-text-label">Current Live Text</div>
+      <div class="current-text"><strong>Category Label:</strong> Legal Services
+
+<strong>Headline:</strong> LAW
+
+<strong>Body Paragraph:</strong>
+The Advisory PLLC delivers elite legal counsel at the intersection of sports, entertainment, business, and wealth. Contracts. IP. Entity structuring. Litigation strategy. Led by a Harvard Law Valedictorian — built for those whose stakes are highest.
+
+<strong>Button:</strong> Enter →</div>
+      <div class="edit-label">Your Edit (leave blank if no change needed)</div>
+      <textarea class="edit-box" style="min-height:140px;" placeholder="Type your updated label, headline, body text, and/or button text here. Label each clearly (e.g. 'Headline: ...', 'Body: ...')"></textarea>
+      <div class="notes-row">
+        <span class="notes-label">Notes for team</span>
+        <input class="notes-input" type="text" placeholder="e.g. 'Update body copy' / 'Keep headline, change paragraph'">
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT PANEL: ENTERPRISE -->
+  <div class="content-block">
+    <div class="block-header">
+      <div class="block-header-cell">
+        <div class="bh-label">Section</div>
+        <div class="bh-value">Right Panel — Enterprise Side</div>
+        <div class="bh-sub">Visible on hover; links to home.html</div>
+      </div>
+      <div class="block-header-cell">
+        <div class="bh-label">Content Type</div>
+        <div class="bh-value"><span class="badge badge-gold">Headline</span> + <span class="badge badge-green">Body Copy</span> + <span class="badge badge-blue">UI Label</span></div>
+      </div>
+      <div class="block-header-cell">
+        <div class="bh-label">Status</div>
+        <select class="status-select">
+          <option>✅ Keep as-is</option>
+          <option>✏️ Needs edit</option>
+          <option>🗑 Delete</option>
+          <option>❓ Confirm with team</option>
+        </select>
+      </div>
+    </div>
+    <div class="block-body">
+      <div class="www-row">
+        <div class="www-cell"><div class="www-label">What</div><div class="www-text">Right half of the split-screen. Represents enterprise management for athletes, entertainers &amp; entrepreneurs</div></div>
+        <div class="www-cell"><div class="www-label">Where</div><div class="www-text">Right 50% of screen. Content anchored to bottom-right. Revealed on hover</div></div>
+        <div class="www-cell"><div class="www-label">How</div><div class="www-text">Same reveal animation as LAW side — label → headline → body → "Learn More →" button. Background shows athlete image</div></div>
+      </div>
+      <div class="current-text-label">Current Live Text</div>
+      <div class="current-text"><strong>Category Label:</strong> Enterprise Management
+
+<strong>Headline:</strong>
+Athletes,
+Entertainers
+&amp; Entrepreneurs
+
+<strong>Body Paragraph:</strong>
+Full-service enterprise management for professional athletes, NIL athletes, entertainers, creatives, and high-net-worth entrepreneurs. Contracts, tax, brand, IP, and family governance. One firm. Every lane.
+
+<strong>Button:</strong> Learn More →</div>
+      <div class="edit-label">Your Edit (leave blank if no change needed)</div>
+      <textarea class="edit-box" style="min-height:140px;" placeholder="Type your updated label, headline, body text, and/or button text here."></textarea>
+      <div class="notes-row">
+        <span class="notes-label">Notes for team</span>
+        <input class="notes-input" type="text" placeholder="">
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     PAGE 2 — HOME / MAIN ADVISORY SITE (home.html)
+═══════════════════════════════════════════════════════════════ -->
+<div class="page-divider">
+  <span class="page-divider-num">Page 02</span>
+  <span class="page-divider-name">Home — Main Advisory Site</span>
+  <span class="page-divider-file">home.html · Reached after clicking Enterprise panel</span>
+</div>
+<div class="audit-body">
+
+  <p class="section-intro">The main advisory homepage. Reached by clicking the right (Enterprise) panel on the entry page. Contains the hero, audience pathways, mission statement, stats, the 5 lanes, social proof, services preview, and a partnerships CTA.</p>
+
+  <!-- NAV -->
+  <div class="content-block">
+    <div class="block-header">
+      <div class="block-header-cell">
+        <div class="bh-label">Section</div>
+        <div class="bh-value">Navigation Bar</div>
+        <div class="bh-sub">Appears on every page of the main site</div>
+      </div>
+      <div class="block-header-cell">
+        <div class="bh-label">Content Type</div>
+        <div class="bh-value"><span class="badge badge-blue">UI Label</span></div>
+      </div>
+      <div class="block-header-cell">
+        <div class="bh-label">Status</div>
+        <select class="status-select">
+          <option>✅ Keep as-is</option>
+          <option>✏️ Needs edit</option>
+          <option>🗑 Delete</option>
+          <option>❓ Confirm with team</option>
+        </select>
+      </div>
+    </div>
+    <div class="block-body">
+      <div class="www-row">
+        <div class="www-cell"><div class="www-label">What</div><div class="www-text">Top navigation bar with logo, menu links, and a "Start a Conversation" CTA button</div></div>
+        <div class="www-cell"><div class="www-label">Where</div><div class="www-text">Fixed to the very top of every page — always visible as you scroll</div></div>
+        <div class="www-cell"><div class="www-label">How</div><div class="www-text">Horizontal menu bar. "Who We Serve" and "About" have dropdown sub-menus. On mobile it collapses to a hamburger icon</div></div>
+      </div>
+      <div class="current-text-label">Current Live Text</div>
+      <div class="current-text"><strong>Logo Name:</strong> The Advisory
+<strong>Logo Sub-text:</strong> Enterprise Management
+
+<strong>Nav Links:</strong>
+  • Who We Serve (dropdown)
+      – Professional Athletes
+      – NIL Athletes
+      – Entertainers &amp; Creatives
+      – Bespoke &amp; Entrepreneurs
+  • Services (dropdown)
+      – Contracts &amp; Negotiation
+      – NIL Strategy &amp; Compliance
+      – Entity &amp; Tax Structure
+      – Brand &amp; IP
+      – Family Governance
+      – Deal Diligence &amp; M&amp;A
+  • NIL
+  • Partnerships (dropdown)
+      – Agents &amp; Managers
+      – Trainers &amp; Advisors
+      – Movers &amp; Shakers
+  • About (dropdown)
+      – About The Advisory
+      – Meet the Team
+
+<strong>Header Button:</strong> Start a Conversation</div>
+      <div class="edit-label">Your Edit (leave blank if no change needed)</div>
+      <textarea class="edit-box" placeholder="e.g. 'Change logo sub-text to...' / 'Rename Bespoke & Entrepreneurs to...'"></textarea>
+      <div class="notes-row">
+        <span class="notes-label">Notes for team</span>
+        <input class="notes-input" type="text" placeholder="">
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <div class="content-block">
+    <div class="block-header">
+      <div class="block-header-cell">
+        <div class="bh-label">Section</div>
+        <div class="bh-value">Hero — Main Headline</div>
+        <div class="bh-sub">First section visible, full viewport height</div>
+      </div>
+      <div class="block-header-cell">
+        <div class="bh-label">Content Type</div>
+        <div class="bh-value"><span class="badge badge-gold">Headline</span> + <span class="badge badge-green">Body Copy</span> + <span class="badge badge-blue">UI Label</span></div>
+      </div>
+      <div class="block-header-cell">
+        <div class="bh-label">Status</div>
+        <select class="status-select">
+          <option>✅ Keep as-is</option>
+          <option>✏️ Needs edit</option>
+          <option>🗑 Delete</option>
+          <option>❓ Confirm with team</option>
+        </select>
+      </div>
+    </div>
+    <div class="block-body">
+      <div class="www-row">
+        <div class="www-cell"><div class="www-label">What</div><div class="www-text">The hero section — the first and most prominent content on the homepage. Sets the tone for the entire site</div></div>
+        <div class="www-cell"><div class="www-label">Where</div><div class="www-text">Top of page, full screen height. Text sits in the bottom-left of the dark background image area</div></div>
+        <div class="www-cell"><div class="www-label">How</div><div class="www-text">Small gold category label at top → very large 3-line serif headline → descriptor paragraph → two action buttons side by side. Text animates in line by line</div></div>
+      </div>
+      <div class="current-text-label">Current Live Text</div>
+      <div class="current-text"><strong>Category Label:</strong> Enterprise Management
+
+<strong>Headline (3 lines, large serif font):</strong>
+Architecting
+the Athlete
+Enterprise.
+
+<strong>Descriptor Paragraph:</strong>
+You are not just an athlete. You are the CEO of your own enterprise. We build the systems, structures, and strategies that protect your name, grow your wealth, and secure your legacy.
+
+<strong>Button 1:</strong> NIL Athletes
+<strong>Button 2:</strong> Our Approach</div>
+      <div class="edit-label">Your Edit (leave blank if no change needed)</div>
+      <textarea class="edit-box" style="min-height:150px;" placeholder="Type updated category label, headline lines, descriptor paragraph, and/or button text here."></textarea>
+      <div class="notes-row">
+        <span class="notes-label">Notes for team</span>
+        <input class="notes-input" type="text" placeholder="">
+      </div>
+    </div>
+  </div>
+
+  <!-- AUDIENCE PATHWAYS -->
+  <div class="content-block">
+    <div class="block-header">
+      <div class="block-header-cell">
+        <div class="bh-label">Section</div>
+        <div class="bh-value">Audience Pathways — 3 Cards</div>
+        <div class="bh-sub">Immediately below hero, full width</div>
+      </div>
+      <div class="block-header-cell">
+        <div class="bh-label">Content Type</div>
+        <div class="bh-value"><span class="badge badge-gold">Headline</span> + <span class="badge badge-green">Body Copy</span> + <span class="badge badge-blue">UI Label</span></div>
+      </div>
+      <div class="block-header-cell">
+        <div class="bh-label">Status</div>
+        <select class="status-select">
+          <option>✅ Keep as-is</option>
+          <option>✏️ Needs edit</option>
+          <option>🗑 Delete</option>
+          <option>❓ Confirm with team</option>
+        </select>
+      </div>
+    </div>
+    <div class="block-body">
+      <div class="www-row">
+        <div class="www-cell"><div class="www-label">What</div><div class="www-text">3 side-by-side clickable cards directing visitors to the three main audience types</div></div>
+        <div class="www-cell"><div class="www-label">Where</div><div class="www-text">Directly below the hero section — the first content block after scrolling</div></div>
+        <div class="www-cell"><div class="www-label">How</div><div class="www-text">Dark background, 3 equal columns. Each card has a gold tag, title, description, and "Explore →" link. A gold underline animates in on hover. Entire card is clickable</div></div>
+      </div>
+      <div class="current-text-label">Current Live Text</div>
+      <div class="current-text"><strong>Card 1 — Professional Athletes</strong>
+Tag: Professional Athletes
+Title: Pro Sports
+Description: Full-service contract, representation, business structure, and long-term wealth architecture for professional athletes.
+Link: Explore →
+
+<strong>Card 2 — NIL Athletes</strong>
+Tag: NIL Athletes
+Title: Name, Image &amp; Likeness
+Description: NIL Flight School™. Navigate the $2.3B NIL market with enterprise-grade contracts, compliance, and tax structure built for student-athletes.
+Link: Explore →
+
+<strong>Card 3 — Entertainers &amp; Creatives</strong>
+Tag: Entertainers &amp; Creatives
+Title: Creative Enterprise
+Description: Bespoke advisory for entertainers, artists, and high-net-worth entrepreneurs who demand the same institutional standard as global icons.
+Link: Explore →</div>
+      <div class="edit-label">Your Edit (leave blank if no change needed)</div>
+      <textarea class="edit-box" style="min-height:180px;" placeholder="Label each card clearly. e.g. 'Card 1 Tag: ...' / 'Card 2 Description: ...'"></textarea>
+      <div class="notes-row">
+        <span class="notes-label">Notes for team</span>
+        <input class="notes-input" type="text" placeholder="">
+      </div>
+    </div>
+  </div>
+
+  <!-- MISSION SECTION -->
+  <div class="content-block">
+    <div class="block-header">
+      <div class="block-header-cell">
+        <div class="bh-label">Section</div>
+        <div class="bh-value">Mission / Philosophy Statement</div>
+        <div class="bh-sub">~1/3 of the way down the page</div>
+      </div>
+      <div class="block-header-cell">
+        <div class="bh-label">Content Type</div>
+        <div class="bh-value"><span class="badge badge-gold">Headline</span> + <span class="badge badge-green">Body Copy</span></div>
+      </div>
+      <div class="block-header-cell">
+        <div class="bh-label">Status</div>
+        <select class="status-select">
+          <option>✅ Keep as-is</option>
+          <option>✏️ Needs edit</option>
+          <option>🗑 Delete</option>
+          <option>❓ Confirm with team</option>
+        </select>
+      </div>
+    </div>
+    <div class="block-body">
+      <div class="www-row">
+        <div class="www-cell"><div class="www-label">What</div><div class="www-text">Two-column mission/philosophy section — headline on left, 3 paragraphs on right</div></div>
+        <div class="www-cell"><div class="www-label">Where</div><div class="www-text">Below the audience pathway cards, roughly 1/3 of the way down the page</div></div>
+        <div class="www-cell"><div class="www-label">How</div><div class="www-text">Left: "Our Philosophy" label + large serif headline + text link. Right: three paragraphs of body text. Dark background. Fades in on scroll</div></div>
+      </div>
+      <div class="current-text-label">Current Live Text</div>
+      <div class="current-text"><strong>Section Label:</strong> Our Philosophy
+
+<strong>Headline:</strong>
+The business of you demands elite representation.
+
+<strong>Link:</strong> Our Story →
+
+<strong>Paragraph 1:</strong>
+The Advisory is the institutional backbone behind today's most deliberate athletes and entertainers. We compound legal precision, financial intelligence, and operational strategy into a single, fully integrated enterprise management system — purpose-built for those whose value extends well beyond the game.
+
+<strong>Paragraph 2:</strong>
+Where most advisors hand you tools, we build you a system. Where most agents capture a transaction, we architect your long-term position. Every engagement is tailored, every result is deliberate, and every client relationship is built on one principle: you keep what you earn.
+
+<strong>Paragraph 3:</strong>
+Led by Jimmie B. Strong — Harvard Law School Valedictorian, Vanderbilt Professor, and Top 1% Financial Advisor — The Advisory brings institutional intelligence to every athlete's enterprise.</div>
+      <div class="edit-label">Your Edit (leave blank if no change needed)</div>
+      <textarea class="edit-box" style="min-height:160px;" placeholder="Type updated section label, headline, and/or paragraphs here."></textarea>
+      <div class="notes-row">
+        <span class="notes-label">Notes for team</span>
+        <input class="notes-input" type="text" placeholder="">
+      </div>
+    </div>
+  </div>
+
+  <!-- STATS ROW -->
+  <div class="content-block">
+    <div class="block-header">
+      <div class="block-header-cell">
+        <div class="bh-label">Section</div>
+        <div class="bh-value">Statistics Row — 4 Numbers</div>
+        <div class="bh-sub">Mid-page, dark strip</div>
+      </div>
+      <div class="block-header-cell">
+        <div class="bh-label">Content Type</div>
+        <div class="bh-value"><span class="badge badge-gold">Headline</span> + <span class="badge badge-blue">UI Label</span></div>
+      </div>
+      <div class="block-header-cell">
+        <div class="bh-label">Status</div>
+        <select class="status-select">
+          <option>✅ Keep as-is</option>
+          <option>✏️ Needs edit</option>
+          <option>🗑 Delete</option>
+          <option>❓ Confirm with team</option>
+        </select>
+      </div>
+    </div>
+    <div class="block-body">
+      <div class="www-row">
+        <div class="www-cell"><div class="www-label">What</div><div class="www-text">4 large animated statistics with labels beneath each number — counts up when scrolled to</div></div>
+        <div class="www-cell"><div class="www-label">Where</div><div class="www-text">Horizontal strip across the full page width, roughly mid-page</div></div>
+        <div class="www-cell"><div class="www-label">How</div><div class="www-text">Dark background strip. 4 equal columns. Large bold number (animates from 0) + smaller label text beneath. No click interaction</div></div>
+      </div>
+      <div class="current-text-label">Current Live Text</div>
+      <div class="current-text"><strong>Stat 1:</strong>  40K+  |  "Average Tax Exposure Identified Per Athlete"
+<strong>Stat 2:</strong>  75%   |  "Average Improvement in Financial Literacy"
+<strong>Stat 3:</strong>  1 in 3  |  "Student Athletes Receive Financial Education"
+<strong>Stat 4:</strong>  5     |  "Critical Enterprise Lanes We Manage For You"</div>
+      <div class="edit-label">Your Edit (leave blank if no change needed)</div>
+      <textarea class="edit-box" placeholder="e.g. 'Stat 1: change number to X, change label to...'"></textarea>
+      <div class="notes-row">
+        <span class="notes-label">Notes for team</span>
+        <input class="notes-input" type="text" placeholder="e.g. 'Confirm these stats with Jimmie before publishing'">
+      </div>
+    </div>
+  </div>
+
+  <!-- 5 LANES -->
+  <div class="content-block">
+    <div class="block-header">
+      <div class="block-header-cell">
+        <div class="bh-label">Section</div>
+        <div class="bh-value">The 5 Lanes — Clickable List</div>
+        <div class="bh-sub">~60% down the page</div>
+      </div>
+      <div class="block-header-cell">
+        <div class="bh-label">Content Type</div>
+        <div class="bh-value"><span class="badge badge-gold">Headline</span> + <span class="badge badge-gray">List</span> + <span class="badge badge-green">Body Copy</span></div>
+      </div>
+      <div class="block-header-cell">
+        <div class="bh-label">Status</div>
+        <select class="status-select">
+          <option>✅ Keep as-is</option>
+          <option>✏️ Needs edit</option>
+          <option>🗑 Delete</option>
+          <option>❓ Confirm with team</option>
+        </select>
+      </div>
+    </div>
+    <div class="block-body">
+      <div class="www-row">
+        <div class="www-cell"><div class="www-label">What</div><div class="www-text">Section introducing the 5 service areas ("lanes") every athlete must manage — header + 5 clickable row items</div></div>
+        <div class="www-cell"><div class="www-label">Where</div><div class="www-text">About 60% down the homepage, between the stats and the social proof section</div></div>
+        <div class="www-cell"><div class="www-label">How</div><div class="www-text">Section label + large headline + supporting copy on left. Below: 5 numbered rows, each with title, description, and arrow. Each row is clickable and links to its service page</div></div>
+      </div>
+      <div class="current-text-label">Current Live Text</div>
+      <div class="current-text"><strong>Section Label:</strong> Our Framework
+<strong>Headline:</strong> The 5 Lanes Every Athlete Must Command.
+<strong>Supporting Copy:</strong> Most athletes lose value before they realize it. We identify and close every gap — structurally, legally, and financially.
+<strong>Link:</strong> All Services →
+
+<strong>Lane 01:</strong>  Tax Strategy
+"Multi-state exposure, self-employment tax (15.3%), phantom income on non-cash gifts. We identify and eliminate the Silent Killer before it costs you."
+
+<strong>Lane 02:</strong>  Legal Structuring
+"Entity formation (LLC / S-Corp), contract review, dispute prevention. The architecture that separates you from your liability."
+
+<strong>Lane 03:</strong>  Brand &amp; IP Ownership
+"Your name. Your image. Your likeness. Your intellectual property. We ensure you own it, register it, and leverage it — for life."
+
+<strong>Lane 04:</strong>  Family Governance
+"Professionalizing generosity. We help you take care of those you love without becoming their bank — structures that serve family without sacrificing your future."
+
+<strong>Lane 05:</strong>  Compliance
+"NCAA regulations, state-specific eligibility, evolving NIL law. Full compliance management so you stay on the field and ahead of the rule changes."</div>
+      <div class="edit-label">Your Edit (leave blank if no change needed)</div>
+      <textarea class="edit-box" style="min-height:180px;" placeholder="Label each lane. e.g. 'Lane 01 title: ...' / 'Lane 03 description: ...'"></textarea>
+      <div class="notes-row">
+        <span class="notes-label">Notes for team</span>
+        <input class="notes-input" type="text" placeholder="">
+      </div>
+    </div>
+  </div>
+
+  <!-- SOCIAL PROOF -->
+  <div class="content-block">
+    <div class="block-header">
+      <div class="block-header-cell">
+        <div class="bh-label">Section</div>
+        <div class="bh-value">Social Proof — "Trusted By" + Client Names</div>
+        <div class="bh-sub">~70% down the page</div>
+      </div>
+      <div class="block-header-cell">
+        <div class="bh-label">Content Type</div>
+        <div class="bh-value"><span class="badge badge-gold">Headline</span> + <span class="badge badge-green">Body Copy</span> + <span class="badge badge-gray">List</span></div>
+      </div>
+      <div class="block-header-cell">
+        <div class="bh-label">Status</div>
+        <select class="status-select">
+          <option>✅ Keep as-is</option>
+          <option>✏️ Needs edit</option>
+          <option>🗑 Delete</option>
+          <option>❓ Confirm with team</option>
+        </select>
+      </div>
+    </div>
+    <div class="block-body">
+      <div class="www-row">
+        <div class="www-cell"><div class="www-label">What</div><div class="www-text">Social proof section — photo on left, headline + client name list + CTA button on right</div></div>
+        <div class="www-cell"><div class="www-label">Where</div><div class="www-text">About 70% down the homepage, below the 5 Lanes section</div></div>
+        <div class="www-cell"><div class="www-label">How</div><div class="www-text">Two-column layout. Left: professional photo with caption. Right: "Trusted By" label, headline, body paragraph, gold "Notable Client Relationships" label, list of client names, and button. Fades in on scroll</div></div>
+      </div>
+      <div class="current-text-label">Current Live Text</div>
+      <div class="current-text"><strong>Section Label:</strong> Trusted By
+<strong>Headline:</strong> Icons trust us with what matters most.
+
+<strong>Body:</strong>
+From global icons to the next generation of NIL athletes — The Advisory has earned the trust of those who can afford to go anywhere, and choose us.
+
+<strong>Client List Label:</strong> Notable Client Relationships
+<strong>Client Names:</strong>
+  • Floyd Mayweather
+  • Mookie Betts
+  • Jalen Ramsey
+  • Jaren Jackson Jr.
+  • Jim Brown (1936 — 2023)
+
+<strong>Button:</strong> Our Leadership →
+<strong>Photo Caption:</strong> Courtside · Client Event</div>
+      <div class="edit-label">Your Edit (leave blank if no change needed)</div>
+      <textarea class="edit-box" style="min-height:150px;" placeholder="e.g. 'Add new client name: ...' / 'Update body paragraph to: ...'"></textarea>
+      <div class="notes-row">
+        <span class="notes-label">Notes for team</span>
+        <input class="notes-input" type="text" placeholder="e.g. 'Confirm client names are approved for public display'">
+      </div>
+    </div>
+  </div>
+
+  <!-- SERVICES PREVIEW -->
+  <div class="content-block">
+    <div class="block-header">
+      <div class="block-header-cell">
+        <div class="bh-label">Section</div>
+        <div class="bh-value">Services Preview — 6 Cards</div>
+        <div class="bh-sub">~80% down the page</div>
+      </div>
+      <div class="block-header-cell">
+        <div class="bh-label">Content Type</div>
+        <div class="bh-value"><span class="badge badge-gold">Headline</span> + <span class="badge badge-green">Body Copy</span></div>
+      </div>
+      <div class="block-header-cell">
+        <div class="bh-label">Status</div>
+        <select class="status-select">
+          <option>✅ Keep as-is</option>
+          <option>✏️ Needs edit</option>
+          <option>🗑 Delete</option>
+          <option>❓ Confirm with team</option>
+        </select>
+      </div>
+    </div>
+    <div class="block-body">
+      <div class="www-row">
+        <div class="www-cell"><div class="www-label">What</div><div class="www-text">Preview of all 6 service areas with numbered cards — each links to the full Services page</div></div>
+        <div class="www-cell"><div class="www-label">Where</div><div class="www-text">About 80% down the page, above the partnerships CTA</div></div>
+        <div class="www-cell"><div class="www-label">How</div><div class="www-text">Section headline + 6 cards in a 3-column grid. Each card: number, bold title, short description. Clickable to the relevant service section</div></div>
+      </div>
+      <div class="current-text-label">Current Live Text</div>
+      <div class="current-text"><strong>Section Label:</strong> What We Do
+<strong>Headline:</strong> One firm. Every lane.
+<strong>Intro:</strong> Full-service enterprise management — legal, financial, operational, and strategic — under one roof. No handoffs. No gaps. No excuses.
+
+<strong>Card 01:</strong> Contracts &amp; Negotiation
+"Agent representation, deal room management, term-sheet drafting, performance tracking, and renewal pipelines."
+
+<strong>Card 02:</strong> NIL Strategy &amp; Compliance
+"From initial strategy to executed deals to long-term brand management — the full NIL lifecycle managed with institutional rigor."
+
+<strong>Card 03:</strong> Entity &amp; Tax Posture
+"LLC / S-Corp formation, multi-state tax exposure management, phantom income protection, and IRS-ready structure."
+
+<strong>Card 04:</strong> Brand &amp; IP Management
+"Trademark, image rights, licensing, endorsement compliance, and brand strategy that builds equity beyond your career."
+
+<strong>Card 05:</strong> Family Governance
+"Trust structures, generosity frameworks, household financial governance, and documentation that protects your family the right way."
+
+<strong>Card 06:</strong> Deal Diligence &amp; M&amp;A
+"Independent due diligence, investment analysis, minority ownership structures, and exit strategy advisory."</div>
+      <div class="edit-label">Your Edit (leave blank if no change needed)</div>
+      <textarea class="edit-box" style="min-height:180px;" placeholder="Label each card. e.g. 'Card 01 title: ...' / 'Card 04 description: ...'"></textarea>
+      <div class="notes-row">
+        <span class="notes-label">Notes for team</span>
+        <input class="notes-input" type="text" placeholder="">
+      </div>
+    </div>
+  </div>
+
+  <!-- PARTNERSHIPS CTA BANNER -->
+  <div class="content-block">
+    <div class="block-header">
+      <div class="block-header-cell">
+        <div class="bh-label">Section</div>
+        <div class="bh-value">Partnerships CTA Banner</div>
+        <div class="bh-sub">Bottom of homepage, above footer</div>
+      </div>
+      <div class="block-header-cell">
+        <div class="bh-label">Content Type</div>
+        <div class="bh-value"><span class="badge badge-gold">Headline</span> + <span class="badge badge-green">Body Copy</span> + <span class="badge badge-blue">UI Label</span></div>
+      </div>
+      <div class="block-header-cell">
+        <div class="bh-label">Status</div>
+        <select class="status-select">
+          <option>✅ Keep as-is</option>
+          <option>✏️ Needs edit</option>
+          <option>🗑 Delete</option>
+          <option>❓ Confirm with team</option>
+        </select>
+      </div>
+    </div>
+    <div class="block-body">
+      <div class="www-row">
+        <div class="www-cell"><div class="www-label">What</div><div class="www-text">Dark banner CTA targeting agents, managers, and partners — two buttons side by side</div></div>
+        <div class="www-cell"><div class="www-label">Where</div><div class="www-text">Bottom of the homepage, just above the footer</div></div>
+        <div class="www-cell"><div class="www-label">How</div><div class="www-text">Full-width dark background banner. Headline + paragraph on left. Two stacked buttons on right</div></div>
+      </div>
+      <div class="current-text-label">Current Live Text</div>
+      <div class="current-text"><strong>Headline:</strong> Build together, keep your relationships.
+<strong>Body:</strong> We compound strengths with agents, managers, attorneys, fiduciaries, and power connectors who want elite bench strength without adding headcount.
+<strong>Button 1:</strong> Partnership Models
+<strong>Button 2:</strong> Get in Touch</div>
+      <div class="edit-label">Your Edit (leave blank if no change needed)</div>
+      <textarea class="edit-box" placeholder="Type updated headline, body, and/or button text here."></textarea>
+      <div class="notes-row">
+        <span class="notes-label">Notes for team</span>
+        <input class="notes-input" type="text" placeholder="">
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="content-block">
+    <div class="block-header">
+      <div class="block-header-cell">
+        <div class="bh-label">Section</div>
+        <div class="bh-value">Footer — All Pages</div>
+        <div class="bh-sub">Bottom of every page on the main site</div>
+      </div>
+      <div class="block-header-cell">
+        <div class="bh-label">Content Type</div>
+        <div class="bh-value"><span class="badge badge-blue">UI Label</span> + <span class="badge badge-green">Body Copy</span></div>
+      </div>
+      <div class="block-header-cell">
+        <div class="bh-label">Status</div>
+        <select class="status-select">
+          <option>✅ Keep as-is</option>
+          <option>✏️ Needs edit</option>
+          <option>🗑 Delete</option>
+          <option>❓ Confirm with team</option>
+        </select>
+      </div>
+    </div>
+    <div class="block-body">
+      <div class="www-row">
+        <div class="www-cell"><div class="www-label">What</div><div class="www-text">Site footer with brand blurb, navigation columns, and legal links</div></div>
+        <div class="www-cell"><div class="www-label">Where</div><div class="www-text">Very bottom of every page</div></div>
+        <div class="www-cell"><div class="www-label">How</div><div class="www-text">4-column layout: brand column left (logo, tagline, CTA), then 3 link columns. Bottom strip has copyright and legal links</div></div>
+      </div>
+      <div class="current-text-label">Current Live Text</div>
+      <div class="current-text"><strong>Brand Tagline:</strong>
+Enterprise management for professional athletes, NIL athletes, entertainers, and high-net-worth entrepreneurs. Legal, financial, and operational excellence — under one roof.
+
+<strong>Footer CTA Button:</strong> Start Here
+
+<strong>Column 1 — Who We Serve:</strong> Professional Athletes · NIL Athletes · Entertainers &amp; Creatives · Bespoke &amp; Entrepreneurs
+<strong>Column 2 — Services:</strong> Contracts · NIL Strategy · Entity &amp; Tax · Brand &amp; IP · Family Governance · Deal Diligence
+<strong>Column 3 — Company:</strong> About · Partnerships · Contact
+
+<strong>Copyright line:</strong> © 2026 The Advisory. All rights reserved.
+<strong>Legal links:</strong> Privacy Policy · Terms · Disclosures</div>
+      <div class="edit-label">Your Edit (leave blank if no change needed)</div>
+      <textarea class="edit-box" placeholder="e.g. 'Update tagline to: ...' / 'Change copyright year to...'"></textarea>
+      <div class="notes-row">
+        <span class="notes-label">Notes for team</span>
+        <input class="notes-input" type="text" placeholder="">
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     PAGE 3 — ABOUT (about.html)
+═══════════════════════════════════════════════════════════════ -->
+<div class="page-divider">
+  <span class="page-divider-num">Page 03</span>
+  <span class="page-divider-name">About The Advisory</span>
+  <span class="page-divider-file">about.html · Reached via About menu</span>
+</div>
+<div class="audit-body">
+
+  <div class="content-block">
+    <div class="block-header">
+      <div class="block-header-cell"><div class="bh-label">Section</div><div class="bh-value">About Hero</div><div class="bh-sub">Top of about page</div></div>
+      <div class="block-header-cell"><div class="bh-label">Content Type</div><div class="bh-value"><span class="badge badge-gold">Headline</span> + <span class="badge badge-green">Body Copy</span></div></div>
+      <div class="block-header-cell"><div class="bh-label">Status</div><select class="status-select"><option>✅ Keep as-is</option><option>✏️ Needs edit</option><option>🗑 Delete</option><option>❓ Confirm with team</option></select></div>
+    </div>
+    <div class="block-body">
+      <div class="www-row">
+        <div class="www-cell"><div class="www-label">What</div><div class="www-text">Page hero — main headline + two-paragraph intro for the about page</div></div>
+        <div class="www-cell"><div class="www-label">Where</div><div class="www-text">Top of the about page, full width, below the navigation bar</div></div>
+        <div class="www-cell"><div class="www-label">How</div><div class="www-text">Two-column layout: large serif headline left, body paragraphs right. Dark background, fades in on load</div></div>
+      </div>
+      <div class="current-text-label">Current Live Text</div>
+      <div class="current-text"><strong>Section Label:</strong> About The Advisory
+<strong>Headline:</strong> Built on trust. Measured in legacies.
+
+<strong>Paragraph 1:</strong>
+The Advisory exists because institutional-grade enterprise management should not be the exclusive province of the ultra-wealthy. Every athlete and creative who earns at the highest level deserves the systems that protect and grow what they've built.
+
+<strong>Paragraph 2:</strong>
+We are not a management company. We are not a single-specialty law firm. We are the complete back office for the businesses of exceptional people.</div>
+      <div class="edit-label">Your Edit</div>
+      <textarea class="edit-box" style="min-height:130px;" placeholder="Type updates here..."></textarea>
+      <div class="notes-row"><span class="notes-label">Notes for team</span><input class="notes-input" type="text" placeholder=""></div>
+    </div>
+  </div>
+
+  <div class="content-block">
+    <div class="block-header">
+      <div class="block-header-cell"><div class="bh-label">Section</div><div class="bh-value">Founder Bio — Jimmie B. Strong</div><div class="bh-sub">~1/3 down the about page</div></div>
+      <div class="block-header-cell"><div class="bh-label">Content Type</div><div class="bh-value"><span class="badge badge-gold">Headline</span> + <span class="badge badge-green">Body Copy</span> + <span class="badge badge-gray">List</span></div></div>
+      <div class="block-header-cell"><div class="bh-label">Status</div><select class="status-select"><option>✅ Keep as-is</option><option>✏️ Needs edit</option><option>🗑 Delete</option><option>❓ Confirm with team</option></select></div>
+    </div>
+    <div class="block-body">
+      <div class="www-row">
+        <div class="www-cell"><div class="www-label">What</div><div class="www-text">Founder profile — photo left, name/bio/credentials right</div></div>
+        <div class="www-cell"><div class="www-label">Where</div><div class="www-text">About 1/3 down the about page, below the hero</div></div>
+        <div class="www-cell"><div class="www-label">How</div><div class="www-text">Two-column: photo with name caption on left; section label, name, two bio paragraphs, and bulleted credential list on right</div></div>
+      </div>
+      <div class="current-text-label">Current Live Text</div>
+      <div class="current-text"><strong>Section Label:</strong> Our Founder
+<strong>Name:</strong> Jimmie B. Strong
+<strong>Photo Caption:</strong> Jimmie B. Strong · Founder
+
+<strong>Paragraph 1:</strong>
+Jimmie B. Strong built The Advisory from a conviction that the people who create the most value in sports and entertainment deserve the same institutional protection and intelligence that major corporations take for granted.
+
+<strong>Paragraph 2:</strong>
+His unique combination of legal mastery, financial advisory expertise, and academic leadership gives The Advisory a perspective that no single-discipline firm can match. When you work with The Advisory, you work with someone who has been at the intersection of law, finance, and elite performance for decades.
+
+<strong>Credentials:</strong>
+  • Harvard Law School Valedictorian (2014)
+  • Vanderbilt University — Faculty, Business and Legal Studies
+  • Top 1% Financial Advisor, nationally ranked
+  • Notable client relationships: Floyd Mayweather, Mookie Betts, Jalen Ramsey, Jaren Jackson Jr., Jim Brown
+  • Specializations: Sports law, entertainment law, NIL, family governance, deal structuring, enterprise advisory</div>
+      <div class="edit-label">Your Edit</div>
+      <textarea class="edit-box" style="min-height:180px;" placeholder="e.g. 'Update paragraph 2 to: ...' / 'Add credential: ...' / 'Update graduation year to...'"></textarea>
+      <div class="notes-row"><span class="notes-label">Notes for team</span><input class="notes-input" type="text" placeholder="e.g. 'Confirm all credentials with Jimmie'"></div>
+    </div>
+  </div>
+
+  <div class="content-block">
+    <div class="block-header">
+      <div class="block-header-cell"><div class="bh-label">Section</div><div class="bh-value">5 Principles — Philosophy Grid</div><div class="bh-sub">~60% down about page</div></div>
+      <div class="block-header-cell"><div class="bh-label">Content Type</div><div class="bh-value"><span class="badge badge-gold">Headline</span> + <span class="badge badge-green">Body Copy</span></div></div>
+      <div class="block-header-cell"><div class="bh-label">Status</div><select class="status-select"><option>✅ Keep as-is</option><option>✏️ Needs edit</option><option>🗑 Delete</option><option>❓ Confirm with team</option></select></div>
+    </div>
+    <div class="block-body">
+      <div class="www-row">
+        <div class="www-cell"><div class="www-label">What</div><div class="www-text">6 guiding principles with number, title, and description each</div></div>
+        <div class="www-cell"><div class="www-label">Where</div><div class="www-text">About 60% down the about page, in a 3-column grid</div></div>
+        <div class="www-cell"><div class="www-label">How</div><div class="www-text">Section label + headline at top. 6 cards in a 3-column grid. Each has a gold number, bold title, and description paragraph. Fade-in on scroll</div></div>
+      </div>
+      <div class="current-text-label">Current Live Text</div>
+      <div class="current-text"><strong>Section Label:</strong> What We Believe
+<strong>Headline:</strong> Five principles that guide every engagement.
+
+<strong>01 — You Keep What You Earn</strong>
+Every engagement is designed to close the gap between what you earn and what you keep. Tax strategy, entity structure, and deal terms all serve this one principle.
+
+<strong>02 — Clarity Over Dependency</strong>
+We build systems that give you clarity and control — not dependency on any single advisor. You should understand your enterprise at every stage.
+
+<strong>03 — No Conflicts. Ever.</strong>
+We earn when you win. No commissions on investments. No undisclosed relationships. No interests that compete with yours — under any circumstances.
+
+<strong>04 — Long-Term Thinking</strong>
+Careers end. Enterprises don't have to. We build structures that serve you for decades — not just for the next deal.
+
+<strong>05 — Institutional Standards for Everyone</strong>
+The same rigor we bring to multi-billion dollar entities, applied to every client relationship — regardless of where they are in their career.
+
+<strong>06 — Selective by Design</strong>
+We take a limited number of new client relationships each year. This is not exclusivity for its own sake — it is the only way to deliver what we promise.</div>
+      <div class="edit-label">Your Edit</div>
+      <textarea class="edit-box" style="min-height:180px;" placeholder="Label each principle. e.g. 'Principle 03 title: ...' / 'Principle 06 description: ...'"></textarea>
+      <div class="notes-row"><span class="notes-label">Notes for team</span><input class="notes-input" type="text" placeholder=""></div>
+    </div>
+  </div>
+
+  <div class="content-block">
+    <div class="block-header">
+      <div class="block-header-cell"><div class="bh-label">Section</div><div class="bh-value">Client Relationships + About Page CTA</div><div class="bh-sub">Bottom of about page</div></div>
+      <div class="block-header-cell"><div class="bh-label">Content Type</div><div class="bh-value"><span class="badge badge-gold">Headline</span> + <span class="badge badge-green">Body Copy</span> + <span class="badge badge-blue">UI Label</span></div></div>
+      <div class="block-header-cell"><div class="bh-label">Status</div><select class="status-select"><option>✅ Keep as-is</option><option>✏️ Needs edit</option><option>🗑 Delete</option><option>❓ Confirm with team</option></select></div>
+    </div>
+    <div class="block-body">
+      <div class="www-row">
+        <div class="www-cell"><div class="www-label">What</div><div class="www-text">Client name list + final CTA section with button</div></div>
+        <div class="www-cell"><div class="www-label">Where</div><div class="www-text">Bottom of the about page, above the footer</div></div>
+        <div class="www-cell"><div class="www-label">How</div><div class="www-text">Two-column: left has label, headline, body, and client name list. Right has a photo. Below that: centered CTA box with headline, paragraph, and button</div></div>
+      </div>
+      <div class="current-text-label">Current Live Text</div>
+      <div class="current-text"><strong>Section Label:</strong> A Record of Trust
+<strong>Headline:</strong> Icons trust us with what matters most.
+<strong>Body:</strong> Our client relationships are built over time, not over transactions. When a global icon trusts us with their enterprise, it reflects not just our capabilities — but our commitment to their long-term position.
+
+<strong>Client Names:</strong>
+  Floyd Mayweather
+  Mookie Betts
+  Jalen Ramsey
+  Jaren Jackson Jr.
+  Jim Brown (1936 — 2023)
+
+<strong>Photo Caption:</strong> The Advisory · Client Relationship
+
+--- CTA BLOCK ---
+<strong>Headline:</strong> Ready to build your enterprise?
+<strong>Body:</strong> We work with a selective group each year. Start a conversation — and let's see if we're the right fit for where you're going.
+<strong>Button:</strong> Start a Conversation</div>
+      <div class="edit-label">Your Edit</div>
+      <textarea class="edit-box" style="min-height:150px;" placeholder="e.g. 'Update CTA headline to: ...' / 'Add new client name: ...'"></textarea>
+      <div class="notes-row"><span class="notes-label">Notes for team</span><input class="notes-input" type="text" placeholder="e.g. 'Confirm Jim Brown phrasing is approved'"></div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     PAGE 4 — MEET THE TEAM (team.html)
+═══════════════════════════════════════════════════════════════ -->
+<div class="page-divider">
+  <span class="page-divider-num">Page 04</span>
+  <span class="page-divider-name">Meet the Team</span>
+  <span class="page-divider-file">team.html · Reached via About → Meet the Team</span>
+</div>
+<div class="audit-body">
+
+  <p class="section-intro">This page features Jimmie's full founder profile followed by 7 team member placeholders — each structured identically to Jimmie's layout. All team member content is placeholder text awaiting your input.</p>
+
+  <div class="content-block">
+    <div class="block-header">
+      <div class="block-header-cell"><div class="bh-label">Section</div><div class="bh-value">Team Page Hero</div><div class="bh-sub">Top of team page</div></div>
+      <div class="block-header-cell"><div class="bh-label">Content Type</div><div class="bh-value"><span class="badge badge-gold">Headline</span> + <span class="badge badge-green">Body Copy</span></div></div>
+      <div class="block-header-cell"><div class="bh-label">Status</div><select class="status-select"><option>✅ Keep as-is</option><option>✏️ Needs edit</option><option>🗑 Delete</option><option>❓ Confirm with team</option></select></div>
+    </div>
+    <div class="block-body">
+      <div class="www-row">
+        <div class="www-cell"><div class="www-label">What</div><div class="www-text">Team page hero — page headline and two supporting intro paragraphs</div></div>
+        <div class="www-cell"><div class="www-label">Where</div><div class="www-text">Top of the Meet the Team page, full width below the navigation</div></div>
+        <div class="www-cell"><div class="www-label">How</div><div class="www-text">Dark background, two-column layout. Large serif headline left, intro paragraphs right. Subtle "Team" ghost watermark behind headline</div></div>
+      </div>
+      <div class="current-text-label">Current Live Text</div>
+      <div class="current-text"><strong>Section Label:</strong> The Advisory Team
+<strong>Headline:</strong> The enterprise architects behind the firm.
+
+<strong>Paragraph 1:</strong>
+The Advisory is built on a conviction: the people who create the world's most exceptional value in sports and entertainment deserve institutional-grade talent in their corner.
+
+<strong>Paragraph 2:</strong>
+Legal mastery. Financial intelligence. Operational precision. In the hands of advisors who have earned the trust of global icons.</div>
+      <div class="edit-label">Your Edit</div>
+      <textarea class="edit-box" placeholder="Type updates here..."></textarea>
+      <div class="notes-row"><span class="notes-label">Notes for team</span><input class="notes-input" type="text" placeholder=""></div>
+    </div>
+  </div>
+
+  <div class="content-block">
+    <div class="block-header">
+      <div class="block-header-cell"><div class="bh-label">Section</div><div class="bh-value">Stats Strip — Team Page</div><div class="bh-sub">Below hero, horizontal bar</div></div>
+      <div class="block-header-cell"><div class="bh-label">Content Type</div><div class="bh-value"><span class="badge badge-gold">Headline</span> + <span class="badge badge-blue">UI Label</span></div></div>
+      <div class="block-header-cell"><div class="bh-label">Status</div><select class="status-select"><option>✅ Keep as-is</option><option>✏️ Needs edit</option><option>🗑 Delete</option><option>❓ Confirm with team</option></select></div>
+    </div>
+    <div class="block-body">
+      <div class="www-row">
+        <div class="www-cell"><div class="www-label">What</div><div class="www-text">4 credential stats about the firm displayed as a horizontal strip</div></div>
+        <div class="www-cell"><div class="www-label">Where</div><div class="www-text">Below the team hero, before Jimmie's profile section</div></div>
+        <div class="www-cell"><div class="www-label">How</div><div class="www-text">4 columns. Large italic number/text, smaller label beneath each</div></div>
+      </div>
+      <div class="current-text-label">Current Live Text</div>
+      <div class="current-text">Top 1%   |  "National Financial Advisor Ranking"
+$2.3B+   |  "NIL Market We Navigate Daily"
+5        |  "Core Enterprise Practice Areas"
+1        |  "Law School Valedictorian on Staff"</div>
+      <div class="edit-label">Your Edit</div>
+      <textarea class="edit-box" placeholder="e.g. 'Change $2.3B+ label to: ...'"></textarea>
+      <div class="notes-row"><span class="notes-label">Notes for team</span><input class="notes-input" type="text" placeholder="e.g. 'Confirm all 4 stats are accurate'"></div>
+    </div>
+  </div>
+
+  <div class="content-block">
+    <div class="block-header">
+      <div class="block-header-cell"><div class="bh-label">Section</div><div class="bh-value">Founder Profile — Jimmie B. Strong</div><div class="bh-sub">Full two-column layout, ~1/3 down the page</div></div>
+      <div class="block-header-cell"><div class="bh-label">Content Type</div><div class="bh-value"><span class="badge badge-gold">Headline</span> + <span class="badge badge-green">Body Copy</span> + <span class="badge badge-gray">List</span></div></div>
+      <div class="block-header-cell"><div class="bh-label">Status</div><select class="status-select"><option>✅ Keep as-is</option><option>✏️ Needs edit</option><option>🗑 Delete</option><option>❓ Confirm with team</option></select></div>
+    </div>
+    <div class="block-body">
+      <div class="www-row">
+        <div class="www-cell"><div class="www-label">What</div><div class="www-text">Full founder profile — primary photo, secondary photo, 4-paragraph bio, numbered credentials, client pills, and two CTA buttons</div></div>
+        <div class="www-cell"><div class="www-label">Where</div><div class="www-text">Top of the team roster — appears first, before the team member placeholders</div></div>
+        <div class="www-cell"><div class="www-label">How</div><div class="www-text">Two-column: left = sticky photo column (primary 3:4 photo + secondary landscape photo). Right = bio column with eyebrow, large name, gold title, bio paragraphs, numbered credential strip, client pills, and two buttons. Photo has gold corner accent and gradient caption bar</div></div>
+      </div>
+      <div class="current-text-label">Current Live Text</div>
+      <div class="current-text"><strong>Section Label:</strong> Founder &amp; Managing Partner
+<strong>Name:</strong> Jimmie B. Strong
+<strong>Title Line:</strong> Founder &amp; Managing Partner — The Advisory
+<strong>Primary Photo Caption:</strong> Founder &amp; Managing Partner
+<strong>Secondary Photo Caption:</strong> Client Relationship · Courtside
+
+<strong>Bio Paragraph 1:</strong>
+Jimmie B. Strong founded The Advisory on a singular conviction: that the athletes, entertainers, and entrepreneurs who create the world's most exceptional personal value deserve the same institutional-grade enterprise management that global corporations take for granted.
+
+<strong>Bio Paragraph 2:</strong>
+His path to founding The Advisory is as rare as the clients he serves. A Harvard Law School Valedictorian, Jimmie combined legal precision with an equally rigorous background in financial advisory — ultimately earning recognition as a Top 1% Financial Advisor nationally while simultaneously building his practice in sports and entertainment law.
+
+<strong>Bio Paragraph 3:</strong>
+At Vanderbilt University, where he serves on the faculty, Jimmie teaches the intersection of business strategy and legal structure — the same framework that underpins every engagement at The Advisory. His clients have included Floyd Mayweather, Mookie Betts, Jalen Ramsey, Jaren Jackson Jr., and the late Jim Brown.
+
+<strong>Bio Paragraph 4:</strong>
+Jimmie's philosophy is simple and uncompromising: you should keep what you earn, own what you create, and understand your enterprise at every stage. The Advisory exists to make that possible.
+
+<strong>Credentials (numbered strip):</strong>
+01 — Harvard Law School — Valedictorian, J.D.
+02 — Vanderbilt University — Faculty, Business Law &amp; Strategy
+03 — Top 1% Financial Advisor — Nationally ranked
+04 — Specializations: Sports law, entertainment law, NIL strategy, enterprise advisory, family governance, deal structuring
+
+<strong>Client Pills:</strong>
+Floyd Mayweather · Mookie Betts · Jalen Ramsey · Jaren Jackson Jr. · Jim Brown
+
+<strong>Buttons:</strong>
+"Work With Jimmie" → contact.html
+"Our Philosophy" → about.html</div>
+      <div class="edit-label">Your Edit</div>
+      <textarea class="edit-box" style="min-height:200px;" placeholder="Label each section. e.g. 'Bio Paragraph 2: ...' / 'Add credential 05: ...' / 'Add client pill: ...'"></textarea>
+      <div class="notes-row"><span class="notes-label">Notes for team</span><input class="notes-input" type="text" placeholder="e.g. 'Jimmie to review and approve his bio before launch'"></div>
+    </div>
+  </div>
+
+  <!-- TEAM MEMBER PLACEHOLDERS — one block per member -->
+  <p class="section-intro">⬇ The following 7 blocks are the team member placeholders. All text is placeholder — please fill in the real names, titles, bios, and credentials for each person. Photos can be added later by sharing image files with your team.</p>
+
+  <!-- Generate 7 member blocks -->
+  <div class="content-block">
+    <div class="block-header">
+      <div class="block-header-cell"><div class="bh-label">Section</div><div class="bh-value">Team Member 1 — Contracts &amp; Negotiation</div><div class="bh-sub">Photo + full bio layout, same as Jimmie's</div></div>
+      <div class="block-header-cell"><div class="bh-label">Content Type</div><div class="bh-value"><span class="badge badge-gold">Headline</span> + <span class="badge badge-green">Body Copy</span> + <span class="badge badge-gray">List</span></div></div>
+      <div class="block-header-cell"><div class="bh-label">Status</div><select class="status-select"><option>⬛ Placeholder — needs info</option><option>✅ Complete</option><option>✏️ In progress</option><option>❓ Confirm with team</option></select></div>
+    </div>
+    <div class="block-body">
+      <div class="www-row">
+        <div class="www-cell"><div class="www-label">What</div><div class="www-text">Team member profile card — same 2-column layout as Jimmie (photo left, bio right)</div></div>
+        <div class="www-cell"><div class="www-label">Where</div><div class="www-text">First card below Jimmie's profile section</div></div>
+        <div class="www-cell"><div class="www-label">How</div><div class="www-text">Left: 3:4 photo placeholder (swap with real photo when ready) + caption bar. Right: practice label, name, position, 2 bio paragraphs, 3 credentials, 2 buttons</div></div>
+      </div>
+      <div class="current-text-label">Current Placeholder Text (needs to be replaced)</div>
+      <div class="current-text"><strong>Practice Label:</strong> Contracts &amp; Negotiation
+<strong>Name:</strong> Team Member  ← REPLACE
+<strong>Position:</strong> Senior Advisor — Contracts &amp; Negotiation  ← CONFIRM/EDIT
+<strong>Photo Caption Role:</strong> Senior Advisor  ← REPLACE
+<strong>Photo Caption Name:</strong> Team Member  ← REPLACE
+
+<strong>Bio Para 1 (placeholder):</strong>
+Placeholder bio — replace with team member's background, expertise, and professional story when ready.
+
+<strong>Bio Para 2 (placeholder):</strong>
+Describe their approach to client representation, key milestones, and the specific value they bring to The Advisory's enterprise management model.
+
+<strong>Credentials (placeholder):</strong>
+01 — Institution — Degree / Credential placeholder
+02 — Specialization — Contracts, negotiation, deal structuring
+03 — Industry Focus — Professional sports, entertainment, business law
+
+<strong>Buttons:</strong> Connect | View Services</div>
+      <div class="edit-label">✏️ Enter Real Information Below</div>
+      <textarea class="edit-box" style="min-height:220px;" placeholder="Full Name:
+Title / Position:
+Practice Area:
+Bio Paragraph 1:
+Bio Paragraph 2:
+Credential 01:
+Credential 02:
+Credential 03:
+Do you have a photo ready? (Yes / No / Coming soon):"></textarea>
+      <div class="notes-row"><span class="notes-label">Notes for team</span><input class="notes-input" type="text" placeholder="e.g. 'Photo coming by [date]' / 'This person prefers not to be listed yet'"></div>
+    </div>
+  </div>
+
+  <div class="content-block">
+    <div class="block-header">
+      <div class="block-header-cell"><div class="bh-label">Section</div><div class="bh-value">Team Member 2 — Tax &amp; Entity Strategy</div><div class="bh-sub">Photo + full bio layout</div></div>
+      <div class="block-header-cell"><div class="bh-label">Content Type</div><div class="bh-value"><span class="badge badge-gold">Headline</span> + <span class="badge badge-green">Body Copy</span> + <span class="badge badge-gray">List</span></div></div>
+      <div class="block-header-cell"><div class="bh-label">Status</div><select class="status-select"><option>⬛ Placeholder — needs info</option><option>✅ Complete</option><option>✏️ In progress</option><option>❓ Confirm with team</option></select></div>
+    </div>
+    <div class="block-body">
+      <div class="www-row">
+        <div class="www-cell"><div class="www-label">What</div><div class="www-text">Team member profile — Tax &amp; Entity Strategy advisor</div></div>
+        <div class="www-cell"><div class="www-label">Where</div><div class="www-text">Second card in the team roster</div></div>
+        <div class="www-cell"><div class="www-label">How</div><div class="www-text">Same 2-column layout as Jimmie and Member 1</div></div>
+      </div>
+      <div class="current-text-label">Current Placeholder Text</div>
+      <div class="current-text"><strong>Practice Label:</strong> Tax &amp; Entity Strategy
+<strong>Name:</strong> Team Member  ← REPLACE
+<strong>Position:</strong> Lead Advisor — Tax &amp; Entity Strategy
+<strong>Bio:</strong> (Placeholder — see above for format)
+<strong>Credentials:</strong> Institution · Specialization · Certifications (all placeholder)</div>
+      <div class="edit-label">✏️ Enter Real Information Below</div>
+      <textarea class="edit-box" style="min-height:220px;" placeholder="Full Name:
+Title / Position:
+Practice Area:
+Bio Paragraph 1:
+Bio Paragraph 2:
+Credential 01:
+Credential 02:
+Credential 03:
+Do you have a photo ready? (Yes / No / Coming soon):"></textarea>
+      <div class="notes-row"><span class="notes-label">Notes for team</span><input class="notes-input" type="text" placeholder=""></div>
+    </div>
+  </div>
+
+  <div class="content-block">
+    <div class="block-header">
+      <div class="block-header-cell"><div class="bh-label">Section</div><div class="bh-value">Team Member 3 — Brand &amp; IP</div><div class="bh-sub">Photo + full bio layout</div></div>
+      <div class="block-header-cell"><div class="bh-label">Content Type</div><div class="bh-value"><span class="badge badge-gold">Headline</span> + <span class="badge badge-green">Body Copy</span> + <span class="badge badge-gray">List</span></div></div>
+      <div class="block-header-cell"><div class="bh-label">Status</div><select class="status-select"><option>⬛ Placeholder — needs info</option><option>✅ Complete</option><option>✏️ In progress</option><option>❓ Confirm with team</option></select></div>
+    </div>
+    <div class="block-body">
+      <div class="www-row">
+        <div class="www-cell"><div class="www-label">What</div><div class="www-text">Team member profile — Brand &amp; IP advisor</div></div>
+        <div class="www-cell"><div class="www-label">Where</div><div class="www-text">Third card in the team roster</div></div>
+        <div class="www-cell"><div class="www-label">How</div><div class="www-text">Same 2-column layout</div></div>
+      </div>
+      <div class="current-text-label">Current Placeholder Text</div>
+      <div class="current-text"><strong>Practice Label:</strong> Brand &amp; Intellectual Property
+<strong>Name:</strong> Team Member  ← REPLACE
+<strong>Position:</strong> Brand &amp; IP Advisor
+<strong>Bio:</strong> (Placeholder)
+<strong>Credentials:</strong> Institution · Brand strategy, licensing, trademark, NIL monetization · Focus Sectors (all placeholder)</div>
+      <div class="edit-label">✏️ Enter Real Information Below</div>
+      <textarea class="edit-box" style="min-height:220px;" placeholder="Full Name:
+Title / Position:
+Practice Area:
+Bio Paragraph 1:
+Bio Paragraph 2:
+Credential 01:
+Credential 02:
+Credential 03:
+Do you have a photo ready? (Yes / No / Coming soon):"></textarea>
+      <div class="notes-row"><span class="notes-label">Notes for team</span><input class="notes-input" type="text" placeholder=""></div>
+    </div>
+  </div>
+
+  <div class="content-block">
+    <div class="block-header">
+      <div class="block-header-cell"><div class="bh-label">Section</div><div class="bh-value">Team Member 4 — Family Governance &amp; Wealth</div><div class="bh-sub">Photo + full bio layout</div></div>
+      <div class="block-header-cell"><div class="bh-label">Content Type</div><div class="bh-value"><span class="badge badge-gold">Headline</span> + <span class="badge badge-green">Body Copy</span> + <span class="badge badge-gray">List</span></div></div>
+      <div class="block-header-cell"><div class="bh-label">Status</div><select class="status-select"><option>⬛ Placeholder — needs info</option><option>✅ Complete</option><option>✏️ In progress</option><option>❓ Confirm with team</option></select></div>
+    </div>
+    <div class="block-body">
+      <div class="www-row">
+        <div class="www-cell"><div class="www-label">What</div><div class="www-text">Team member profile — Family Governance &amp; Wealth advisor</div></div>
+        <div class="www-cell"><div class="www-label">Where</div><div class="www-text">Fourth card in the team roster</div></div>
+        <div class="www-cell"><div class="www-label">How</div><div class="www-text">Same 2-column layout</div></div>
+      </div>
+      <div class="current-text-label">Current Placeholder Text</div>
+      <div class="current-text"><strong>Practice Label:</strong> Family Governance &amp; Wealth
+<strong>Name:</strong> Team Member  ← REPLACE
+<strong>Position:</strong> Family Governance &amp; Wealth Advisor
+<strong>Credentials:</strong> Institution · Family governance, trusts, wealth transfer, legacy planning · CFP / placeholder (all placeholder)</div>
+      <div class="edit-label">✏️ Enter Real Information Below</div>
+      <textarea class="edit-box" style="min-height:220px;" placeholder="Full Name:
+Title / Position:
+Practice Area:
+Bio Paragraph 1:
+Bio Paragraph 2:
+Credential 01:
+Credential 02:
+Credential 03:
+Do you have a photo ready? (Yes / No / Coming soon):"></textarea>
+      <div class="notes-row"><span class="notes-label">Notes for team</span><input class="notes-input" type="text" placeholder=""></div>
+    </div>
+  </div>
+
+  <div class="content-block">
+    <div class="block-header">
+      <div class="block-header-cell"><div class="bh-label">Section</div><div class="bh-value">Team Member 5 — NIL Strategy &amp; Compliance</div><div class="bh-sub">Photo + full bio layout</div></div>
+      <div class="block-header-cell"><div class="bh-label">Content Type</div><div class="bh-value"><span class="badge badge-gold">Headline</span> + <span class="badge badge-green">Body Copy</span> + <span class="badge badge-gray">List</span></div></div>
+      <div class="block-header-cell"><div class="bh-label">Status</div><select class="status-select"><option>⬛ Placeholder — needs info</option><option>✅ Complete</option><option>✏️ In progress</option><option>❓ Confirm with team</option></select></div>
+    </div>
+    <div class="block-body">
+      <div class="www-row">
+        <div class="www-cell"><div class="www-label">What</div><div class="www-text">Team member profile — NIL Strategy &amp; Compliance advisor</div></div>
+        <div class="www-cell"><div class="www-label">Where</div><div class="www-text">Fifth card in the team roster</div></div>
+        <div class="www-cell"><div class="www-label">How</div><div class="www-text">Same 2-column layout</div></div>
+      </div>
+      <div class="current-text-label">Current Placeholder Text</div>
+      <div class="current-text"><strong>Practice Label:</strong> NIL Strategy &amp; Compliance
+<strong>Name:</strong> Team Member  ← REPLACE
+<strong>Position:</strong> NIL Strategy &amp; Compliance Advisor
+<strong>Credentials:</strong> Institution · NIL deal structuring, compliance, brand partnerships · Collegiate football, basketball, Olympic sports (all placeholder)</div>
+      <div class="edit-label">✏️ Enter Real Information Below</div>
+      <textarea class="edit-box" style="min-height:220px;" placeholder="Full Name:
+Title / Position:
+Practice Area:
+Bio Paragraph 1:
+Bio Paragraph 2:
+Credential 01:
+Credential 02:
+Credential 03:
+Do you have a photo ready? (Yes / No / Coming soon):"></textarea>
+      <div class="notes-row"><span class="notes-label">Notes for team</span><input class="notes-input" type="text" placeholder=""></div>
+    </div>
+  </div>
+
+  <div class="content-block">
+    <div class="block-header">
+      <div class="block-header-cell"><div class="bh-label">Section</div><div class="bh-value">Team Member 6 — Deal Diligence &amp; M&amp;A</div><div class="bh-sub">Photo + full bio layout</div></div>
+      <div class="block-header-cell"><div class="bh-label">Content Type</div><div class="bh-value"><span class="badge badge-gold">Headline</span> + <span class="badge badge-green">Body Copy</span> + <span class="badge badge-gray">List</span></div></div>
+      <div class="block-header-cell"><div class="bh-label">Status</div><select class="status-select"><option>⬛ Placeholder — needs info</option><option>✅ Complete</option><option>✏️ In progress</option><option>❓ Confirm with team</option></select></div>
+    </div>
+    <div class="block-body">
+      <div class="www-row">
+        <div class="www-cell"><div class="www-label">What</div><div class="www-text">Team member profile — Deal Diligence &amp; M&amp;A advisor</div></div>
+        <div class="www-cell"><div class="www-cell"><div class="www-label">Where</div><div class="www-text">Sixth card in the team roster</div></div></div>
+        <div class="www-cell"><div class="www-label">How</div><div class="www-text">Same 2-column layout</div></div>
+      </div>
+      <div class="current-text-label">Current Placeholder Text</div>
+      <div class="current-text"><strong>Practice Label:</strong> Deal Diligence &amp; M&amp;A
+<strong>Name:</strong> Team Member  ← REPLACE
+<strong>Position:</strong> Deal Diligence &amp; M&amp;A Advisor
+<strong>Credentials:</strong> Institution · Transaction diligence, M&amp;A advisory, investment structuring · Media rights, real estate, private equity, brand acquisitions (all placeholder)</div>
+      <div class="edit-label">✏️ Enter Real Information Below</div>
+      <textarea class="edit-box" style="min-height:220px;" placeholder="Full Name:
+Title / Position:
+Practice Area:
+Bio Paragraph 1:
+Bio Paragraph 2:
+Credential 01:
+Credential 02:
+Credential 03:
+Do you have a photo ready? (Yes / No / Coming soon):"></textarea>
+      <div class="notes-row"><span class="notes-label">Notes for team</span><input class="notes-input" type="text" placeholder=""></div>
+    </div>
+  </div>
+
+  <div class="content-block">
+    <div class="block-header">
+      <div class="block-header-cell"><div class="bh-label">Section</div><div class="bh-value">Team Member 7 — Operations &amp; Client Relations</div><div class="bh-sub">Photo + full bio layout</div></div>
+      <div class="block-header-cell"><div class="bh-label">Content Type</div><div class="bh-value"><span class="badge badge-gold">Headline</span> + <span class="badge badge-green">Body Copy</span> + <span class="badge badge-gray">List</span></div></div>
+      <div class="block-header-cell"><div class="bh-label">Status</div><select class="status-select"><option>⬛ Placeholder — needs info</option><option>✅ Complete</option><option>✏️ In progress</option><option>❓ Confirm with team</option></select></div>
+    </div>
+    <div class="block-body">
+      <div class="www-row">
+        <div class="www-cell"><div class="www-label">What</div><div class="www-text">Team member profile — Operations &amp; Client Relations</div></div>
+        <div class="www-cell"><div class="www-label">Where</div><div class="www-text">Seventh and final card in the team roster</div></div>
+        <div class="www-cell"><div class="www-label">How</div><div class="www-text">Same 2-column layout</div></div>
+      </div>
+      <div class="current-text-label">Current Placeholder Text</div>
+      <div class="current-text"><strong>Practice Label:</strong> Operations &amp; Client Relations
+<strong>Name:</strong> Team Member  ← REPLACE
+<strong>Position:</strong> Operations &amp; Client Relations
+<strong>Credentials:</strong> Institution · Firm operations, client relations, process architecture · Enterprise management, advisory firm operations (all placeholder)</div>
+      <div class="edit-label">✏️ Enter Real Information Below</div>
+      <textarea class="edit-box" style="min-height:220px;" placeholder="Full Name:
+Title / Position:
+Practice Area:
+Bio Paragraph 1:
+Bio Paragraph 2:
+Credential 01:
+Credential 02:
+Credential 03:
+Do you have a photo ready? (Yes / No / Coming soon):"></textarea>
+      <div class="notes-row"><span class="notes-label">Notes for team</span><input class="notes-input" type="text" placeholder=""></div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     PAGE 5 — SERVICES (services.html)
+═══════════════════════════════════════════════════════════════ -->
+<div class="page-divider">
+  <span class="page-divider-num">Page 05</span>
+  <span class="page-divider-name">Services</span>
+  <span class="page-divider-file">services.html · 6 full service sections</span>
+</div>
+<div class="audit-body">
+
+  <div class="content-block">
+    <div class="block-header">
+      <div class="block-header-cell"><div class="bh-label">Section</div><div class="bh-value">Services Page Hero</div><div class="bh-sub">Top of services page</div></div>
+      <div class="block-header-cell"><div class="bh-label">Content Type</div><div class="bh-value"><span class="badge badge-gold">Headline</span> + <span class="badge badge-green">Body Copy</span></div></div>
+      <div class="block-header-cell"><div class="bh-label">Status</div><select class="status-select"><option>✅ Keep as-is</option><option>✏️ Needs edit</option><option>🗑 Delete</option><option>❓ Confirm with team</option></select></div>
+    </div>
+    <div class="block-body">
+      <div class="www-row">
+        <div class="www-cell"><div class="www-label">What</div><div class="www-text">Services page hero — headline and two intro paragraphs</div></div>
+        <div class="www-cell"><div class="www-label">Where</div><div class="www-text">Top of services page, full width below nav</div></div>
+        <div class="www-cell"><div class="www-label">How</div><div class="www-text">Two-column: large headline left, body text right</div></div>
+      </div>
+      <div class="current-text-label">Current Live Text</div>
+      <div class="current-text"><strong>Section Label:</strong> Services
+<strong>Headline:</strong> One firm. Every lane.
+
+<strong>Paragraph 1:</strong>
+Full-service enterprise management — legal, financial, operational, and strategic — under one roof. No handoffs, no gaps, no excuses.
+
+<strong>Paragraph 2:</strong>
+Every service is delivered with institutional rigor and personalized to the individual enterprise of each client we serve.</div>
+      <div class="edit-label">Your Edit</div>
+      <textarea class="edit-box" placeholder="Type updates here..."></textarea>
+      <div class="notes-row"><span class="notes-label">Notes for team</span><input class="notes-input" type="text" placeholder=""></div>
+    </div>
+  </div>
+
+  <div class="content-block">
+    <div class="block-header">
+      <div class="block-header-cell"><div class="bh-label">Section</div><div class="bh-value">Service 01 — Contracts &amp; Negotiation</div><div class="bh-sub">Full-width service block</div></div>
+      <div class="block-header-cell"><div class="bh-label">Content Type</div><div class="bh-value"><span class="badge badge-gold">Headline</span> + <span class="badge badge-green">Body Copy</span> + <span class="badge badge-gray">List</span></div></div>
+      <div class="block-header-cell"><div class="bh-label">Status</div><select class="status-select"><option>✅ Keep as-is</option><option>✏️ Needs edit</option><option>🗑 Delete</option><option>❓ Confirm with team</option></select></div>
+    </div>
+    <div class="block-body">
+      <div class="www-row">
+        <div class="www-cell"><div class="www-label">What</div><div class="www-text">Full service profile — Service 01</div></div>
+        <div class="www-cell"><div class="www-label">Where</div><div class="www-text">First full section below the services hero</div></div>
+        <div class="www-cell"><div class="www-label">How</div><div class="www-text">Two-column: left = service number, headline, tagline, audience tags, button. Right = body paragraph + "What's Included" bulleted list</div></div>
+      </div>
+      <div class="current-text-label">Current Live Text</div>
+      <div class="current-text"><strong>Service Number:</strong> Service 01
+<strong>Headline:</strong> Contracts &amp; Negotiation
+<strong>Tagline:</strong> We negotiate with institutional leverage and no conflicts of interest.
+<strong>Audience Tags:</strong> Pro Athletes · NIL Athletes · Entertainers · Creatives
+<strong>Button:</strong> Discuss Your Deal
+
+<strong>Body:</strong>
+From rookie contracts to multi-million dollar endorsement agreements — every deal deserves independent review and institutional negotiation. We enter every room with the credibility of decades of elite representation and zero incentive to close a bad deal for you.
+
+<strong>What's Included:</strong>
+  • Contract review and annotation
+  • Negotiation strategy and execution
+  • Performance clause optimization
+  • Endorsement deal structuring
+  • Term-sheet drafting
+  • Deal room management
+  • Renewal pipeline management
+  • Sports &amp; entertainment law counsel</div>
+      <div class="edit-label">Your Edit</div>
+      <textarea class="edit-box" style="min-height:160px;" placeholder="e.g. 'Update tagline to: ...' / 'Add bullet: ...' / 'Remove bullet: ...'"></textarea>
+      <div class="notes-row"><span class="notes-label">Notes for team</span><input class="notes-input" type="text" placeholder=""></div>
+    </div>
+  </div>
+
+  <div class="content-block">
+    <div class="block-header">
+      <div class="block-header-cell"><div class="bh-label">Section</div><div class="bh-value">Service 02 — NIL Strategy &amp; Compliance</div></div>
+      <div class="block-header-cell"><div class="bh-label">Content Type</div><div class="bh-value"><span class="badge badge-gold">Headline</span> + <span class="badge badge-green">Body Copy</span> + <span class="badge badge-gray">List</span></div></div>
+      <div class="block-header-cell"><div class="bh-label">Status</div><select class="status-select"><option>✅ Keep as-is</option><option>✏️ Needs edit</option><option>🗑 Delete</option><option>❓ Confirm with team</option></select></div>
+    </div>
+    <div class="block-body">
+      <div class="current-text-label">Current Live Text</div>
+      <div class="current-text"><strong>Service Number:</strong> Service 02
+<strong>Headline:</strong> NIL Strategy &amp; Compliance
+<strong>Tagline:</strong> From first deal to full enterprise — the complete NIL lifecycle.
+<strong>Audience Tags:</strong> NIL Athletes · Student-Athletes
+<strong>Button:</strong> NIL Flight School™
+
+<strong>Body:</strong>
+The NIL market is $2.3B and growing — but most student-athletes are operating without the structure to protect what they earn. We provide the complete NIL infrastructure: from your first deal to your long-term brand equity strategy.
+
+<strong>What's Included:</strong>
+  • NIL deal review &amp; negotiation
+  • NCAA &amp; conference compliance
+  • State-specific eligibility monitoring
+  • Brand strategy &amp; positioning
+  • NIL disclosure management
+  • Multi-deal portfolio management
+  • Tax structure for NIL income
+  • Flight School™ curriculum</div>
+      <div class="edit-label">Your Edit</div>
+      <textarea class="edit-box" style="min-height:140px;" placeholder="Type updates here..."></textarea>
+      <div class="notes-row"><span class="notes-label">Notes for team</span><input class="notes-input" type="text" placeholder=""></div>
+    </div>
+  </div>
+
+  <div class="content-block">
+    <div class="block-header">
+      <div class="block-header-cell"><div class="bh-label">Section</div><div class="bh-value">Service 03 — Entity &amp; Tax Posture</div></div>
+      <div class="block-header-cell"><div class="bh-label">Content Type</div><div class="bh-value"><span class="badge badge-gold">Headline</span> + <span class="badge badge-green">Body Copy</span> + <span class="badge badge-gray">List</span></div></div>
+      <div class="block-header-cell"><div class="bh-label">Status</div><select class="status-select"><option>✅ Keep as-is</option><option>✏️ Needs edit</option><option>🗑 Delete</option><option>❓ Confirm with team</option></select></div>
+    </div>
+    <div class="block-body">
+      <div class="current-text-label">Current Live Text</div>
+      <div class="current-text"><strong>Service Number:</strong> Service 03
+<strong>Headline:</strong> Entity &amp; Tax Posture
+<strong>Tagline:</strong> We identify and close the gap between what you earn and what you keep.
+<strong>Audience Tags:</strong> All Clients
+<strong>Button:</strong> Tax Assessment
+
+<strong>Body:</strong>
+Unplanned tax exposure is the silent killer of athlete wealth. We build the entity structure, filing strategy, and proactive planning that eliminates surprises and positions every dollar you earn for maximum retention and growth.
+
+<strong>What's Included:</strong>
+  • LLC / S-Corp formation
+  • Multi-state tax exposure management
+  • Self-employment tax strategy (15.3%)
+  • Phantom income &amp; NIL gift taxation
+  • Quarterly estimated tax planning
+  • Investment structuring
+  • Annual filing management
+  • IRS-ready documentation</div>
+      <div class="edit-label">Your Edit</div>
+      <textarea class="edit-box" style="min-height:140px;" placeholder="Type updates here..."></textarea>
+      <div class="notes-row"><span class="notes-label">Notes for team</span><input class="notes-input" type="text" placeholder=""></div>
+    </div>
+  </div>
+
+  <div class="content-block">
+    <div class="block-header">
+      <div class="block-header-cell"><div class="bh-label">Section</div><div class="bh-value">Service 04 — Brand &amp; IP Management</div></div>
+      <div class="block-header-cell"><div class="bh-label">Content Type</div><div class="bh-value"><span class="badge badge-gold">Headline</span> + <span class="badge badge-green">Body Copy</span> + <span class="badge badge-gray">List</span></div></div>
+      <div class="block-header-cell"><div class="bh-label">Status</div><select class="status-select"><option>✅ Keep as-is</option><option>✏️ Needs edit</option><option>🗑 Delete</option><option>❓ Confirm with team</option></select></div>
+    </div>
+    <div class="block-body">
+      <div class="current-text-label">Current Live Text</div>
+      <div class="current-text"><strong>Service Number:</strong> Service 04
+<strong>Headline:</strong> Brand &amp; IP Management
+<strong>Tagline:</strong> Your name is your most valuable long-term asset. We protect it.
+<strong>Audience Tags:</strong> Athletes · Entertainers · Creatives
+<strong>Button:</strong> Protect Your IP
+
+<strong>Body:</strong>
+Most talent discovers they've given away their most valuable assets after it's too late. We build the ownership structures, registration strategy, and licensing framework that ensures what you create or become is yours — permanently.
+
+<strong>What's Included:</strong>
+  • Trademark registration
+  • Image rights structuring
+  • Publishing &amp; master recordings strategy
+  • Brand licensing framework
+  • Endorsement compliance
+  • Content licensing agreements
+  • IP estate planning
+  • Brand equity &amp; valuation advisory</div>
+      <div class="edit-label">Your Edit</div>
+      <textarea class="edit-box" style="min-height:140px;" placeholder="Type updates here..."></textarea>
+      <div class="notes-row"><span class="notes-label">Notes for team</span><input class="notes-input" type="text" placeholder=""></div>
+    </div>
+  </div>
+
+  <div class="content-block">
+    <div class="block-header">
+      <div class="block-header-cell"><div class="bh-label">Section</div><div class="bh-value">Service 05 — Family Governance</div></div>
+      <div class="block-header-cell"><div class="bh-label">Content Type</div><div class="bh-value"><span class="badge badge-gold">Headline</span> + <span class="badge badge-green">Body Copy</span> + <span class="badge badge-gray">List</span></div></div>
+      <div class="block-header-cell"><div class="bh-label">Status</div><select class="status-select"><option>✅ Keep as-is</option><option>✏️ Needs edit</option><option>🗑 Delete</option><option>❓ Confirm with team</option></select></div>
+    </div>
+    <div class="block-body">
+      <div class="current-text-label">Current Live Text</div>
+      <div class="current-text"><strong>Service Number:</strong> Service 05
+<strong>Headline:</strong> Family Governance
+<strong>Tagline:</strong> Protecting generosity. Preserving the future.
+<strong>Audience Tags:</strong> All Clients
+<strong>Button:</strong> Governance Review
+
+<strong>Body:</strong>
+The G-Wagon trap is not really about the car — it's about the absence of structure. We build governance frameworks that let you show up for the people you love, while protecting the enterprise you've built from becoming a resource that depletes without returning value.
+
+<strong>What's Included:</strong>
+  • Family trust structures
+  • Household financial governance
+  • Generosity frameworks &amp; budgets
+  • Dependents support structuring
+  • Estate planning integration
+  • Multi-generational wealth documentation
+  • Family financial literacy
+  • Responsible giving strategy</div>
+      <div class="edit-label">Your Edit</div>
+      <textarea class="edit-box" style="min-height:140px;" placeholder="Type updates here..."></textarea>
+      <div class="notes-row"><span class="notes-label">Notes for team</span><input class="notes-input" type="text" placeholder="e.g. 'Jimmie to confirm the G-Wagon reference is on brand'"></div>
+    </div>
+  </div>
+
+  <div class="content-block">
+    <div class="block-header">
+      <div class="block-header-cell"><div class="bh-label">Section</div><div class="bh-value">Service 06 — Deal Diligence &amp; M&amp;A</div></div>
+      <div class="block-header-cell"><div class="bh-label">Content Type</div><div class="bh-value"><span class="badge badge-gold">Headline</span> + <span class="badge badge-green">Body Copy</span> + <span class="badge badge-gray">List</span></div></div>
+      <div class="block-header-cell"><div class="bh-label">Status</div><select class="status-select"><option>✅ Keep as-is</option><option>✏️ Needs edit</option><option>🗑 Delete</option><option>❓ Confirm with team</option></select></div>
+    </div>
+    <div class="block-body">
+      <div class="current-text-label">Current Live Text</div>
+      <div class="current-text"><strong>Service Number:</strong> Service 06
+<strong>Headline:</strong> Deal Diligence &amp; M&amp;A
+<strong>Tagline:</strong> Independent intelligence before every major decision.
+<strong>Audience Tags:</strong> Pro Athletes · Entrepreneurs · HNW Clients
+<strong>Button:</strong> Diligence Request
+
+<strong>Body:</strong>
+Athletes and entertainers are consistently presented with investment opportunities, business partnerships, and equity deals. The decision to enter or pass requires independent analysis from advisors with no stake in the outcome. We provide that.
+
+<strong>What's Included:</strong>
+  • Investment opportunity analysis
+  • Business due diligence
+  • Minority ownership structuring
+  • Term sheet analysis
+  • Conflict-of-interest auditing
+  • M&amp;A advisory &amp; support
+  • Exit strategy planning
+  • Post-close integration support</div>
+      <div class="edit-label">Your Edit</div>
+      <textarea class="edit-box" style="min-height:140px;" placeholder="Type updates here..."></textarea>
+      <div class="notes-row"><span class="notes-label">Notes for team</span><input class="notes-input" type="text" placeholder=""></div>
+    </div>
+  </div>
+
+  <div class="content-block">
+    <div class="block-header">
+      <div class="block-header-cell"><div class="bh-label">Section</div><div class="bh-value">Services Page CTA</div><div class="bh-sub">Bottom of services page</div></div>
+      <div class="block-header-cell"><div class="bh-label">Content Type</div><div class="bh-value"><span class="badge badge-gold">Headline</span> + <span class="badge badge-green">Body Copy</span> + <span class="badge badge-blue">UI Label</span></div></div>
+      <div class="block-header-cell"><div class="bh-label">Status</div><select class="status-select"><option>✅ Keep as-is</option><option>✏️ Needs edit</option><option>🗑 Delete</option><option>❓ Confirm with team</option></select></div>
+    </div>
+    <div class="block-body">
+      <div class="current-text-label">Current Live Text</div>
+      <div class="current-text"><strong>Headline:</strong> Every lane. One firm.
+<strong>Body:</strong> Start a conversation about what your enterprise needs — and how The Advisory delivers it.
+<strong>Button:</strong> Start a Conversation</div>
+      <div class="edit-label">Your Edit</div>
+      <textarea class="edit-box" placeholder="Type updates here..."></textarea>
+      <div class="notes-row"><span class="notes-label">Notes for team</span><input class="notes-input" type="text" placeholder=""></div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     PAGE 6 — CONTACT (contact.html)
+═══════════════════════════════════════════════════════════════ -->
+<div class="page-divider">
+  <span class="page-divider-num">Page 06</span>
+  <span class="page-divider-name">Contact — Start a Conversation</span>
+  <span class="page-divider-file">contact.html · Intake form + process steps</span>
+</div>
+<div class="audit-body">
+
+  <div class="content-block">
+    <div class="block-header">
+      <div class="block-header-cell"><div class="bh-label">Section</div><div class="bh-value">Contact Hero</div><div class="bh-sub">Top of contact page</div></div>
+      <div class="block-header-cell"><div class="bh-label">Content Type</div><div class="bh-value"><span class="badge badge-gold">Headline</span> + <span class="badge badge-green">Body Copy</span></div></div>
+      <div class="block-header-cell"><div class="bh-label">Status</div><select class="status-select"><option>✅ Keep as-is</option><option>✏️ Needs edit</option><option>🗑 Delete</option><option>❓ Confirm with team</option></select></div>
+    </div>
+    <div class="block-body">
+      <div class="current-text-label">Current Live Text</div>
+      <div class="current-text"><strong>Section Label:</strong> Start a Conversation
+<strong>Headline:</strong>
+Let's build
+something
+worth
+protecting.
+
+<strong>Paragraph 1:</strong>
+We work with a selective group of athletes, entertainers, and entrepreneurs each year. The first step is a brief conversation about where you are and where you're going.
+
+<strong>Paragraph 2:</strong>
+No pressure. No scripts. Just an honest conversation about whether we're the right firm for your enterprise.</div>
+      <div class="edit-label">Your Edit</div>
+      <textarea class="edit-box" placeholder="Type updates here..."></textarea>
+      <div class="notes-row"><span class="notes-label">Notes for team</span><input class="notes-input" type="text" placeholder=""></div>
+    </div>
+  </div>
+
+  <div class="content-block">
+    <div class="block-header">
+      <div class="block-header-cell"><div class="bh-label">Section</div><div class="bh-value">Intake Process — 4 Steps</div><div class="bh-sub">Left sidebar of contact section</div></div>
+      <div class="block-header-cell"><div class="bh-label">Content Type</div><div class="bh-value"><span class="badge badge-gold">Headline</span> + <span class="badge badge-gray">List</span> + <span class="badge badge-green">Body Copy</span></div></div>
+      <div class="block-header-cell"><div class="bh-label">Status</div><select class="status-select"><option>✅ Keep as-is</option><option>✏️ Needs edit</option><option>🗑 Delete</option><option>❓ Confirm with team</option></select></div>
+    </div>
+    <div class="block-body">
+      <div class="www-row">
+        <div class="www-cell"><div class="www-label">What</div><div class="www-text">Left column of the contact section — explains what happens after submitting the form</div></div>
+        <div class="www-cell"><div class="www-label">Where</div><div class="www-text">Left column, beside the contact form</div></div>
+        <div class="www-cell"><div class="www-label">How</div><div class="www-text">Headline + intro line + 4 numbered steps. Below steps: a special gold-bordered note for NIL athletes</div></div>
+      </div>
+      <div class="current-text-label">Current Live Text</div>
+      <div class="current-text"><strong>Headline:</strong> What happens when you reach out.
+<strong>Intro:</strong> Our intake process is fast, clear, and built to respect your time.
+
+<strong>Step 01:</strong> We review your submission within 48 hours and confirm receipt.
+<strong>Step 02:</strong> We schedule a brief call — typically 20–30 minutes — to understand your current situation and goals.
+<strong>Step 03:</strong> We present a clear picture of what your enterprise looks like today, and what it should look like — no obligation.
+<strong>Step 04:</strong> If there's a fit, we outline the engagement structure and move forward together.
+
+<strong>NIL Special Note label:</strong> NIL Athletes
+<strong>NIL Note text:</strong> Start with our free Redshirt consultation — a no-obligation risk assessment and strategy session. Select "NIL / Student-Athlete" below.</div>
+      <div class="edit-label">Your Edit</div>
+      <textarea class="edit-box" style="min-height:150px;" placeholder="e.g. 'Update Step 02 timing to: ...' / 'Change NIL note to: ...'"></textarea>
+      <div class="notes-row"><span class="notes-label">Notes for team</span><input class="notes-input" type="text" placeholder=""></div>
+    </div>
+  </div>
+
+  <div class="content-block">
+    <div class="block-header">
+      <div class="block-header-cell"><div class="bh-label">Section</div><div class="bh-value">Contact Form — Field Labels &amp; Options</div><div class="bh-sub">Right column of contact section</div></div>
+      <div class="block-header-cell"><div class="bh-label">Content Type</div><div class="bh-value"><span class="badge badge-blue">UI Label</span></div></div>
+      <div class="block-header-cell"><div class="bh-label">Status</div><select class="status-select"><option>✅ Keep as-is</option><option>✏️ Needs edit</option><option>🗑 Delete</option><option>❓ Confirm with team</option></select></div>
+    </div>
+    <div class="block-body">
+      <div class="www-row">
+        <div class="www-cell"><div class="www-label">What</div><div class="www-text">The contact/intake form — all field labels, dropdown options, placeholders, and button text</div></div>
+        <div class="www-cell"><div class="www-label">Where</div><div class="www-text">Right column of the contact page, beside the intake steps</div></div>
+        <div class="www-cell"><div class="www-label">How</div><div class="www-text">Standard web form. First/Last name side by side → Email → Phone → "I Am A" dropdown → Sport/Field → "Primary Need" dropdown → Message textarea → Submit button → Confidentiality note</div></div>
+      </div>
+      <div class="current-text-label">Current Live Text</div>
+      <div class="current-text"><strong>Form Fields:</strong>
+  First Name | Last Name
+  Email Address
+  Phone Number
+  "I Am A" dropdown options:
+    – Professional Athlete
+    – NIL / Student-Athlete
+    – Entertainer / Creative
+    – High-Net-Worth Entrepreneur
+    – Agent or Manager
+    – Attorney or Fiduciary
+    – Trainer or Advisor
+    – Power Connector
+    – Other
+  Sport / Field / Industry  (placeholder: "e.g. NFL, Music, Real Estate, Basketball")
+  Primary Need dropdown options:
+    – NIL Strategy &amp; Compliance
+    – Contract / Deal Representation
+    – Entity &amp; Tax Structure
+    – Brand &amp; IP Protection
+    – Family Governance
+    – Deal Diligence / Investment
+    – Partnership / Referral
+    – Full-Service Representation
+    – General Inquiry
+  Message field  (placeholder: "Tell us a bit about your current situation or what you're trying to accomplish...")
+
+<strong>Submit Button:</strong> Submit Your Inquiry
+<strong>Confidentiality Note:</strong> All inquiries are confidential. We respond within 48 hours.
+<strong>Success Message:</strong> "We received your inquiry. We'll be in touch within 48 hours. Thank you for taking the first step."</div>
+      <div class="edit-label">Your Edit</div>
+      <textarea class="edit-box" style="min-height:120px;" placeholder="e.g. 'Add dropdown option: ...' / 'Change button text to: ...' / 'Update confidentiality note to: ...'"></textarea>
+      <div class="notes-row"><span class="notes-label">Notes for team</span><input class="notes-input" type="text" placeholder="e.g. 'Confirm where form submissions go — email or CRM?'"></div>
+    </div>
+  </div>
+
+  <!-- FINAL SIGN-OFF -->
+  <div style="margin-top: 3rem; padding: 2rem; background: #0D0D0D; color: #FAF8F5; border-radius: 4px; text-align: center;">
+    <div style="font-family: 'Arial', sans-serif; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #B8965A; margin-bottom: 1rem;">End of Content Audit</div>
+    <p style="font-family: 'Arial', sans-serif; font-size: 0.875rem; color: rgba(250,248,245,0.5); max-width: 480px; margin: 0 auto; line-height: 1.7;">
+      Once complete, print this page as a PDF and share with your development team.<br>
+      Pages not covered in this document (NIL, Partnerships, Pro Athletes, Creatives, Bespoke) follow identical section patterns and can be audited in a follow-up document if needed.
+    </p>
+    <div style="margin-top: 1.5rem; font-family: 'Georgia', serif; font-size: 1rem; color: #B8965A; letter-spacing: 0.06em;">The Advisory — © 2026</div>
+  </div>
+
+</div>
+
+</body>
+</html>

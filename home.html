@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Advisory — Architecting the Athlete Enterprise</title>
+  <meta name="description" content="The Advisory is a full-service enterprise management firm serving professional athletes, NIL athletes, entertainers, and high-net-worth entrepreneurs. Contracts, NIL, IP, tax, legal, and family governance.">
+  <link rel="stylesheet" href="css/design-system.css">
+  <link rel="stylesheet" href="css/nav.css">
+  <style>
+    /* ===== HOMEPAGE SPECIFIC STYLES ===== */
+
+    /* Override near-black to match logo image box colour (#131313)
+       so the watermark dissolves seamlessly — no visible bounding box */
+    :root {
+      --near-black: #131313;
+    }
+
+    body {
+      background-color: #131313;
+    }
+
+    /* ===== HERO: CAA-inspired utilitarian dark landing ===== */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 680px;
+      max-height: 1080px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      background-color: #131313;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 60% 40%, rgba(184,150,90,0.06) 0%, transparent 70%),
+                  radial-gradient(ellipse at 20% 80%, rgba(13,13,13,0.8) 0%, transparent 60%);
+    }
+
+    /* ===== LOGO WATERMARK in hero background — centered ===== */
+    .hero-wordmark-bg {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .hero-wordmark-bg img.logo-wm {
+      width: clamp(280px, 42vw, 640px);
+      height: auto;
+      object-fit: contain;
+      opacity: 0.09;
+      /* Remove bounding-box contrast: match background so edges dissolve */
+      filter: grayscale(100%) brightness(3.2) contrast(0.38);
+      /* screen blend makes the logo's dark box dissolve against #131313 bg */
+      mix-blend-mode: screen;
+      user-select: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 0 var(--container-padding) var(--space-7);
+      max-width: var(--container-max);
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 2rem;
+      opacity: 0;
+      transform: translateY(12px);
+      animation: fadeUp 0.7s var(--ease-out-expo) 0.3s forwards;
+    }
+
+    .hero-eyebrow-line {
+      display: block;
+      width: 2rem;
+      height: 1px;
+      background-color: var(--gold);
+    }
+
+    .hero-eyebrow-text {
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .hero-headline {
+      font-family: var(--font-display);
+      font-size: clamp(3.5rem, 9vw, 10rem);
+      line-height: 0.88;
+      letter-spacing: -0.02em;
+      color: var(--ivory);
+      margin-bottom: var(--space-4);
+      max-width: 14ch;
+    }
+
+    .hero-headline .line {
+      display: block;
+      overflow: hidden;
+      /* Extra side padding so wide glyphs (G, A) don’t clip */
+      /* Generous padding on all sides — prevents G, A, etc. from clipping */
+      padding: 0.25em 0.18em;
+      margin: -0.25em -0.18em;
+    }
+
+    .hero-headline .line-inner {
+      display: block;
+      opacity: 0;
+      transform: translateY(110%);
+      animation: slideUp 0.9s var(--ease-out-expo) forwards;
+    }
+
+    .hero-headline .line:nth-child(1) .line-inner { animation-delay: 0.4s; }
+    .hero-headline .line:nth-child(2) .line-inner { animation-delay: 0.55s; }
+    .hero-headline .line:nth-child(3) .line-inner { animation-delay: 0.7s; }
+
+    .hero-headline em {
+      font-style: italic;
+      color: var(--stone);
+    }
+
+    .hero-sub-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: flex-end;
+      gap: var(--space-5);
+      opacity: 0;
+      transform: translateY(12px);
+      animation: fadeUp 0.7s var(--ease-out-expo) 0.9s forwards;
+    }
+
+    .hero-descriptor {
+      font-family: var(--font-sans);
+      font-size: clamp(0.9rem, 1.1vw, 1.05rem);
+      color: var(--stone);
+      line-height: 1.6;
+      max-width: 40ch;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: var(--space-2);
+      flex-shrink: 0;
+    }
+
+    /* ===== SECTION: AUDIENCE PATHWAYS (tangible content early) ===== */
+    .pathways {
+      background-color: var(--charcoal);
+      padding: 0;
+    }
+
+    .pathway-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .pathway-item {
+      position: relative;
+      border-right: 1px solid var(--border-dark);
+      padding: var(--space-6) var(--space-5);
+      overflow: hidden;
+      cursor: pointer;
+      transition: background-color var(--duration-base) var(--ease-smooth);
+    }
+
+    .pathway-item:last-child {
+      border-right: none;
+    }
+
+    .pathway-item:hover {
+      background-color: rgba(255,255,255,0.02);
+    }
+
+    .pathway-item::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background-color: var(--gold);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform var(--duration-base) var(--ease-smooth);
+    }
+
+    .pathway-item:hover::after {
+      transform: scaleX(1);
+    }
+
+    .pathway-tag {
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: var(--space-3);
+    }
+
+    .pathway-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 2.5vw, 2.75rem);
+      line-height: 1.0;
+      color: var(--ivory);
+      margin-bottom: var(--space-2);
+    }
+
+    .pathway-desc {
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: var(--space-3);
+    }
+
+    .pathway-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--stone);
+      transition: color var(--duration-base) var(--ease-smooth);
+    }
+
+    .pathway-item:hover .pathway-link {
+      color: var(--gold);
+    }
+
+    .pathway-link svg {
+      width: 14px;
+      height: 14px;
+      transition: transform var(--duration-base) var(--ease-smooth);
+    }
+
+    .pathway-item:hover .pathway-link svg {
+      transform: translateX(4px);
+    }
+
+    /* ===== MISSION SECTION ===== */
+    .mission-section {
+      background-color: var(--near-black);
+      padding: var(--space-9) 0;
+    }
+
+    .mission-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: var(--space-7);
+      align-items: center;
+    }
+
+    .mission-headline {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 4.5vw, 5rem);
+      line-height: 1.0;
+      letter-spacing: -0.02em;
+      color: var(--ivory);
+      margin-bottom: var(--space-4);
+    }
+
+    .mission-headline em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .mission-text p {
+      font-size: clamp(0.9rem, 1.1vw, 1.05rem);
+      color: var(--stone);
+      line-height: 1.7;
+      margin-bottom: 1.25rem;
+    }
+
+    .mission-text p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* ===== FIVE LANES ===== */
+    .lanes-section {
+      background-color: var(--charcoal);
+      padding: var(--space-8) 0;
+    }
+
+    .lanes-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-5);
+      align-items: end;
+      margin-bottom: var(--space-6);
+    }
+
+    /* ===== SOCIAL PROOF ===== */
+    .proof-section {
+      background-color: var(--near-black);
+      padding: var(--space-8) 0;
+    }
+
+    .proof-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: var(--space-4);
+      margin-top: var(--space-5);
+    }
+
+    .proof-image-wrap {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 4/3;
+    }
+
+    .proof-image-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(25%) contrast(1.05) brightness(0.9);
+      transition: all var(--duration-xslow) var(--ease-smooth);
+    }
+
+    .proof-image-wrap:hover img {
+      filter: grayscale(0%) contrast(1.0) brightness(1.0);
+      transform: scale(1.03);
+    }
+
+    .proof-image-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: var(--space-3);
+      background: linear-gradient(to top, rgba(13,13,13,0.9), transparent);
+    }
+
+    .proof-image-caption span {
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--stone);
+    }
+
+    .proof-text-col {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: var(--space-4);
+    }
+
+    .client-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .client-name {
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border-dark);
+      font-family: var(--font-display);
+      font-size: clamp(1.25rem, 2vw, 1.875rem);
+      color: var(--stone);
+      transition: color var(--duration-base) var(--ease-smooth),
+                  padding-left var(--duration-base) var(--ease-smooth);
+      cursor: default;
+    }
+
+    .client-name:hover {
+      color: var(--ivory);
+      padding-left: 0.75rem;
+    }
+
+    .client-name:first-child {
+      border-top: 1px solid var(--border-dark);
+    }
+
+    /* ===== SERVICES PREVIEW ===== */
+    .services-preview {
+      background-color: var(--surface-dark);
+      padding: var(--space-8) 0;
+    }
+
+    .services-preview-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid var(--border-dark);
+      border-left: 1px solid var(--border-dark);
+    }
+
+    .service-preview-item {
+      border-right: 1px solid var(--border-dark);
+      border-bottom: 1px solid var(--border-dark);
+      padding: var(--space-4);
+      transition: background-color var(--duration-base) var(--ease-smooth);
+      cursor: pointer;
+    }
+
+    .service-preview-item:hover {
+      background-color: rgba(184,150,90,0.04);
+    }
+
+    .sp-num {
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+
+    .sp-title {
+      font-family: var(--font-sans);
+      font-size: clamp(1rem, 1.2vw, 1.2rem);
+      font-weight: 600;
+      color: var(--ivory);
+      letter-spacing: -0.01em;
+      margin-bottom: 0.75rem;
+      transition: color var(--duration-base) var(--ease-smooth);
+    }
+
+    .service-preview-item:hover .sp-title {
+      color: var(--gold);
+    }
+
+    .sp-desc {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ===== STATS ROW ===== */
+    .stats-row {
+      background-color: var(--near-black);
+      padding: var(--space-7) 0;
+      border-top: 1px solid var(--border-dark);
+      border-bottom: 1px solid var(--border-dark);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+    }
+
+    .stat-item {
+      padding: 0 var(--space-4);
+      border-right: 1px solid var(--border-dark);
+      text-align: center;
+    }
+
+    .stat-item:first-child {
+      padding-left: 0;
+    }
+
+    .stat-item:last-child {
+      border-right: none;
+    }
+
+    /* ===== PARTNERSHIPS CTA BANNER ===== */
+    .cta-banner {
+      background-color: var(--charcoal);
+      padding: var(--space-8) 0;
+    }
+
+    .cta-banner-inner {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: var(--space-5);
+    }
+
+    .cta-banner-text h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 3.5vw, 3.75rem);
+      line-height: 1.05;
+      color: var(--ivory);
+      margin-bottom: 0.75rem;
+    }
+
+    .cta-banner-text p {
+      color: var(--stone);
+      font-size: 0.9375rem;
+      max-width: 50ch;
+    }
+
+    /* ===== ANIMATIONS ===== */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(100%); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      .pathway-grid { grid-template-columns: 1fr; }
+      .pathway-item { border-right: none; border-bottom: 1px solid var(--border-dark); }
+      .pathway-item:last-child { border-bottom: none; }
+      .mission-layout { grid-template-columns: 1fr; gap: var(--space-5); }
+      .lanes-header { grid-template-columns: 1fr; }
+      .proof-grid { grid-template-columns: 1fr; }
+      .services-preview-grid { grid-template-columns: 1fr 1fr; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .stat-item:nth-child(2) { border-right: none; }
+      .stat-item:nth-child(3) { border-right: 1px solid var(--border-dark); border-top: 1px solid var(--border-dark); padding-top: var(--space-4); }
+      .stat-item:nth-child(4) { border-right: none; border-top: 1px solid var(--border-dark); padding-top: var(--space-4); }
+      .cta-banner-inner { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .hero-sub-row { grid-template-columns: 1fr; }
+      .hero-actions { flex-wrap: wrap; }
+      .services-preview-grid { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       HEADER / NAVIGATION
+  ============================================================ -->
+  <header class="site-header" id="site-header">
+    <div class="container header-inner">
+
+      <!-- Logo -->
+      <a href="home.html" class="site-logo">
+        <div class="logo-icon">
+          <img src="images/social-proof-1.jpg" alt="The Advisory Icon" onerror="this.style.display='none'">
+        </div>
+        <div class="logo-text">
+          <span class="logo-name">The Advisory</span>
+          <span class="logo-sub">Enterprise Management</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav class="primary-nav" aria-label="Primary navigation">
+        <ul>
+          <!-- Who We Serve -->
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              Who We Serve
+              <svg class="chevron" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M2 4l4 4 4-4"/>
+              </svg>
+            </a>
+            <ul class="dropdown">
+              <li class="dropdown-item"><a href="sports.html" class="dropdown-link">Professional Athletes</a></li>
+              <li class="dropdown-item"><a href="nil.html" class="dropdown-link">NIL Athletes</a></li>
+              <li class="dropdown-item"><a href="creatives.html" class="dropdown-link">Entertainers &amp; Creatives</a></li>
+              <li class="dropdown-item"><a href="bespoke.html" class="dropdown-link">Bespoke &amp; Entrepreneurs</a></li>
+            </ul>
+          </li>
+
+          <!-- Services -->
+          <li class="nav-item">
+            <a href="services.html" class="nav-link">
+              Services
+              <svg class="chevron" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M2 4l4 4 4-4"/>
+              </svg>
+            </a>
+            <ul class="dropdown">
+              <li class="dropdown-item"><a href="services.html#contracts" class="dropdown-link">Contracts &amp; Negotiation</a></li>
+              <li class="dropdown-item"><a href="services.html#nil-services" class="dropdown-link">NIL Strategy &amp; Compliance</a></li>
+              <li class="dropdown-item"><a href="services.html#entity" class="dropdown-link">Entity &amp; Tax Structure</a></li>
+              <li class="dropdown-item"><a href="services.html#brand-ip" class="dropdown-link">Brand &amp; IP</a></li>
+              <li class="dropdown-item"><a href="services.html#family-governance" class="dropdown-link">Family Governance</a></li>
+              <li class="dropdown-item"><a href="services.html#diligence" class="dropdown-link">Deal Diligence &amp; M&amp;A</a></li>
+            </ul>
+          </li>
+
+          <!-- NIL -->
+          <li class="nav-item">
+            <a href="nil.html" class="nav-link">NIL</a>
+          </li>
+
+          <!-- Partnerships -->
+          <li class="nav-item">
+            <a href="partnerships.html" class="nav-link">
+              Partnerships
+              <svg class="chevron" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M2 4l4 4 4-4"/>
+              </svg>
+            </a>
+            <ul class="dropdown">
+              <li class="dropdown-item"><a href="partnerships.html#agents-managers" class="dropdown-link">Agents &amp; Managers</a></li>
+              <li class="dropdown-item"><a href="partnerships.html#advisors" class="dropdown-link">Trainers &amp; Advisors</a></li>
+              <li class="dropdown-item"><a href="partnerships.html#connectors" class="dropdown-link">Movers &amp; Shakers</a></li>
+            </ul>
+          </li>
+
+          <!-- About -->
+          <li class="nav-item">
+            <a href="about.html" class="nav-link">About
+              <svg class="chevron" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4l4 4 4-4"/></svg>
+            </a>
+            <ul class="dropdown">
+              <li class="dropdown-item"><a href="about.html" class="dropdown-link">About The Advisory</a></li>
+              <li class="dropdown-item"><a href="team.html" class="dropdown-link">Meet the Team</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Header CTA -->
+      <div class="header-cta">
+        <a href="contact.html" class="btn btn--ghost">Start a Conversation</a>
+      </div>
+
+      <!-- Mobile Toggle -->
+      <button class="mobile-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+    </div>
+  </header>
+
+  <!-- Mobile Nav Overlay -->
+  <div class="mobile-nav-overlay"></div>
+
+  <!-- Mobile Navigation Panel -->
+  <nav class="mobile-nav" aria-label="Mobile navigation">
+    <ul>
+      <li class="mobile-nav-item">
+        <button class="mobile-nav-trigger" data-submenu="m-serve">
+          <span>Who We Serve</span>
+          <svg class="m-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M5 8l5 5 5-5"/>
+          </svg>
+        </button>
+        <div class="mobile-submenu" id="m-serve">
+          <a href="sports.html" class="mobile-submenu-link">Professional Athletes</a>
+          <a href="nil.html" class="mobile-submenu-link">NIL Athletes</a>
+          <a href="creatives.html" class="mobile-submenu-link">Entertainers &amp; Creatives</a>
+          <a href="bespoke.html" class="mobile-submenu-link">Bespoke &amp; Entrepreneurs</a>
+        </div>
+      </li>
+      <li class="mobile-nav-item">
+        <button class="mobile-nav-trigger" data-submenu="m-services">
+          <span>Services</span>
+          <svg class="m-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M5 8l5 5 5-5"/>
+          </svg>
+        </button>
+        <div class="mobile-submenu" id="m-services">
+          <a href="services.html#contracts" class="mobile-submenu-link">Contracts &amp; Negotiation</a>
+          <a href="services.html#nil-services" class="mobile-submenu-link">NIL Strategy &amp; Compliance</a>
+          <a href="services.html#entity" class="mobile-submenu-link">Entity &amp; Tax Structure</a>
+          <a href="services.html#brand-ip" class="mobile-submenu-link">Brand &amp; IP</a>
+          <a href="services.html#family-governance" class="mobile-submenu-link">Family Governance</a>
+          <a href="services.html#diligence" class="mobile-submenu-link">Deal Diligence &amp; M&amp;A</a>
+        </div>
+      </li>
+      <li class="mobile-nav-item">
+        <button class="mobile-nav-trigger">
+          <a href="nil.html">NIL</a>
+        </button>
+      </li>
+      <li class="mobile-nav-item">
+        <button class="mobile-nav-trigger" data-submenu="m-partners">
+          <span>Partnerships</span>
+          <svg class="m-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M5 8l5 5 5-5"/>
+          </svg>
+        </button>
+        <div class="mobile-submenu" id="m-partners">
+          <a href="partnerships.html#agents-managers" class="mobile-submenu-link">Agents &amp; Managers</a>
+          <a href="partnerships.html#advisors" class="mobile-submenu-link">Trainers &amp; Advisors</a>
+          <a href="partnerships.html#connectors" class="mobile-submenu-link">Movers &amp; Shakers</a>
+        </div>
+      </li>
+      <li class="mobile-nav-item">
+        <button class="mobile-nav-trigger">
+          <a href="about.html">About</a>
+        </button>
+      </li>
+    </ul>
+    <div class="mobile-nav-cta">
+      <a href="contact.html" class="btn btn--primary">Start a Conversation</a>
+    </div>
+  </nav>
+
+  <!-- ============================================================
+       HERO
+  ============================================================ -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+
+    <!-- Logo watermark background -->
+    <div class="hero-wordmark-bg" aria-hidden="true">
+      <img class="logo-wm"
+           src="images/social-proof-1.jpg"
+           alt=""
+           onerror="this.style.opacity='0'">
+    </div>
+
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        <span class="hero-eyebrow-line"></span>
+        <span class="hero-eyebrow-text">Enterprise Management</span>
+      </div>
+
+      <h1 class="hero-headline">
+        <span class="line"><span class="line-inner">Architecting</span></span>
+        <span class="line"><span class="line-inner">the <em>Athlete</em></span></span>
+        <span class="line"><span class="line-inner">Enterprise.</span></span>
+      </h1>
+
+      <div class="hero-sub-row">
+        <p class="hero-descriptor">
+          You are not just an athlete. You are the CEO of your own enterprise.
+          We build the systems, structures, and strategies that protect your name,
+          grow your wealth, and secure your legacy.
+        </p>
+        <div class="hero-actions">
+          <a href="nil.html" class="btn btn--primary">NIL Athletes</a>
+          <a href="about.html" class="btn btn--ghost">Our Approach</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       AUDIENCE PATHWAYS (Tangible content early on page)
+  ============================================================ -->
+  <section class="pathways">
+    <div class="pathway-grid">
+
+      <a href="sports.html" class="pathway-item reveal revealed">
+        <div class="pathway-tag">Professional Athletes</div>
+        <h2 class="pathway-title">Pro Sports</h2>
+        <p class="pathway-desc">Full-service contract, representation, business structure, and long-term wealth architecture for professional athletes.</p>
+        <span class="pathway-link">
+          Explore
+          <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M2 7h10M7 2l5 5-5 5"/>
+          </svg>
+        </span>
+      </a>
+
+      <a href="nil.html" class="pathway-item reveal reveal-delay-1 revealed">
+        <div class="pathway-tag">NIL Athletes</div>
+        <h2 class="pathway-title">Name, Image &amp; Likeness</h2>
+        <p class="pathway-desc">Navigate the $2.3B NIL market with enterprise-grade contracts, compliance, and tax structure built for student-athletes.</p>
+        <span class="pathway-link">
+          Explore
+          <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M2 7h10M7 2l5 5-5 5"/>
+          </svg>
+        </span>
+      </a>
+
+      <a href="creatives.html" class="pathway-item reveal reveal-delay-2 revealed">
+        <div class="pathway-tag">Entertainers &amp; Creatives</div>
+        <h2 class="pathway-title">Creative Enterprise</h2>
+        <p class="pathway-desc">Bespoke advisory for entertainers, artists, and high-net-worth entrepreneurs who demand the same institutional standard as global icons.</p>
+        <span class="pathway-link">
+          Explore
+          <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M2 7h10M7 2l5 5-5 5"/>
+          </svg>
+        </span>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       MISSION SECTION
+  ============================================================ -->
+  <section class="mission-section">
+    <div class="container">
+      <div class="mission-layout">
+
+        <div class="mission-left reveal revealed">
+          <div class="eyebrow">
+            <span class="label">Our Philosophy</span>
+          </div>
+          <h2 class="mission-headline">
+            The business of you
+            <em>demands</em>
+            elite representation.
+          </h2>
+          <a href="about.html" class="btn btn--text" style="margin-top: var(--space-3);">Our Story</a>
+        </div>
+
+        <div class="mission-text reveal reveal-delay-2 revealed">
+          <p>
+            The Advisory is the institutional backbone behind today's most deliberate athletes and entertainers.
+            We compound legal precision, financial intelligence, and operational strategy into a single,
+            fully integrated enterprise management system — purpose-built for those whose value extends
+            well beyond the game.
+          </p>
+          <p>
+            Where most advisors hand you tools, we build you a system. Where most agents capture a transaction,
+            we architect your long-term position. Every engagement is tailored, every result is deliberate,
+            and every client relationship is built on one principle: you keep what you earn.
+          </p>
+          <p>
+            Led by <strong style="color: var(--ivory);">Jimmie B. Strong</strong>; Harvard Law School (set record for most amount of sports law credits in Harvard's history), Morehouse Law Valedictorian, and Top 1% Financial Advisor.
+            The Advisory brings institutional intelligence to every athlete's enterprise.
+          </p>
+        </div>
+
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       STATS ROW
+  ============================================================ -->
+  <div class="stats-row">
+    <div class="container">
+      <div class="stats-grid">
+
+        <div class="stat-item reveal revealed">
+          <div class="stat-number">
+            <span class="counter" data-target="40" data-suffix="K+">40K+</span>
+          </div>
+          <div class="stat-label">Average Tax Exposure Identified Per Athlete</div>
+        </div>
+
+        <div class="stat-item reveal reveal-delay-1 revealed">
+          <div class="stat-number">
+            <span class="counter" data-target="75" data-suffix="%">75%</span>
+          </div>
+          <div class="stat-label">Average Improvement in Financial Literacy</div>
+        </div>
+
+        <div class="stat-item reveal reveal-delay-2 revealed">
+          <div class="stat-number">
+            <span class="counter" data-target="1" data-suffix=" in 3">1 in 3</span>
+          </div>
+          <div class="stat-label">Student Athletes Receive Financial Education</div>
+        </div>
+
+        <div class="stat-item reveal reveal-delay-3 revealed">
+          <div class="stat-number">
+            <span class="counter" data-target="5">5</span>
+          </div>
+          <div class="stat-label">Critical Enterprise Lanes We Manage For You</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       THE FIVE LANES
+  ============================================================ -->
+  <section class="lanes-section">
+    <div class="container">
+
+      <div class="lanes-header">
+        <div class="reveal revealed">
+          <div class="eyebrow"><span class="label">Our Framework</span></div>
+          <h2 class="display-md text-white">The 5 Lanes<br>Every Athlete<br>Must Command.</h2>
+        </div>
+        <div class="reveal reveal-delay-2 revealed">
+          <p class="body-lg text-stone" style="max-width: 36ch;">
+            Most athletes lose value before they realize it. We identify and close every gap —
+            structurally, legally, and financially.
+          </p>
+          <a href="services.html" class="btn btn--ghost" style="margin-top: var(--space-3);">All Services</a>
+        </div>
+      </div>
+
+      <div class="reveal revealed">
+        <div class="lane-card" onclick="window.location='services.html#entity'">
+          <span class="lane-number">01</span>
+          <div>
+            <div class="lane-title">Tax Strategy</div>
+            <div class="lane-desc">Multi-state exposure, self-employment tax (15.3%), phantom income on non-cash gifts. We identify and eliminate the Silent Killer before it costs you.</div>
+          </div>
+          <span class="lane-arrow">→</span>
+        </div>
+
+        <div class="lane-card" onclick="window.location='services.html#contracts'">
+          <span class="lane-number">02</span>
+          <div>
+            <div class="lane-title">Legal Structuring</div>
+            <div class="lane-desc">Entity formation (LLC / S-Corp), contract review, dispute prevention. The architecture that separates you from your liability.</div>
+          </div>
+          <span class="lane-arrow">→</span>
+        </div>
+
+        <div class="lane-card" onclick="window.location='services.html#brand-ip'">
+          <span class="lane-number">03</span>
+          <div>
+            <div class="lane-title">Brand &amp; IP Ownership</div>
+            <div class="lane-desc">Your name. Your image. Your likeness. Your intellectual property. We ensure you own it, register it, and leverage it — for life.</div>
+          </div>
+          <span class="lane-arrow">→</span>
+        </div>
+
+        <div class="lane-card" onclick="window.location='services.html#family-governance'">
+          <span class="lane-number">04</span>
+          <div>
+            <div class="lane-title">Family Office &amp; Governance</div>
+            <div class="lane-desc">Professionalizing generosity. We help you take care of those you love without becoming their bank — structures that serve family without sacrificing your future.</div>
+          </div>
+          <span class="lane-arrow">→</span>
+        </div>
+
+        <div class="lane-card" onclick="window.location='services.html#compliance'">
+          <span class="lane-number">05</span>
+          <div>
+            <div class="lane-title">Compliance</div>
+            <div class="lane-desc">NCAA regulations, state-specific eligibility, evolving NIL law. Full compliance management so you stay on the field and ahead of the rule changes.</div>
+          </div>
+          <span class="lane-arrow">→</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SOCIAL PROOF
+  ============================================================ -->
+  <section class="proof-section">
+    <div class="container">
+
+      <div class="reveal revealed">
+        <div class="eyebrow"><span class="label">Trusted By</span></div>
+        <h2 class="display-md text-white" style="max-width: 14ch; margin-bottom: 0;">Icons trust us with what matters most.</h2>
+      </div>
+
+      <div class="proof-grid">
+
+        <div class="proof-image-wrap reveal revealed">
+          <img src="images/social-proof-enhanced-2.jpg"
+               alt="The Advisory founder at a courtside NBA event"
+               loading="lazy"
+               onerror="this.src='images/social-proof-3.jpg'">
+          <div class="proof-image-caption">
+            <span>Courtside · Client Event</span>
+          </div>
+        </div>
+
+        <div class="proof-text-col reveal reveal-delay-2 revealed">
+
+          <div>
+            <p class="body-lg text-stone" style="margin-bottom: var(--space-3);">
+              From global icons to the next generation of NIL athletes —
+              The Advisory has earned the trust of those who can afford to go anywhere,
+              and choose us.
+            </p>
+          </div>
+
+          <div>
+            <div class="label text-gold" style="margin-bottom: 0.5rem;">Notable Client Relationships</div>
+            <div class="client-list">
+              <div class="client-name">Floyd Mayweather</div>
+              <div class="client-name">Mookie Betts</div>
+              <div class="client-name">Jalen Ramsey</div>
+              <div class="client-name">Jaren Jackson Jr.</div>
+              <div class="client-name">Jim Brown (1936 — 2023)</div>
+            </div>
+          </div>
+
+          <a href="about.html" class="btn btn--ghost">Our Leadership</a>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SERVICES PREVIEW
+  ============================================================ -->
+  <section class="services-preview">
+    <div class="container">
+
+      <div class="reveal revealed" style="margin-bottom: var(--space-5);">
+        <div class="eyebrow"><span class="label">What We Do</span></div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); align-items: end;">
+          <h2 class="display-md text-white">One firm.<br>Every lane.</h2>
+          <div>
+            <p class="body-md text-stone">Full-service enterprise management — legal, financial, operational, and strategic — under one roof. No handoffs. No gaps. No excuses.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="services-preview-grid reveal revealed">
+
+        <div class="service-preview-item" onclick="window.location='services.html#contracts'">
+          <div class="sp-num">01</div>
+          <div class="sp-title">Contracts &amp; Negotiation</div>
+          <p class="sp-desc">Agent representation, deal room management, term-sheet drafting, performance tracking, and renewal pipelines.</p>
+        </div>
+
+        <div class="service-preview-item" onclick="window.location='nil.html'">
+          <div class="sp-num">02</div>
+          <div class="sp-title">NIL Strategy &amp; Compliance</div>
+          <p class="sp-desc">From initial strategy to executed deals to long-term brand management — the full NIL lifecycle managed with institutional rigor.</p>
+        </div>
+
+        <div class="service-preview-item" onclick="window.location='services.html#entity'">
+          <div class="sp-num">03</div>
+          <div class="sp-title">Entity &amp; Tax Posture</div>
+          <p class="sp-desc">LLC / S-Corp formation, multi-state tax exposure management, phantom income protection, and IRS-ready structure.</p>
+        </div>
+
+        <div class="service-preview-item" onclick="window.location='services.html#brand-ip'">
+          <div class="sp-num">04</div>
+          <div class="sp-title">Brand &amp; IP Management</div>
+          <p class="sp-desc">Trademark, image rights, licensing, endorsement compliance, and brand strategy that builds equity beyond your career.</p>
+        </div>
+
+        <div class="service-preview-item" onclick="window.location='services.html#family-governance'">
+          <div class="sp-num">05</div>
+          <div class="sp-title">Family Governance</div>
+          <p class="sp-desc">Trust structures, generosity frameworks, household financial governance, and documentation that protects your family the right way.</p>
+        </div>
+
+        <div class="service-preview-item" onclick="window.location='services.html#diligence'">
+          <div class="sp-num">06</div>
+          <div class="sp-title">Deal Diligence &amp; M&amp;A</div>
+          <p class="sp-desc">Independent due diligence, investment analysis, minority ownership structures, and exit strategy advisory.</p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECOND SOCIAL PROOF / ADDITIONAL IMAGE
+  ============================================================ -->
+  <section class="section section--dark" style="padding: var(--space-7) 0;">
+    <div class="container">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-5); align-items: center;">
+
+        <div class="reveal revealed">
+          <div class="eyebrow"><span class="label">Legacy Relationships</span></div>
+          <h2 class="display-md text-white" style="margin-bottom: var(--space-3);">Built on trust.<br>Measured in legacies.</h2>
+          <p class="body-md text-stone" style="max-width: 38ch; margin-bottom: var(--space-4);">
+            The Advisory's relationships are built over decades, not deal cycles.
+            When you work with us, you work with advisors who have been in the room — and
+            who will be in every room that matters.
+          </p>
+          <a href="contact.html" class="btn btn--primary">Request a Consultation</a>
+        </div>
+
+        <div class="proof-image-wrap reveal reveal-delay-2 revealed" style="aspect-ratio: 3/4; max-height: 560px;">
+          <img src="images/social-proof-enhanced-1.jpg"
+               alt="The Advisory founder with a client"
+               loading="lazy"
+               onerror="this.src='images/social-proof-2.jpg'"
+               style="width: 100%; height: 100%; object-fit: cover; filter: grayscale(20%) contrast(1.05);">
+          <div class="proof-image-caption">
+            <span>Client Relationship · The Advisory</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PARTNERSHIPS CTA
+  ============================================================ -->
+  <div class="cta-banner">
+    <div class="container">
+      <div class="cta-banner-inner reveal revealed">
+        <div class="cta-banner-text">
+          <h2>Build together,<br>keep your relationships.</h2>
+          <p>We compound strengths with agents, managers, attorneys, fiduciaries, and power connectors who want elite bench strength without adding headcount.</p>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 0.875rem; flex-shrink: 0;">
+          <a href="partnerships.html" class="btn btn--primary">Partnership Models</a>
+          <a href="contact.html" class="btn btn--ghost">Get in Touch</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer class="site-footer">
+    <div class="container">
+
+      <div class="footer-top">
+
+        <div class="footer-brand">
+          <div class="footer-logo">The Advisory</div>
+          <p>Enterprise management for professional athletes, NIL athletes, entertainers, and high-net-worth entrepreneurs. Legal, financial, and operational excellence — under one roof.</p>
+          <div style="margin-top: 1.5rem; display: flex; gap: 1rem;">
+            <a href="contact.html" class="btn btn--primary" style="padding: 0.65rem 1.25rem; font-size: 0.75rem;">Start Here</a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h5>Who We Serve</h5>
+          <ul>
+            <li><a href="sports.html">Professional Athletes</a></li>
+            <li><a href="nil.html">NIL Athletes</a></li>
+            <li><a href="creatives.html">Entertainers &amp; Creatives</a></li>
+            <li><a href="bespoke.html">Bespoke &amp; Entrepreneurs</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Services</h5>
+          <ul>
+            <li><a href="services.html#contracts">Contracts</a></li>
+            <li><a href="nil.html">NIL Strategy</a></li>
+            <li><a href="services.html#entity">Entity &amp; Tax</a></li>
+            <li><a href="services.html#brand-ip">Brand &amp; IP</a></li>
+            <li><a href="services.html#family-governance">Family Governance</a></li>
+            <li><a href="services.html#diligence">Deal Diligence</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Company</h5>
+          <ul>
+            <li><a href="about.html">About</a></li>
+            <li><a href="partnerships.html">Partnerships</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 The Advisory. All rights reserved.</p>
+        <div class="footer-legal">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Use</a>
+          <a href="#">Disclosures</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

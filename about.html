@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About | The Advisory</title>
+  <meta name="description" content="Led by Jimmie B. Strong — Harvard Law Valedictorian, Vanderbilt Professor, Top 1% Financial Advisor. The Advisory builds institutional systems for athletes, entertainers, and entrepreneurs.">
+  <link rel="stylesheet" href="css/design-system.css">
+  <link rel="stylesheet" href="css/nav.css">
+  <style>
+    body { background-color: var(--near-black); }
+
+    /* ===== ABOUT HERO ===== */
+    .about-hero {
+      padding: 160px var(--container-padding) var(--space-8);
+      background-color: var(--near-black);
+      border-bottom: 1px solid var(--border-dark);
+    }
+
+    .about-hero-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-6);
+      align-items: end;
+    }
+
+    .about-hero-headline {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 6vw, 7.5rem);
+      line-height: 0.9;
+      letter-spacing: -0.02em;
+      color: var(--ivory);
+    }
+
+    .about-hero-headline em { font-style: italic; color: var(--gold); }
+
+    /* ===== FOUNDER SECTION ===== */
+    .founder-section {
+      background-color: var(--charcoal);
+      padding: var(--space-8) 0;
+    }
+
+    .founder-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: var(--space-6);
+      align-items: start;
+    }
+
+    .founder-image-wrap {
+      position: relative;
+      aspect-ratio: 3/4;
+      overflow: hidden;
+      max-height: 600px;
+    }
+
+    .founder-image-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(20%) contrast(1.05);
+    }
+
+    .founder-credentials {
+      margin-top: var(--space-4);
+    }
+
+    .credential-item {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-2);
+      padding: var(--space-2) 0;
+      border-bottom: 1px solid var(--border-dark);
+    }
+
+    .credential-item:last-child { border-bottom: none; }
+
+    .cred-bullet {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background-color: var(--gold);
+      flex-shrink: 0;
+      margin-top: 8px;
+    }
+
+    .cred-text {
+      font-size: 0.9375rem;
+      color: var(--stone);
+      line-height: 1.5;
+    }
+
+    /* ===== PHILOSOPHY ===== */
+    .philosophy-section {
+      background-color: var(--near-black);
+      padding: var(--space-8) 0;
+    }
+
+    .philosophy-items {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-4);
+      margin-top: var(--space-5);
+    }
+
+    .phi-item {
+      padding-top: var(--space-3);
+      border-top: 1px solid var(--border-dark);
+    }
+
+    .phi-num {
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+
+    .phi-title {
+      font-family: var(--font-sans);
+      font-size: clamp(1rem, 1.3vw, 1.25rem);
+      font-weight: 600;
+      color: var(--ivory);
+      margin-bottom: 0.75rem;
+    }
+
+    .phi-desc {
+      font-size: 0.875rem;
+      color: var(--stone);
+      line-height: 1.6;
+    }
+
+    /* ===== LEGACY CLIENTS / PROOF ===== */
+    .legacy-section {
+      background-color: var(--surface-dark);
+      padding: var(--space-8) 0;
+    }
+
+    .legacy-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-5);
+      align-items: center;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      .about-hero-layout { grid-template-columns: 1fr; }
+      .founder-layout { grid-template-columns: 1fr; }
+      .philosophy-items { grid-template-columns: 1fr 1fr; }
+      .legacy-layout { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 600px) {
+      .philosophy-items { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header" id="site-header">
+    <div class="container header-inner">
+      <a href="home.html" class="site-logo">
+        <div class="logo-text">
+          <span class="logo-name">The Advisory</span>
+          <span class="logo-sub">Enterprise Management</span>
+        </div>
+      </a>
+      <nav class="primary-nav">
+        <ul>
+          <li class="nav-item">
+            <a href="#" class="nav-link">Who We Serve
+              <svg class="chevron" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4l4 4 4-4"/></svg>
+            </a>
+            <ul class="dropdown">
+              <li class="dropdown-item"><a href="sports.html" class="dropdown-link">Professional Athletes</a></li>
+              <li class="dropdown-item"><a href="nil.html" class="dropdown-link">NIL Athletes</a></li>
+              <li class="dropdown-item"><a href="creatives.html" class="dropdown-link">Entertainers &amp; Creatives</a></li>
+              <li class="dropdown-item"><a href="bespoke.html" class="dropdown-link">Bespoke &amp; Entrepreneurs</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
+          <li class="nav-item"><a href="nil.html" class="nav-link">NIL</a></li>
+          <li class="nav-item"><a href="partnerships.html" class="nav-link">Partnerships</a></li>
+          <li class="nav-item active"><a href="about.html" class="nav-link">About<svg class="chevron" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4l4 4 4-4"/></svg></a><ul class="dropdown"><li class="dropdown-item"><a href="about.html" class="dropdown-link">About The Advisory</a></li><li class="dropdown-item"><a href="team.html" class="dropdown-link">Meet the Team</a></li></ul></li>
+        </ul>
+      </nav>
+      <div class="header-cta"><a href="contact.html" class="btn btn--ghost">Start a Conversation</a></div>
+      <button class="mobile-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+  <div class="mobile-nav-overlay"></div>
+  <nav class="mobile-nav">
+    <ul>
+      <li class="mobile-nav-item"><button class="mobile-nav-trigger" data-submenu="ma-serve"><span>Who We Serve</span><svg class="m-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 8l5 5 5-5"/></svg></button>
+        <div class="mobile-submenu" id="ma-serve">
+          <a href="sports.html" class="mobile-submenu-link">Professional Athletes</a>
+          <a href="nil.html" class="mobile-submenu-link">NIL Athletes</a>
+          <a href="creatives.html" class="mobile-submenu-link">Entertainers &amp; Creatives</a>
+          <a href="bespoke.html" class="mobile-submenu-link">Bespoke &amp; Entrepreneurs</a>
+        </div>
+      </li>
+      <li class="mobile-nav-item"><button class="mobile-nav-trigger"><a href="services.html">Services</a></button></li>
+      <li class="mobile-nav-item"><button class="mobile-nav-trigger"><a href="nil.html">NIL</a></button></li>
+      <li class="mobile-nav-item"><button class="mobile-nav-trigger"><a href="partnerships.html">Partnerships</a></button></li>
+      <li class="mobile-nav-item"><button class="mobile-nav-trigger"><a href="about.html">About</a></button></li>
+    </ul>
+    <div class="mobile-nav-cta"><a href="contact.html" class="btn btn--primary">Start a Conversation</a></div>
+  </nav>
+
+  <!-- ABOUT HERO -->
+  <section class="about-hero">
+    <div class="container">
+      <div class="about-hero-layout">
+        <div class="reveal">
+          <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.75rem;">
+            <span style="display:block;width:2rem;height:1px;background:var(--gold)"></span>
+            <span class="label text-gold">About The Advisory</span>
+          </div>
+          <h1 class="about-hero-headline">
+            Built on <em>trust.</em><br>Measured in<br>legacies.
+          </h1>
+        </div>
+        <div class="reveal reveal-delay-2">
+          <p class="body-lg text-stone" style="max-width: 42ch; margin-bottom: var(--space-3);">
+            The Advisory exists because institutional-grade enterprise management should not be the
+            exclusive province of the ultra-wealthy. Every athlete and creative who earns at the
+            highest level deserves the systems that protect and grow what they've built.
+          </p>
+          <p class="body-md text-stone" style="max-width: 42ch;">
+            We are not a management company. We are not a single-specialty law firm.
+            We are the complete back office for the businesses of exceptional people.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOUNDER SECTION -->
+  <section class="founder-section">
+    <div class="container">
+      <div class="founder-layout">
+
+        <div class="reveal">
+          <div class="founder-image-wrap">
+            <img src="images/social-proof-enhanced-1.jpg"
+                 alt="Jimmie B. Strong, Founder — The Advisory"
+                 loading="lazy"
+                 onerror="this.src='images/social-proof-2.jpg'">
+            <div style="position:absolute;bottom:0;left:0;right:0;padding:1.5rem;background:linear-gradient(to top,rgba(13,13,13,0.9),transparent);">
+              <span style="font-family:var(--font-sans);font-size:0.7rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--stone);">Jimmie B. Strong · Founder</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal reveal-delay-1">
+          <div class="eyebrow"><span class="label">Our Founder</span></div>
+          <h2 class="display-md text-white" style="margin-bottom: var(--space-3);">Jimmie B. Strong</h2>
+          <p class="body-md text-stone" style="margin-bottom: var(--space-3);">
+            Jimmie B. Strong built The Advisory from a conviction that the people who create the
+            most value in sports and entertainment deserve the same institutional protection
+            and intelligence that major corporations take for granted.
+          </p>
+          <p class="body-md text-stone" style="margin-bottom: var(--space-4);">
+            His unique combination of legal mastery, financial advisory expertise, and academic
+            leadership gives The Advisory a perspective that no single-discipline firm can match.
+            When you work with The Advisory, you work with someone who has been at the
+            intersection of law, finance, and elite performance for decades.
+          </p>
+
+          <div class="founder-credentials">
+            <div class="credential-item">
+              <div class="cred-bullet"></div>
+              <div class="cred-text">Harvard Law School Valedictorian (2014)</div>
+            </div>
+            <div class="credential-item">
+              <div class="cred-bullet"></div>
+              <div class="cred-text">Vanderbilt University — Faculty, Business and Legal Studies</div>
+            </div>
+            <div class="credential-item">
+              <div class="cred-bullet"></div>
+              <div class="cred-text">Top 1% Financial Advisor, nationally ranked</div>
+            </div>
+            <div class="credential-item">
+              <div class="cred-bullet"></div>
+              <div class="cred-text">Notable client relationships: Floyd Mayweather, Mookie Betts, Jalen Ramsey, Jaren Jackson Jr., Jim Brown</div>
+            </div>
+            <div class="credential-item">
+              <div class="cred-bullet"></div>
+              <div class="cred-text">Specializations: Sports law, entertainment law, NIL, family governance, deal structuring, enterprise advisory</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PHILOSOPHY -->
+  <section class="philosophy-section">
+    <div class="container">
+      <div class="reveal" style="margin-bottom: var(--space-5);">
+        <div class="eyebrow"><span class="label">What We Believe</span></div>
+        <h2 class="display-md text-white" style="max-width: 16ch;">Five principles that guide every engagement.</h2>
+      </div>
+
+      <div class="philosophy-items">
+        <div class="phi-item reveal">
+          <div class="phi-num">01</div>
+          <div class="phi-title">You Keep What You Earn</div>
+          <div class="phi-desc">Every engagement is designed to close the gap between what you earn and what you keep. Tax strategy, entity structure, and deal terms all serve this one principle.</div>
+        </div>
+        <div class="phi-item reveal reveal-delay-1">
+          <div class="phi-num">02</div>
+          <div class="phi-title">Clarity Over Dependency</div>
+          <div class="phi-desc">We build systems that give you clarity and control — not dependency on any single advisor. You should understand your enterprise at every stage.</div>
+        </div>
+        <div class="phi-item reveal reveal-delay-2">
+          <div class="phi-num">03</div>
+          <div class="phi-title">No Conflicts. Ever.</div>
+          <div class="phi-desc">We earn when you win. No commissions on investments. No undisclosed relationships. No interests that compete with yours — under any circumstances.</div>
+        </div>
+        <div class="phi-item reveal reveal-delay-1">
+          <div class="phi-num">04</div>
+          <div class="phi-title">Long-Term Thinking</div>
+          <div class="phi-desc">Careers end. Enterprises don't have to. We build structures that serve you for decades — not just for the next deal.</div>
+        </div>
+        <div class="phi-item reveal reveal-delay-2">
+          <div class="phi-num">05</div>
+          <div class="phi-title">Institutional Standards for Everyone</div>
+          <div class="phi-desc">The same rigor we bring to multi-billion dollar entities, applied to every client relationship — regardless of where they are in their career.</div>
+        </div>
+        <div class="phi-item reveal reveal-delay-3">
+          <div class="phi-num">06</div>
+          <div class="phi-title">Selective by Design</div>
+          <div class="phi-desc">We take a limited number of new client relationships each year. This is not exclusivity for its own sake — it is the only way to deliver what we promise.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEGACY CLIENTS -->
+  <section class="legacy-section">
+    <div class="container">
+      <div class="legacy-layout">
+        <div class="reveal">
+          <div class="eyebrow"><span class="label">A Record of Trust</span></div>
+          <h2 class="display-md text-white" style="margin-bottom: var(--space-3);">
+            Icons trust us with what matters most.
+          </h2>
+          <p class="body-md text-stone" style="max-width: 38ch; margin-bottom: var(--space-4);">
+            Our client relationships are built over time, not over transactions.
+            When a global icon trusts us with their enterprise, it reflects not just our
+            capabilities — but our commitment to their long-term position.
+          </p>
+          <div style="display: flex; flex-direction: column; gap: 0;">
+            <div style="padding: 1rem 0; border-bottom: 1px solid var(--border-dark); font-family: var(--font-display); font-size: clamp(1.25rem, 2vw, 1.875rem); color: var(--stone);">Floyd Mayweather</div>
+            <div style="padding: 1rem 0; border-bottom: 1px solid var(--border-dark); font-family: var(--font-display); font-size: clamp(1.25rem, 2vw, 1.875rem); color: var(--stone);">Mookie Betts</div>
+            <div style="padding: 1rem 0; border-bottom: 1px solid var(--border-dark); font-family: var(--font-display); font-size: clamp(1.25rem, 2vw, 1.875rem); color: var(--stone);">Jalen Ramsey</div>
+            <div style="padding: 1rem 0; border-bottom: 1px solid var(--border-dark); font-family: var(--font-display); font-size: clamp(1.25rem, 2vw, 1.875rem); color: var(--stone);">Jaren Jackson Jr.</div>
+            <div style="padding: 1rem 0; font-family: var(--font-display); font-size: clamp(1.25rem, 2vw, 1.875rem); color: var(--stone);">Jim Brown (1936 — 2023)</div>
+          </div>
+        </div>
+
+        <div class="reveal reveal-delay-2" style="position: relative; aspect-ratio: 4/3; overflow: hidden;">
+          <img src="images/social-proof-enhanced-2.jpg"
+               alt="The Advisory founder with clients"
+               loading="lazy"
+               onerror="this.src='images/social-proof-3.jpg'"
+               style="width:100%;height:100%;object-fit:cover;filter:grayscale(20%) contrast(1.05);">
+          <div style="position:absolute;bottom:0;left:0;right:0;padding:1.5rem;background:linear-gradient(to top,rgba(13,13,13,0.85),transparent);">
+            <span style="font-family:var(--font-sans);font-size:0.7rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--stone);">The Advisory · Client Relationship</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section style="background-color: var(--charcoal); padding: var(--space-8) 0;">
+    <div class="container">
+      <div style="text-align: center; max-width: 560px; margin: 0 auto;" class="reveal">
+        <h2 class="display-md text-white" style="margin-bottom: var(--space-3);">Ready to build your enterprise?</h2>
+        <p style="color: var(--stone); margin-bottom: var(--space-4);">We work with a selective group each year. Start a conversation — and let's see if we're the right fit for where you're going.</p>
+        <a href="contact.html" class="btn btn--primary" style="padding: 1rem 2.5rem;">Start a Conversation</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="footer-logo">The Advisory</div>
+          <p>Enterprise management for professional athletes, NIL athletes, entertainers, and high-net-worth entrepreneurs.</p>
+          <div style="margin-top:1.5rem"><a href="contact.html" class="btn btn--primary" style="padding:0.65rem 1.25rem;font-size:0.75rem">Start Here</a></div>
+        </div>
+        <div class="footer-col"><h5>Who We Serve</h5><ul><li><a href="sports.html">Professional Athletes</a></li><li><a href="nil.html">NIL Athletes</a></li><li><a href="creatives.html">Entertainers &amp; Creatives</a></li><li><a href="bespoke.html">Bespoke &amp; Entrepreneurs</a></li></ul></div>
+        <div class="footer-col"><h5>Services</h5><ul><li><a href="services.html#contracts">Contracts</a></li><li><a href="nil.html">NIL Strategy</a></li><li><a href="services.html#entity">Entity &amp; Tax</a></li><li><a href="services.html#brand-ip">Brand &amp; IP</a></li><li><a href="services.html#family-governance">Family Governance</a></li></ul></div>
+        <div class="footer-col"><h5>Company</h5><ul><li><a href="about.html">About</a></li><li><a href="partnerships.html">Partnerships</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 The Advisory. All rights reserved.</p>
+        <div class="footer-legal"><a href="#">Privacy Policy</a><a href="#">Terms</a><a href="#">Disclosures</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
