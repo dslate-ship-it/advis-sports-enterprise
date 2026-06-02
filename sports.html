@@ -10,30 +10,15 @@
   <style>
     body { background-color: var(--near-black); }
 
-    /* ===== SPORTS HERO: full-screen video ===== */
+    /* ===== SPORTS HERO: gold stencil (NIL-style) ===== */
     .sports-hero {
       --hero-headline-size: clamp(3rem, 8vw, 9.5rem);
       --hero-headline-lh: 0.88;
       --hero-aside-align-line: 1;
     }
 
-    .sports-hero-video {
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-    }
-
-    .sports-hero-video iframe {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 177.78vh;
-      min-width: 100%;
-      height: 100%;
-      min-height: 56.25vw;
-      border: none;
-      pointer-events: none;
+    .sports-hero .page-hero__content {
+      z-index: 3;
     }
 
     .sports-hero-overlay {
@@ -42,10 +27,34 @@
       background: linear-gradient(
         to top,
         rgba(13,13,13,1) 0%,
-        rgba(13,13,13,0.6) 35%,
-        rgba(13,13,13,0.2) 100%
+        rgba(13,13,13,0.7) 40%,
+        rgba(13,13,13,0.3) 100%
       );
       z-index: 1;
+    }
+
+    .sports-hero-stencil {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .sports-hero-stencil .stencil-text {
+      font-family: var(--font-sans);
+      font-size: clamp(5rem, 16vw, 22rem);
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      text-transform: uppercase;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(184,150,90,0.15);
+      opacity: 0.7;
+      user-select: none;
+      white-space: nowrap;
     }
 
     /* ===== WHAT WE DO FOR PRO ATHLETES ===== */
@@ -68,10 +77,40 @@
     }
 
     .proof-band-layout {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: var(--space-6);
-      align-items: center;
+      max-width: 52rem;
+    }
+
+    .client-list {
+      margin-bottom: var(--space-3);
+    }
+
+    .client-name {
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border-dark);
+      font-family: var(--font-display);
+      font-size: clamp(1.25rem, 2vw, 1.875rem);
+      color: var(--stone);
+      transition: color var(--duration-base) var(--ease-smooth),
+                  padding-left var(--duration-base) var(--ease-smooth);
+      cursor: default;
+    }
+
+    .client-name:last-of-type {
+      border-bottom: none;
+    }
+
+    .client-name:hover {
+      color: var(--ivory);
+      padding-left: 0.75rem;
+    }
+
+    .client-more {
+      font-size: 0.9375rem;
+      color: var(--muted);
+      line-height: 1.6;
+      padding: var(--space-3) 0 var(--space-4);
+      border-top: 1px solid var(--border-dark);
+      max-width: 44ch;
     }
 
     /* ===== THE APPROACH ===== */
@@ -88,8 +127,11 @@
     }
 
     .approach-item {
-      padding: var(--space-4) 0;
+      display: flex;
+      flex-direction: column;
+      padding: var(--space-4) var(--space-3) var(--space-4) 0;
       border-top: 1px solid var(--border-dark);
+      min-height: 14rem;
     }
 
     .approach-num {
@@ -99,7 +141,7 @@
       letter-spacing: 0.15em;
       color: var(--gold);
       text-transform: uppercase;
-      margin-bottom: 1rem;
+      margin-bottom: var(--space-2);
     }
 
     .approach-title {
@@ -107,20 +149,33 @@
       font-size: clamp(1rem, 1.3vw, 1.2rem);
       font-weight: 600;
       color: var(--ivory);
-      margin-bottom: 0.75rem;
+      margin-bottom: var(--space-2);
+      min-height: 2.5rem;
     }
 
     .approach-desc {
       font-size: 0.875rem;
       color: var(--stone);
-      line-height: 1.6;
+      line-height: 1.65;
+      text-align: justify;
+      flex: 1;
+      min-height: 7.5rem;
+    }
+
+    .sports-cta-desc {
+      color: var(--stone);
+      font-size: 0.9375rem;
+      max-width: 44ch;
+      line-height: 1.65;
+      text-align: justify;
     }
 
     /* ===== RESPONSIVE ===== */
     @media (max-width: 1024px) {
       .pro-services-layout { grid-template-columns: 1fr; }
-      .proof-band-layout { grid-template-columns: 1fr; }
       .approach-grid { grid-template-columns: 1fr 1fr; }
+      .approach-item { min-height: auto; }
+      .approach-desc { min-height: auto; }
     }
 
     @media (max-width: 600px) {
@@ -184,18 +239,14 @@
   </nav>
 
   <!-- ============================================================
-       SPORTS HERO: Video
+       SPORTS HERO: Gold stencil
   ============================================================ -->
   <section class="sports-hero page-hero page-hero--viewport">
-    <div class="sports-hero-video">
-      <iframe
-        src="https://player.vimeo.com/video/1173714440?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1&background=1"
-        frameborder="0"
-        allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
-        referrerpolicy="strict-origin-when-cross-origin"
-        title="The Advisory Sports"></iframe>
-    </div>
     <div class="sports-hero-overlay"></div>
+
+    <div class="sports-hero-stencil" aria-hidden="true">
+      <span class="stencil-text">PRO ATHLETES</span>
+    </div>
 
     <div class="page-hero__content">
       <div class="page-hero__eyebrow">
@@ -301,29 +352,15 @@
             The Advisory has earned the trust of professional athletes, global icons, and
             high-net-worth individuals who expect nothing less than institutional excellence.
           </p>
-          <div class="client-list" style="margin-bottom: var(--space-4);">
-            <div class="client-name" style="padding: 1rem 0; border-bottom: 1px solid var(--border-dark); font-family: var(--font-display); font-size: clamp(1.25rem, 2vw, 1.875rem); color: var(--stone); transition: color 0.35s, padding-left 0.35s; cursor: default;" onmouseenter="this.style.color='var(--ivory)';this.style.paddingLeft='0.75rem'" onmouseleave="this.style.color='var(--stone)';this.style.paddingLeft='0'">Floyd Mayweather</div>
-            <div class="client-name" style="padding: 1rem 0; border-bottom: 1px solid var(--border-dark); font-family: var(--font-display); font-size: clamp(1.25rem, 2vw, 1.875rem); color: var(--stone); transition: color 0.35s, padding-left 0.35s; cursor: default;" onmouseenter="this.style.color='var(--ivory)';this.style.paddingLeft='0.75rem'" onmouseleave="this.style.color='var(--stone)';this.style.paddingLeft='0'">Mookie Betts</div>
-            <div class="client-name" style="padding: 1rem 0; border-bottom: 1px solid var(--border-dark); font-family: var(--font-display); font-size: clamp(1.25rem, 2vw, 1.875rem); color: var(--stone); transition: color 0.35s, padding-left 0.35s; cursor: default;" onmouseenter="this.style.color='var(--ivory)';this.style.paddingLeft='0.75rem'" onmouseleave="this.style.color='var(--stone)';this.style.paddingLeft='0'">Jalen Ramsey</div>
-            <div class="client-name" style="padding: 1rem 0; border-bottom: 1px solid var(--border-dark); font-family: var(--font-display); font-size: clamp(1.25rem, 2vw, 1.875rem); color: var(--stone); transition: color 0.35s, padding-left 0.35s; cursor: default;" onmouseenter="this.style.color='var(--ivory)';this.style.paddingLeft='0.75rem'" onmouseleave="this.style.color='var(--stone)';this.style.paddingLeft='0'">Jaren Jackson Jr.</div>
-            <div class="client-name" style="padding: 1rem 0; font-family: var(--font-display); font-size: clamp(1.25rem, 2vw, 1.875rem); color: var(--stone); transition: color 0.35s, padding-left 0.35s; cursor: default; border-top: 1px solid var(--border-dark);" onmouseenter="this.style.color='var(--ivory)';this.style.paddingLeft='0.75rem'" onmouseleave="this.style.color='var(--stone)';this.style.paddingLeft='0'">Jim Brown (1936 — 2023)</div>
+          <div class="client-list">
+            <div class="client-name">Floyd Mayweather</div>
+            <div class="client-name">Mookie Betts</div>
+            <div class="client-name">Jalen Ramsey</div>
+            <div class="client-name">Jaren Jackson Jr.</div>
+            <div class="client-name">Jim Brown (1936 — 2023)</div>
           </div>
+          <p class="client-more">And over 50 other current and former professional athletes.</p>
           <a href="about.html" class="btn btn--ghost">About Our Leadership</a>
-        </div>
-
-        <div class="reveal reveal-delay-2">
-          <div class="social-proof-image" style="aspect-ratio: 3/4; overflow: hidden; position: relative;">
-            <img src="images/social-proof-enhanced-2.jpg"
-                 alt="The Advisory — courtside with professional clients"
-                 loading="lazy"
-                 onerror="this.src='images/social-proof-3.jpg'"
-                 style="width:100%; height:100%; object-fit: cover; filter: grayscale(15%) contrast(1.05); transition: all 0.9s cubic-bezier(0.16,1,0.3,1);"
-                 onmouseenter="this.style.filter='grayscale(0%) contrast(1.0)'; this.style.transform='scale(1.03)'"
-                 onmouseleave="this.style.filter='grayscale(15%) contrast(1.05)'; this.style.transform='scale(1)'">
-            <div style="position:absolute;bottom:0;left:0;right:0;padding:1.5rem;background:linear-gradient(to top,rgba(13,13,13,0.85),transparent);">
-              <span style="font-family:var(--font-sans);font-size:0.7rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--stone);">Client Event · The Advisory</span>
-            </div>
-          </div>
         </div>
 
       </div>
@@ -367,7 +404,7 @@
       <div style="display: grid; grid-template-columns: 1fr auto; gap: var(--space-4); align-items: center;" class="reveal">
         <div>
           <h2 class="display-md text-white" style="margin-bottom: 0.75rem;">Ready to build your enterprise?</h2>
-          <p style="color: var(--stone); font-size: 0.9375rem; max-width: 44ch;">We work with a selective group of athletes and entrepreneurs each year. Start a conversation to explore fit.</p>
+          <p class="sports-cta-desc">We work with a selective group of athletes and entrepreneurs each year.<br>Start a conversation to explore fit.</p>
         </div>
         <a href="contact.html" class="btn btn--primary">Request Representation</a>
       </div>
