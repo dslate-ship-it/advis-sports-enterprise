@@ -14,7 +14,6 @@
     .bespoke-hero {
       --hero-headline-size: clamp(2.25rem, 4.5vw, 5.25rem);
       --hero-headline-lh: 0.92;
-      --hero-aside-align-line: 1;
     }
 
     .bespoke-hero .page-hero__content {
@@ -267,32 +266,41 @@
   <section class="bespoke-hero page-hero page-hero--viewport">
     <div class="bespoke-hero-video">
       <iframe
+        id="bespoke-hero-player"
         src="https://player.vimeo.com/video/1173897349?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1&background=1"
+        width="1920"
+        height="1080"
         frameborder="0"
         allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
         referrerpolicy="strict-origin-when-cross-origin"
         title="The Advisory Creative Enterprise"></iframe>
     </div>
+
+    <button type="button" class="page-hero-vimeo-unmute" data-vimeo-for="bespoke-hero-player" aria-label="Unmute hero video">
+      <span class="page-hero-vimeo-unmute-icon" aria-hidden="true"></span>
+      Tap to Unmute
+    </button>
+
     <div class="bespoke-hero-overlay"></div>
 
     <div class="page-hero__content">
-      <div class="page-hero__eyebrow">
-        <span class="label text-gold">Bespoke &amp; Entrepreneurs</span>
-      </div>
       <div class="page-hero__layout">
         <div class="page-hero__main">
+          <div class="page-hero__eyebrow">
+            <span class="label text-gold">Bespoke &amp; Entrepreneurs</span>
+          </div>
           <h1 class="page-hero__headline">
-            Built for those who<br>built <em>something</em> worth protecting.
+            Built for those who built<br><em>something</em> worth protecting.
           </h1>
+          <p class="page-hero__tagline">
+            Not every exceptional person is an athlete or an entertainer. Some are enterprise founders,
+            operators, and high-net-worth individuals who have created unusual personal value,
+            and need an advisory relationship that matches the complexity of what they've built.
+          </p>
         </div>
         <div class="page-hero__aside">
-          <div class="page-hero__prose">
-            <p class="body-lg text-stone">
-              Not every exceptional person is an athlete or an entertainer. Some are enterprise founders,
-              operators, and high-net-worth individuals who have created unusual personal value,
-              and need an advisory relationship that matches the complexity of what they've built.
-            </p>
-            <a href="contact.html" class="btn btn--primary" style="margin-top: var(--space-3);">Explore Representation</a>
+          <div class="page-hero__actions">
+            <a href="contact.html" class="btn btn--primary">Explore Representation</a>
           </div>
         </div>
       </div>

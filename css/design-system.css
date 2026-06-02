@@ -609,7 +609,6 @@ button {
 .page-hero {
   --hero-headline-lh: 0.9;
   --hero-headline-size: clamp(3rem, 6vw, 7.5rem);
-  --hero-aside-align-line: 1;
   position: relative;
 }
 
@@ -698,17 +697,15 @@ button {
 .page-hero__aside {
   align-self: start;
   flex-shrink: 0;
-  padding-top: calc(
-    (var(--hero-aside-align-line, 1) - 1)
-    * var(--hero-headline-lh, 0.9)
-    * var(--hero-headline-size, 3rem)
-  );
+  justify-self: end;
+  margin-top: var(--hero-aside-offset, 0px);
 }
 
 .page-hero__actions {
   display: flex;
   flex-direction: column;
   gap: 0.875rem;
+  align-items: flex-end;
 }
 
 .page-hero__prose {
@@ -726,11 +723,73 @@ button {
 @media (max-width: 1024px) {
   .page-hero__layout {
     grid-template-columns: 1fr;
+    align-items: start;
   }
 
   .page-hero__aside {
-    padding-top: 0;
+    align-self: start;
+    margin-top: 0;
   }
+}
+
+/* Hero Vimeo unmute control (NIL, Bespoke) */
+.page-hero-vimeo-unmute {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  right: auto;
+  transform: translate(-50%, -50%);
+  z-index: 4;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  padding: 0.5rem 1rem;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ivory);
+  background-color: rgba(13, 13, 13, 0.72);
+  border: 1px solid rgba(184, 150, 90, 0.45);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  transition: border-color var(--duration-base) var(--ease-smooth),
+              background-color var(--duration-base) var(--ease-smooth);
+}
+
+.page-hero-vimeo-unmute:hover {
+  border-color: var(--gold);
+  background-color: rgba(13, 13, 13, 0.88);
+}
+
+.page-hero-vimeo-unmute.is-hidden {
+  display: none;
+}
+
+.page-hero-vimeo-unmute-icon {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.page-hero-vimeo-unmute-icon::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-top: 3px solid transparent;
+  border-bottom: 3px solid transparent;
+  border-left: 5px solid var(--gold);
+  transform: translate(-35%, -50%);
 }
 
 /* ============================================================

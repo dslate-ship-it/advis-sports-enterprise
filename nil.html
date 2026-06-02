@@ -15,7 +15,6 @@
     .nil-hero {
       --hero-headline-size: clamp(3rem, 8vw, 9rem);
       --hero-headline-lh: 0.9;
-      --hero-aside-align-line: 1;
     }
 
     .nil-hero .page-hero__content {
@@ -77,63 +76,6 @@
       opacity: 0.7;
       user-select: none;
       white-space: nowrap;
-    }
-
-    .nil-hero-unmute {
-      position: absolute;
-      top: calc(72px + var(--space-3));
-      right: var(--container-padding);
-      z-index: 4;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      min-height: 44px;
-      padding: 0.5rem 1rem;
-      font-family: var(--font-sans);
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--ivory);
-      background-color: rgba(13, 13, 13, 0.72);
-      border: 1px solid rgba(184, 150, 90, 0.45);
-      border-radius: var(--radius-sm);
-      cursor: pointer;
-      backdrop-filter: blur(6px);
-      transition: border-color var(--duration-base) var(--ease-smooth),
-                  background-color var(--duration-base) var(--ease-smooth);
-    }
-
-    .nil-hero-unmute:hover {
-      border-color: var(--gold);
-      background-color: rgba(13, 13, 13, 0.88);
-    }
-
-    .nil-hero-unmute.is-hidden {
-      display: none;
-    }
-
-    .nil-hero-unmute-icon {
-      display: inline-block;
-      width: 1rem;
-      height: 1rem;
-      border: 1px solid var(--gold);
-      border-radius: 50%;
-      position: relative;
-      flex-shrink: 0;
-    }
-
-    .nil-hero-unmute-icon::after {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 0;
-      height: 0;
-      border-top: 3px solid transparent;
-      border-bottom: 3px solid transparent;
-      border-left: 5px solid var(--gold);
-      transform: translate(-35%, -50%);
     }
 
     /* ===== PROBLEM STATEMENT ===== */
@@ -401,8 +343,8 @@
         title="The Advisory NIL"></iframe>
     </div>
 
-    <button type="button" class="nil-hero-unmute" id="nil-hero-unmute" aria-label="Unmute hero video">
-      <span class="nil-hero-unmute-icon" aria-hidden="true"></span>
+    <button type="button" class="page-hero-vimeo-unmute" data-vimeo-for="nil-hero-player" aria-label="Unmute hero video">
+      <span class="page-hero-vimeo-unmute-icon" aria-hidden="true"></span>
       Tap to Unmute
     </button>
 
@@ -414,12 +356,11 @@
     </div>
 
     <div class="page-hero__content">
-      <div class="page-hero__eyebrow">
-        <span class="label text-gold">Name, Image &amp; Likeness</span>
-      </div>
-
       <div class="page-hero__layout">
         <div class="page-hero__main">
+          <div class="page-hero__eyebrow">
+            <span class="label text-gold">Name, Image &amp; Likeness</span>
+          </div>
           <h1 class="page-hero__headline">
             <em>NIL</em>
           </h1>
@@ -759,25 +700,5 @@
   </footer>
 
   <script src="js/main.js"></script>
-  <script>
-    (function () {
-      var player = document.getElementById('nil-hero-player');
-      var unmuteBtn = document.getElementById('nil-hero-unmute');
-      if (!player || !unmuteBtn) return;
-
-      function vimeoCommand(method, value) {
-        var payload = { method: method };
-        if (value !== undefined) payload.value = value;
-        player.contentWindow.postMessage(JSON.stringify(payload), '*');
-      }
-
-      unmuteBtn.addEventListener('click', function () {
-        vimeoCommand('setMuted', false);
-        vimeoCommand('setVolume', 1);
-        vimeoCommand('play');
-        unmuteBtn.classList.add('is-hidden');
-      });
-    })();
-  </script>
 </body>
 </html>

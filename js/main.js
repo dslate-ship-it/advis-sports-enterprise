@@ -181,6 +181,60 @@
   }
 
   // ============================================================
+  // PAGE HERO: vertically center aside against main column
+  // ============================================================
+  function initPageHeroAsideAlign() {
+    const layouts = document.querySelectorAll('.page-hero__layout');
+    if (!layouts.length) return;
+
+    const mobileQuery = window.matchMedia('(max-width: 1024px)');
+
+    function syncLayout(layout) {
+      const main = layout.querySelector('.page-hero__main');
+      const aside = layout.querySelector('.page-hero__aside');
+      if (!main || !aside) return;
+
+      if (mobileQuery.matches) {
+        layout.style.removeProperty('--hero-aside-offset');
+        return;
+      }
+
+      const offset = (main.offsetHeight - aside.offsetHeight) / 2;
+      layout.style.setProperty('--hero-aside-offset', `${offset}px`);
+    }
+
+    function syncAll() {
+      window.requestAnimationFrame(function () {
+        layouts.forEach(syncLayout);
+      });
+    }
+
+    if (typeof ResizeObserver !== 'undefined') {
+      const observer = new ResizeObserver(syncAll);
+      layouts.forEach(layout => {
+        const main = layout.querySelector('.page-hero__main');
+        const aside = layout.querySelector('.page-hero__aside');
+        if (main) observer.observe(main);
+        if (aside) observer.observe(aside);
+      });
+    }
+
+    window.addEventListener('resize', syncAll, { passive: true });
+    if (mobileQuery.addEventListener) {
+      mobileQuery.addEventListener('change', syncAll);
+    } else {
+      mobileQuery.addListener(syncAll);
+    }
+
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(syncAll);
+    }
+
+    syncAll();
+    window.addEventListener('load', syncAll);
+  }
+
+  // ============================================================
   // STATS COUNTER ANIMATION
   // ============================================================
   function animateCounter(el) {
@@ -220,6 +274,30 @@
     }, { threshold: 0.5 });
 
     counters.forEach(c => observer.observe(c));
+  }
+
+  // ============================================================
+  // HERO VIMEO: unmute controls (NIL, Bespoke)
+  // ============================================================
+  function initHeroVimeoUnmute() {
+    document.querySelectorAll('[data-vimeo-for]').forEach(function (btn) {
+      var playerId = btn.getAttribute('data-vimeo-for');
+      var player = playerId ? document.getElementById(playerId) : null;
+      if (!player) return;
+
+      function vimeoCommand(method, value) {
+        var payload = { method: method };
+        if (value !== undefined) payload.value = value;
+        player.contentWindow.postMessage(JSON.stringify(payload), '*');
+      }
+
+      btn.addEventListener('click', function () {
+        vimeoCommand('setMuted', false);
+        vimeoCommand('setVolume', 1);
+        vimeoCommand('play');
+        btn.classList.add('is-hidden');
+      });
+    });
   }
 
   // ============================================================
@@ -294,6 +372,8 @@
     initScrollReveal();
     initAccordions();
     initHeroText();
+    initPageHeroAsideAlign();
+    initHeroVimeoUnmute();
     initCounters();
     initVideoAutoplay();
     initSmoothScroll();

@@ -10,28 +10,53 @@
   <style>
     body { background-color: var(--warm-white); color: var(--body-text); }
 
-    /* CONTACT: Light page */
+    /* CONTACT HERO: shared page-hero layout */
     .contact-hero {
+      --hero-headline-size: clamp(3rem, 6vw, 7.5rem);
+      --hero-headline-lh: 0.9;
       background-color: var(--near-black);
-      padding: 160px var(--container-padding) var(--space-8);
     }
 
-    .contact-hero-layout {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: var(--space-5);
-      align-items: end;
+    .contact-hero .page-hero__content {
+      z-index: 2;
     }
 
-    .ch-headline {
-      font-family: var(--font-display);
-      font-size: clamp(2.5rem, 5.5vw, 6.5rem);
-      line-height: 0.92;
-      letter-spacing: -0.02em;
+    .contact-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(13,13,13,1) 0%,
+        rgba(13,13,13,0.7) 40%,
+        rgba(13,13,13,0.3) 100%
+      );
+      z-index: 1;
+    }
+
+    /* Header over dark hero (light page below) */
+    #site-header.light-header:not(.scrolled-light) .logo-name,
+    #site-header.light-header:not(.scrolled-light) .nav-link {
+      color: rgba(250, 248, 245, 0.85) !important;
+    }
+
+    #site-header.light-header:not(.scrolled-light) .nav-item.active > .nav-link,
+    #site-header.light-header:not(.scrolled-light) .nav-link:hover {
+      color: var(--ivory) !important;
+    }
+
+    #site-header.light-header:not(.scrolled-light) .mobile-toggle span {
+      background-color: var(--ivory);
+    }
+
+    #site-header.light-header:not(.scrolled-light) .header-cta .btn--ghost-dark {
       color: var(--ivory);
+      border-color: rgba(250, 248, 245, 0.35);
     }
 
-    .ch-headline em { font-style: italic; color: var(--gold); }
+    #site-header.light-header:not(.scrolled-light) .header-cta .btn--ghost-dark:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
 
     /* ===== CONTACT FORM SECTION ===== */
     .contact-section {
@@ -164,7 +189,6 @@
 
     /* ===== RESPONSIVE ===== */
     @media (max-width: 1024px) {
-      .contact-hero-layout { grid-template-columns: 1fr; }
       .contact-layout { grid-template-columns: 1fr; }
     }
   </style>
@@ -176,13 +200,13 @@
     <div class="container header-inner">
       <a href="home.html" class="site-logo">
         <div class="logo-text">
-          <span class="logo-name" style="color: var(--near-black);">The Advisory</span>
+          <span class="logo-name">The Advisory</span>
           <span class="logo-sub">Enterprise Management</span>
         </div>
       </a>
       <nav class="primary-nav">
         <ul>
-          <li class="nav-item"><a href="#" class="nav-link" style="color:rgba(44,44,44,0.65);">Who We Serve<svg class="chevron" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4l4 4 4-4"/></svg></a>
+          <li class="nav-item"><a href="#" class="nav-link">Who We Serve<svg class="chevron" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4l4 4 4-4"/></svg></a>
             <ul class="dropdown">
               <li class="dropdown-item"><a href="sports.html" class="dropdown-link">Professional Athletes</a></li>
               <li class="dropdown-item"><a href="nil.html" class="dropdown-link">NIL Athletes</a></li>
@@ -190,17 +214,17 @@
               <li class="dropdown-item"><a href="bespoke.html" class="dropdown-link">Bespoke &amp; Entrepreneurs</a></li>
             </ul>
           </li>
-          <li class="nav-item"><a href="services.html" class="nav-link" style="color:rgba(44,44,44,0.65);">Services</a></li>
-          <li class="nav-item"><a href="nil.html" class="nav-link" style="color:rgba(44,44,44,0.65);">NIL</a></li>
-          <li class="nav-item"><a href="partnerships.html" class="nav-link" style="color:rgba(44,44,44,0.65);">Partnerships</a></li>
-          <li class="nav-item"><a href="about.html" class="nav-link" style="color:rgba(44,44,44,0.65);">About<svg class="chevron" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4l4 4 4-4"/></svg></a><ul class="dropdown"><li class="dropdown-item"><a href="about.html" class="dropdown-link">About The Advisory</a></li><li class="dropdown-item"><a href="team.html" class="dropdown-link">Meet the Team</a></li></ul></li>
+          <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
+          <li class="nav-item"><a href="nil.html" class="nav-link">NIL</a></li>
+          <li class="nav-item"><a href="partnerships.html" class="nav-link">Partnerships</a></li>
+          <li class="nav-item"><a href="about.html" class="nav-link">About<svg class="chevron" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4l4 4 4-4"/></svg></a><ul class="dropdown"><li class="dropdown-item"><a href="about.html" class="dropdown-link">About The Advisory</a></li><li class="dropdown-item"><a href="team.html" class="dropdown-link">Meet the Team</a></li></ul></li>
         </ul>
       </nav>
       <div class="header-cta"><a href="contact.html" class="btn btn--ghost-dark">Contact</a></div>
       <button class="mobile-toggle" aria-label="Toggle menu">
-        <span style="background-color:var(--body-text)"></span>
-        <span style="background-color:var(--body-text)"></span>
-        <span style="background-color:var(--body-text)"></span>
+        <span></span>
+        <span></span>
+        <span></span>
       </button>
     </div>
   </header>
@@ -224,27 +248,30 @@
   </nav>
 
   <!-- HERO -->
-  <section class="contact-hero">
-    <div class="container">
-      <div class="contact-hero-layout">
-        <div class="reveal">
-          <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1.75rem;">
-            <span style="display:block;width:2rem;height:1px;background:var(--gold)"></span>
+  <section class="contact-hero page-hero page-hero--viewport">
+    <div class="contact-hero-overlay"></div>
+
+    <div class="page-hero__content">
+      <div class="page-hero__layout">
+        <div class="page-hero__main">
+          <div class="page-hero__eyebrow">
             <span class="label text-gold">Start a Conversation</span>
           </div>
-          <h1 class="ch-headline">
-            Let's build<br>something<br><em>worth</em><br>protecting.
+          <h1 class="page-hero__headline">
+            Let's build something<br><em>worth</em> protecting.
           </h1>
         </div>
-        <div class="reveal reveal-delay-2">
-          <p class="body-lg text-stone" style="max-width: 42ch; margin-bottom: var(--space-3);">
-            We work with a selective group of athletes, entertainers, and entrepreneurs each year.
-            The first step is a brief conversation about where you are and where you're going.
-          </p>
-          <p class="body-md text-stone" style="max-width: 42ch;">
-            No pressure. No scripts. Just an honest conversation about whether we're the right
-            firm for your enterprise.
-          </p>
+        <div class="page-hero__aside">
+          <div class="page-hero__prose">
+            <p class="body-lg text-stone">
+              We work with a selective group of athletes, entertainers, and entrepreneurs each year.
+              The first step is a brief conversation about where you are and where you're going.
+            </p>
+            <p class="body-md text-stone">
+              No pressure. No scripts. Just an honest conversation about whether we're the right
+              firm for your enterprise.
+            </p>
+          </div>
         </div>
       </div>
     </div>
