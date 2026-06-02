@@ -64,6 +64,11 @@
       to   { opacity: 1; transform: translateY(0); }
     }
 
+    @keyframes fadeUpMark {
+      from { opacity: 0; transform: translateX(-50%) translateY(8px); }
+      to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+    }
+
     /* ============================================================
        EXIT VEIL
     ============================================================ */
@@ -93,9 +98,9 @@
       transform: translateX(-50%);
       z-index: 50; pointer-events: none;
       display: flex; flex-direction: column; align-items: center; gap: 0.4rem;
-      opacity: 0; animation: fadeUp 0.7s var(--ease-expo) 1.5s forwards;
+      opacity: 0; animation: fadeUpMark 0.7s var(--ease-expo) 1.5s forwards;
     }
-    #top-mark img { width: 34px; height: 34px; object-fit: contain; }
+    #top-mark img { width: 68px; height: 68px; object-fit: contain; }
     #top-mark .mark-name { display: none; }
     #top-mark .mark-line { display: none; }
 
@@ -103,7 +108,7 @@
        GOLD DIVIDER — fixed, dead-center
     ============================================================ */
     #split-divider {
-      position: fixed; top: 0; bottom: 0; left: 66%;
+      position: fixed; top: 0; bottom: 0; left: 50%;
       width: 1px;
       transform: translateX(-50%);
       background: linear-gradient(to bottom,
@@ -254,6 +259,28 @@
       );
     }
 
+    #panel-law .law-headline-group {
+      transform: translateY(calc(-1 * clamp(2.5rem, 5.5vw, 7rem) * 0.88 - clamp(0.85rem, 1vw, 0.9375rem) * 1.7));
+      transition: transform 0.7s var(--ease-expo);
+    }
+
+    #panel-law:hover .law-headline-group {
+      transform: translateY(calc(-1 * clamp(2.5rem, 5.5vw, 7rem) * 0.88 - clamp(0.85rem, 1vw, 0.9375rem) * 1.7 - 4px));
+    }
+
+    #panel-law .p-headline {
+      transform: none;
+      margin-bottom: 0.75rem;
+    }
+
+    #panel-law:hover .p-headline {
+      transform: none;
+    }
+
+    #panel-law .p-body {
+      margin-bottom: 1rem;
+    }
+
     /* Advisory logo overlaid on the wall — centred in upper half */
     /* Advisory logo — centred in the upper wall area of the LAW panel */
     .law-wall-logo {
@@ -268,10 +295,9 @@
     #panel-law:hover .law-wall-logo { opacity: 0.48; }
 
     .law-wall-logo img {
-      width: clamp(72px, 7vw, 120px);
-      height: clamp(72px, 7vw, 120px);
+      width: clamp(160px, 18vw, 280px);
+      height: auto;
       object-fit: contain;
-      filter: brightness(2.4) contrast(0.6) grayscale(20%);
     }
 
     /* ============================================================
@@ -304,8 +330,9 @@
       #split { flex-direction: column; height: auto; min-height: 100vh; }
       .panel { width: 100% !important; height: 55vh; min-height: 340px; }
       .p-label, .p-body, .p-cta { opacity: 1; visibility: visible; transform: none; }
+      #panel-law .law-headline-group { transform: none; }
       .p-headline { font-size: clamp(2.5rem, 12vw, 5.5rem); }
-      #top-mark { top: 0.75rem; }
+      #top-mark { top: 0.75rem; transform: translateX(-50%); }
     }
 
     @media (min-width: 768px) and (max-width: 1100px) {
@@ -318,21 +345,21 @@
 
   <!-- SPLASH -->
   <div id="splash" role="status" aria-label="Loading">
-    <img class="splash-logo" src="images/social-proof-1.jpg" alt="The Advisory" onerror="this.style.opacity='0'">
+    <img class="splash-logo" src="images/official-logo-transparent.png" alt="The Advisory" onerror="this.style.opacity='0'">
     <span class="splash-name">The Advisory</span>
     <span class="splash-line"></span>
   </div>
 
   <!-- EXIT VEIL -->
   <div id="exit-veil" aria-hidden="true">
-    <img class="veil-logo" src="images/social-proof-1.jpg" alt="" onerror="this.style.display='none'">
+    <img class="veil-logo" src="images/official-logo-transparent.png" alt="" onerror="this.style.display='none'">
     <span class="veil-name">The Advisory</span>
     <span class="veil-line"></span>
   </div>
 
   <!-- CENTER MARK — logo icon only, no text labels -->
   <div id="top-mark" aria-hidden="true">
-    <img src="images/social-proof-1.jpg" alt="" onerror="this.style.display='none'">
+    <img src="images/official-logo-transparent.png" alt="" onerror="this.style.display='none'">
   </div>
 
   <!-- GOLD DIVIDER -->
@@ -352,15 +379,17 @@
 
       <!-- Advisory logo on the blank wall — no text, logo only -->
       <div class="law-wall-logo" aria-hidden="true">
-        <img src="images/social-proof-1.jpg" alt="">
+        <img src="images/the-advisory-lettered-logo-transparent.png?v=2" alt="" onerror="this.style.display='none'">
       </div>
 
       <div class="panel-content">
-        <div class="p-label">
-          <span class="p-label-line"></span>
-          <span class="p-label-text">Legal Services</span>
+        <div class="law-headline-group">
+          <div class="p-label">
+            <span class="p-label-line"></span>
+            <span class="p-label-text">Legal Services</span>
+          </div>
+          <h2 class="p-headline">LAW</h2>
         </div>
-        <h2 class="p-headline">LAW</h2>
         <p class="p-body">
           The Advisory PLLC delivers elite legal counsel business advisory services, and wealth. The Advisory is built for those whose stakes are highest.</p>
         <a class="p-cta"
