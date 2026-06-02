@@ -58,8 +58,27 @@
 
     /* ===== WHO WE SERVE ===== */
     .creatives-who {
-      background-color: var(--charcoal);
+      background-color: var(--warm-white);
       padding: var(--space-7) 0;
+    }
+
+    .creatives-who .display-md,
+    .creatives-who .who-title {
+      color: var(--body-text);
+    }
+
+    .creatives-who .who-grid {
+      border-left: 1px solid var(--border-light);
+      border-top: 1px solid var(--border-light);
+    }
+
+    .creatives-who .who-item {
+      border-right: 1px solid var(--border-light);
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .creatives-who .who-desc {
+      color: var(--muted);
     }
 
     .who-grid {
@@ -120,8 +139,38 @@
 
     /* ===== IP / BRAND FEATURE ===== */
     .ip-feature {
-      background-color: var(--surface-dark);
+      background-color: var(--gold);
       padding: var(--space-8) 0;
+    }
+
+    .ip-feature .display-md,
+    .ip-feature .ip-item-title {
+      color: var(--near-black);
+    }
+
+    .ip-feature .ip-item-desc,
+    .ip-feature .ip-feature-lead {
+      color: rgba(13, 13, 13, 0.8);
+    }
+
+    .ip-feature .ip-item {
+      border: 1px solid rgba(13, 13, 13, 0.22);
+      border-top: 2px solid rgba(13, 13, 13, 0.75);
+      background-color: rgba(250, 248, 245, 0.22);
+    }
+
+    .ip-feature .ip-item:hover {
+      border-color: rgba(13, 13, 13, 0.5);
+    }
+
+    .ip-feature .btn--ghost {
+      color: var(--near-black);
+      border-color: rgba(13, 13, 13, 0.32);
+    }
+
+    .ip-feature .btn--ghost:hover {
+      color: var(--near-black);
+      border-color: var(--near-black);
     }
 
     .ip-feature-layout {

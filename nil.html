@@ -80,8 +80,16 @@
 
     /* ===== PROBLEM STATEMENT ===== */
     .problem-section {
-      background-color: var(--charcoal);
+      background-color: var(--warm-white);
       padding: var(--space-8) 0;
+    }
+
+    .problem-section .problem-headline {
+      color: var(--body-text);
+    }
+
+    .problem-section .body-md.text-stone {
+      color: var(--muted);
     }
 
     .problem-grid {
@@ -108,8 +116,8 @@
     }
 
     .killer-card {
-      background-color: rgba(255,255,255,0.03);
-      border: 1px solid var(--border-dark);
+      background-color: var(--ivory);
+      border: 1px solid var(--border-light);
       border-left: 2px solid var(--gold);
       padding: var(--space-3);
     }
@@ -126,7 +134,7 @@
 
     .killer-desc {
       font-size: 0.875rem;
-      color: var(--stone);
+      color: var(--body-text);
       line-height: 1.5;
     }
 
@@ -163,6 +171,33 @@
       margin-top: auto;
       width: 100%;
       justify-content: center;
+    }
+
+    .tiers-section .tier-card:first-child .tier-tagline {
+      min-height: 4.5rem;
+    }
+
+    .tiers-section .tier-card:nth-child(2) .tier-features,
+    .tiers-section .tier-card:nth-child(3) .tier-features {
+      padding-bottom: var(--space-2);
+    }
+
+    .tiers-section .tier-features {
+      margin-bottom: var(--space-3);
+    }
+
+    .nil-stat-callout .btn--ghost-dark {
+      display: inline-flex;
+      justify-content: center;
+      min-width: 14rem;
+      border-color: rgba(13, 13, 13, 0.28);
+      color: var(--near-black);
+    }
+
+    .nil-stat-callout .btn--ghost-dark:hover {
+      border-color: var(--near-black);
+      color: var(--near-black);
+      background-color: rgba(250, 248, 245, 0.24);
     }
 
     /* ===== FIVE LANES (NIL version) ===== */
