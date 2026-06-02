@@ -47,7 +47,7 @@
     .partnerships-hero {
       --hero-headline-size: clamp(3rem, 6vw, 7rem);
       --hero-headline-lh: 0.92;
-      background-color: var(--near-black);
+      background-color: #000;
     }
 
     .partnerships-hero .page-hero__content {
@@ -63,9 +63,9 @@
       inset: 0;
       background: linear-gradient(
         to top,
-        rgba(13,13,13,1) 0%,
-        rgba(13,13,13,0.7) 40%,
-        rgba(13,13,13,0.3) 100%
+        rgba(0,0,0,1) 0%,
+        rgba(0,0,0,0.7) 40%,
+        rgba(0,0,0,0.3) 100%
       );
       z-index: 1;
     }
@@ -81,17 +81,17 @@
     }
 
     .partnerships-hero-stencil svg {
-      width: clamp(140px, 22vw, 280px);
+      width: clamp(160px, 24vw, 320px);
       height: auto;
       opacity: 0.75;
     }
 
-    .partnerships-hero-stencil path {
-      fill: none;
-      stroke: rgba(184, 150, 90, 0.22);
-      stroke-width: 1.25;
-      stroke-linecap: round;
-      stroke-linejoin: round;
+    .partnerships-hero-stencil img {
+      width: clamp(220px, 35vw, 540px);
+      height: auto;
+      display: block;
+      opacity: 0.6;
+      filter: brightness(0.82) saturate(0.72) contrast(1.06);
     }
 
     /* ===== INTRO STRIP ===== */
@@ -429,11 +429,7 @@
   <section class="partnerships-hero page-hero page-hero--viewport">
     <div class="partnerships-hero-overlay"></div>
     <div class="partnerships-hero-stencil" aria-hidden="true">
-      <svg viewBox="0 0 200 140" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <path d="M28 88 C18 68 22 48 42 38 L68 52 L82 32 C92 18 108 22 118 40 L108 72 C102 92 78 98 52 94 Z"/>
-        <path d="M172 88 C182 68 178 48 158 38 L132 52 L118 32 C108 18 92 22 82 40 L92 72 C98 92 122 98 148 94 Z"/>
-        <path d="M78 78 L92 68 L108 78 L122 68"/>
-      </svg>
+      <img src="images/partnership-handshake-attachment.png" alt="">
     </div>
 
     <div class="page-hero__content">
