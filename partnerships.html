@@ -20,33 +20,9 @@
 
     /* ===== PAGE HERO (dark entry, then opens to light) ===== */
     .partnerships-hero {
-      background-color: var(--near-black);
-      padding: 160px var(--container-padding) var(--space-8);
-    }
-
-    .partnerships-hero .container {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: var(--space-5);
-      align-items: end;
-    }
-
-    .ph-headline {
-      font-family: var(--font-display);
-      font-size: clamp(3rem, 6vw, 7rem);
-      line-height: 0.92;
-      letter-spacing: -0.02em;
-      color: var(--ivory);
-    }
-
-    .ph-headline em { font-style: italic; color: var(--gold); }
-
-    .ph-right p {
-      font-size: clamp(0.9rem, 1.1vw, 1.05rem);
-      color: var(--stone);
-      line-height: 1.65;
-      max-width: 40ch;
-      margin-bottom: var(--space-3);
+      --hero-headline-size: clamp(3rem, 6vw, 7rem);
+      --hero-headline-lh: 0.92;
+      --hero-aside-align-line: 1;
     }
 
     /* ===== INTRO STRIP ===== */
@@ -283,7 +259,6 @@
 
     /* ===== RESPONSIVE ===== */
     @media (max-width: 1024px) {
-      .partnerships-hero .container { grid-template-columns: 1fr; }
       .for-whom-grid { grid-template-columns: 1fr; }
       .how-steps { grid-template-columns: 1fr 1fr; }
     }
@@ -357,25 +332,27 @@
   <!-- ============================================================
        PARTNERSHIPS HERO: Dark entry
   ============================================================ -->
-  <section class="partnerships-hero">
+  <section class="partnerships-hero page-hero page-hero--static">
     <div class="container">
-      <div class="reveal">
-        <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.75rem;">
-          <span style="display:block;width:2rem;height:1px;background:var(--gold)"></span>
-          <span class="label text-gold">Partnerships</span>
-        </div>
-        <h1 class="ph-headline">
-          Build together.<br><em>Keep</em> your<br>relationships.
-        </h1>
+      <div class="page-hero__eyebrow reveal">
+        <span class="label text-gold">Partnerships</span>
       </div>
-
-      <div class="ph-right reveal reveal-delay-2">
-        <p>
-          We collaborate without stepping on your toes. You lead the relationship;
-          we supply the legal, business, and operational backbone — so your athletes,
-          creatives, and high-net-worth contacts experience professional outcomes end-to-end.
-        </p>
-        <a href="contact.html" class="btn btn--primary">Explore Partnership</a>
+      <div class="page-hero__layout">
+        <div class="page-hero__main reveal">
+          <h1 class="page-hero__headline">
+            Build together.<br><em>Keep</em> your<br>relationships.
+          </h1>
+        </div>
+        <div class="page-hero__aside reveal reveal-delay-2">
+          <div class="page-hero__prose">
+            <p style="font-size: clamp(0.9rem, 1.1vw, 1.05rem); color: var(--stone); line-height: 1.65; max-width: 40ch;">
+              We collaborate without stepping on your toes. You lead the relationship;
+              we supply the legal, business, and operational backbone — so your athletes,
+              creatives, and high-net-worth contacts experience professional outcomes end-to-end.
+            </p>
+            <a href="contact.html" class="btn btn--primary" style="margin-top: var(--space-3);">Explore Partnership</a>
+          </div>
+        </div>
       </div>
     </div>
   </section>

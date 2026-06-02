@@ -12,14 +12,9 @@
 
     /* ===== SPORTS HERO: full-screen video ===== */
     .sports-hero {
-      position: relative;
-      height: 100vh;
-      min-height: 680px;
-      max-height: 1080px;
-      overflow: hidden;
-      display: flex;
-      align-items: flex-end;
-      background-color: var(--near-black);
+      --hero-headline-size: clamp(3rem, 8vw, 9.5rem);
+      --hero-headline-lh: 0.88;
+      --hero-aside-align-line: 1;
     }
 
     .sports-hero-video {
@@ -51,33 +46,6 @@
         rgba(13,13,13,0.2) 100%
       );
       z-index: 1;
-    }
-
-    .sports-hero-content {
-      position: relative;
-      z-index: 2;
-      padding: 0 var(--container-padding) var(--space-7);
-      max-width: var(--container-max);
-      margin: 0 auto;
-      width: 100%;
-    }
-
-    .sports-hero-headline {
-      font-family: var(--font-display);
-      font-size: clamp(3rem, 8vw, 9.5rem);
-      line-height: 0.88;
-      letter-spacing: -0.02em;
-      color: var(--ivory);
-      margin-bottom: var(--space-3);
-    }
-
-    .sports-hero-headline em { font-style: italic; color: var(--gold); }
-
-    .sports-hero-sub {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: var(--space-4);
-      align-items: flex-end;
     }
 
     /* ===== WHAT WE DO FOR PRO ATHLETES ===== */
@@ -150,7 +118,6 @@
 
     /* ===== RESPONSIVE ===== */
     @media (max-width: 1024px) {
-      .sports-hero-sub { grid-template-columns: 1fr; }
       .pro-services-layout { grid-template-columns: 1fr; }
       .proof-band-layout { grid-template-columns: 1fr; }
       .approach-grid { grid-template-columns: 1fr 1fr; }
@@ -219,7 +186,7 @@
   <!-- ============================================================
        SPORTS HERO: Video
   ============================================================ -->
-  <section class="sports-hero">
+  <section class="sports-hero page-hero page-hero--viewport">
     <div class="sports-hero-video">
       <iframe
         src="https://player.vimeo.com/video/1173714440?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1&background=1"
@@ -230,25 +197,27 @@
     </div>
     <div class="sports-hero-overlay"></div>
 
-    <div class="sports-hero-content">
-      <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.75rem;">
-        <span style="display:block;width:2rem;height:1px;background:var(--gold)"></span>
+    <div class="page-hero__content">
+      <div class="page-hero__eyebrow">
         <span class="label text-gold">Professional Athletes</span>
       </div>
 
-      <h1 class="sports-hero-headline">
-        The enterprise<br>behind the <em>athlete.</em>
-      </h1>
-
-      <div class="sports-hero-sub">
-        <p style="font-size: clamp(0.9rem, 1.1vw, 1.05rem); color: var(--stone); max-width: 44ch; line-height: 1.65;">
-          Your career has a window. Your enterprise does not.
-          We build systems that extend your value, protect your assets,
-          and create lasting wealth — well beyond the final game.
-        </p>
-        <div style="display: flex; flex-direction: column; gap: 0.875rem;">
-          <a href="contact.html" class="btn btn--primary">Request Representation</a>
-          <a href="services.html" class="btn btn--ghost">View Services</a>
+      <div class="page-hero__layout">
+        <div class="page-hero__main">
+          <h1 class="page-hero__headline">
+            The enterprise<br>behind the <em>athlete.</em>
+          </h1>
+          <p class="page-hero__tagline">
+            Your career has a window. Your enterprise does not.
+            We build systems that extend your value, protect your assets,
+            and create lasting wealth — well beyond the final game.
+          </p>
+        </div>
+        <div class="page-hero__aside">
+          <div class="page-hero__actions">
+            <a href="contact.html" class="btn btn--primary">Request Representation</a>
+            <a href="services.html" class="btn btn--ghost">View Services</a>
+          </div>
         </div>
       </div>
     </div>

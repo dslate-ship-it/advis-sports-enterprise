@@ -12,14 +12,9 @@
 
     /* ===== CREATIVES HERO: fullscreen video ===== */
     .creatives-hero {
-      position: relative;
-      height: 100vh;
-      min-height: 680px;
-      max-height: 1080px;
-      overflow: hidden;
-      display: flex;
-      align-items: flex-end;
-      background-color: var(--near-black);
+      --hero-headline-size: clamp(3rem, 8vw, 9.5rem);
+      --hero-headline-lh: 0.88;
+      --hero-aside-align-line: 1;
     }
 
     .creatives-hero-video {
@@ -51,33 +46,6 @@
         rgba(13,13,13,0.15) 100%
       );
       z-index: 1;
-    }
-
-    .creatives-hero-content {
-      position: relative;
-      z-index: 2;
-      padding: 0 var(--container-padding) var(--space-7);
-      max-width: var(--container-max);
-      margin: 0 auto;
-      width: 100%;
-    }
-
-    .creatives-hero-headline {
-      font-family: var(--font-display);
-      font-size: clamp(3rem, 8vw, 9.5rem);
-      line-height: 0.88;
-      letter-spacing: -0.02em;
-      color: var(--ivory);
-      margin-bottom: var(--space-3);
-    }
-
-    .creatives-hero-headline em { font-style: italic; color: var(--gold); }
-
-    .creatives-hero-sub {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: var(--space-4);
-      align-items: flex-end;
     }
 
     /* ===== WHO WE SERVE ===== */
@@ -197,7 +165,6 @@
 
     /* ===== RESPONSIVE ===== */
     @media (max-width: 1024px) {
-      .creatives-hero-sub { grid-template-columns: 1fr; }
       .who-grid { grid-template-columns: 1fr 1fr; }
       .creatives-services-layout { grid-template-columns: 1fr; }
       .ip-feature-layout { grid-template-columns: 1fr; }
@@ -267,7 +234,7 @@
   <!-- ============================================================
        CREATIVES HERO: Creatives/Entertainers Vimeo
   ============================================================ -->
-  <section class="creatives-hero">
+  <section class="creatives-hero page-hero page-hero--viewport">
     <div class="creatives-hero-video">
       <!-- Video used ONLY for creatives/entertainers/bespoke entrepreneurs -->
       <iframe
@@ -279,24 +246,26 @@
     </div>
     <div class="creatives-hero-overlay"></div>
 
-    <div class="creatives-hero-content">
-      <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.75rem;">
-        <span style="display:block;width:2rem;height:1px;background:var(--gold)"></span>
+    <div class="page-hero__content">
+      <div class="page-hero__eyebrow">
         <span class="label text-gold">Entertainers, Creatives &amp; Entrepreneurs</span>
       </div>
 
-      <h1 class="creatives-hero-headline">
-        The business of<br>creative <em>genius.</em>
-      </h1>
-
-      <div class="creatives-hero-sub">
-        <p style="font-size: clamp(0.9rem, 1.1vw, 1.05rem); color: var(--stone); max-width: 44ch; line-height: 1.65;">
-          Your art, your name, your enterprise. We build the legal, financial, and operational infrastructure
-          that lets creative talent and bespoke entrepreneurs scale and protect what they've built.
-        </p>
-        <div style="display: flex; flex-direction: column; gap: 0.875rem;">
-          <a href="contact.html" class="btn btn--primary">Explore Representation</a>
-          <a href="services.html" class="btn btn--ghost">View Services</a>
+      <div class="page-hero__layout">
+        <div class="page-hero__main">
+          <h1 class="page-hero__headline">
+            The business of<br>creative <em>genius.</em>
+          </h1>
+          <p class="page-hero__tagline">
+            Your art, your name, your enterprise. We build the legal, financial, and operational infrastructure
+            that lets creative talent and bespoke entrepreneurs scale and protect what they've built.
+          </p>
+        </div>
+        <div class="page-hero__aside">
+          <div class="page-hero__actions">
+            <a href="contact.html" class="btn btn--primary">Explore Representation</a>
+            <a href="services.html" class="btn btn--ghost">View Services</a>
+          </div>
         </div>
       </div>
     </div>

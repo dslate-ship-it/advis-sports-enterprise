@@ -12,27 +12,11 @@
 
     /* ===== PAGE HERO ===== */
     .services-hero {
-      padding: 160px var(--container-padding) var(--space-8);
-      background-color: var(--near-black);
+      --hero-headline-size: clamp(3rem, 6vw, 7.5rem);
+      --hero-headline-lh: 0.9;
+      --hero-aside-align-line: 1;
       border-bottom: 1px solid var(--border-dark);
     }
-
-    .services-hero-layout {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: var(--space-5);
-      align-items: end;
-    }
-
-    .sh-headline {
-      font-family: var(--font-display);
-      font-size: clamp(3rem, 6vw, 7.5rem);
-      line-height: 0.9;
-      letter-spacing: -0.02em;
-      color: var(--ivory);
-    }
-
-    .sh-headline em { font-style: italic; color: var(--gold); }
 
     /* ===== SERVICE SECTIONS ===== */
     .service-block {
@@ -132,7 +116,6 @@
 
     /* ===== RESPONSIVE ===== */
     @media (max-width: 1024px) {
-      .services-hero-layout { grid-template-columns: 1fr; }
       .service-block-layout { grid-template-columns: 1fr; }
     }
 
@@ -187,25 +170,26 @@
   </nav>
 
   <!-- HERO -->
-  <section class="services-hero">
+  <section class="services-hero page-hero page-hero--static">
     <div class="container">
-      <div class="services-hero-layout">
-        <div class="reveal">
-          <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1.75rem;">
-            <span style="display:block;width:2rem;height:1px;background:var(--gold)"></span>
-            <span class="label text-gold">Services</span>
-          </div>
-          <h1 class="sh-headline">One firm.<br><em>Every</em><br>lane.</h1>
+      <div class="page-hero__eyebrow reveal">
+        <span class="label text-gold">Services</span>
+      </div>
+      <div class="page-hero__layout">
+        <div class="page-hero__main reveal">
+          <h1 class="page-hero__headline">One firm.<br><em>Every</em><br>lane.</h1>
         </div>
-        <div class="reveal reveal-delay-2">
-          <p class="body-lg text-stone" style="max-width: 42ch; margin-bottom: var(--space-3);">
-            Full-service enterprise management — legal, financial, operational, and strategic —
-            under one roof. No handoffs, no gaps, no excuses.
-          </p>
-          <p class="body-md text-stone" style="max-width: 42ch;">
-            Every service is delivered with institutional rigor and personalized to the individual
-            enterprise of each client we serve.
-          </p>
+        <div class="page-hero__aside reveal reveal-delay-2">
+          <div class="page-hero__prose">
+            <p class="body-lg text-stone">
+              Full-service enterprise management — legal, financial, operational, and strategic —
+              under one roof. No handoffs, no gaps, no excuses.
+            </p>
+            <p class="body-md text-stone">
+              Every service is delivered with institutional rigor and personalized to the individual
+              enterprise of each client we serve.
+            </p>
+          </div>
         </div>
       </div>
     </div>

@@ -604,6 +604,136 @@ button {
 }
 
 /* ============================================================
+   INTERIOR PAGE HERO — shared layout system
+   ============================================================ */
+.page-hero {
+  --hero-headline-lh: 0.9;
+  --hero-headline-size: clamp(3rem, 6vw, 7.5rem);
+  --hero-aside-align-line: 1;
+  position: relative;
+}
+
+.page-hero--viewport {
+  height: 100vh;
+  min-height: 680px;
+  max-height: 1080px;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  background-color: var(--near-black);
+}
+
+.page-hero--static {
+  padding: 160px var(--container-padding) var(--space-8);
+  background-color: var(--near-black);
+  overflow: hidden;
+}
+
+.page-hero__content {
+  position: relative;
+  z-index: 2;
+  padding: 0 var(--container-padding) var(--space-7);
+  max-width: var(--container-max);
+  margin: 0 auto;
+  width: 100%;
+}
+
+.page-hero--static .page-hero__content {
+  padding: 0;
+}
+
+.page-hero__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.75rem;
+}
+
+.page-hero__eyebrow::before {
+  content: '';
+  display: block;
+  width: 2rem;
+  height: 1px;
+  background-color: var(--gold);
+  flex-shrink: 0;
+}
+
+.page-hero__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  column-gap: var(--space-5);
+  row-gap: var(--space-3);
+  align-items: start;
+}
+
+.page-hero__main {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+}
+
+.page-hero__headline {
+  font-family: var(--font-display);
+  font-size: var(--hero-headline-size);
+  line-height: var(--hero-headline-lh);
+  letter-spacing: -0.02em;
+  color: var(--ivory);
+  margin: 0;
+}
+
+.page-hero__headline em {
+  font-style: italic;
+  color: var(--gold);
+}
+
+.page-hero__tagline {
+  font-size: clamp(0.9rem, 1.1vw, 1.05rem);
+  color: var(--stone);
+  max-width: 44ch;
+  line-height: 1.65;
+  margin: var(--space-3) 0 0;
+}
+
+.page-hero__aside {
+  align-self: start;
+  flex-shrink: 0;
+  padding-top: calc(
+    (var(--hero-aside-align-line, 1) - 1)
+    * var(--hero-headline-lh, 0.9)
+    * var(--hero-headline-size, 3rem)
+  );
+}
+
+.page-hero__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+}
+
+.page-hero__prose {
+  max-width: 42ch;
+}
+
+.page-hero__prose p {
+  margin-bottom: var(--space-3);
+}
+
+.page-hero__prose p:last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 1024px) {
+  .page-hero__layout {
+    grid-template-columns: 1fr;
+  }
+
+  .page-hero__aside {
+    padding-top: 0;
+  }
+}
+
+/* ============================================================
    LOGO STENCIL EFFECT (NIL reference concept)
    ============================================================ */
 .logo-stencil-container {

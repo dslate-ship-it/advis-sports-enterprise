@@ -13,14 +13,13 @@
 
     /* ===== NIL HERO: Video + stencil concept ===== */
     .nil-hero {
-      position: relative;
-      height: 100vh;
-      min-height: 680px;
-      max-height: 1080px;
-      overflow: hidden;
-      display: flex;
-      align-items: flex-end;
-      background-color: var(--near-black);
+      --hero-headline-size: clamp(3rem, 8vw, 9rem);
+      --hero-headline-lh: 0.9;
+      --hero-aside-align-line: 1;
+    }
+
+    .nil-hero .page-hero__content {
+      z-index: 3;
     }
 
     .nil-hero-video {
@@ -78,47 +77,6 @@
       opacity: 0.7;
       user-select: none;
       white-space: nowrap;
-    }
-
-    .nil-hero-content {
-      position: relative;
-      z-index: 3;
-      padding: 0 var(--container-padding) var(--space-7);
-      max-width: var(--container-max);
-      margin: 0 auto;
-      width: 100%;
-    }
-
-    .nil-hero-eyebrow {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .nil-hero-headline {
-      font-family: var(--font-display);
-      font-size: clamp(3rem, 8vw, 9rem);
-      line-height: 0.9;
-      letter-spacing: -0.02em;
-      color: var(--ivory);
-      margin-bottom: var(--space-3);
-    }
-
-    .nil-hero-headline em { font-style: italic; color: var(--gold); }
-
-    .nil-hero-sub {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: var(--space-4);
-      align-items: flex-end;
-    }
-
-    .nil-hero-desc {
-      font-size: clamp(0.9rem, 1.1vw, 1.05rem);
-      color: var(--stone);
-      max-width: 44ch;
-      line-height: 1.65;
     }
 
     /* ===== PROBLEM STATEMENT ===== */
@@ -280,7 +238,6 @@
 
     /* ===== RESPONSIVE ===== */
     @media (max-width: 1024px) {
-      .nil-hero-sub { grid-template-columns: 1fr; }
       .problem-grid { grid-template-columns: 1fr; }
       .tiers-grid { grid-template-columns: 1fr; }
       .flight-school-layout { grid-template-columns: 1fr; }
@@ -349,7 +306,7 @@
   <!-- ============================================================
        NIL HERO: Fullscreen video + stencil
   ============================================================ -->
-  <section class="nil-hero">
+  <section class="nil-hero page-hero page-hero--viewport">
 
     <!-- Vimeo Sports/NIL video -->
     <div class="nil-hero-video">
@@ -370,24 +327,26 @@
       <span class="stencil-text">NIL</span>
     </div>
 
-    <div class="nil-hero-content">
-      <div class="nil-hero-eyebrow">
-        <span style="display:block;width:2rem;height:1px;background:var(--gold)"></span>
+    <div class="page-hero__content">
+      <div class="page-hero__eyebrow">
         <span class="label text-gold">Name, Image &amp; Likeness</span>
       </div>
 
-      <h1 class="nil-hero-headline">
-        <em>NIL</em> Flight<br>School™
-      </h1>
-
-      <div class="nil-hero-sub">
-        <p class="nil-hero-desc">
-          You are not just a student-athlete. You are the CEO of your own enterprise.
-          We build the structure, compliance, and strategy to maximize what you earn — and protect every dollar of it.
-        </p>
-        <div style="display: flex; flex-direction: column; gap: 0.875rem;">
-          <a href="#get-started" class="btn btn--primary">Begin Your Assessment</a>
-          <a href="#tiers" class="btn btn--ghost">View Service Tiers</a>
+      <div class="page-hero__layout">
+        <div class="page-hero__main">
+          <h1 class="page-hero__headline">
+            <em>NIL</em> Flight<br>School™
+          </h1>
+          <p class="page-hero__tagline">
+            You are not just a student-athlete. You are the CEO of your own enterprise.
+            We build the structure, compliance, and strategy to maximize what you earn — and protect every dollar of it.
+          </p>
+        </div>
+        <div class="page-hero__aside">
+          <div class="page-hero__actions">
+            <a href="#get-started" class="btn btn--primary">Begin Your Assessment</a>
+            <a href="#tiers" class="btn btn--ghost">View Service Tiers</a>
+          </div>
         </div>
       </div>
     </div>

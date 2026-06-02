@@ -12,10 +12,9 @@
 
     /* ===== BESPOKE HERO ===== */
     .bespoke-hero {
-      position: relative;
-      padding: 160px var(--container-padding) var(--space-8);
-      background-color: var(--near-black);
-      overflow: hidden;
+      --hero-headline-size: clamp(3rem, 6vw, 7.5rem);
+      --hero-headline-lh: 0.9;
+      --hero-aside-align-line: 2;
     }
 
     .bespoke-bg {
@@ -24,24 +23,6 @@
       background: radial-gradient(ellipse at 80% 30%, rgba(184,150,90,0.06) 0%, transparent 60%);
       pointer-events: none;
     }
-
-    .bespoke-hero-layout {
-      position: relative;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: var(--space-5);
-      align-items: end;
-    }
-
-    .bh-headline {
-      font-family: var(--font-display);
-      font-size: clamp(3rem, 6vw, 7.5rem);
-      line-height: 0.9;
-      letter-spacing: -0.02em;
-      color: var(--ivory);
-    }
-
-    .bh-headline em { font-style: italic; color: var(--gold); }
 
     /* ===== WHAT BESPOKE MEANS ===== */
     .bespoke-definition {
@@ -152,7 +133,6 @@
 
     /* ===== RESPONSIVE ===== */
     @media (max-width: 1024px) {
-      .bespoke-hero-layout { grid-template-columns: 1fr; }
       .bd-layout { grid-template-columns: 1fr; }
       .bc-grid { grid-template-columns: 1fr; }
     }
@@ -204,26 +184,27 @@
   </nav>
 
   <!-- HERO -->
-  <section class="bespoke-hero">
+  <section class="bespoke-hero page-hero page-hero--static">
     <div class="bespoke-bg"></div>
     <div class="container">
-      <div class="bespoke-hero-layout">
-        <div class="reveal">
-          <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1.75rem;">
-            <span style="display:block;width:2rem;height:1px;background:var(--gold)"></span>
-            <span class="label text-gold">Bespoke &amp; Entrepreneurs</span>
-          </div>
-          <h1 class="bh-headline">
+      <div class="page-hero__eyebrow reveal">
+        <span class="label text-gold">Bespoke &amp; Entrepreneurs</span>
+      </div>
+      <div class="page-hero__layout">
+        <div class="page-hero__main reveal">
+          <h1 class="page-hero__headline">
             Built for<br>those who<br>built <em>something</em><br>worth protecting.
           </h1>
         </div>
-        <div class="reveal reveal-delay-2">
-          <p class="body-lg text-stone" style="max-width: 42ch; margin-bottom: var(--space-3);">
-            Not every exceptional person is an athlete or an entertainer. Some are enterprise founders,
-            operators, and high-net-worth individuals who have created unusual personal value —
-            and need an advisory relationship that matches the complexity of what they've built.
-          </p>
-          <a href="contact.html" class="btn btn--primary">Explore Representation</a>
+        <div class="page-hero__aside reveal reveal-delay-2">
+          <div class="page-hero__prose">
+            <p class="body-lg text-stone">
+              Not every exceptional person is an athlete or an entertainer. Some are enterprise founders,
+              operators, and high-net-worth individuals who have created unusual personal value —
+              and need an advisory relationship that matches the complexity of what they've built.
+            </p>
+            <a href="contact.html" class="btn btn--primary" style="margin-top: var(--space-3);">Explore Representation</a>
+          </div>
         </div>
       </div>
     </div>
