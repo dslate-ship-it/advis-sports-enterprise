@@ -21,6 +21,45 @@ This file contains the remaining correction pass after prior Cursor edits. The s
 - Do not add heavy dependencies.
 - For animation work, use lightweight HTML/CSS/SVG and minimal JavaScript only.
 
+## Responsive Breakpoint Rules
+
+Read `AGENT_CONTEXT.md` §8 for full context. Use these rules when scoping mobile-only or phablet-specific corrections.
+
+### Large mobile and below
+
+- **Base viewport:** 430px wide × 932px tall.
+- **CSS target:** `@media (max-width: 430px)`, unless the project already has a nearby existing breakpoint that should be reused (e.g. `431px`, `480px`, `575px`).
+- **Applies to:** Large phones, standard phones, and smaller phones.
+- **Required test sizes:** 430×932, 390×844, 375×812.
+- **Must not affect:**
+  - Galaxy Fold unfolded / phablet view at approximately 691×703
+  - Tablet at 768px and above
+  - Laptop / desktop at 1024px and above
+
+For mobile-only layout tasks:
+- Use responsive CSS only where possible (media queries, flex order, grid order, mobile-only spacing, mobile-only sizing).
+- Do not duplicate content unless necessary.
+- Do not alter desktop HTML structure unless required. If HTML must be adjusted, preserve desktop appearance exactly.
+
+### Fold / phablet unfolded
+
+- **Base viewport:** 691px wide × 703px tall.
+- **CSS target:** `@media (min-width: 600px) and (max-width: 767px)`, unless the project already has a better equivalent.
+- **Treat as:** Compact tablet / phablet — not normal phone.
+- **Required test size:** 691×703.
+- **Must not affect:** Tablet at 768px and above, or laptop / desktop at 1024px and above.
+
+Do not apply large-mobile-only corrections to this viewport category.
+
+### Acceptance criteria for mobile-only fixes
+
+When a fix is scoped to large mobile and below, verify:
+
+- Change applies at 430×932, 390×844, and 375×812.
+- Change does **not** affect 691×703 (Fold / phablet).
+- Change does **not** affect 768px tablet.
+- Change does **not** affect 1366px or 1440px desktop / laptop.
+
 ## Screenshot Location
 
 Screenshots are stored in:

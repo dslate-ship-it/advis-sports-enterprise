@@ -161,7 +161,50 @@ There are two distinct entry points:
 
 ## 8. Responsive / Mobile Rules
 
-- **Breakpoints in use:** `max-width: 1024px` (tablet), `max-width: 768px` (mobile), `max-width: 480px` (small mobile where applicable)
+### Viewport categories
+
+Use these categories when scoping responsive work. Do not apply large-mobile-only rules to fold/phablet, tablet, or desktop viewports.
+
+| Category | Viewport range | CSS target | Base test size |
+|---|---|---|---|
+| **Laptop / desktop** | 1024px wide and above | `@media (min-width: 1024px)` | 1366×768, 1440×900 |
+| **Tablet** | 768px wide and above (below laptop) | `@media (max-width: 1023px)` or existing `768px` rules | 768×1024 |
+| **Fold / phablet unfolded** | Compact tablet / phablet (not normal phone) | `@media (min-width: 600px) and (max-width: 767px)` — reuse an existing equivalent if the project already has one | 691×703 |
+| **Large mobile and below** | Large phones, standard phones, smaller phones | `@media (max-width: 430px)` — reuse a nearby existing breakpoint (`431px`, `480px`, `575px`) if one already exists | 430×932 |
+
+### Large mobile and below
+
+- **Base viewport:** 430px wide × 932px tall.
+- **CSS target:** `@media (max-width: 430px)`, unless the project already has a nearby existing breakpoint that should be reused (e.g. `431px`, `480px`, `575px`).
+- **Applies to:** Large phones, standard phones, and smaller phones.
+- **Required test sizes:** 430×932, 390×844, 375×812.
+- **Must not affect:**
+  - Galaxy Fold unfolded / phablet view at approximately 691×703
+  - Tablet at 768px and above
+  - Laptop / desktop at 1024px and above
+
+When a task is scoped to large mobile only, use responsive CSS (media queries, flex/grid order, mobile-only spacing and sizing). Do not change tablet, phablet, or desktop layout.
+
+### Fold / phablet unfolded
+
+- **Base viewport:** 691px wide × 703px tall.
+- **CSS target:** `@media (min-width: 600px) and (max-width: 767px)`, unless the project already has a better equivalent.
+- **Treat as:** Compact tablet / phablet — not normal phone.
+- **Required test size:** 691×703.
+- **Must not affect:** Tablet at 768px and above, or laptop / desktop at 1024px and above.
+
+Do not apply large-mobile-only corrections to this viewport category.
+
+### Breakpoints currently in use
+
+- `max-width: 1024px` — tablet layout adjustments
+- `max-width: 768px` — mobile nav, single-column grids, hero stacking
+- `max-width: 767px` — used on `index.html`
+- `max-width: 480px` — small mobile overrides where applicable (prefer reusing this over adding duplicate rules when it already covers the target)
+- `max-width: 430px` — large mobile and below (use for mobile-only corrections scoped to phones)
+
+### General responsive rules
+
 - **Navigation:** On mobile (`≤768px`), the desktop nav is hidden and replaced by a slide-in panel (`.mobile-nav`) toggled by `.mobile-toggle`. Submenus are accordion-style. Do not alter this behavior.
 - **Grid layouts:** Most grids collapse to single column at 1024px or 768px. Pathway grid, services preview grid, and stats grid have specific responsive overrides in each page's `<style>` block — check these before editing grid columns.
 - **Hero:** `index.html` split panels stack vertically on mobile (`flex-direction: column`, each panel `55vh`). On mobile, panel content (`.p-body`, `.p-label`, `.p-cta`) is visible by default — the hover-reveal only applies on desktop (`@media (hover: hover) and (min-width: 768px)`).
