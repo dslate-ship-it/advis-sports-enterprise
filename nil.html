@@ -79,6 +79,63 @@
       white-space: nowrap;
     }
 
+    .nil-hero-unmute {
+      position: absolute;
+      top: calc(72px + var(--space-3));
+      right: var(--container-padding);
+      z-index: 4;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      min-height: 44px;
+      padding: 0.5rem 1rem;
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ivory);
+      background-color: rgba(13, 13, 13, 0.72);
+      border: 1px solid rgba(184, 150, 90, 0.45);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      backdrop-filter: blur(6px);
+      transition: border-color var(--duration-base) var(--ease-smooth),
+                  background-color var(--duration-base) var(--ease-smooth);
+    }
+
+    .nil-hero-unmute:hover {
+      border-color: var(--gold);
+      background-color: rgba(13, 13, 13, 0.88);
+    }
+
+    .nil-hero-unmute.is-hidden {
+      display: none;
+    }
+
+    .nil-hero-unmute-icon {
+      display: inline-block;
+      width: 1rem;
+      height: 1rem;
+      border: 1px solid var(--gold);
+      border-radius: 50%;
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .nil-hero-unmute-icon::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-top: 3px solid transparent;
+      border-bottom: 3px solid transparent;
+      border-left: 5px solid var(--gold);
+      transform: translate(-35%, -50%);
+    }
+
     /* ===== PROBLEM STATEMENT ===== */
     .problem-section {
       background-color: var(--charcoal);
@@ -142,6 +199,28 @@
       grid-template-columns: repeat(3, 1fr);
       gap: var(--space-3);
       margin-top: var(--space-5);
+      align-items: stretch;
+    }
+
+    .tiers-section .tier-card {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .tiers-section .tier-tagline {
+      font-size: 0.875rem;
+      line-height: 1.65;
+      text-align: justify;
+      flex: 1;
+      min-height: 5.5rem;
+      margin-bottom: var(--space-4);
+    }
+
+    .tiers-section .tier-card .btn {
+      margin-top: auto;
+      width: 100%;
+      justify-content: center;
     }
 
     /* ===== FIVE LANES (NIL version) ===== */
@@ -240,6 +319,7 @@
     @media (max-width: 1024px) {
       .problem-grid { grid-template-columns: 1fr; }
       .tiers-grid { grid-template-columns: 1fr; }
+      .tiers-section .tier-tagline { min-height: auto; }
       .flight-school-layout { grid-template-columns: 1fr; }
     }
 
@@ -311,6 +391,7 @@
     <!-- Vimeo Sports/NIL video -->
     <div class="nil-hero-video">
       <iframe
+        id="nil-hero-player"
         src="https://player.vimeo.com/video/1173714440?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1&background=1"
         width="1920"
         height="1080"
@@ -319,6 +400,11 @@
         referrerpolicy="strict-origin-when-cross-origin"
         title="The Advisory NIL"></iframe>
     </div>
+
+    <button type="button" class="nil-hero-unmute" id="nil-hero-unmute" aria-label="Unmute hero video">
+      <span class="nil-hero-unmute-icon" aria-hidden="true"></span>
+      Tap to Unmute
+    </button>
 
     <div class="nil-hero-overlay"></div>
 
@@ -335,7 +421,7 @@
       <div class="page-hero__layout">
         <div class="page-hero__main">
           <h1 class="page-hero__headline">
-            <em>NIL</em> Flight<br>School™
+            <em>NIL</em>
           </h1>
           <p class="page-hero__tagline">
             You are not just a student-athlete. You are the CEO of your own enterprise.
@@ -507,13 +593,13 @@
             <li>Compliance quick check</li>
             <li>Recommended next steps</li>
           </ul>
-          <a href="contact.html" class="btn btn--ghost" style="margin-top: var(--space-4); width: 100%; justify-content: center;">Request Consultation</a>
+          <a href="contact.html" class="btn btn--ghost">Request Consultation</a>
         </div>
 
-        <!-- Tier 2: Pro / Flight School -->
+        <!-- Tier 2: All-Star -->
         <div class="tier-card tier-card--featured reveal reveal-delay-1">
           <div class="tier-badge">Most Chosen</div>
-          <div class="tier-name">Flight School™</div>
+          <div class="tier-name">All-Star</div>
           <div class="tier-tagline">
             A 4-quarter curriculum and advisory engagement for student-athletes entering or actively
             participating in the NIL market. Build foundations. Make decisions. Keep what you earn.
@@ -527,12 +613,12 @@
             <li>Family governance framework</li>
             <li>Dedicated advisor relationship</li>
           </ul>
-          <a href="contact.html" class="btn btn--primary" style="margin-top: var(--space-4); width: 100%; justify-content: center;">Start Flight School™</a>
+          <a href="contact.html" class="btn btn--primary">Become an All-Star</a>
         </div>
 
-        <!-- Tier 3: All-Star -->
+        <!-- Tier 3: Future Pro -->
         <div class="tier-card reveal reveal-delay-2">
-          <div class="tier-name">All-Star</div>
+          <div class="tier-name">Future Pro</div>
           <div class="tier-tagline">
             Full-service family office infrastructure and comprehensive representation.
             Built for elite-level athletes whose enterprise demands institutional management.
@@ -546,7 +632,7 @@
             <li>Multi-state tax &amp; entity management</li>
             <li>Dedicated enterprise team</li>
           </ul>
-          <a href="contact.html" class="btn btn--ghost" style="margin-top: var(--space-4); width: 100%; justify-content: center;">Request All-Star Access</a>
+          <a href="contact.html" class="btn btn--ghost">Request Future Pro Access</a>
         </div>
 
       </div>
@@ -562,15 +648,15 @@
       <div class="flight-school-layout">
 
         <div class="reveal">
-          <div class="eyebrow"><span class="label">Flight School™ Curriculum</span></div>
+          <div class="eyebrow"><span class="label">All-Star Curriculum</span></div>
           <h2 class="display-md text-white">
             Four quarters.<br><em style="font-style:italic; color: var(--gold);">One complete</em><br>enterprise.
           </h2>
           <p class="body-md text-stone" style="margin-top: var(--space-3); max-width: 38ch;">
-            Built around the rhythms of your athletic season, Flight School™ moves from
+            Built around the rhythms of your athletic season, All-Star moves from
             foundational literacy to active enterprise management — without disrupting your game.
           </p>
-          <a href="contact.html" class="btn btn--primary" style="margin-top: var(--space-4);">Start Flight School™</a>
+          <a href="contact.html" class="btn btn--primary" style="margin-top: var(--space-4);">Become an All-Star</a>
         </div>
 
         <div class="reveal reveal-delay-2">
@@ -673,5 +759,25 @@
   </footer>
 
   <script src="js/main.js"></script>
+  <script>
+    (function () {
+      var player = document.getElementById('nil-hero-player');
+      var unmuteBtn = document.getElementById('nil-hero-unmute');
+      if (!player || !unmuteBtn) return;
+
+      function vimeoCommand(method, value) {
+        var payload = { method: method };
+        if (value !== undefined) payload.value = value;
+        player.contentWindow.postMessage(JSON.stringify(payload), '*');
+      }
+
+      unmuteBtn.addEventListener('click', function () {
+        vimeoCommand('setMuted', false);
+        vimeoCommand('setVolume', 1);
+        vimeoCommand('play');
+        unmuteBtn.classList.add('is-hidden');
+      });
+    })();
+  </script>
 </body>
 </html>
