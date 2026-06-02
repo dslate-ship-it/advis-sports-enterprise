@@ -43,7 +43,7 @@
               <li class="dropdown-item"><a href="services.html#nil-services" class="dropdown-link">NIL Strategy &amp; Compliance</a></li>
               <li class="dropdown-item"><a href="services.html#entity" class="dropdown-link">Entity &amp; Tax Structure</a></li>
               <li class="dropdown-item"><a href="services.html#brand-ip" class="dropdown-link">Brand &amp; IP</a></li>
-              <li class="dropdown-item"><a href="services.html#family-governance" class="dropdown-link">Family Governance</a></li>
+              <li class="dropdown-item"><a href="services.html#family-governance" class="dropdown-link">Family Office &amp; Governance</a></li>
               <li class="dropdown-item"><a href="services.html#diligence" class="dropdown-link">Deal Diligence &amp; M&amp;A</a></li>
             </ul>
           </li>
@@ -97,7 +97,7 @@
           <a href="services.html#nil-services" class="mobile-submenu-link">NIL Strategy &amp; Compliance</a>
           <a href="services.html#entity" class="mobile-submenu-link">Entity &amp; Tax Structure</a>
           <a href="services.html#brand-ip" class="mobile-submenu-link">Brand &amp; IP</a>
-          <a href="services.html#family-governance" class="mobile-submenu-link">Family Governance</a>
+          <a href="services.html#family-governance" class="mobile-submenu-link">Family Office &amp; Governance</a>
           <a href="services.html#diligence" class="mobile-submenu-link">Deal Diligence &amp; M&amp;A</a>
         </div>
       </li>
@@ -147,7 +147,7 @@
             <li><a href="nil.html">NIL Strategy</a></li>
             <li><a href="services.html#entity">Entity &amp; Tax</a></li>
             <li><a href="services.html#brand-ip">Brand &amp; IP</a></li>
-            <li><a href="services.html#family-governance">Family Governance</a></li>
+            <li><a href="services.html#family-governance">Family Office &amp; Governance</a></li>
             <li><a href="services.html#diligence">Deal Diligence</a></li>
           </ul>
         </div>
