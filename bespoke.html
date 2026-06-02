@@ -10,18 +10,50 @@
   <style>
     body { background-color: var(--near-black); }
 
-    /* ===== BESPOKE HERO ===== */
+    /* ===== BESPOKE HERO: fullscreen video (from creatives hero) ===== */
     .bespoke-hero {
-      --hero-headline-size: clamp(3rem, 6vw, 7.5rem);
-      --hero-headline-lh: 0.9;
-      --hero-aside-align-line: 2;
+      --hero-headline-size: clamp(2.25rem, 4.5vw, 5.25rem);
+      --hero-headline-lh: 0.92;
+      --hero-aside-align-line: 1;
     }
 
-    .bespoke-bg {
+    .bespoke-hero .page-hero__content {
+      z-index: 3;
+    }
+
+    .bespoke-hero-video {
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse at 80% 30%, rgba(184,150,90,0.06) 0%, transparent 60%);
+      z-index: 0;
+    }
+
+    .bespoke-hero-video iframe {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 177.78vh;
+      min-width: 100%;
+      height: 100%;
+      min-height: 56.25vw;
+      border: none;
       pointer-events: none;
+    }
+
+    .bespoke-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(13,13,13,1) 0%,
+        rgba(13,13,13,0.6) 40%,
+        rgba(13,13,13,0.15) 100%
+      );
+      z-index: 1;
+    }
+
+    .bespoke-definition-lead {
+      text-align: justify;
     }
 
     /* ===== WHAT BESPOKE MEANS ===== */
@@ -82,54 +114,102 @@
       line-height: 1.6;
     }
 
-    /* ===== VIDEO SECTION (Creatives video for bespoke entrepreneurs) ===== */
-    .bespoke-video-section {
-      position: relative;
-      aspect-ratio: 16/9;
-      max-height: 700px;
-      overflow: hidden;
+    /* ===== DIAL DISPLAY (replaces mid-page video) ===== */
+    .bespoke-dials-section {
       background-color: var(--near-black);
+      padding: var(--space-8) var(--container-padding);
+      border-top: 1px solid var(--border-dark);
     }
 
-    .bespoke-video-section iframe {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 177.78vh;
-      min-width: 100%;
-      height: 100%;
-      min-height: 56.25vw;
-      border: none;
-      pointer-events: none;
+    .bespoke-dials-inner {
+      max-width: var(--container-max);
+      margin: 0 auto;
     }
 
-    .bespoke-video-overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(13,13,13,0.55);
+    .bespoke-dial-grid {
       display: flex;
-      align-items: center;
+      flex-wrap: wrap;
       justify-content: center;
-      z-index: 1;
+      align-items: center;
+      gap: var(--space-4);
+      margin-bottom: var(--space-6);
+      min-height: 280px;
     }
 
-    .bespoke-video-text {
-      text-align: center;
-      z-index: 2;
+    .bespoke-dial {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      width: var(--dial-size, 5rem);
+    }
+
+    .bespoke-dial-face {
       position: relative;
+      width: var(--dial-size, 5rem);
+      height: var(--dial-size, 5rem);
+      border-radius: 50%;
+      border: 1px solid rgba(184,150,90,0.25);
+      background: radial-gradient(circle at 50% 50%, rgba(184,150,90,0.06) 0%, transparent 70%);
     }
 
-    .bespoke-video-text h2 {
+    .bespoke-dial-face::before {
+      content: '';
+      position: absolute;
+      inset: 18%;
+      border-radius: 50%;
+      border: 1px solid rgba(184,150,90,0.12);
+    }
+
+    .bespoke-dial-hand {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 2px;
+      height: 38%;
+      margin-left: -1px;
+      background: var(--gold);
+      transform-origin: 50% 100%;
+      transform: rotate(-120deg);
+      opacity: 0.85;
+      transition: transform 1.4s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .bespoke-dials-section.is-animated .bespoke-dial-hand {
+      transform: rotate(var(--target-angle, 0deg));
+    }
+
+    .bespoke-dial-label {
+      font-family: var(--font-sans);
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-align: center;
+      line-height: 1.25;
+      max-width: 7rem;
+    }
+
+    .bespoke-dials-cta {
+      text-align: center;
+      padding-top: var(--space-4);
+      border-top: 1px solid var(--border-dark);
+    }
+
+    .bespoke-dials-cta p {
       font-family: var(--font-display);
-      font-size: clamp(2.5rem, 5vw, 6rem);
-      line-height: 1.0;
+      font-size: clamp(1.5rem, 3vw, 2.75rem);
+      line-height: 1.2;
       color: var(--ivory);
-      max-width: 16ch;
-      margin: 0 auto var(--space-3);
+      margin: 0;
     }
 
-    .bespoke-video-text h2 em { font-style: italic; color: var(--gold); }
+    .bespoke-dials-cta p + p {
+      margin-top: 0.35rem;
+      font-style: italic;
+      color: var(--gold);
+    }
 
     /* ===== RESPONSIVE ===== */
     @media (max-width: 1024px) {
@@ -184,19 +264,28 @@
   </nav>
 
   <!-- HERO -->
-  <section class="bespoke-hero page-hero page-hero--static">
-    <div class="bespoke-bg"></div>
-    <div class="container">
-      <div class="page-hero__eyebrow reveal">
+  <section class="bespoke-hero page-hero page-hero--viewport">
+    <div class="bespoke-hero-video">
+      <iframe
+        src="https://player.vimeo.com/video/1173897349?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1&background=1"
+        frameborder="0"
+        allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        title="The Advisory Creative Enterprise"></iframe>
+    </div>
+    <div class="bespoke-hero-overlay"></div>
+
+    <div class="page-hero__content">
+      <div class="page-hero__eyebrow">
         <span class="label text-gold">Bespoke &amp; Entrepreneurs</span>
       </div>
       <div class="page-hero__layout">
-        <div class="page-hero__main reveal">
+        <div class="page-hero__main">
           <h1 class="page-hero__headline">
-            Built for<br>those who<br>built <em>something</em><br>worth protecting.
+            Built for those who<br>built <em>something</em> worth protecting.
           </h1>
         </div>
-        <div class="page-hero__aside reveal reveal-delay-2">
+        <div class="page-hero__aside">
           <div class="page-hero__prose">
             <p class="body-lg text-stone">
               Not every exceptional person is an athlete or an entertainer. Some are enterprise founders,
@@ -219,7 +308,7 @@
           <h2 class="display-md text-white" style="margin-bottom: var(--space-3);">
             Not a product.<br>Not a package.<br><em style="color: var(--gold); font-style: italic;">A relationship.</em>
           </h2>
-          <p class="body-md text-stone">
+          <p class="body-md text-stone bespoke-definition-lead">
             Bespoke clients receive a fully customized advisory relationship. No predefined tiers,
             no templated deliverables. We learn your enterprise, your goals, your complexity —
             and we build the advisory structure around it.
@@ -250,29 +339,42 @@
             </div>
             <span class="lane-arrow">→</span>
           </div>
+          <div class="lane-card">
+            <span class="lane-number">04</span>
+            <div>
+              <div class="lane-title">Family Office and Trust Design</div>
+              <div class="lane-desc">Governance, trust architecture, and succession planning built to protect family assets and honor your intentions across generations.</div>
+            </div>
+            <span class="lane-arrow">→</span>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- VIDEO SECTION: Creatives/Bespoke/Enterprise Entrepreneurs -->
-  <div class="bespoke-video-section">
-    <!-- Video ONLY for creatives/bespoke/enterprise entrepreneurs -->
-    <iframe
-      src="https://player.vimeo.com/video/1173897349?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1&background=1"
-      frameborder="0"
-      allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
-      referrerpolicy="strict-origin-when-cross-origin"
-      title="The Advisory Bespoke"></iframe>
-    <div class="bespoke-video-overlay">
-      <div class="bespoke-video-text">
-        <h2>
-          Excellence is not an<br>accident. It is a <em>system.</em>
-        </h2>
-        <a href="contact.html" class="btn btn--primary">Start a Conversation</a>
+  <!-- DIAL DISPLAY -->
+  <section class="bespoke-dials-section" id="bespoke-dials" aria-label="Advisory control landscape">
+    <div class="bespoke-dials-inner">
+      <div class="bespoke-dial-grid">
+        <div class="bespoke-dial" style="--dial-size: 4.5rem; --target-angle: 24deg;"><div class="bespoke-dial-face"><span class="bespoke-dial-hand"></span></div><span class="bespoke-dial-label">index funds</span></div>
+        <div class="bespoke-dial" style="--dial-size: 5.5rem; --target-angle: -48deg;"><div class="bespoke-dial-face"><span class="bespoke-dial-hand"></span></div><span class="bespoke-dial-label">ETFs</span></div>
+        <div class="bespoke-dial" style="--dial-size: 3.75rem; --target-angle: 72deg;"><div class="bespoke-dial-face"><span class="bespoke-dial-hand"></span></div><span class="bespoke-dial-label">Roth</span></div>
+        <div class="bespoke-dial" style="--dial-size: 6rem; --target-angle: -18deg;"><div class="bespoke-dial-face"><span class="bespoke-dial-hand"></span></div><span class="bespoke-dial-label">crypto</span></div>
+        <div class="bespoke-dial" style="--dial-size: 5rem; --target-angle: 55deg;"><div class="bespoke-dial-face"><span class="bespoke-dial-hand"></span></div><span class="bespoke-dial-label">business acquisitions</span></div>
+        <div class="bespoke-dial" style="--dial-size: 4rem; --target-angle: -65deg;"><div class="bespoke-dial-face"><span class="bespoke-dial-hand"></span></div><span class="bespoke-dial-label">philanthropic giving</span></div>
+        <div class="bespoke-dial" style="--dial-size: 6.5rem; --target-angle: 12deg;"><div class="bespoke-dial-face"><span class="bespoke-dial-hand"></span></div><span class="bespoke-dial-label">family business</span></div>
+        <div class="bespoke-dial" style="--dial-size: 4.25rem; --target-angle: -32deg;"><div class="bespoke-dial-face"><span class="bespoke-dial-hand"></span></div><span class="bespoke-dial-label">irrevocable trust</span></div>
+        <div class="bespoke-dial" style="--dial-size: 5.25rem; --target-angle: 38deg;"><div class="bespoke-dial-face"><span class="bespoke-dial-hand"></span></div><span class="bespoke-dial-label">blind trust</span></div>
+        <div class="bespoke-dial" style="--dial-size: 3.5rem; --target-angle: -88deg;"><div class="bespoke-dial-face"><span class="bespoke-dial-hand"></span></div><span class="bespoke-dial-label">domestic accounts</span></div>
+        <div class="bespoke-dial" style="--dial-size: 5.75rem; --target-angle: 68deg;"><div class="bespoke-dial-face"><span class="bespoke-dial-hand"></span></div><span class="bespoke-dial-label">offshore accounts</span></div>
+        <div class="bespoke-dial" style="--dial-size: 4.75rem; --target-angle: -42deg;"><div class="bespoke-dial-face"><span class="bespoke-dial-hand"></span></div><span class="bespoke-dial-label">business scale</span></div>
+      </div>
+      <div class="bespoke-dials-cta">
+        <p>Excellence is not an accident.</p>
+        <p>It is a system.</p>
       </div>
     </div>
-  </div>
+  </section>
 
   <!-- WHO IT'S FOR -->
   <section class="bespoke-clients">
@@ -339,5 +441,20 @@
   </footer>
 
   <script src="js/main.js"></script>
+  <script>
+    (function () {
+      var section = document.getElementById('bespoke-dials');
+      if (!section) return;
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            section.classList.add('is-animated');
+            observer.unobserve(section);
+          }
+        });
+      }, { threshold: 0.35 });
+      observer.observe(section);
+    })();
+  </script>
 </body>
 </html>

@@ -18,11 +18,81 @@
       border-bottom: 1px solid var(--border-light);
     }
 
+    /* Header over dark hero (light page below) */
+    #site-header.light-header:not(.scrolled-light) .logo-name,
+    #site-header.light-header:not(.scrolled-light) .nav-link {
+      color: rgba(250, 248, 245, 0.85) !important;
+    }
+
+    #site-header.light-header:not(.scrolled-light) .nav-item.active > .nav-link,
+    #site-header.light-header:not(.scrolled-light) .nav-link:hover {
+      color: var(--ivory) !important;
+    }
+
+    #site-header.light-header:not(.scrolled-light) .mobile-toggle span {
+      background-color: var(--ivory);
+    }
+
+    #site-header.light-header:not(.scrolled-light) .header-cta .btn--ghost-dark {
+      color: var(--ivory);
+      border-color: rgba(250, 248, 245, 0.35);
+    }
+
+    #site-header.light-header:not(.scrolled-light) .header-cta .btn--ghost-dark:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
     /* ===== PAGE HERO (dark entry, then opens to light) ===== */
     .partnerships-hero {
       --hero-headline-size: clamp(3rem, 6vw, 7rem);
       --hero-headline-lh: 0.92;
       --hero-aside-align-line: 1;
+      background-color: var(--near-black);
+    }
+
+    .partnerships-hero .page-hero__content {
+      z-index: 3;
+    }
+
+    .partnerships-hero .page-hero__headline {
+      color: var(--ivory);
+    }
+
+    .partnerships-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(13,13,13,1) 0%,
+        rgba(13,13,13,0.7) 40%,
+        rgba(13,13,13,0.3) 100%
+      );
+      z-index: 1;
+    }
+
+    .partnerships-hero-stencil {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+    }
+
+    .partnerships-hero-stencil svg {
+      width: clamp(140px, 22vw, 280px);
+      height: auto;
+      opacity: 0.75;
+    }
+
+    .partnerships-hero-stencil path {
+      fill: none;
+      stroke: rgba(184, 150, 90, 0.22);
+      stroke-width: 1.25;
+      stroke-linecap: round;
+      stroke-linejoin: round;
     }
 
     /* ===== INTRO STRIP ===== */
@@ -50,7 +120,17 @@
     }
 
     /* ===== PARTNER CARD (light version) ===== */
+    .partner-tier-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-4);
+      align-items: stretch;
+    }
+
     .partner-tier {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
       background-color: var(--ivory);
       border: 1px solid var(--border-light);
       padding: var(--space-5) var(--space-5);
@@ -65,11 +145,7 @@
     }
 
     .partner-tier-header {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: var(--space-3);
-      margin-bottom: var(--space-4);
+      margin-bottom: var(--space-3);
       padding-bottom: var(--space-3);
       border-bottom: 1px solid var(--border-light);
     }
@@ -87,21 +163,25 @@
 
     .partner-tier-title {
       font-family: var(--font-display);
-      font-size: clamp(1.5rem, 2.5vw, 2.25rem);
+      font-size: clamp(1.35rem, 2.1vw, 1.75rem);
       color: var(--body-text);
-      line-height: 1.1;
+      line-height: 1.15;
+      min-height: 2.4em;
+      margin-bottom: 0.75rem;
     }
 
     .partner-tier-audience {
       font-family: var(--font-sans);
       font-size: 0.8125rem;
       color: var(--muted);
-      max-width: 28ch;
-      text-align: right;
+      line-height: 1.5;
+      text-align: justify;
+      margin: 0;
     }
 
     .partner-value {
       margin-bottom: var(--space-3);
+      min-height: 5.5rem;
     }
 
     .partner-value-label {
@@ -115,13 +195,16 @@
     }
 
     .partner-value p {
-      font-size: 0.9375rem;
+      font-size: 0.875rem;
       color: var(--body-text);
-      line-height: 1.6;
+      line-height: 1.55;
+      text-align: justify;
     }
 
     .partner-examples {
-      margin-top: var(--space-3);
+      flex: 1;
+      margin-top: 0;
+      margin-bottom: var(--space-3);
     }
 
     .partner-examples-label {
@@ -144,9 +227,15 @@
       display: flex;
       align-items: flex-start;
       gap: 0.75rem;
-      font-size: 0.875rem;
+      font-size: 0.8125rem;
       color: var(--body-text);
       line-height: 1.5;
+    }
+
+    .partner-tier-cta {
+      margin-top: auto;
+      width: 100%;
+      justify-content: center;
     }
 
     .partner-examples ul li::before {
@@ -261,6 +350,9 @@
     @media (max-width: 1024px) {
       .for-whom-grid { grid-template-columns: 1fr; }
       .how-steps { grid-template-columns: 1fr 1fr; }
+      .partner-tier-grid { grid-template-columns: 1fr; }
+      .partner-tier-title { min-height: 0; }
+      .partner-value { min-height: 0; }
     }
 
     @media (max-width: 768px) {
@@ -332,20 +424,29 @@
   <!-- ============================================================
        PARTNERSHIPS HERO: Dark entry
   ============================================================ -->
-  <section class="partnerships-hero page-hero page-hero--static">
-    <div class="container">
-      <div class="page-hero__eyebrow reveal">
+  <section class="partnerships-hero page-hero page-hero--viewport">
+    <div class="partnerships-hero-overlay"></div>
+    <div class="partnerships-hero-stencil" aria-hidden="true">
+      <svg viewBox="0 0 200 140" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M28 88 C18 68 22 48 42 38 L68 52 L82 32 C92 18 108 22 118 40 L108 72 C102 92 78 98 52 94 Z"/>
+        <path d="M172 88 C182 68 178 48 158 38 L132 52 L118 32 C108 18 92 22 82 40 L92 72 C98 92 122 98 148 94 Z"/>
+        <path d="M78 78 L92 68 L108 78 L122 68"/>
+      </svg>
+    </div>
+
+    <div class="page-hero__content">
+      <div class="page-hero__eyebrow">
         <span class="label text-gold">Partnerships</span>
       </div>
       <div class="page-hero__layout">
-        <div class="page-hero__main reveal">
+        <div class="page-hero__main">
           <h1 class="page-hero__headline">
-            Build together.<br><em>Keep</em> your<br>relationships.
+            Build together.<br><em>Keep</em> your relationships.
           </h1>
         </div>
-        <div class="page-hero__aside reveal reveal-delay-2">
+        <div class="page-hero__aside">
           <div class="page-hero__prose">
-            <p style="font-size: clamp(0.9rem, 1.1vw, 1.05rem); color: var(--stone); line-height: 1.65; max-width: 40ch;">
+            <p class="body-lg text-stone">
               We collaborate without stepping on your toes. You lead the relationship;
               we supply the legal, business, and operational backbone — so your athletes,
               creatives, and high-net-worth contacts experience professional outcomes end-to-end.
@@ -417,18 +518,14 @@
         <h2 class="heading-xl" style="color: var(--body-text); max-width: 18ch;">How We Partner<br>With You</h2>
       </div>
 
-      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-4);">
+      <div class="partner-tier-grid">
 
         <!-- AGENTS / MANAGERS / ATTORNEYS / FIDUCIARIES -->
         <div class="partner-tier reveal">
           <div class="partner-tier-header">
-            <div>
-              <div class="partner-tier-tag">Tier 1</div>
-              <div class="partner-tier-title">Agents, Managers, Attorneys &amp; Fiduciaries</div>
-            </div>
-            <div class="partner-tier-audience">
-              For licensed representatives serving athletes, creatives, and HNW clients
-            </div>
+            <div class="partner-tier-tag">Tier 1</div>
+            <div class="partner-tier-title">Agents, Managers, Attorneys &amp; Fiduciaries</div>
+            <p class="partner-tier-audience">For licensed representatives serving athletes, creatives, and HNW clients</p>
           </div>
 
           <div class="partner-value">
@@ -437,7 +534,7 @@
           </div>
 
           <div class="partner-examples">
-            <div class="partner-examples-label">How We Partner</div>
+            <div class="partner-examples-label">How We Partner With You</div>
             <ul>
               <li>White-label or co-branded delivery across contracts, NIL, IP, entity/tax posture, diligence, and M&amp;A support.</li>
               <li>Deal rooms, term-sheet drafting, performance tracking, and renewal pipelines your clients can actually use.</li>
@@ -446,19 +543,15 @@
             </ul>
           </div>
 
-          <a href="contact.html" class="btn btn--ghost-dark" style="margin-top: var(--space-4); width: 100%; justify-content: center;">Explore Partnership</a>
+          <a href="contact.html" class="btn btn--ghost-dark partner-tier-cta">Explore Partnership</a>
         </div>
 
         <!-- TRAINERS / PERFORMANCE STAFF / ADVISORS / COACHES -->
         <div class="partner-tier reveal reveal-delay-1">
           <div class="partner-tier-header">
-            <div>
-              <div class="partner-tier-tag">Tier 2</div>
-              <div class="partner-tier-title">Trainers, Advisors, Coaches &amp; PR/Media</div>
-            </div>
-            <div class="partner-tier-audience">
-              For providers embedded with talent, teams, or HNW households
-            </div>
+            <div class="partner-tier-tag">Tier 2</div>
+            <div class="partner-tier-title">Trainers, Advisors, Coaches &amp; PR/Media</div>
+            <p class="partner-tier-audience">For providers embedded with talent, teams, or HNW households</p>
           </div>
 
           <div class="partner-value">
@@ -467,7 +560,7 @@
           </div>
 
           <div class="partner-examples">
-            <div class="partner-examples-label">How We Partner</div>
+            <div class="partner-examples-label">How We Partner With You</div>
             <ul>
               <li>One operations backbone: entities, contracts, clearances, scheduling, and payment flows tied to your client's release/season cadence.</li>
               <li>Cross-functional coordination (legal, finance, operations) so your plan doesn't stall at handoffs.</li>
@@ -476,19 +569,15 @@
             </ul>
           </div>
 
-          <a href="contact.html" class="btn btn--ghost-dark" style="margin-top: var(--space-4); width: 100%; justify-content: center;">Explore Partnership</a>
+          <a href="contact.html" class="btn btn--ghost-dark partner-tier-cta">Explore Partnership</a>
         </div>
 
         <!-- MOVERS & SHAKERS -->
         <div class="partner-tier reveal reveal-delay-2">
           <div class="partner-tier-header">
-            <div>
-              <div class="partner-tier-tag">Tier 3</div>
-              <div class="partner-tier-title">Movers &amp; Shakers</div>
-            </div>
-            <div class="partner-tier-audience">
-              For non-professionals who regularly meet athletes, creatives, and HNWIs
-            </div>
+            <div class="partner-tier-tag">Tier 3</div>
+            <div class="partner-tier-title">Movers &amp; Shakers</div>
+            <p class="partner-tier-audience">For non-professionals who regularly meet athletes, creatives, and HNWIs</p>
           </div>
 
           <div class="partner-value">
@@ -497,7 +586,7 @@
           </div>
 
           <div class="partner-examples">
-            <div class="partner-examples-label">How We Partner</div>
+            <div class="partner-examples-label">How We Partner With You</div>
             <ul>
               <li>A vetted path to help your contacts — no pressure, no scripts; we handle scoping, paperwork, and delivery.</li>
               <li>Introducer agreements with transparent terms; compliance and disclosures handled by us.</li>
@@ -506,7 +595,7 @@
             </ul>
           </div>
 
-          <a href="contact.html" class="btn btn--ghost-dark" style="margin-top: var(--space-4); width: 100%; justify-content: center;">Explore Partnership</a>
+          <a href="contact.html" class="btn btn--ghost-dark partner-tier-cta">Explore Partnership</a>
         </div>
 
       </div>

@@ -18,9 +18,26 @@
       border-bottom: 1px solid var(--border-dark);
     }
 
+    .about-hero .page-hero__content {
+      z-index: 3;
+    }
+
+    .about-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(13,13,13,1) 0%,
+        rgba(13,13,13,0.7) 40%,
+        rgba(13,13,13,0.35) 100%
+      );
+      z-index: 1;
+    }
+
     .about-hero-wordmark-bg {
       position: absolute;
       inset: 0;
+      z-index: 0;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -31,13 +48,8 @@
       width: clamp(240px, 38vw, 560px);
       height: auto;
       object-fit: contain;
-      opacity: 0.1;
+      opacity: 0.12;
       user-select: none;
-    }
-
-    .about-hero .container {
-      position: relative;
-      z-index: 1;
     }
 
     /* ===== FOUNDER SECTION ===== */
@@ -217,23 +229,25 @@
   </nav>
 
   <!-- ABOUT HERO -->
-  <section class="about-hero page-hero page-hero--static">
+  <section class="about-hero page-hero page-hero--viewport">
     <div class="about-hero-wordmark-bg" aria-hidden="true">
       <img src="images/official-logo-transparent.png"
            alt=""
            onerror="this.style.opacity='0'">
     </div>
-    <div class="container">
-      <div class="page-hero__eyebrow reveal">
+    <div class="about-hero-overlay"></div>
+
+    <div class="page-hero__content">
+      <div class="page-hero__eyebrow">
         <span class="label text-gold">About The Advisory</span>
       </div>
       <div class="page-hero__layout">
-        <div class="page-hero__main reveal">
+        <div class="page-hero__main">
           <h1 class="page-hero__headline">
-            Built on <em>trust.</em><br>Measured in<br>legacies.
+            Built on <em>trust.</em><br>Measured in legacies.
           </h1>
         </div>
-        <div class="page-hero__aside reveal reveal-delay-2">
+        <div class="page-hero__aside">
           <div class="page-hero__prose">
             <p class="body-lg text-stone">
               The Advisory exists because institutional-grade enterprise management should not be the
