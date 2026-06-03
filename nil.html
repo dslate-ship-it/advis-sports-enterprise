@@ -62,11 +62,12 @@
       justify-content: center;
       pointer-events: none;
       overflow: hidden;
+      transform: translateY(-37.5%);
     }
 
     .stencil-text {
       font-family: var(--font-sans);
-      font-size: clamp(8rem, 22vw, 28rem);
+      font-size: clamp(32rem, 88vw, 112rem);
       font-weight: 700;
       letter-spacing: -0.04em;
       text-transform: uppercase;
@@ -348,7 +349,7 @@
       .nil-hero-stencil {
         position: absolute;
         inset: auto;
-        top: calc(72px + 32vh);
+        top: calc(72px + 12vh);
         left: 0;
         right: 0;
         width: 100%;
@@ -356,13 +357,14 @@
         padding: 0 var(--container-padding);
         align-items: center;
         justify-content: center;
+        transform: none;
       }
 
       .nil-hero-stencil .stencil-text {
         display: block;
         width: 100%;
         text-align: center;
-        font-size: clamp(2.75rem, 14.5vw, 6rem);
+        font-size: clamp(11rem, 58vw, 24rem);
         letter-spacing: -0.025em;
         line-height: 1;
       }
@@ -864,7 +866,16 @@
       <li class="mobile-nav-item"><button class="mobile-nav-trigger"><a href="services.html">Services</a></button></li>
       <li class="mobile-nav-item"><button class="mobile-nav-trigger"><a href="nil.html">NIL</a></button></li>
       <li class="mobile-nav-item"><button class="mobile-nav-trigger"><a href="partnerships.html">Partnerships</a></button></li>
-      <li class="mobile-nav-item"><button class="mobile-nav-trigger"><a href="about.html">About</a></button></li>
+      <li class="mobile-nav-item">
+        <button class="mobile-nav-trigger" data-submenu="mn-about">
+          <span>About</span>
+          <svg class="m-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 8l5 5 5-5"/></svg>
+        </button>
+        <div class="mobile-submenu" id="mn-about">
+          <a href="about.html" class="mobile-submenu-link">About The Advisory</a>
+          <a href="https://6a1eb37727fe92400cbf351d--theadvisorypllc.netlify.app/attorneys" class="mobile-submenu-link">Meet the Team</a>
+        </div>
+      </li>
     </ul>
     <div class="mobile-nav-cta"><a href="contact.html" class="btn btn--primary">Start a Conversation</a></div>
   </nav>

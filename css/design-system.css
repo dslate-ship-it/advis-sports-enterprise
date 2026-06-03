@@ -1247,7 +1247,6 @@ button {
   .rc-collapsible:not(.rc-expanded) .pathway-desc,
   .rc-collapsible:not(.rc-expanded) .pathway-link,
   .rc-collapsible:not(.rc-expanded) .lane-desc,
-  .rc-collapsible:not(.rc-expanded) .lane-arrow,
   .rc-collapsible:not(.rc-expanded) .sp-desc,
   .rc-collapsible:not(.rc-expanded) .who-desc,
   .rc-collapsible:not(.rc-expanded) .ip-item-desc {
@@ -1274,8 +1273,93 @@ button {
     padding-bottom: var(--space-3);
   }
 
+  .pathway-item.rc-collapsible:not(.rc-expanded) .pathway-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-2);
+    margin-bottom: 0;
+  }
+
+  .pathway-item.rc-collapsible:not(.rc-expanded) .pathway-title::after,
+  .pathway-item.rc-collapsible.rc-expanded .pathway-title::after {
+    content: '+';
+    flex-shrink: 0;
+    font-family: var(--font-sans);
+    font-size: 1.125rem;
+    font-weight: 400;
+    color: var(--gold);
+    opacity: 0.55;
+    line-height: 1;
+  }
+
+  .pathway-item.rc-collapsible.rc-expanded .pathway-title::after {
+    content: '−';
+  }
+
+  .lane-card.rc-collapsible:not(.rc-expanded) {
+    grid-template-columns: 2rem 1fr 1.5rem;
+    align-items: center;
+  }
+
+  .lane-card.rc-collapsible:not(.rc-expanded) .lane-title {
+    margin-bottom: 0;
+  }
+
+  .lane-card.rc-collapsible:not(.rc-expanded) .lane-arrow {
+    display: block;
+    justify-self: end;
+    text-align: right;
+    width: 1.5rem;
+    margin-top: 0;
+    line-height: 1;
+    font-size: 0;
+    transform: none;
+  }
+
+  .lane-card.rc-collapsible:not(.rc-expanded) .lane-arrow::after {
+    content: '+';
+    font-family: var(--font-sans);
+    font-size: 1.125rem;
+    font-weight: 400;
+    color: var(--gold);
+    opacity: 0.55;
+  }
+
+  .lane-card.rc-collapsible.rc-expanded .lane-arrow {
+    font-size: 1.25rem;
+  }
+
+  .lane-card.rc-collapsible.rc-expanded .lane-arrow::after {
+    content: none;
+  }
+
   .service-preview-item.rc-collapsible:not(.rc-expanded) {
     padding-bottom: var(--space-3);
+  }
+
+  .service-preview-item.rc-collapsible:not(.rc-expanded) .sp-title {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--space-2);
+    margin-bottom: 0;
+  }
+
+  .service-preview-item.rc-collapsible:not(.rc-expanded) .sp-title::after,
+  .service-preview-item.rc-collapsible.rc-expanded .sp-title::after {
+    content: '+';
+    flex-shrink: 0;
+    font-family: var(--font-sans);
+    font-size: 1.125rem;
+    font-weight: 400;
+    color: var(--gold);
+    opacity: 0.55;
+    line-height: 1;
+  }
+
+  .service-preview-item.rc-collapsible.rc-expanded .sp-title::after {
+    content: '−';
   }
 
   /* Tag / headline / paragraph stack tightening */

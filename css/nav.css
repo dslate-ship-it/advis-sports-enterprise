@@ -288,7 +288,8 @@
   display: none;
   flex-direction: column;
   justify-content: center;
-  gap: 5px;
+  align-items: center;
+  gap: 6px;
   width: 40px;
   height: 40px;
   cursor: pointer;
@@ -300,29 +301,24 @@
 
 .mobile-toggle span {
   display: block;
-  width: 24px;
-  height: 1.5px;
+  width: 22px;
+  height: 2px;
   background-color: var(--ivory);
+  border-radius: 1px;
   transition: transform var(--duration-base) var(--ease-smooth),
-              opacity var(--duration-base) var(--ease-smooth),
-              width var(--duration-base) var(--ease-smooth);
+              opacity var(--duration-base) var(--ease-smooth);
   transform-origin: center;
 }
 
-.mobile-toggle span:nth-child(3) {
-  width: 16px;
-}
-
 .mobile-toggle.active span:nth-child(1) {
-  transform: translateY(6.5px) rotate(45deg);
+  transform: translateY(8px) rotate(45deg);
 }
 .mobile-toggle.active span:nth-child(2) {
   opacity: 0;
   transform: scaleX(0);
 }
 .mobile-toggle.active span:nth-child(3) {
-  transform: translateY(-6.5px) rotate(-45deg);
-  width: 24px;
+  transform: translateY(-8px) rotate(-45deg);
 }
 
 /* ============================================================
