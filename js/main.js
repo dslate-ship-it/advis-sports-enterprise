@@ -371,7 +371,7 @@
     const items = document.querySelectorAll('.rc-collapsible');
 
     function collapseSiblings(item) {
-      const group = item.closest('.pathway-grid, .reveal, .services-preview-grid, .container, section');
+      const group = item.closest('.pathway-grid, .reveal, .services-preview-grid, .service-blocks, .partner-tier-grid, .container, section');
       if (!group) return;
       group.querySelectorAll('.rc-collapsible.rc-expanded').forEach(function (sibling) {
         if (sibling !== item) sibling.classList.remove('rc-expanded');
@@ -381,6 +381,7 @@
     items.forEach(function (item) {
       item.addEventListener('click', function (e) {
         if (!mq.matches) return;
+        if (e.target.closest('a[href], button')) return;
         e.preventDefault();
 
         if (!item.classList.contains('rc-expanded')) {

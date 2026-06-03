@@ -48,14 +48,35 @@
       --hero-headline-size: clamp(3rem, 6vw, 7rem);
       --hero-headline-lh: 0.92;
       background-color: #000;
+      overflow: hidden;
     }
 
     .partnerships-hero .page-hero__content {
       z-index: 3;
     }
 
+    .partnerships-hero .page-hero__layout {
+      justify-items: start;
+    }
+
+    .partnerships-hero .page-hero__main {
+      align-items: flex-start;
+      align-self: stretch;
+      width: 100%;
+      text-align: left;
+    }
+
+    .partnerships-hero .page-hero__eyebrow {
+      justify-content: flex-start;
+      align-self: stretch;
+      width: 100%;
+    }
+
     .partnerships-hero .page-hero__headline {
       color: var(--ivory);
+      text-align: left !important;
+      width: 100%;
+      max-width: none;
     }
 
     .partnerships-hero-overlay {
@@ -72,7 +93,12 @@
 
     .partnerships-hero-stencil {
       position: absolute;
-      inset: 0;
+      inset: auto;
+      top: calc(72px + 3vh);
+      left: 0;
+      right: 0;
+      bottom: auto;
+      height: auto;
       z-index: 2;
       display: flex;
       align-items: center;
@@ -87,11 +113,27 @@
     }
 
     .partnerships-hero-stencil img {
-      width: clamp(220px, 35vw, 540px);
+      width: clamp(600px, 96vw, 1440px);
+      max-width: none;
       height: auto;
       display: block;
-      opacity: 0.6;
-      filter: brightness(0.82) saturate(0.72) contrast(1.06);
+      opacity: 0.18;
+      filter: brightness(0.45) saturate(0.28) contrast(0.92);
+    }
+
+    .partnerships-hero .page-hero__prose {
+      text-align: center;
+    }
+
+    .partnerships-hero .page-hero__prose .btn,
+    .partnerships-hero-cta {
+      display: inline-flex;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .partnerships-hero-cta {
+      margin-top: var(--space-3);
     }
 
     /* ===== INTRO STRIP ===== */
@@ -227,9 +269,9 @@
     .partner-examples ul li {
       display: flex;
       align-items: flex-start;
-      gap: 0.75rem;
+      gap: 0.625rem;
       font-size: 0.8125rem;
-      color: var(--body-text);
+      color: var(--gold);
       line-height: 1.5;
     }
 
@@ -241,11 +283,11 @@
     }
 
     .partner-examples ul li::before {
-      content: '—';
+      content: '→';
       color: var(--gold);
-      font-weight: 700;
+      font-size: 0.75rem;
       flex-shrink: 0;
-      margin-top: 1px;
+      margin-top: 2px;
     }
 
     /* ===== WHO PARTNERSHIPS ARE FOR ===== */
@@ -348,6 +390,31 @@
       border-bottom: 1px solid var(--border-light);
     }
 
+    /* ===== BOTTOM CTA ===== */
+    .partnerships-cta {
+      background-color: var(--near-black);
+      padding: var(--space-8) 0;
+    }
+
+    .partnerships-cta-inner {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: var(--space-4);
+      align-items: center;
+    }
+
+    .partnerships-cta-inner h2 {
+      margin-bottom: 0.75rem;
+    }
+
+    .partnerships-cta-desc {
+      color: var(--stone);
+      font-size: 0.9375rem;
+      max-width: 44ch;
+      line-height: 1.65;
+      margin: 0;
+    }
+
     /* ===== RESPONSIVE ===== */
     @media (max-width: 1024px) {
       .for-whom-grid { grid-template-columns: 1fr; }
@@ -357,12 +424,290 @@
       .partner-value { min-height: 0; }
     }
 
+    .partner-tier-head-row {
+      display: block;
+    }
+
+    .partner-tier-chevron {
+      display: none;
+    }
+
+    /* ===== TABLET AND BELOW (1023px and below) ===== */
+    @media (max-width: 1023px) {
+      /* Hero — compact: content follows header, handshake as watermark */
+      .partnerships-hero.page-hero--viewport {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        height: auto;
+        min-height: 0;
+        max-height: none;
+        padding-top: calc(72px + var(--space-2));
+        padding-bottom: var(--space-3);
+        align-items: stretch;
+        overflow: hidden;
+      }
+
+      .partnerships-hero .page-hero__content {
+        position: relative;
+        flex: 0 0 auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        text-align: left;
+        width: 100%;
+        padding: clamp(80px, 16vh, 140px) var(--container-padding) 0;
+      }
+
+      .partnerships-hero .page-hero__layout {
+        row-gap: var(--space-2);
+        justify-items: start;
+        width: 100%;
+      }
+
+      .partnerships-hero .page-hero__aside {
+        width: 100%;
+        justify-self: stretch;
+      }
+
+      .partnerships-hero .page-hero__prose {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .partnerships-hero .page-hero__eyebrow {
+        margin-bottom: var(--space-2);
+        justify-content: flex-start !important;
+        align-self: stretch;
+        width: 100%;
+      }
+
+      .partnerships-hero .page-hero__main {
+        align-items: flex-start !important;
+        align-self: stretch;
+        width: 100%;
+        text-align: left;
+      }
+
+      .partnerships-hero .page-hero__headline,
+      body.page-partnerships:not(.page-video-hero) .partnerships-hero .page-hero__headline {
+        text-align: left !important;
+        width: 100%;
+        max-width: none;
+      }
+
+      .partnerships-hero .page-hero__prose p {
+        margin-bottom: var(--space-1);
+      }
+
+      .partnerships-hero .page-hero__prose .btn,
+      .partnerships-hero .partnerships-hero-cta {
+        margin-top: var(--space-2) !important;
+        align-self: center;
+      }
+
+      .partnerships-hero-stencil {
+        top: 72px;
+      }
+
+      .partnerships-hero-stencil img {
+        width: clamp(540px, 126vw, 960px);
+        opacity: 0.16;
+        transform: translateY(-4vh);
+      }
+
+      /* Partnership Value tier cards — collapsible */
+      .partnership-tiers {
+        padding: var(--space-5) 0;
+      }
+
+      .partner-tier-grid {
+        gap: var(--space-2);
+      }
+
+      .partner-tier.rc-collapsible {
+        cursor: pointer;
+        padding: var(--space-3) var(--space-4);
+      }
+
+      .partner-tier.rc-collapsible:not(.rc-expanded) {
+        padding: var(--space-3) var(--space-4);
+      }
+
+      .partner-tier.rc-collapsible:not(.rc-expanded):hover {
+        transform: none;
+      }
+
+      .partner-tier-head-row {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: var(--space-2);
+      }
+
+      .partner-tier-head-text {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .partner-tier-chevron {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: 0 0 1.75rem;
+        width: 1.75rem;
+        height: 1.75rem;
+        margin-top: 0.15rem;
+        border: 1px solid rgba(184, 150, 90, 0.45);
+        font-family: var(--font-sans);
+        font-size: 1.125rem;
+        font-weight: 400;
+        line-height: 1;
+        color: var(--gold);
+      }
+
+      .partner-tier-chevron::after {
+        content: '+';
+      }
+
+      .partner-tier.rc-collapsible.rc-expanded .partner-tier-chevron::after {
+        content: '−';
+      }
+
+      .partner-tier.rc-collapsible:not(.rc-expanded) .partner-tier-expandable {
+        display: none;
+      }
+
+      .partner-tier.rc-collapsible:not(.rc-expanded) .partner-tier-header {
+        margin-bottom: 0;
+        padding-bottom: 0;
+        border-bottom: none;
+      }
+
+      .partner-tier.rc-collapsible.rc-expanded .partner-tier-header {
+        margin-bottom: var(--space-3);
+        padding-bottom: var(--space-3);
+        border-bottom: 1px solid var(--border-light);
+      }
+
+      .partner-tier-tag {
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.15em;
+        line-height: 1.2;
+        margin-bottom: 0.5rem;
+      }
+
+      .partner-tier-title {
+        font-size: clamp(1.25rem, 4.5vw, 1.5rem);
+        font-weight: 400;
+        line-height: 1.25;
+        letter-spacing: -0.01em;
+        min-height: 0;
+        margin-bottom: 0.5rem;
+      }
+
+      .partner-tier-audience {
+        font-size: 0.8125rem;
+        font-weight: 400;
+        line-height: 1.5;
+        letter-spacing: 0.01em;
+        min-height: 0;
+        margin: 0;
+        text-align: left;
+      }
+
+      .partner-tier.rc-collapsible.rc-expanded .partner-tier-expandable {
+        padding-top: 0;
+      }
+
+      .partner-tier.rc-collapsible.rc-expanded .partner-value {
+        margin-top: 0;
+        margin-bottom: var(--space-2);
+        min-height: 0;
+      }
+
+      .partner-tier.rc-collapsible.rc-expanded .partner-examples {
+        min-height: 0;
+        margin-bottom: var(--space-2);
+      }
+
+      /* Section spacing tighten */
+      .partnerships-intro {
+        padding: var(--space-3) 0;
+      }
+
+      .for-whom {
+        padding: var(--space-5) 0;
+      }
+
+      .for-whom-grid {
+        margin-top: var(--space-4);
+      }
+
+      .how-it-works {
+        padding: var(--space-5) 0;
+      }
+
+      .how-steps {
+        margin-top: var(--space-4);
+      }
+
+      .compliance-strip {
+        padding: var(--space-4) 0;
+      }
+
+      .partnership-tiers > .container > .reveal {
+        margin-bottom: var(--space-4) !important;
+      }
+
+      /* Bottom CTA — stacked layout (matches Sports / Creatives) */
+      .partnerships-cta {
+        padding: var(--space-4) 0 var(--space-3) !important;
+      }
+
+      .partnerships-cta-inner {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: var(--space-3);
+      }
+
+      .partnerships-cta-inner h2 {
+        margin-bottom: 0 !important;
+      }
+
+      .partnerships-cta-desc {
+        max-width: none;
+      }
+
+      .partnerships-cta-inner .btn {
+        align-self: center;
+        display: inline-flex;
+        justify-content: center;
+        text-align: center;
+        padding: 0.65rem 1.25rem;
+        font-size: 0.75rem;
+      }
+
+      .page-partnerships .site-footer {
+        padding-top: var(--space-3);
+      }
+
+      .page-partnerships .footer-top {
+        margin-bottom: var(--space-3);
+        padding-bottom: var(--space-3);
+      }
+    }
+
     @media (max-width: 768px) {
       .how-steps { grid-template-columns: 1fr; }
     }
   </style>
 </head>
-<body>
+<body class="page-partnerships">
 
   <!-- HEADER — light version -->
   <header class="site-header light-header" id="site-header">
@@ -449,7 +794,7 @@
               we supply the legal, business, and operational backbone — so your athletes,
               creatives, and high-net-worth contacts experience professional outcomes end-to-end.
             </p>
-            <a href="contact.html" class="btn btn--primary" style="margin-top: var(--space-3);">Explore Partnership</a>
+            <a href="contact.html" class="btn btn--primary partnerships-hero-cta">Explore Partnership</a>
           </div>
         </div>
       </div>
@@ -519,81 +864,102 @@
       <div class="partner-tier-grid">
 
         <!-- AGENTS / MANAGERS / ATTORNEYS / FIDUCIARIES -->
-        <div class="partner-tier reveal">
+        <div class="partner-tier rc-collapsible reveal" tabindex="0" role="button">
           <div class="partner-tier-header">
             <div class="partner-tier-tag">Tier 1</div>
-            <div class="partner-tier-title">Agents, Managers, Attorneys &amp; Fiduciaries</div>
-            <p class="partner-tier-audience">For licensed representatives serving athletes, creatives, and HNW clients</p>
+            <div class="partner-tier-head-row">
+              <div class="partner-tier-head-text">
+                <div class="partner-tier-title">Agents, Managers, Attorneys &amp; Fiduciaries</div>
+                <p class="partner-tier-audience">For licensed representatives serving athletes, creatives, and HNW clients</p>
+              </div>
+              <span class="partner-tier-chevron" aria-hidden="true"></span>
+            </div>
           </div>
 
-          <div class="partner-value">
-            <div class="partner-value-label">Value to You</div>
-            <p>Stronger outcomes, faster cycles, fewer operational bottlenecks — without diluting your client relationship.</p>
-          </div>
+          <div class="partner-tier-expandable">
+            <div class="partner-value">
+              <div class="partner-value-label">Value to You</div>
+              <p>Stronger outcomes, faster cycles, fewer operational bottlenecks — without diluting your client relationship.</p>
+            </div>
 
-          <div class="partner-examples">
-            <div class="partner-examples-label">How We Partner With You</div>
-            <ul>
-              <li>White-label or co-branded delivery across contracts, NIL, IP, entity/tax posture, diligence, and M&amp;A support.</li>
-              <li>Deal rooms, term-sheet drafting, performance tracking, and renewal pipelines your clients can actually use.</li>
-              <li>Clear swim lanes: you lead the relationship; we staff the workstreams and report to you.</li>
-              <li>Compliant commercial models (referral/fee-share/outsourced support) structured to applicable rules and firm policies.</li>
-            </ul>
-          </div>
+            <div class="partner-examples">
+              <div class="partner-examples-label">How We Partner With You</div>
+              <ul>
+                <li>White-label or co-branded delivery across contracts, NIL, IP, entity/tax posture, diligence, and M&amp;A support.</li>
+                <li>Deal rooms, term-sheet drafting, performance tracking, and renewal pipelines your clients can actually use.</li>
+                <li>Clear swim lanes: you lead the relationship; we staff the workstreams and report to you.</li>
+                <li>Compliant commercial models (referral/fee-share/outsourced support) structured to applicable rules and firm policies.</li>
+              </ul>
+            </div>
 
-          <a href="contact.html" class="btn btn--ghost-dark partner-tier-cta">Explore Partnership</a>
+            <a href="contact.html" class="btn btn--ghost-dark partner-tier-cta">Explore Partnership</a>
+          </div>
         </div>
 
         <!-- TRAINERS / PERFORMANCE STAFF / ADVISORS / COACHES -->
-        <div class="partner-tier reveal reveal-delay-1">
+        <div class="partner-tier rc-collapsible reveal reveal-delay-1" tabindex="0" role="button">
           <div class="partner-tier-header">
             <div class="partner-tier-tag">Tier 2</div>
-            <div class="partner-tier-title">Trainers, Advisors, Coaches &amp; PR/Media</div>
-            <p class="partner-tier-audience">For providers embedded with talent, teams, or HNW households</p>
+            <div class="partner-tier-head-row">
+              <div class="partner-tier-head-text">
+                <div class="partner-tier-title">Trainers, Advisors, Coaches &amp; PR/Media</div>
+                <p class="partner-tier-audience">For providers embedded with talent, teams, or HNW households</p>
+              </div>
+              <span class="partner-tier-chevron" aria-hidden="true"></span>
+            </div>
           </div>
 
-          <div class="partner-value">
-            <div class="partner-value-label">Value to You</div>
-            <p>Stickier relationships, cleaner execution, and measurable lift in client satisfaction.</p>
-          </div>
+          <div class="partner-tier-expandable">
+            <div class="partner-value">
+              <div class="partner-value-label">Value to You</div>
+              <p>Stickier relationships, cleaner execution, and measurable lift in client satisfaction.</p>
+            </div>
 
-          <div class="partner-examples">
-            <div class="partner-examples-label">How We Partner With You</div>
-            <ul>
-              <li>One operations backbone: entities, contracts, clearances, scheduling, and payment flows tied to your client's release/season cadence.</li>
-              <li>Cross-functional coordination (legal, finance, operations) so your plan doesn't stall at handoffs.</li>
-              <li>Simple reporting your client reads: what's signed, what's owed, what's next.</li>
-              <li>Introducer economics where permitted — always documented, always above board.</li>
-            </ul>
-          </div>
+            <div class="partner-examples">
+              <div class="partner-examples-label">How We Partner With You</div>
+              <ul>
+                <li>One operations backbone: entities, contracts, clearances, scheduling, and payment flows tied to your client's release/season cadence.</li>
+                <li>Cross-functional coordination (legal, finance, operations) so your plan doesn't stall at handoffs.</li>
+                <li>Simple reporting your client reads: what's signed, what's owed, what's next.</li>
+                <li>Introducer economics where permitted — always documented, always above board.</li>
+              </ul>
+            </div>
 
-          <a href="contact.html" class="btn btn--ghost-dark partner-tier-cta">Explore Partnership</a>
+            <a href="contact.html" class="btn btn--ghost-dark partner-tier-cta">Explore Partnership</a>
+          </div>
         </div>
 
         <!-- MOVERS & SHAKERS -->
-        <div class="partner-tier reveal reveal-delay-2">
+        <div class="partner-tier rc-collapsible reveal reveal-delay-2" tabindex="0" role="button">
           <div class="partner-tier-header">
             <div class="partner-tier-tag">Tier 3</div>
-            <div class="partner-tier-title">Movers &amp; Shakers</div>
-            <p class="partner-tier-audience">For non-professionals who regularly meet athletes, creatives, and HNWIs</p>
+            <div class="partner-tier-head-row">
+              <div class="partner-tier-head-text">
+                <div class="partner-tier-title">Movers &amp; Shakers</div>
+                <p class="partner-tier-audience">For non-professionals who regularly meet athletes, creatives, and HNWIs</p>
+              </div>
+              <span class="partner-tier-chevron" aria-hidden="true"></span>
+            </div>
           </div>
 
-          <div class="partner-value">
-            <div class="partner-value-label">Value to You</div>
-            <p>Monetize connectivity responsibly while adding real value to your relationships.</p>
-          </div>
+          <div class="partner-tier-expandable">
+            <div class="partner-value">
+              <div class="partner-value-label">Value to You</div>
+              <p>Monetize connectivity responsibly while adding real value to your relationships.</p>
+            </div>
 
-          <div class="partner-examples">
-            <div class="partner-examples-label">How We Partner With You</div>
-            <ul>
-              <li>A vetted path to help your contacts — no pressure, no scripts; we handle scoping, paperwork, and delivery.</li>
-              <li>Introducer agreements with transparent terms; compliance and disclosures handled by us.</li>
-              <li>First-look intake: fast triage, clear next steps, status visibility for you and your contact.</li>
-              <li>If a fit, we build a repeatable lane around your network, ethically and sustainably.</li>
-            </ul>
-          </div>
+            <div class="partner-examples">
+              <div class="partner-examples-label">How We Partner With You</div>
+              <ul>
+                <li>A vetted path to help your contacts — no pressure, no scripts; we handle scoping, paperwork, and delivery.</li>
+                <li>Introducer agreements with transparent terms; compliance and disclosures handled by us.</li>
+                <li>First-look intake: fast triage, clear next steps, status visibility for you and your contact.</li>
+                <li>If a fit, we build a repeatable lane around your network, ethically and sustainably.</li>
+              </ul>
+            </div>
 
-          <a href="contact.html" class="btn btn--ghost-dark partner-tier-cta">Explore Partnership</a>
+            <a href="contact.html" class="btn btn--ghost-dark partner-tier-cta">Explore Partnership</a>
+          </div>
         </div>
 
       </div>
@@ -659,12 +1025,12 @@
   <!-- ============================================================
        CTA
   ============================================================ -->
-  <section style="background-color: var(--near-black); padding: var(--space-8) 0;">
+  <section class="partnerships-cta">
     <div class="container">
-      <div style="display: grid; grid-template-columns: 1fr auto; gap: var(--space-4); align-items: center;" class="reveal">
+      <div class="partnerships-cta-inner reveal">
         <div>
-          <h2 class="display-md text-white" style="margin-bottom: 0.75rem;">Start a partnership conversation.</h2>
-          <p style="color: var(--stone); font-size: 0.9375rem; max-width: 44ch;">Tell us about your practice and the clients you serve. We'll determine together whether The Advisory is the right back office for your front office.</p>
+          <h2 class="display-md text-white">Start a partnership conversation.</h2>
+          <p class="partnerships-cta-desc">Tell us about your practice and the clients you serve. We'll determine together whether The Advisory is the right back office for your front office.</p>
         </div>
         <a href="contact.html" class="btn btn--primary">Get in Touch</a>
       </div>
@@ -675,11 +1041,6 @@
   <footer class="site-footer">
     <div class="container">
       <div class="footer-top">
-        <div class="footer-brand">
-          <div class="footer-logo">The Advisory</div>
-          <p>Enterprise management for professional athletes, NIL athletes, entertainers, and high-net-worth entrepreneurs.</p>
-          <div style="margin-top:1.5rem"><a href="contact.html" class="btn btn--primary" style="padding:0.65rem 1.25rem;font-size:0.75rem">Start Here</a></div>
-        </div>
         <div class="footer-nav-cols"><div class="footer-col"><h5>Who We Serve</h5><ul><li><a href="sports.html">Professional Athletes</a></li><li><a href="nil.html">NIL Athletes</a></li><li><a href="creatives.html">Entertainers &amp; Creatives</a></li><li><a href="bespoke.html">Bespoke &amp; Entrepreneurs</a></li></ul></div>
         <div class="footer-col"><h5>Services</h5><ul><li><a href="services.html#contracts">Contracts</a></li><li><a href="nil.html">NIL Strategy</a></li><li><a href="services.html#entity">Entity &amp; Tax</a></li><li><a href="services.html#brand-ip">Brand &amp; IP</a></li><li><a href="services.html#family-governance">Family Office &amp; Governance</a></li></ul></div>
         <div class="footer-col"><h5>Company</h5><ul><li><a href="about.html">About</a></li><li><a href="https://6a1eb37727fe92400cbf351d--theadvisorypllc.netlify.app/attorneys">Meet the Team</a></li><li><a href="partnerships.html">Partnerships</a></li><li><a href="contact.html">Contact</a></li></ul></div></div>

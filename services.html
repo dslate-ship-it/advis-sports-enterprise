@@ -93,6 +93,15 @@
       background-color: var(--warm-white);
     }
 
+    /* Card 4 / 5: swapped backgrounds */
+    .service-block#brand-ip {
+      background-color: var(--charcoal);
+    }
+
+    .service-block#family-governance {
+      background-color: var(--near-black);
+    }
+
     .service-block#entity .service-headline,
     .service-block#diligence .service-headline {
       color: var(--body-text);
@@ -204,12 +213,156 @@
       .service-block-layout { grid-template-columns: 1fr; }
     }
 
+    .service-head-row {
+      display: block;
+    }
+
+    .service-chevron {
+      display: none;
+    }
+
+    /* ===== TABLET AND BELOW (1023px and below) ===== */
+    @media (max-width: 1023px) {
+      .services-hero.page-hero--viewport {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        height: auto;
+        min-height: 85svh;
+        max-height: none;
+        padding-top: calc(72px + var(--space-1));
+        padding-bottom: 0;
+        align-items: stretch;
+        overflow: hidden;
+      }
+
+      .services-hero-track svg {
+        min-height: 0;
+      }
+
+      .services-hero .page-hero__content {
+        position: relative;
+        flex: 1 1 auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        width: 100%;
+        padding: 0 var(--container-padding) var(--space-2);
+      }
+
+      .services-hero .page-hero__layout {
+        row-gap: var(--space-2);
+      }
+
+      .services-hero .page-hero__eyebrow {
+        margin-bottom: var(--space-2);
+      }
+
+      .services-hero .page-hero__prose p {
+        margin-bottom: var(--space-1);
+      }
+
+      .services-hero .page-hero__prose p:last-child {
+        margin-bottom: 0;
+      }
+
+      /* Service cards: collapsible + tighter spacing */
+      .service-block {
+        padding: var(--space-4) 0;
+      }
+
+      .service-block.rc-collapsible {
+        cursor: pointer;
+      }
+
+      .service-block.rc-collapsible:not(.rc-expanded) {
+        padding: var(--space-3) 0;
+      }
+
+      .service-block-layout {
+        gap: var(--space-2);
+      }
+
+      .service-head-row {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: var(--space-2);
+      }
+
+      .service-chevron {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: 0 0 1.75rem;
+        width: 1.75rem;
+        height: 1.75rem;
+        margin-top: 0.25rem;
+        border: 1px solid rgba(184, 150, 90, 0.45);
+        font-family: var(--font-sans);
+        font-size: 1.125rem;
+        font-weight: 400;
+        line-height: 1;
+        color: var(--gold);
+      }
+
+      .service-chevron::after {
+        content: '+';
+      }
+
+      .service-block.rc-collapsible.rc-expanded .service-chevron::after {
+        content: '−';
+      }
+
+      .service-block#entity .service-chevron,
+      .service-block#diligence .service-chevron {
+        border-color: rgba(44, 44, 44, 0.28);
+        color: var(--gold);
+      }
+
+      .service-block.rc-collapsible:not(.rc-expanded) .service-block-more,
+      .service-block.rc-collapsible:not(.rc-expanded) .service-detail {
+        display: none;
+      }
+
+      .service-block.rc-collapsible:not(.rc-expanded) .service-headline {
+        margin-bottom: 0;
+      }
+
+      .service-block.rc-collapsible:not(.rc-expanded) .service-num {
+        margin-bottom: 0.5rem;
+      }
+
+      .service-block.rc-collapsible.rc-expanded .service-detail {
+        margin-top: 0;
+        padding-top: 0;
+      }
+
+      .service-block.rc-collapsible.rc-expanded .service-block-more .btn {
+        margin-top: var(--space-3) !important;
+      }
+
+      .service-block.rc-collapsible.rc-expanded .service-detail > p {
+        margin-bottom: var(--space-2) !important;
+      }
+
+      .service-block.rc-collapsible.rc-expanded .service-detail ul {
+        padding-bottom: 0;
+        margin-bottom: 0;
+      }
+
+      .service-block.rc-collapsible.rc-expanded .service-detail-label {
+        margin-bottom: 0.5rem;
+      }
+
+    }
+
     @media (max-width: 600px) {
       .service-detail ul { grid-template-columns: 1fr; }
     }
   </style>
 </head>
-<body>
+<body class="page-services">
 
   <!-- HEADER -->
   <header class="site-header" id="site-header">
@@ -285,21 +438,28 @@
     </div>
   </section>
 
+  <div class="service-blocks">
+
   <!-- SERVICE 01: CONTRACTS -->
-  <section class="service-block" id="contracts">
+  <section class="service-block rc-collapsible" id="contracts" tabindex="0" role="button">
     <div class="container">
       <div class="service-block-layout">
         <div class="reveal">
           <div class="service-num">Service 01</div>
-          <h2 class="service-headline">Contracts &amp;<br><em>Negotiation</em></h2>
-          <p class="body-md text-stone" style="max-width: 30ch; margin-top: var(--space-2);">We negotiate with institutional leverage and no conflicts of interest.</p>
-          <div class="service-audiences" style="margin-top: var(--space-3);">
-            <span class="aud-tag">Pro Athletes</span>
-            <span class="aud-tag">NIL Athletes</span>
-            <span class="aud-tag">Entertainers</span>
-            <span class="aud-tag">Creatives</span>
+          <div class="service-head-row">
+            <h2 class="service-headline">Contracts &amp;<br><em>Negotiation</em></h2>
+            <span class="service-chevron" aria-hidden="true"></span>
           </div>
-          <a href="contact.html" class="btn btn--ghost" style="margin-top: var(--space-4);">Discuss Your Deal</a>
+          <div class="service-block-more">
+            <p class="body-md text-stone" style="max-width: 30ch; margin-top: var(--space-2);">We negotiate with institutional leverage and no conflicts of interest.</p>
+            <div class="service-audiences" style="margin-top: var(--space-3);">
+              <span class="aud-tag">Pro Athletes</span>
+              <span class="aud-tag">NIL Athletes</span>
+              <span class="aud-tag">Entertainers</span>
+              <span class="aud-tag">Creatives</span>
+            </div>
+            <a href="contact.html" class="btn btn--ghost" style="margin-top: var(--space-4);">Discuss Your Deal</a>
+          </div>
         </div>
         <div class="service-detail reveal reveal-delay-2">
           <p class="body-md text-stone" style="margin-bottom: var(--space-3); max-width: 50ch;">
@@ -324,18 +484,23 @@
   </section>
 
   <!-- SERVICE 02: NIL -->
-  <section class="service-block" id="nil-services">
+  <section class="service-block rc-collapsible" id="nil-services" tabindex="0" role="button">
     <div class="container">
       <div class="service-block-layout">
         <div class="reveal">
           <div class="service-num">Service 02</div>
-          <h2 class="service-headline">NIL Strategy<br>&amp; <em>Compliance</em></h2>
-          <p class="body-md text-stone" style="max-width: 30ch; margin-top: var(--space-2);">From first deal to full enterprise, the complete NIL lifecycle.</p>
-          <div class="service-audiences" style="margin-top: var(--space-3);">
-            <span class="aud-tag">NIL Athletes</span>
-            <span class="aud-tag">Student-Athletes</span>
+          <div class="service-head-row">
+            <h2 class="service-headline">NIL Strategy<br>&amp; <em>Compliance</em></h2>
+            <span class="service-chevron" aria-hidden="true"></span>
           </div>
-          <a href="nil.html" class="btn btn--ghost" style="margin-top: var(--space-4);">NIL Full Service Suite</a>
+          <div class="service-block-more">
+            <p class="body-md text-stone" style="max-width: 30ch; margin-top: var(--space-2);">From first deal to full enterprise, the complete NIL lifecycle.</p>
+            <div class="service-audiences" style="margin-top: var(--space-3);">
+              <span class="aud-tag">NIL Athletes</span>
+              <span class="aud-tag">Student-Athletes</span>
+            </div>
+            <a href="nil.html" class="btn btn--ghost" style="margin-top: var(--space-4);">NIL Full Service Suite</a>
+          </div>
         </div>
         <div class="service-detail reveal reveal-delay-2">
           <p class="body-md text-stone" style="margin-bottom: var(--space-3); max-width: 50ch;">
@@ -360,17 +525,22 @@
   </section>
 
   <!-- SERVICE 03: ENTITY & TAX -->
-  <section class="service-block" id="entity">
+  <section class="service-block rc-collapsible" id="entity" tabindex="0" role="button">
     <div class="container">
       <div class="service-block-layout">
         <div class="reveal">
           <div class="service-num">Service 03</div>
-          <h2 class="service-headline">Entity &amp;<br><em>Tax</em> Posture</h2>
-          <p class="body-md text-stone" style="max-width: 30ch; margin-top: var(--space-2);">We identify and close the gap between what you earn and what you keep.</p>
-          <div class="service-audiences" style="margin-top: var(--space-3);">
-            <span class="aud-tag">All Clients</span>
+          <div class="service-head-row">
+            <h2 class="service-headline">Entity &amp;<br><em>Tax</em> Posture</h2>
+            <span class="service-chevron" aria-hidden="true"></span>
           </div>
-          <a href="contact.html" class="btn btn--ghost" style="margin-top: var(--space-4);">Tax Assessment</a>
+          <div class="service-block-more">
+            <p class="body-md text-stone" style="max-width: 30ch; margin-top: var(--space-2);">We identify and close the gap between what you earn and what you keep.</p>
+            <div class="service-audiences" style="margin-top: var(--space-3);">
+              <span class="aud-tag">All Clients</span>
+            </div>
+            <a href="contact.html" class="btn btn--ghost" style="margin-top: var(--space-4);">Tax Assessment</a>
+          </div>
         </div>
         <div class="service-detail reveal reveal-delay-2">
           <p class="body-md text-stone" style="margin-bottom: var(--space-3); max-width: 50ch;">
@@ -395,19 +565,24 @@
   </section>
 
   <!-- SERVICE 04: BRAND & IP -->
-  <section class="service-block" id="brand-ip">
+  <section class="service-block rc-collapsible" id="brand-ip" tabindex="0" role="button">
     <div class="container">
       <div class="service-block-layout">
         <div class="reveal">
           <div class="service-num">Service 04</div>
-          <h2 class="service-headline">Brand &amp;<br><em>IP</em> Management</h2>
-          <p class="body-md text-stone" style="max-width: 30ch; margin-top: var(--space-2);">Your name is your most valuable long-term asset. We protect it.</p>
-          <div class="service-audiences" style="margin-top: var(--space-3);">
-            <span class="aud-tag">Athletes</span>
-            <span class="aud-tag">Entertainers</span>
-            <span class="aud-tag">Creatives</span>
+          <div class="service-head-row">
+            <h2 class="service-headline">Brand &amp;<br><em>IP</em> Management</h2>
+            <span class="service-chevron" aria-hidden="true"></span>
           </div>
-          <a href="contact.html" class="btn btn--ghost" style="margin-top: var(--space-4);">Protect Your IP</a>
+          <div class="service-block-more">
+            <p class="body-md text-stone" style="max-width: 30ch; margin-top: var(--space-2);">Your name is your most valuable long-term asset. We protect it.</p>
+            <div class="service-audiences" style="margin-top: var(--space-3);">
+              <span class="aud-tag">Athletes</span>
+              <span class="aud-tag">Entertainers</span>
+              <span class="aud-tag">Creatives</span>
+            </div>
+            <a href="contact.html" class="btn btn--ghost" style="margin-top: var(--space-4);">Protect Your IP</a>
+          </div>
         </div>
         <div class="service-detail reveal reveal-delay-2">
           <p class="body-md text-stone" style="margin-bottom: var(--space-3); max-width: 50ch;">
@@ -432,17 +607,22 @@
   </section>
 
   <!-- SERVICE 05: FAMILY GOVERNANCE -->
-  <section class="service-block" id="family-governance">
+  <section class="service-block rc-collapsible" id="family-governance" tabindex="0" role="button">
     <div class="container">
       <div class="service-block-layout">
         <div class="reveal">
           <div class="service-num">Service 05</div>
-          <h2 class="service-headline">Family Office<br><em>&amp; Governance</em></h2>
-          <p class="body-md text-stone" style="max-width: 30ch; margin-top: var(--space-2);">Protecting generosity. Preserving the future.</p>
-          <div class="service-audiences" style="margin-top: var(--space-3);">
-            <span class="aud-tag">All Clients</span>
+          <div class="service-head-row">
+            <h2 class="service-headline">Family Office<br><em>&amp; Governance</em></h2>
+            <span class="service-chevron" aria-hidden="true"></span>
           </div>
-          <a href="contact.html" class="btn btn--ghost" style="margin-top: var(--space-4);">Governance Review</a>
+          <div class="service-block-more">
+            <p class="body-md text-stone" style="max-width: 30ch; margin-top: var(--space-2);">Protecting generosity. Preserving the future.</p>
+            <div class="service-audiences" style="margin-top: var(--space-3);">
+              <span class="aud-tag">All Clients</span>
+            </div>
+            <a href="contact.html" class="btn btn--ghost" style="margin-top: var(--space-4);">Governance Review</a>
+          </div>
         </div>
         <div class="service-detail reveal reveal-delay-2">
           <p class="body-md text-stone" style="margin-bottom: var(--space-3); max-width: 50ch;">
@@ -468,19 +648,24 @@
   </section>
 
   <!-- SERVICE 06: DEAL DILIGENCE -->
-  <section class="service-block" id="diligence">
+  <section class="service-block rc-collapsible" id="diligence" tabindex="0" role="button">
     <div class="container">
       <div class="service-block-layout">
         <div class="reveal">
           <div class="service-num">Service 06</div>
-          <h2 class="service-headline">Deal Diligence<br>&amp; <em>M&amp;A</em></h2>
-          <p class="body-md text-stone" style="max-width: 30ch; margin-top: var(--space-2);">Independent intelligence before every major decision.</p>
-          <div class="service-audiences" style="margin-top: var(--space-3);">
-            <span class="aud-tag">Pro Athletes</span>
-            <span class="aud-tag">Entrepreneurs</span>
-            <span class="aud-tag">HNW Clients</span>
+          <div class="service-head-row">
+            <h2 class="service-headline">Deal Diligence<br>&amp; <em>M&amp;A</em></h2>
+            <span class="service-chevron" aria-hidden="true"></span>
           </div>
-          <a href="contact.html" class="btn btn--ghost" style="margin-top: var(--space-4);">Diligence Request</a>
+          <div class="service-block-more">
+            <p class="body-md text-stone" style="max-width: 30ch; margin-top: var(--space-2);">Independent intelligence before every major decision.</p>
+            <div class="service-audiences" style="margin-top: var(--space-3);">
+              <span class="aud-tag">Pro Athletes</span>
+              <span class="aud-tag">Entrepreneurs</span>
+              <span class="aud-tag">HNW Clients</span>
+            </div>
+            <a href="contact.html" class="btn btn--ghost" style="margin-top: var(--space-4);">Diligence Request</a>
+          </div>
         </div>
         <div class="service-detail reveal reveal-delay-2">
           <p class="body-md text-stone" style="margin-bottom: var(--space-3); max-width: 50ch;">
@@ -504,6 +689,8 @@
     </div>
   </section>
 
+  </div>
+
   <!-- CTA -->
   <section style="background-color: var(--charcoal); padding: var(--space-8) 0;">
     <div class="container">
@@ -519,11 +706,6 @@
   <footer class="site-footer">
     <div class="container">
       <div class="footer-top">
-        <div class="footer-brand">
-          <div class="footer-logo">The Advisory</div>
-          <p>Enterprise management for professional athletes, NIL athletes, entertainers, and high-net-worth entrepreneurs.</p>
-          <div style="margin-top:1.5rem"><a href="contact.html" class="btn btn--primary" style="padding:0.65rem 1.25rem;font-size:0.75rem">Start Here</a></div>
-        </div>
         <div class="footer-nav-cols"><div class="footer-col"><h5>Who We Serve</h5><ul><li><a href="sports.html">Professional Athletes</a></li><li><a href="nil.html">NIL Athletes</a></li><li><a href="creatives.html">Entertainers &amp; Creatives</a></li><li><a href="bespoke.html">Bespoke &amp; Entrepreneurs</a></li></ul></div>
         <div class="footer-col"><h5>Services</h5><ul><li><a href="services.html#contracts">Contracts</a></li><li><a href="nil.html">NIL Strategy</a></li><li><a href="services.html#entity">Entity &amp; Tax</a></li><li><a href="services.html#brand-ip">Brand &amp; IP</a></li><li><a href="services.html#family-governance">Family Office &amp; Governance</a></li><li><a href="services.html#diligence">Deal Diligence</a></li></ul></div>
         <div class="footer-col"><h5>Company</h5><ul><li><a href="about.html">About</a></li><li><a href="partnerships.html">Partnerships</a></li><li><a href="contact.html">Contact</a></li></ul></div></div>
