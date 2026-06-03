@@ -10,7 +10,7 @@
   <style>
     body { background-color: var(--near-black); }
 
-    /* ===== CREATIVES HERO: gold stencil ===== */
+    /* ===== CREATIVES HERO: gold stencil (NIL-style) ===== */
     .creatives-hero {
       --hero-headline-size: clamp(3rem, 8vw, 9.5rem);
       --hero-headline-lh: 0.88;
@@ -43,9 +43,18 @@
       overflow: hidden;
     }
 
+    /* Same width box as .container (who-grid cards, etc.) */
+    .creatives-hero-stencil-track {
+      width: 100%;
+      container-type: inline-size;
+    }
+
     .creatives-hero-stencil .stencil-text {
+      display: block;
+      width: 100%;
+      text-align: center;
       font-family: var(--font-sans);
-      font-size: clamp(8rem, 22vw, 28rem);
+      font-size: 18.35cqw;
       font-weight: 700;
       letter-spacing: -0.04em;
       text-transform: uppercase;
@@ -122,6 +131,11 @@
       font-size: 0.8125rem;
       color: var(--muted);
       line-height: 1.55;
+    }
+
+    .who-chevron,
+    .ip-chevron {
+      display: none;
     }
 
     /* ===== SERVICES FOR CREATIVES ===== */
@@ -224,12 +238,301 @@
       border-bottom: 1px solid var(--border-dark);
     }
 
-    /* ===== RESPONSIVE ===== */
-    @media (max-width: 1024px) {
+    .bespoke-quote-inner {
+      text-align: center;
+    }
+
+    .bespoke-quote-eyebrow {
+      display: flex;
+      width: 100%;
+      justify-content: flex-start;
+      margin-bottom: var(--space-3);
+    }
+
+    .bespoke-quote blockquote {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: clamp(1.5rem, 3vw, 3.25rem);
+      line-height: 1.2;
+      color: var(--ivory);
+      max-width: 20ch;
+      margin: 0 auto var(--space-4);
+    }
+
+    .bespoke-quote-cite {
+      font-family: var(--font-sans);
+      font-size: 0.875rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    /* ===== BOTTOM CTA ===== */
+    .creatives-cta-inner {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: var(--space-4);
+      align-items: center;
+    }
+
+    .creatives-cta-desc {
+      color: var(--stone);
+      font-size: 0.9375rem;
+      max-width: 44ch;
+      line-height: 1.65;
+      text-align: justify;
+    }
+
+    /* ===== TABLET AND BELOW (1023px and below) ===== */
+    @media (max-width: 1023px) {
       .who-grid { grid-template-columns: 1fr 1fr; }
       .creatives-services-layout { grid-template-columns: 1fr; }
       .ip-feature-layout { grid-template-columns: 1fr; }
       .ip-items { grid-template-columns: 1fr; }
+
+      /* IP feature: tighten vertical rhythm */
+      .ip-feature {
+        padding-top: var(--space-4);
+        padding-bottom: var(--space-5);
+      }
+
+      .ip-feature-layout {
+        gap: var(--space-2);
+        align-items: start;
+      }
+
+      .ip-feature .eyebrow {
+        margin-bottom: var(--space-2);
+      }
+
+      .ip-feature .display-md {
+        margin-bottom: var(--space-2) !important;
+      }
+
+      .ip-feature .ip-feature-lead {
+        margin-bottom: var(--space-2) !important;
+      }
+
+      .ip-feature .ip-items {
+        margin-top: 0;
+        gap: var(--space-2);
+      }
+
+      /* Our Standard quote: tighter rhythm */
+      .bespoke-quote {
+        padding-top: var(--space-4);
+        padding-bottom: var(--space-5);
+      }
+
+      .bespoke-quote-eyebrow {
+        margin-bottom: var(--space-2);
+      }
+
+      .bespoke-quote blockquote {
+        margin-bottom: var(--space-3);
+      }
+
+      .creatives-cta {
+        padding: var(--space-4) 0 var(--space-3) !important;
+      }
+
+      .creatives-cta-inner {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: var(--space-3);
+      }
+
+      .creatives-cta-inner h2 {
+        margin-bottom: 0 !important;
+      }
+
+      .creatives-cta-desc {
+        max-width: none;
+      }
+
+      .creatives-cta-inner .btn {
+        align-self: center;
+        display: inline-flex;
+        justify-content: center;
+        text-align: center;
+        padding: 0.65rem 1.25rem;
+        font-size: 0.75rem;
+      }
+
+      .creatives-hero.page-hero--viewport {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        height: auto;
+        min-height: calc(55vh + var(--space-3));
+        max-height: none;
+        padding-top: calc(72px + var(--space-2));
+        padding-bottom: var(--space-3);
+        align-items: stretch;
+        overflow: hidden;
+      }
+
+      .creatives-hero-stencil {
+        position: absolute;
+        inset: auto;
+        top: calc(72px + var(--space-1));
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: auto;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .creatives-hero-stencil .stencil-text {
+        font-size: clamp(2.75rem, 18.35cqw, 6rem);
+        letter-spacing: -0.025em;
+        line-height: 1;
+      }
+
+      .creatives-hero .page-hero__content {
+        position: relative;
+        flex: 0 0 auto;
+        margin-top: auto;
+        width: 100%;
+        padding: 0 var(--container-padding) var(--space-3);
+      }
+
+      .creatives-hero .page-hero__layout {
+        row-gap: var(--space-3);
+      }
+
+      .creatives-hero .page-hero__eyebrow {
+        margin-bottom: var(--space-2);
+      }
+
+      .creatives-hero .page-hero__tagline {
+        margin-top: var(--space-2);
+      }
+
+      .creatives-hero .page-hero__aside {
+        width: 100%;
+      }
+
+      .creatives-hero .page-hero__actions {
+        flex-direction: row;
+        align-items: stretch;
+        justify-content: center;
+        width: 100%;
+        max-width: none;
+        gap: var(--space-2);
+      }
+
+      .creatives-hero .page-hero__actions .btn {
+        flex: 1 1 50%;
+        min-width: 0;
+        min-height: 44px;
+        justify-content: center;
+        text-align: center;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+        font-size: clamp(0.6875rem, 1.6vw, 0.8125rem);
+      }
+
+      .page-creatives .footer-brand {
+        display: none;
+      }
+
+      .page-creatives .site-footer {
+        padding-top: var(--space-3);
+      }
+
+      .page-creatives .footer-top {
+        margin-bottom: var(--space-3);
+        padding-bottom: var(--space-3);
+      }
+
+      /* Who-grid cards: collapsible rows + aligned chevron */
+      .creatives-who .who-item.rc-collapsible {
+        cursor: pointer;
+      }
+
+      .creatives-who .who-item.rc-collapsible:not(.rc-expanded) {
+        padding-top: var(--space-3);
+        padding-bottom: var(--space-3);
+      }
+
+      .creatives-who .who-item-head {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: var(--space-2);
+      }
+
+      .creatives-who .who-item.rc-collapsible:not(.rc-expanded) .who-title {
+        margin-bottom: 0;
+      }
+
+      .creatives-who .who-chevron {
+        display: block;
+        flex: 0 0 1.5rem;
+        width: 1.5rem;
+        text-align: right;
+        font-family: var(--font-sans);
+        font-size: 1.125rem;
+        font-weight: 400;
+        line-height: 1.2;
+        color: var(--gold);
+        opacity: 0.55;
+        margin-top: 0.15rem;
+      }
+
+      .creatives-who .who-item.rc-collapsible:not(.rc-expanded) .who-chevron::after {
+        content: '+';
+      }
+
+      .creatives-who .who-item.rc-collapsible.rc-expanded .who-chevron::after {
+        content: '−';
+      }
+
+      /* IP feature cards: collapsible rows + aligned chevron */
+      .ip-feature .ip-item.rc-collapsible {
+        cursor: pointer;
+      }
+
+      .ip-feature .ip-item.rc-collapsible:not(.rc-expanded) {
+        padding-top: var(--space-3);
+        padding-bottom: var(--space-3);
+      }
+
+      .ip-feature .ip-item-head {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: var(--space-2);
+      }
+
+      .ip-feature .ip-item.rc-collapsible:not(.rc-expanded) .ip-item-title {
+        margin-bottom: 0;
+      }
+
+      .ip-feature .ip-chevron {
+        display: block;
+        flex: 0 0 1.5rem;
+        width: 1.5rem;
+        text-align: right;
+        font-family: var(--font-sans);
+        font-size: 1.125rem;
+        font-weight: 400;
+        line-height: 1.2;
+        color: var(--near-black);
+        opacity: 0.55;
+        margin-top: 0;
+      }
+
+      .ip-feature .ip-item.rc-collapsible:not(.rc-expanded) .ip-chevron::after {
+        content: '+';
+      }
+
+      .ip-feature .ip-item.rc-collapsible.rc-expanded .ip-chevron::after {
+        content: '−';
+      }
     }
 
     @media (max-width: 600px) {
@@ -237,7 +540,7 @@
     }
   </style>
 </head>
-<body>
+<body class="page-creatives">
 
   <!-- HEADER -->
   <header class="site-header" id="site-header">
@@ -294,25 +597,21 @@
 
   <!-- ============================================================
        CREATIVES HERO: Gold stencil
-       HERO VIDEO ARCHIVE (Task Group 7 — reuse on bespoke.html hero):
-       Vimeo: https://player.vimeo.com/video/1173897349?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1&background=1
-       Wrapper: .creatives-hero-video { position:absolute; inset:0; z-index:0; }
-       iframe cover: top/left 50%, translate(-50%,-50%), width 177.78vh, min-width 100%, height 100%, min-height 56.25vw, pointer-events none
-       Overlay: .creatives-hero-overlay linear-gradient to top rgba(13,13,13,1) → 0.6 → 0.15
-       title="The Advisory Creative Enterprise"
   ============================================================ -->
   <section class="creatives-hero page-hero page-hero--viewport">
     <div class="creatives-hero-overlay"></div>
 
     <div class="creatives-hero-stencil" aria-hidden="true">
-      <span class="stencil-text">CREATIVES</span>
+      <div class="container creatives-hero-stencil-track">
+        <span class="stencil-text">CREATIVES</span>
+      </div>
     </div>
 
     <div class="page-hero__content">
       <div class="page-hero__layout">
         <div class="page-hero__main">
           <div class="page-hero__eyebrow">
-            <span class="label text-gold">Entertainers, Creatives &amp; Entrepreneurs</span>
+            <span class="label text-gold">Entertainers, Creatives &amp;<br>Entrepreneurs</span>
           </div>
           <h1 class="page-hero__headline">
             The business<br>of creative <em>genius.</em>
@@ -343,24 +642,36 @@
       </div>
 
       <div class="who-grid reveal">
-        <div class="who-item">
+        <div class="who-item rc-collapsible" tabindex="0" role="button">
           <div class="who-label">Entertainers</div>
-          <div class="who-title">Recording Artists &amp; Musicians</div>
+          <div class="who-item-head">
+            <div class="who-title">Recording Artists &amp; Musicians</div>
+            <span class="who-chevron" aria-hidden="true"></span>
+          </div>
           <div class="who-desc">Label deals, publishing rights, touring structures, merchandise, and cross-platform IP strategy.</div>
         </div>
-        <div class="who-item">
+        <div class="who-item rc-collapsible" tabindex="0" role="button">
           <div class="who-label">Creatives</div>
-          <div class="who-title">Actors &amp; Talent</div>
+          <div class="who-item-head">
+            <div class="who-title">Actors &amp; Talent</div>
+            <span class="who-chevron" aria-hidden="true"></span>
+          </div>
           <div class="who-desc">Contract negotiation, residuals management, brand partnership compliance, and personal IP protection.</div>
         </div>
-        <div class="who-item">
+        <div class="who-item rc-collapsible" tabindex="0" role="button">
           <div class="who-label">Content</div>
-          <div class="who-title">Creators &amp; Influencers</div>
+          <div class="who-item-head">
+            <div class="who-title">Creators &amp; Influencers</div>
+            <span class="who-chevron" aria-hidden="true"></span>
+          </div>
           <div class="who-desc">Brand deal review, entity structure for creator businesses, tax management across platforms, and licensing.</div>
         </div>
-        <div class="who-item">
+        <div class="who-item rc-collapsible" tabindex="0" role="button">
           <div class="who-label">Entrepreneurs</div>
-          <div class="who-title">Bespoke HNW Clients</div>
+          <div class="who-item-head">
+            <div class="who-title">Bespoke HNW Creators</div>
+            <span class="who-chevron" aria-hidden="true"></span>
+          </div>
           <div class="who-desc">Full-service family office advisory for high-net-worth entrepreneurs whose success requires institutional management.</div>
         </div>
       </div>
@@ -453,28 +764,46 @@
 
         <div class="reveal reveal-delay-2">
           <div class="ip-items">
-            <div class="ip-item">
-              <div class="ip-item-title">Trademark Protection</div>
+            <div class="ip-item rc-collapsible" tabindex="0" role="button">
+              <div class="ip-item-head">
+                <div class="ip-item-title">Trademark Protection</div>
+                <span class="ip-chevron" aria-hidden="true"></span>
+              </div>
               <div class="ip-item-desc">Artist name, stage name, brand marks, and recurring creative elements registered and defended.</div>
             </div>
-            <div class="ip-item">
-              <div class="ip-item-title">Image Rights</div>
+            <div class="ip-item rc-collapsible" tabindex="0" role="button">
+              <div class="ip-item-head">
+                <div class="ip-item-title">Image Rights</div>
+                <span class="ip-chevron" aria-hidden="true"></span>
+              </div>
               <div class="ip-item-desc">Licensing terms that ensure you control how your likeness is used commercially in every medium.</div>
             </div>
-            <div class="ip-item">
-              <div class="ip-item-title">Publishing &amp; Masters</div>
+            <div class="ip-item rc-collapsible" tabindex="0" role="button">
+              <div class="ip-item-head">
+                <div class="ip-item-title">Publishing &amp; Masters</div>
+                <span class="ip-chevron" aria-hidden="true"></span>
+              </div>
               <div class="ip-item-desc">Publishing ownership strategy, master recordings structure, and royalty pipeline management.</div>
             </div>
-            <div class="ip-item">
-              <div class="ip-item-title">Content Licensing</div>
+            <div class="ip-item rc-collapsible" tabindex="0" role="button">
+              <div class="ip-item-head">
+                <div class="ip-item-title">Content Licensing</div>
+                <span class="ip-chevron" aria-hidden="true"></span>
+              </div>
               <div class="ip-item-desc">Platform agreements, brand content licensing, and deals that preserve your creative control.</div>
             </div>
-            <div class="ip-item">
-              <div class="ip-item-title">Endorsement Compliance</div>
+            <div class="ip-item rc-collapsible" tabindex="0" role="button">
+              <div class="ip-item-head">
+                <div class="ip-item-title">Endorsement Compliance</div>
+                <span class="ip-chevron" aria-hidden="true"></span>
+              </div>
               <div class="ip-item-desc">FTC, platform, and contractual compliance for brand partnerships, sponsored content, and ambassador deals.</div>
             </div>
-            <div class="ip-item">
-              <div class="ip-item-title">Exit &amp; Legacy Strategy</div>
+            <div class="ip-item rc-collapsible" tabindex="0" role="button">
+              <div class="ip-item-head">
+                <div class="ip-item-title">Exit &amp; Legacy Strategy</div>
+                <span class="ip-chevron" aria-hidden="true"></span>
+              </div>
               <div class="ip-item-desc">Long-term IP valuation, estate planning for creative assets, and catalog strategy.</div>
             </div>
           </div>
@@ -488,26 +817,24 @@
        BESPOKE QUOTE / STATEMENT
   ============================================================ -->
   <section class="bespoke-quote">
-    <div class="container container--narrow" style="text-align: center;" class="reveal">
-      <div class="eyebrow" style="justify-content: center; margin-bottom: var(--space-3);"><span class="label">Our Standard</span></div>
-      <blockquote style="font-family: var(--font-display); font-style: italic; font-size: clamp(1.5rem, 3vw, 3.25rem); line-height: 1.2; color: var(--ivory); max-width: 20ch; margin: 0 auto var(--space-4);">
+    <div class="container container--narrow bespoke-quote-inner reveal">
+      <div class="eyebrow bespoke-quote-eyebrow"><span class="label">Our Standard</span></div>
+      <blockquote>
         "The same institutional standard we build for global icons, for every client we take."
       </blockquote>
-      <p style="font-family: var(--font-sans); font-size: 0.875rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold);">
-        Jimmie B. Strong, Founder, The Advisory
-      </p>
+      <p class="bespoke-quote-cite">Jimmie B. Strong, Founder, The Advisory</p>
     </div>
   </section>
 
   <!-- ============================================================
        CTA
   ============================================================ -->
-  <section class="section section--charcoal" style="padding: var(--space-8) 0;">
+  <section class="creatives-cta section section--charcoal" style="padding: var(--space-8) 0;">
     <div class="container">
-      <div style="display: grid; grid-template-columns: 1fr auto; gap: var(--space-4); align-items: center;" class="reveal">
+      <div class="creatives-cta-inner reveal">
         <div>
           <h2 class="display-md text-white" style="margin-bottom: 0.75rem;">Your enterprise deserves better.</h2>
-          <p style="color: var(--stone); font-size: 0.9375rem; max-width: 44ch;">We work with a selective group of creative talent and entrepreneurs each year. Start a conversation to explore fit.</p>
+          <p class="creatives-cta-desc">We work with a selective group of creative talent and entrepreneurs each year. Start a conversation to explore fit.</p>
         </div>
         <a href="contact.html" class="btn btn--primary">Start a Conversation</a>
       </div>

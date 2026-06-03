@@ -1248,7 +1248,9 @@ button {
   .rc-collapsible:not(.rc-expanded) .pathway-link,
   .rc-collapsible:not(.rc-expanded) .lane-desc,
   .rc-collapsible:not(.rc-expanded) .lane-arrow,
-  .rc-collapsible:not(.rc-expanded) .sp-desc {
+  .rc-collapsible:not(.rc-expanded) .sp-desc,
+  .rc-collapsible:not(.rc-expanded) .who-desc,
+  .rc-collapsible:not(.rc-expanded) .ip-item-desc {
     display: none;
   }
 
