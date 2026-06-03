@@ -323,9 +323,9 @@
     }
 
     /* ============================================================
-       MOBILE
+       LARGE MOBILE ONLY (below fold / phablet range)
     ============================================================ */
-    @media (max-width: 767px) {
+    @media (max-width: 599px) {
       html, body { overflow: auto; }
       #split { flex-direction: column; height: auto; min-height: 100vh; }
       .panel { width: 100% !important; height: 55vh; min-height: 340px; }
@@ -335,7 +335,44 @@
       #top-mark { top: 0.75rem; transform: translateX(-50%); }
     }
 
-    @media (min-width: 768px) and (max-width: 1100px) {
+    /* ============================================================
+       FOLD / PHABLET + TABLET — side-by-side split (691×703, 768×1024)
+    ============================================================ */
+    @media (min-width: 600px) and (max-width: 1023px) {
+      html, body { overflow: hidden; }
+      #split { flex-direction: row; width: 100vw; height: 100vh; min-height: 0; }
+      .panel { width: 50% !important; height: 100%; min-height: 0; }
+
+      .panel.is-revealed .p-label {
+        opacity: 1; visibility: visible; transform: translateY(0);
+      }
+      .panel.is-revealed .p-headline { transform: translateY(-4px); }
+      #panel-law.is-revealed .p-headline { transform: none; }
+      .panel.is-revealed .p-body {
+        opacity: 1; visibility: visible; transform: translateY(0);
+      }
+      .panel.is-revealed .p-cta {
+        opacity: 1; visibility: visible; transform: translateY(0);
+      }
+      .panel.is-revealed .p-cta-line { width: 4rem; background: var(--gold); }
+      .panel.is-revealed .p-cta-text { color: var(--ivory); }
+      .panel.is-revealed .p-cta-arrow { transform: translateX(5px); }
+
+      #panel-law.is-revealed .panel-bg {
+        transform: scale(1.0);
+        filter: grayscale(15%) brightness(0.62);
+      }
+      #panel-law.is-revealed .law-wall-logo { opacity: 0.48; }
+      #panel-law.is-revealed .law-headline-group {
+        transform: translateY(calc(-1 * clamp(2.5rem, 5.5vw, 7rem) * 0.88 - clamp(0.85rem, 1vw, 0.9375rem) * 1.7 - 4px));
+      }
+      #panel-ent.is-revealed .panel-bg {
+        transform: scale(1.0);
+        filter: grayscale(0%) brightness(0.88);
+      }
+    }
+
+    @media (min-width: 600px) and (max-width: 1100px) {
       .p-headline { font-size: clamp(2rem, 4.5vw, 5.5rem); }
     }
 
@@ -372,7 +409,7 @@
     <div class="panel" id="panel-law"
          role="link" tabindex="0"
          aria-label="Enter The Advisory Law"
-         onclick="goTo('https://6a1eb37727fe92400cbf351d--theadvisorypllc.netlify.app/', 'law')">
+         data-dest="https://6a1eb37727fe92400cbf351d--theadvisorypllc.netlify.app/">
 
       <div class="panel-bg"></div>
       <div class="panel-grad"></div>
@@ -406,7 +443,7 @@
     <div class="panel" id="panel-ent"
          role="link" tabindex="0"
          aria-label="Enter Enterprise Management"
-         onclick="goTo('home.html', 'ent')">
+         data-dest="home.html">
 
       <div class="panel-bg"></div>
       <div class="panel-grad"></div>
@@ -440,6 +477,12 @@
     window.addEventListener('load', function() { setTimeout(dismissSplash, 1400); });
     setTimeout(dismissSplash, 2300);
 
+    var splitTapQuery = window.matchMedia('(min-width: 600px) and (max-width: 1023px)');
+
+    function isSplitTapLayout() {
+      return splitTapQuery.matches;
+    }
+
     /* Navigate */
     function goTo(dest) {
       var veil = document.getElementById('exit-veil');
@@ -447,15 +490,48 @@
       veil.classList.add('active');
       setTimeout(function() { window.location.href = dest; }, 900);
     }
-    function handleCta(e, dest) { e.stopPropagation(); e.preventDefault(); goTo(dest); }
 
-    /* Keyboard */
-    document.querySelectorAll('.panel').forEach(function(p) {
-      p.addEventListener('keydown', function(e) {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-         goTo(this.id === 'panel-law' ? 'https://6a1eb37727fe92400cbf351d--theadvisorypllc.netlify.app/' : 'home.html');
+    function revealPanel(panel) {
+      document.querySelectorAll('.panel').forEach(function(p) {
+        p.classList.remove('is-revealed');
+      });
+      panel.classList.add('is-revealed');
+    }
+
+    function handlePanelActivate(panel, dest) {
+      if (isSplitTapLayout()) {
+        if (!panel.classList.contains('is-revealed')) {
+          revealPanel(panel);
+          return;
         }
+      }
+      goTo(dest);
+    }
+
+    function handleCta(e, dest) {
+      e.stopPropagation();
+      e.preventDefault();
+      handlePanelActivate(e.currentTarget.closest('.panel'), dest);
+    }
+
+    /* Panel tap / click */
+    document.querySelectorAll('.panel').forEach(function(panel) {
+      panel.addEventListener('click', function(e) {
+        if (e.target.closest('.p-cta')) return;
+        e.preventDefault();
+        handlePanelActivate(panel, panel.dataset.dest);
+      });
+
+      panel.addEventListener('keydown', function(e) {
+        if (e.key !== 'Enter' && e.key !== ' ') return;
+        e.preventDefault();
+        handlePanelActivate(panel, panel.dataset.dest);
+      });
+    });
+
+    splitTapQuery.addEventListener('change', function() {
+      document.querySelectorAll('.panel').forEach(function(p) {
+        p.classList.remove('is-revealed');
       });
     });
 

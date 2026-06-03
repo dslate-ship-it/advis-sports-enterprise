@@ -328,7 +328,9 @@
         <!-- CONTACT FORM -->
         <div class="reveal reveal-delay-1">
           <div class="contact-form">
-            <form id="contact-form" onsubmit="handleFormSubmit(event)">
+            <form id="contact-form" method="POST" onsubmit="handleFormSubmit(event)">
+
+              <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
 
               <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-2);">
                 <div class="form-group">
@@ -393,9 +395,11 @@
                 <textarea class="form-textarea" id="message" name="message" placeholder="Tell us a bit about your current situation or what you're trying to accomplish..."></textarea>
               </div>
 
-              <button type="submit" class="btn btn--primary form-submit">
+              <button type="submit" class="btn btn--primary form-submit" id="contact-submit-btn">
                 Submit Your Inquiry
               </button>
+
+              <p id="form-error" class="form-note" style="display:none; color:#8b3a3a; margin-top:0.75rem;"></p>
 
               <p class="form-note">
                 All inquiries are confidential. We respond within 48 hours.
@@ -435,14 +439,7 @@
   </footer>
 
   <script src="js/main.js"></script>
-  <script>
-    function handleFormSubmit(e) {
-      e.preventDefault();
-      const form = document.getElementById('contact-form');
-      const success = document.getElementById('form-success');
-      form.style.display = 'none';
-      success.style.display = 'block';
-    }
-  </script>
+  <script src="js/formspree-config.js"></script>
+  <script src="js/contact-form.js"></script>
 </body>
 </html>
