@@ -343,6 +343,16 @@
       #split { flex-direction: row; width: 100vw; height: 100vh; min-height: 0; }
       .panel { width: 50% !important; height: 100%; min-height: 0; }
 
+      /* Narrow half-panel: drop desktop headline offset (collides with wall logo) */
+      #panel-law .law-headline-group,
+      #panel-law.is-revealed .law-headline-group {
+        transform: none;
+      }
+
+      .law-wall-logo img {
+        width: clamp(100px, 14vw, 200px);
+      }
+
       .panel.is-revealed .p-label {
         opacity: 1; visibility: visible; transform: translateY(0);
       }
@@ -363,9 +373,6 @@
         filter: grayscale(15%) brightness(0.62);
       }
       #panel-law.is-revealed .law-wall-logo { opacity: 0.48; }
-      #panel-law.is-revealed .law-headline-group {
-        transform: translateY(calc(-1 * clamp(2.5rem, 5.5vw, 7rem) * 0.88 - clamp(0.85rem, 1vw, 0.9375rem) * 1.7 - 4px));
-      }
       #panel-ent.is-revealed .panel-bg {
         transform: scale(1.0);
         filter: grayscale(0%) brightness(0.88);
@@ -409,7 +416,7 @@
     <div class="panel" id="panel-law"
          role="link" tabindex="0"
          aria-label="Enter The Advisory Law"
-         data-dest="https://6a1eb37727fe92400cbf351d--theadvisorypllc.netlify.app/">
+         data-dest="https://theadvisorypllc.netlify.app/">
 
       <div class="panel-bg"></div>
       <div class="panel-grad"></div>
@@ -430,8 +437,8 @@
         <p class="p-body">
           The Advisory PLLC delivers elite legal counsel business advisory services, and wealth. The Advisory is built for those whose stakes are highest.</p>
         <a class="p-cta"
-          href="https://6a1eb37727fe92400cbf351d--theadvisorypllc.netlify.app/"
-          onclick="handleCta(event, 'https://6a1eb37727fe92400cbf351d--theadvisorypllc.netlify.app/', 'law')">
+          href="https://theadvisorypllc.netlify.app/"
+          onclick="handleCta(event, 'https://theadvisorypllc.netlify.app/', 'law')">
           <span class="p-cta-line"></span>
           <span class="p-cta-text">Enter</span>
           <span class="p-cta-arrow">→</span>
