@@ -34,18 +34,27 @@
 
     .sports-hero-stencil {
       position: absolute;
-      inset: 0;
+      inset: auto;
+      top: 72px;
+      left: 0;
+      right: 0;
+      bottom: auto;
+      height: auto;
       z-index: 2;
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: center;
       pointer-events: none;
       overflow: hidden;
+      padding: var(--space-2) var(--container-padding) 0;
     }
 
     .sports-hero-stencil .stencil-text {
+      display: block;
+      width: 100%;
+      text-align: center;
       font-family: var(--font-sans);
-      font-size: clamp(8rem, 22vw, 28rem);
+      font-size: clamp(4rem, 11vw, 14rem);
       font-weight: 700;
       letter-spacing: -0.04em;
       text-transform: uppercase;
@@ -54,6 +63,7 @@
       opacity: 0.7;
       user-select: none;
       white-space: nowrap;
+      line-height: 1;
     }
 
     /* ===== WHAT WE DO FOR PRO ATHLETES ===== */
@@ -231,8 +241,8 @@
         right: 0;
         width: 100%;
         height: auto;
-        padding: 0 var(--container-padding);
-        align-items: center;
+        padding: var(--space-1) var(--container-padding) 0;
+        align-items: flex-start;
         justify-content: center;
       }
 
@@ -240,7 +250,7 @@
         display: block;
         width: 100%;
         text-align: center;
-        font-size: clamp(2.75rem, 14.5vw, 6rem);
+        font-size: clamp(2.75rem, 7.25vw, 6rem);
         letter-spacing: -0.025em;
         line-height: 1;
       }
@@ -532,7 +542,7 @@
             From rookie contract to post-career portfolio, we manage the complete lifecycle
             of the professional athlete's enterprise.
           </p>
-          <a href="contact.html" class="btn btn--text" style="margin-top: var(--space-4); color: var(--gold);">Get Started</a>
+          <a href="contact.html" class="btn btn--text pro-services-cta">Get Started</a>
         </div>
 
         <div class="reveal reveal-delay-1">
@@ -637,7 +647,7 @@
         </div>
         <div class="footer-nav-cols"><div class="footer-col"><h5>Who We Serve</h5><ul><li><a href="sports.html">Professional Athletes</a></li><li><a href="nil.html">NIL Athletes</a></li><li><a href="creatives.html">Entertainers &amp; Creatives</a></li><li><a href="bespoke.html">Bespoke &amp; Entrepreneurs</a></li></ul></div>
         <div class="footer-col"><h5>Services</h5><ul><li><a href="services.html#contracts">Contracts</a></li><li><a href="nil.html">NIL Strategy</a></li><li><a href="services.html#entity">Entity &amp; Tax</a></li><li><a href="services.html#brand-ip">Brand &amp; IP</a></li><li><a href="services.html#family-governance">Family Office &amp; Governance</a></li></ul></div>
-        <div class="footer-col"><h5>Company</h5><ul><li><a href="about.html">About</a></li><li><a href="partnerships.html">Partnerships</a></li><li><a href="contact.html">Contact</a></li></ul></div></div>
+        <div class="footer-col"><h5>Company</h5><ul><li><a href="about.html">About</a></li><li><a href="https://6a1eb37727fe92400cbf351d--theadvisorypllc.netlify.app/attorneys">Meet the Team</a></li><li><a href="partnerships.html">Partnerships</a></li><li><a href="contact.html">Contact</a></li></ul></div></div>
       </div>
       <div class="footer-bottom">
         <p>&copy; 2026 The Advisory. All rights reserved.</p>

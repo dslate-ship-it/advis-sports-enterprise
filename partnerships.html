@@ -94,16 +94,17 @@
     .partnerships-hero-stencil {
       position: absolute;
       inset: auto;
-      top: calc(72px + 3vh);
+      top: 72px;
       left: 0;
       right: 0;
       bottom: auto;
       height: auto;
       z-index: 2;
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: center;
       pointer-events: none;
+      transform: translateY(-20vh);
     }
 
     .partnerships-hero-stencil svg {
@@ -510,12 +511,13 @@
 
       .partnerships-hero-stencil {
         top: 72px;
+        align-items: flex-start;
+        transform: translateY(-20vh);
       }
 
       .partnerships-hero-stencil img {
         width: clamp(540px, 126vw, 960px);
         opacity: 0.16;
-        transform: translateY(-4vh);
       }
 
       /* Partnership Value tier cards — collapsible */
@@ -864,7 +866,6 @@
 
       <div class="reveal" style="margin-bottom: var(--space-6);">
         <div class="eyebrow" style="--gold: #B8965A; color: var(--gold);">
-          <span style="display:block;width:2rem;height:1px;background:#B8965A;flex-shrink:0;"></span>
           <span class="label" style="color: var(--muted);">Partnership Value</span>
         </div>
         <h2 class="heading-xl" style="color: var(--body-text); max-width: 18ch;">How We Partner<br>With You</h2>

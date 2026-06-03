@@ -65,18 +65,36 @@
       transform: translateY(-37.5%);
     }
 
-    .stencil-text {
+    .nil-hero-stencil .stencil-text {
       font-family: var(--font-sans);
       font-size: clamp(32rem, 88vw, 112rem);
       font-weight: 700;
       letter-spacing: -0.04em;
       text-transform: uppercase;
-      /* Cut-out effect: transparent text revealing video behind */
       color: transparent;
       -webkit-text-stroke: 1px rgba(184,150,90,0.15);
       opacity: 0.7;
       user-select: none;
       white-space: nowrap;
+    }
+
+    /* ===== STANDARD / SMALL LAPTOP (1024px–1440px) ===== */
+    @media (min-width: 1024px) and (max-width: 1440px) {
+      /* Hero viewport: 25% shorter */
+      .nil-hero.page-hero--viewport {
+        height: 75vh;
+        min-height: 510px;
+        max-height: 810px;
+      }
+
+      /* Background NIL stencil: 25% smaller (font-size, not scale transform) */
+      .nil-hero-stencil {
+        transform: translateY(-37.5%);
+      }
+
+      .nil-hero-stencil .stencil-text {
+        font-size: clamp(24rem, 66vw, 84rem);
+      }
     }
 
     /* ===== PROBLEM STATEMENT (dark — swapped with Our Framework) ===== */
@@ -1249,6 +1267,7 @@
           <h5>Company</h5>
           <ul>
             <li><a href="about.html">About</a></li>
+            <li><a href="https://6a1eb37727fe92400cbf351d--theadvisorypllc.netlify.app/attorneys">Meet the Team</a></li>
             <li><a href="partnerships.html">Partnerships</a></li>
             <li><a href="contact.html">Contact</a></li>
           </ul>

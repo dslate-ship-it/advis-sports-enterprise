@@ -20,6 +20,50 @@
       z-index: 3;
     }
 
+    /* Multiline eyebrow: real line element centers against both label rows */
+    .creatives-hero__eyebrow::before {
+      content: none;
+      display: none;
+    }
+
+    .creatives-hero__eyebrow {
+      align-items: center;
+    }
+
+    .creatives-hero__eyebrow-line {
+      flex-shrink: 0;
+      width: 2rem;
+      height: 1px;
+      background-color: var(--gold);
+    }
+
+    .creatives-hero__eyebrow .label {
+      display: block;
+      line-height: 1.4;
+    }
+
+    /* Hero CTAs: stacked — Explore Representation, then View Services */
+    .creatives-hero .page-hero__actions {
+      flex-direction: column;
+      align-items: stretch;
+      width: 100%;
+      max-width: 17rem;
+      gap: 0.875rem;
+    }
+
+    .creatives-hero .page-hero__actions .btn {
+      width: 100%;
+      justify-content: center;
+      text-align: center;
+      min-height: 44px;
+      padding: 0.875rem 1.5rem;
+      white-space: nowrap;
+    }
+
+    .creatives-hero .page-hero__actions .btn--ghost {
+      border-color: rgba(255, 255, 255, 0.35);
+    }
+
     .creatives-hero-overlay {
       position: absolute;
       inset: 0;
@@ -34,19 +78,26 @@
 
     .creatives-hero-stencil {
       position: absolute;
-      inset: 0;
+      inset: auto;
+      top: 72px;
+      left: 0;
+      right: 0;
+      bottom: auto;
+      height: auto;
       z-index: 2;
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: center;
       pointer-events: none;
-      overflow: hidden;
+      overflow: visible;
+      padding: var(--space-2) 0 0;
     }
 
     /* Same width box as .container (who-grid cards, etc.) */
     .creatives-hero-stencil-track {
       width: 100%;
       container-type: inline-size;
+      transform: translateY(calc(var(--space-7) * -2 / 3 + 15vh));
     }
 
     .creatives-hero-stencil .stencil-text {
@@ -63,6 +114,7 @@
       opacity: 0.7;
       user-select: none;
       white-space: nowrap;
+      line-height: 1;
     }
 
     /* ===== WHO WE SERVE ===== */
@@ -376,13 +428,19 @@
       .creatives-hero-stencil {
         position: absolute;
         inset: auto;
-        top: calc(72px + var(--space-1));
+        top: 72px;
         left: 0;
         right: 0;
         width: 100%;
         height: auto;
-        align-items: center;
+        align-items: flex-start;
         justify-content: center;
+        overflow: visible;
+        padding: var(--space-2) 0 0;
+      }
+
+      .creatives-hero-stencil-track {
+        transform: translateY(calc(var(--space-5) * -2 / 3 + 15vh));
       }
 
       .creatives-hero-stencil .stencil-text {
@@ -403,10 +461,6 @@
         row-gap: var(--space-3);
       }
 
-      .creatives-hero .page-hero__eyebrow {
-        margin-bottom: var(--space-2);
-      }
-
       .creatives-hero .page-hero__tagline {
         margin-top: var(--space-2);
       }
@@ -416,23 +470,20 @@
       }
 
       .creatives-hero .page-hero__actions {
-        flex-direction: row;
+        flex-direction: column;
         align-items: stretch;
-        justify-content: center;
-        width: 100%;
-        max-width: none;
-        gap: var(--space-2);
+        max-width: 20rem;
+        margin: 0 auto;
       }
 
       .creatives-hero .page-hero__actions .btn {
-        flex: 1 1 50%;
-        min-width: 0;
-        min-height: 44px;
-        justify-content: center;
-        text-align: center;
-        padding-left: 0.5rem;
-        padding-right: 0.5rem;
-        font-size: clamp(0.6875rem, 1.6vw, 0.8125rem);
+        width: 100%;
+        padding: 0.875rem 1.25rem;
+        font-size: 0.8125rem;
+      }
+
+      .creatives-hero .page-hero__eyebrow {
+        margin-bottom: var(--space-2);
       }
 
       .page-creatives .footer-brand {
@@ -619,7 +670,8 @@
     <div class="page-hero__content">
       <div class="page-hero__layout">
         <div class="page-hero__main">
-          <div class="page-hero__eyebrow">
+          <div class="page-hero__eyebrow creatives-hero__eyebrow">
+            <span class="creatives-hero__eyebrow-line" aria-hidden="true"></span>
             <span class="label text-gold">Entertainers, Creatives &amp;<br>Entrepreneurs</span>
           </div>
           <h1 class="page-hero__headline">
