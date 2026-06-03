@@ -78,18 +78,22 @@
       white-space: nowrap;
     }
 
-    /* ===== PROBLEM STATEMENT ===== */
+    /* ===== PROBLEM STATEMENT (dark — swapped with Our Framework) ===== */
     .problem-section {
-      background-color: var(--warm-white);
+      background-color: var(--surface-dark);
       padding: var(--space-8) 0;
     }
 
     .problem-section .problem-headline {
-      color: var(--body-text);
+      color: var(--ivory);
     }
 
     .problem-section .body-md.text-stone {
-      color: var(--muted);
+      color: var(--stone);
+    }
+
+    .problem-section .label.text-stone {
+      color: var(--stone);
     }
 
     .problem-grid {
@@ -115,14 +119,14 @@
       margin-top: var(--space-4);
     }
 
-    .killer-card {
-      background-color: var(--ivory);
-      border: 1px solid var(--border-light);
+    .problem-section .killer-card {
+      background-color: var(--charcoal);
+      border: 1px solid var(--border-dark);
       border-left: 2px solid var(--gold);
       padding: var(--space-3);
     }
 
-    .killer-title {
+    .problem-section .killer-title {
       font-family: var(--font-sans);
       font-size: 0.8125rem;
       font-weight: 700;
@@ -132,9 +136,9 @@
       margin-bottom: 0.5rem;
     }
 
-    .killer-desc {
+    .problem-section .killer-desc {
       font-size: 0.875rem;
-      color: var(--body-text);
+      color: var(--stone);
       line-height: 1.5;
     }
 
@@ -200,10 +204,43 @@
       background-color: rgba(250, 248, 245, 0.24);
     }
 
-    /* ===== FIVE LANES (NIL version) ===== */
+    /* ===== FIVE LANES / OUR FRAMEWORK (cream — swapped with The Reality) ===== */
     .nil-lanes {
-      background-color: var(--surface-dark);
+      background-color: var(--warm-white);
       padding: var(--space-8) 0;
+    }
+
+    .nil-lanes .display-md,
+    .nil-lanes .lane-title {
+      color: var(--body-text);
+    }
+
+    .nil-lanes .body-md.text-stone,
+    .nil-lanes .lane-desc {
+      color: var(--muted);
+    }
+
+    .nil-lanes .lane-card {
+      border-bottom-color: var(--border-light);
+    }
+
+    .nil-lanes .lane-card:hover .lane-title {
+      color: var(--gold);
+    }
+
+    .nil-lanes .lane-arrow {
+      color: rgba(44, 44, 44, 0.68);
+    }
+
+    .nil-framework-intro {
+      margin-bottom: var(--space-6);
+    }
+
+    .nil-framework-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-5);
+      align-items: end;
     }
 
     /* ===== FLIGHT SCHOOL ===== */
@@ -292,16 +329,488 @@
       display: block;
     }
 
-    /* ===== RESPONSIVE ===== */
+    /* ===== RESPONSIVE (tablet / phablet / mobile — 1023px and below) ===== */
+    @media (max-width: 1023px) {
+      /* --- Hero --- */
+      .nil-hero.page-hero--viewport {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        height: auto;
+        min-height: calc(60vh + var(--space-3));
+        max-height: none;
+        padding-top: calc(72px + var(--space-2));
+        padding-bottom: var(--space-3);
+        align-items: stretch;
+        overflow: hidden;
+      }
+
+      .nil-hero-stencil {
+        position: absolute;
+        inset: auto;
+        top: calc(72px + 32vh);
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: auto;
+        padding: 0 var(--container-padding);
+        align-items: center;
+        justify-content: center;
+      }
+
+      .nil-hero-stencil .stencil-text {
+        display: block;
+        width: 100%;
+        text-align: center;
+        font-size: clamp(2.75rem, 14.5vw, 6rem);
+        letter-spacing: -0.025em;
+        line-height: 1;
+      }
+
+      .nil-hero .page-hero__content {
+        position: relative;
+        flex: 0 0 auto;
+        margin-top: 0;
+        width: 100%;
+        padding: 40vh var(--container-padding) var(--space-3);
+      }
+
+      .nil-hero .page-hero__layout {
+        row-gap: var(--space-3);
+      }
+
+      .nil-hero .page-hero__eyebrow {
+        margin-bottom: var(--space-2);
+      }
+
+      .nil-hero .page-hero__headline {
+        margin-top: 0;
+      }
+
+      .nil-hero .page-hero__tagline {
+        margin-top: var(--space-2);
+      }
+
+      .nil-hero .page-hero__aside {
+        width: 100%;
+      }
+
+      .nil-hero .page-hero__actions {
+        flex-direction: row;
+        align-items: stretch;
+        justify-content: flex-start;
+        width: 100%;
+        max-width: none;
+        gap: var(--space-2);
+      }
+
+      .nil-hero .page-hero__actions .btn {
+        flex: 1 1 50%;
+        min-width: 0;
+        min-height: 44px;
+        justify-content: center;
+        text-align: center;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+        font-size: clamp(0.6875rem, 1.6vw, 0.8125rem);
+      }
+
+      /* --- The Reality --- */
+      .problem-section {
+        padding: var(--space-5) 0 var(--space-4);
+      }
+
+      .problem-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-3);
+      }
+
+      .problem-section .eyebrow {
+        margin-bottom: var(--space-2);
+      }
+
+      .problem-section .problem-headline {
+        margin-bottom: 0;
+      }
+
+      .problem-section .body-md.text-stone {
+        margin-top: var(--space-2) !important;
+      }
+
+      .problem-grid > .reveal + .reveal {
+        margin-top: var(--space-1);
+      }
+
+      .killer-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-2);
+        margin-top: var(--space-2);
+      }
+
+      .killer-card.rc-collapsible:not(.rc-expanded) {
+        padding: var(--space-3);
+        min-height: 44px;
+      }
+
+      .killer-card.rc-collapsible:not(.rc-expanded) .killer-title {
+        margin-bottom: 0;
+      }
+
+      .killer-card.rc-collapsible:not(.rc-expanded) .killer-title::after {
+        content: '+';
+        float: right;
+        font-family: var(--font-sans);
+        font-size: 1.125rem;
+        font-weight: 400;
+        color: var(--gold);
+        opacity: 0.55;
+        line-height: 1;
+      }
+
+      .killer-card.rc-collapsible:not(.rc-expanded) .killer-desc {
+        display: none;
+      }
+
+      /* --- Our Framework --- */
+      .nil-lanes {
+        padding: var(--space-5) 0 var(--space-4);
+      }
+
+      .nil-framework-intro {
+        margin-bottom: var(--space-3) !important;
+      }
+
+      .nil-framework-intro .eyebrow {
+        margin-bottom: var(--space-2);
+      }
+
+      .nil-framework-header {
+        grid-template-columns: 1fr;
+        gap: var(--space-2);
+        align-items: start;
+      }
+
+      .nil-framework-headline {
+        margin-bottom: 0;
+      }
+
+      .nil-framework-lede {
+        max-width: none;
+        margin-top: 0;
+      }
+
+      .nil-lanes .lane-card.rc-collapsible:not(.rc-expanded) {
+        grid-template-columns: 2rem 1fr 1.5rem;
+        align-items: center;
+        padding-top: var(--space-3);
+        padding-bottom: var(--space-3);
+      }
+
+      .nil-lanes .lane-card.rc-collapsible:not(.rc-expanded) .lane-title {
+        margin-bottom: 0;
+      }
+
+      .nil-lanes .lane-card.rc-collapsible:not(.rc-expanded) .lane-title::after {
+        display: none;
+      }
+
+      .nil-lanes .lane-card.rc-collapsible:not(.rc-expanded) .lane-arrow {
+        display: block;
+        justify-self: end;
+        text-align: right;
+        width: 1.5rem;
+        margin-top: 0;
+        line-height: 1;
+        font-size: 0;
+      }
+
+      .nil-lanes .lane-card.rc-collapsible:not(.rc-expanded) .lane-arrow::after {
+        content: '+';
+        font-family: var(--font-sans);
+        font-size: 1.125rem;
+        font-weight: 400;
+        color: var(--gold);
+        opacity: 0.55;
+      }
+
+      .nil-lanes .lane-card.rc-collapsible.rc-expanded .lane-arrow {
+        font-size: 1.25rem;
+      }
+
+      .nil-lanes .lane-card.rc-collapsible.rc-expanded .lane-arrow::after {
+        content: none;
+      }
+
+      .nil-lanes > .container > .reveal:last-child .lane-card:last-child {
+        padding-bottom: var(--space-2);
+        border-bottom: none;
+      }
+
+      /* --- Service Tiers: Tinder-style swipe deck --- */
+      .tiers-section {
+        padding: var(--space-5) 0 var(--space-4);
+      }
+
+      .tiers-section > .container > .reveal {
+        margin-bottom: var(--space-3) !important;
+      }
+
+      .tiers-deck-wrap {
+        --tier-peek: 64px;
+        padding: var(--space-2) 0 var(--space-3);
+      }
+
+      .tiers-grid.tiers-swipe-deck {
+        display: block;
+        position: relative;
+        width: 100%;
+        max-width: min(92vw, 380px);
+        height: clamp(620px, 82vh, 720px);
+        margin: 0 auto;
+        overflow: visible;
+        touch-action: pan-y;
+      }
+
+      .tiers-grid.tiers-swipe-deck .tier-card {
+        position: absolute;
+        top: calc(var(--tier-peek) * 2);
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: calc(100% - (var(--tier-peek) * 2));
+        margin: 0;
+        padding: var(--space-4) var(--space-3);
+        overflow-x: hidden;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        background-color: var(--near-black);
+        border-color: rgba(184, 150, 90, 0.62);
+        border-radius: 8px;
+        opacity: 0;
+        pointer-events: none;
+        box-shadow:
+          0 0 0 1px rgba(184, 150, 90, 0.2),
+          0 14px 40px rgba(13, 13, 13, 0.5);
+        transform-origin: top center;
+        transition:
+          top 0.35s var(--ease-smooth),
+          transform 0.35s var(--ease-smooth),
+          opacity 0.35s var(--ease-smooth),
+          box-shadow 0.35s var(--ease-smooth),
+          border-color 0.35s var(--ease-smooth);
+        will-change: top, transform;
+      }
+
+      .tiers-grid.tiers-swipe-deck .tier-card::after {
+        content: '';
+        position: absolute;
+        top: 12px;
+        right: 16px;
+        width: 34px;
+        height: 4px;
+        border-radius: 999px;
+        background: rgba(184, 150, 90, 0.72);
+        box-shadow:
+          0 8px 0 rgba(184, 150, 90, 0.34),
+          0 16px 0 rgba(184, 150, 90, 0.18);
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .tiers-grid.tiers-swipe-deck .tier-card--featured {
+        background:
+          linear-gradient(rgba(184, 150, 90, 0.06), rgba(184, 150, 90, 0.06)),
+          var(--near-black);
+        border-color: rgba(184, 150, 90, 0.9);
+      }
+
+      .tiers-grid.tiers-swipe-deck.is-initializing .tier-card {
+        transition: none;
+      }
+
+      .tiers-grid.tiers-swipe-deck .tier-card:hover {
+        transform: none;
+      }
+
+      .tiers-grid.tiers-swipe-deck .tier-card.is-next {
+        top: var(--tier-peek);
+        z-index: 2;
+        opacity: 1;
+        border-color: rgba(184, 150, 90, 0.72);
+        box-shadow:
+          0 0 0 1px rgba(184, 150, 90, 0.22),
+          0 10px 26px rgba(13, 13, 13, 0.46);
+        transform: scale(0.985);
+      }
+
+      .tiers-grid.tiers-swipe-deck .tier-card.is-back {
+        top: 0;
+        z-index: 1;
+        opacity: 1;
+        border-color: rgba(184, 150, 90, 0.58);
+        box-shadow:
+          0 0 0 1px rgba(184, 150, 90, 0.18),
+          0 8px 22px rgba(13, 13, 13, 0.4);
+        transform: scale(0.97);
+      }
+
+      .tiers-grid.tiers-swipe-deck .tier-card.is-active {
+        top: calc(var(--tier-peek) * 2);
+        cursor: grab;
+        z-index: 3;
+        opacity: 1;
+        border-color: var(--gold);
+        box-shadow:
+          0 0 0 1px rgba(184, 150, 90, 0.38),
+          0 18px 46px rgba(13, 13, 13, 0.62);
+        overflow-y: auto;
+        pointer-events: auto;
+      }
+
+      .tiers-grid.tiers-swipe-deck .tier-card.is-active::after {
+        opacity: 1;
+      }
+
+      .tiers-grid.tiers-swipe-deck .tier-card.is-active.is-dragging {
+        transition: none;
+        cursor: grabbing;
+        border-color: var(--gold);
+        box-shadow:
+          0 0 0 2px rgba(184, 150, 90, 0.42),
+          0 22px 54px rgba(13, 13, 13, 0.7);
+      }
+
+      .tiers-grid.tiers-swipe-deck .tier-card.is-exit-left {
+        transition: transform 0.38s var(--ease-smooth), opacity 0.38s var(--ease-smooth);
+        transform: translateX(-125%) rotate(-14deg) !important;
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .tiers-grid.tiers-swipe-deck .tier-card.is-exit-right {
+        transition: transform 0.38s var(--ease-smooth), opacity 0.38s var(--ease-smooth);
+        transform: translateX(125%) rotate(14deg) !important;
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .tiers-deck-ui {
+        max-width: min(92vw, 380px);
+        margin: var(--space-3) auto 0;
+        text-align: center;
+      }
+
+      .tiers-deck-dots {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: var(--space-1);
+      }
+
+      .tiers-deck-dot {
+        width: 44px;
+        height: 44px;
+        padding: 0;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .tiers-deck-dot::before {
+        content: '';
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        border: 1px solid var(--gold);
+        transition: background-color var(--duration-base) var(--ease-smooth);
+      }
+
+      .tiers-deck-dot.is-active::before {
+        background-color: var(--gold);
+      }
+
+      .tiers-deck-hint {
+        margin: var(--space-1) 0 0;
+      }
+
+      .tiers-section .tier-tagline {
+        min-height: auto;
+      }
+
+      /* --- All-Star Curriculum --- */
+      .flight-school {
+        padding: var(--space-5) 0 var(--space-4);
+      }
+
+      .flight-school-layout {
+        grid-template-columns: 1fr;
+        gap: var(--space-3);
+      }
+
+      .flight-school-layout > .reveal:first-child {
+        text-align: center;
+      }
+
+      .flight-school-layout > .reveal:first-child .eyebrow {
+        justify-content: center;
+      }
+
+      .flight-school-layout > .reveal:first-child .body-md {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .flight-school-layout > .reveal:first-child .btn {
+        display: inline-flex;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+
     @media (max-width: 1024px) {
       .problem-grid { grid-template-columns: 1fr; }
-      .tiers-grid { grid-template-columns: 1fr; }
-      .tiers-section .tier-tagline { min-height: auto; }
       .flight-school-layout { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 768px) {
       .killer-grid { grid-template-columns: 1fr; }
+    }
+
+    /* Preserve desktop tier grid (1024px+) */
+    @media (min-width: 1024px) {
+      .tiers-deck-wrap {
+        margin: 0;
+        padding: 0;
+      }
+
+      .tiers-grid.tiers-swipe-deck {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--space-3);
+        max-width: none;
+        height: auto;
+        margin: 0;
+        touch-action: auto;
+      }
+
+      .tiers-grid.tiers-swipe-deck .tier-card {
+        position: relative;
+        inset: auto;
+        width: auto;
+        height: auto;
+        overflow: visible;
+        box-shadow: none;
+        transform: none !important;
+        opacity: 1 !important;
+        cursor: default;
+      }
+
+      .tiers-deck-ui {
+        display: none;
+      }
     }
   </style>
 </head>
@@ -456,19 +965,19 @@
         <div class="reveal reveal-delay-2">
           <div class="label text-stone" style="margin-bottom: var(--space-2);">The Four Killers</div>
           <div class="killer-grid">
-            <div class="killer-card">
+            <div class="killer-card rc-collapsible" tabindex="0" role="button">
               <div class="killer-title">Bad Contracts</div>
               <div class="killer-desc">Agents taking 40%+, unfavorable performance clauses, and rights giveaways that follow you for decades.</div>
             </div>
-            <div class="killer-card">
+            <div class="killer-card rc-collapsible" tabindex="0" role="button">
               <div class="killer-title">The Silent Killer</div>
               <div class="killer-desc">Unplanned tax exposure averaging $40K–$85K per athlete. Multi-state filings. Phantom income on non-cash NIL gifts.</div>
             </div>
-            <div class="killer-card">
+            <div class="killer-card rc-collapsible" tabindex="0" role="button">
               <div class="killer-title">The G-Wagon Trap</div>
               <div class="killer-desc">Buying assets the wrong way, in the wrong name, the wrong structure, at the wrong time.</div>
             </div>
-            <div class="killer-card">
+            <div class="killer-card rc-collapsible" tabindex="0" role="button">
               <div class="killer-title">Predatory Advisors</div>
               <div class="killer-desc">Those who profit from your confusion rather than your clarity. We build systems that eliminate the dependency.</div>
             </div>
@@ -485,11 +994,11 @@
   <section class="nil-lanes" id="lanes">
     <div class="container">
 
-      <div class="reveal" style="margin-bottom: var(--space-6);">
+      <div class="reveal nil-framework-intro">
         <div class="eyebrow"><span class="label">Our Framework</span></div>
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-5); align-items: end;">
-          <h2 class="display-md text-white">Five Lanes.<br>One System.</h2>
-          <p class="body-md text-stone" style="max-width: 38ch;">Every student-athlete who enters the NIL market faces the same five vulnerabilities. We turn them into five strengths.</p>
+        <div class="nil-framework-header">
+          <h2 class="display-md nil-framework-headline">Five Lanes.<br><span class="headline-keep">One System.</span></h2>
+          <p class="body-md text-stone text-justify-responsive nil-framework-lede">Every student-athlete who enters the NIL market faces the same five vulnerabilities. We turn them into five strengths.</p>
         </div>
       </div>
 
@@ -553,7 +1062,8 @@
         </p>
       </div>
 
-      <div class="tiers-grid">
+      <div class="tiers-deck-wrap">
+      <div class="tiers-grid tiers-swipe-deck" id="nil-tier-swipe-deck" aria-label="Service tier cards">
 
         <!-- Tier 1: Redshirt -->
         <div class="tier-card reveal">
@@ -611,6 +1121,11 @@
           <a href="contact.html" class="btn btn--ghost">Request Future Pro Access</a>
         </div>
 
+      </div>
+      <div class="tiers-deck-ui">
+        <div class="tiers-deck-dots" role="tablist" aria-label="Service tier selection"></div>
+        <p class="tiers-deck-hint"><span class="label text-stone">Swipe to compare tiers</span></p>
+      </div>
       </div>
 
     </div>
@@ -737,5 +1252,235 @@
   </footer>
 
   <script src="js/main.js"></script>
+  <script>
+  (function () {
+    'use strict';
+
+    var deckEl = document.getElementById('nil-tier-swipe-deck');
+    var dotsWrap = document.querySelector('.tiers-deck-dots');
+    if (!deckEl || !dotsWrap) return;
+
+    var mq = window.matchMedia('(max-width: 1023px)');
+    var cards = Array.prototype.slice.call(deckEl.querySelectorAll('.tier-card'));
+    cards.forEach(function (card) {
+      card.classList.remove('reveal', 'revealed', 'reveal-delay-1', 'reveal-delay-2', 'reveal-delay-3', 'reveal-delay-4');
+    });
+    var count = cards.length;
+    var index = 0;
+    var dragging = false;
+    var startX = 0;
+    var startY = 0;
+    var dragX = 0;
+    var dragAxis = null;
+    var animating = false;
+    var SWIPE_THRESHOLD = 58;
+    var EXIT_DURATION = 380;
+
+    function buildDots() {
+      dotsWrap.innerHTML = '';
+      cards.forEach(function (card, i) {
+        var nameEl = card.querySelector('.tier-name');
+        var btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'tiers-deck-dot' + (i === index ? ' is-active' : '');
+        btn.setAttribute('role', 'tab');
+        btn.setAttribute('aria-label', nameEl ? nameEl.textContent.trim() : 'Tier ' + (i + 1));
+        btn.setAttribute('aria-selected', i === index ? 'true' : 'false');
+        btn.addEventListener('click', function () {
+          if (!mq.matches || i === index || animating) return;
+          index = i;
+          applyStack();
+        });
+        dotsWrap.appendChild(btn);
+      });
+    }
+
+    function updateDots() {
+      var dots = dotsWrap.querySelectorAll('.tiers-deck-dot');
+      dots.forEach(function (dot, i) {
+        dot.classList.toggle('is-active', i === index);
+        dot.setAttribute('aria-selected', i === index ? 'true' : 'false');
+      });
+    }
+
+    function setCardInteractive(card, enabled) {
+      card.inert = !enabled;
+      card.querySelectorAll('a, button, input, select, textarea, [tabindex]').forEach(function (el) {
+        if (enabled) {
+          var originalTabIndex = el.getAttribute('data-tier-original-tabindex');
+          if (originalTabIndex === '') {
+            el.removeAttribute('tabindex');
+          } else if (originalTabIndex !== null) {
+            el.setAttribute('tabindex', originalTabIndex);
+          }
+          el.removeAttribute('data-tier-original-tabindex');
+        } else {
+          if (!el.hasAttribute('data-tier-original-tabindex')) {
+            el.setAttribute('data-tier-original-tabindex', el.getAttribute('tabindex') || '');
+          }
+          el.setAttribute('tabindex', '-1');
+        }
+      });
+    }
+
+    function resetDesktop() {
+      cards.forEach(function (card) {
+        card.classList.remove('is-active', 'is-next', 'is-back', 'is-dragging', 'is-exit-left', 'is-exit-right');
+        card.style.transform = '';
+        card.style.transition = '';
+        card.style.opacity = '';
+        card.style.zIndex = '';
+        setCardInteractive(card, true);
+        card.removeAttribute('aria-hidden');
+      });
+    }
+
+    function applyStack(skipTransition) {
+      if (!mq.matches) {
+        resetDesktop();
+        return;
+      }
+
+      if (skipTransition) {
+        deckEl.classList.add('is-initializing');
+      }
+
+      cards.forEach(function (card, i) {
+        card.classList.remove('is-active', 'is-next', 'is-back', 'is-dragging', 'is-exit-left', 'is-exit-right');
+        card.style.transform = '';
+        card.style.transition = '';
+        card.style.opacity = '';
+        card.style.zIndex = '';
+        setCardInteractive(card, false);
+        card.setAttribute('aria-hidden', 'true');
+
+        var pos = (i - index + count) % count;
+        if (pos === 0) {
+          card.classList.add('is-active');
+          setCardInteractive(card, true);
+          card.removeAttribute('aria-hidden');
+        } else if (pos === 1) {
+          card.classList.add('is-next');
+        } else if (pos === 2) {
+          card.classList.add('is-back');
+        }
+      });
+      updateDots();
+
+      if (skipTransition) {
+        window.requestAnimationFrame(function () {
+          deckEl.classList.remove('is-initializing');
+        });
+      }
+    }
+
+    function advance(dir) {
+      if (!mq.matches || animating) return;
+      animating = true;
+      var active = cards[index];
+      active.classList.add(dir > 0 ? 'is-exit-left' : 'is-exit-right');
+
+      window.setTimeout(function () {
+        active.classList.remove('is-exit-left', 'is-exit-right');
+        index = (index + dir + count) % count;
+        applyStack();
+        animating = false;
+      }, EXIT_DURATION);
+    }
+
+    function getEventPoint(e) {
+      if (e.touches && e.touches.length) return e.touches[0];
+      if (e.changedTouches && e.changedTouches.length) return e.changedTouches[0];
+      return e;
+    }
+
+    function onPointerDown(e) {
+      if (!mq.matches || animating || dragging) return;
+      if (e.target.closest('a, button')) return;
+      if (!e.target.closest('.tier-card.is-active')) return;
+
+      var point = getEventPoint(e);
+      dragging = true;
+      dragAxis = null;
+      startX = point.clientX;
+      startY = point.clientY;
+      dragX = 0;
+      cards[index].classList.add('is-dragging');
+      if (e.pointerId !== undefined && cards[index].setPointerCapture) {
+        cards[index].setPointerCapture(e.pointerId);
+      }
+    }
+
+    function onPointerMove(e) {
+      if (!dragging) return;
+
+      var point = getEventPoint(e);
+      var dx = point.clientX - startX;
+      var dy = point.clientY - startY;
+
+      if (dragAxis === null) {
+        if (Math.abs(dx) > 10 || Math.abs(dy) > 10) {
+          dragAxis = Math.abs(dx) >= Math.abs(dy) ? 'x' : 'y';
+        }
+      }
+
+      if (dragAxis !== 'x') return;
+
+      if (e.cancelable) e.preventDefault();
+      dragX = dx;
+      var rot = Math.max(-12, Math.min(12, dx * 0.06));
+      var lift = Math.min(10, Math.abs(dx) * 0.04);
+      cards[index].style.transform = 'translateX(' + dx + 'px) translateY(-' + lift + 'px) rotate(' + rot + 'deg)';
+    }
+
+    function onPointerUp(e) {
+      if (!dragging) return;
+
+      dragging = false;
+      var active = cards[index];
+      active.classList.remove('is-dragging');
+
+      try {
+        if (e.pointerId !== undefined && active.releasePointerCapture) active.releasePointerCapture(e.pointerId);
+      } catch (err) { /* ignore */ }
+
+      if (dragAxis === 'x' && dragX <= -SWIPE_THRESHOLD) {
+        active.style.transform = '';
+        advance(1);
+      } else if (dragAxis === 'x' && dragX >= SWIPE_THRESHOLD) {
+        active.style.transform = '';
+        advance(-1);
+      } else {
+        active.style.transition = 'transform 0.28s var(--ease-smooth)';
+        active.style.transform = '';
+        window.setTimeout(function () {
+          active.style.transition = '';
+        }, 280);
+      }
+
+      dragAxis = null;
+      dragX = 0;
+    }
+
+    deckEl.addEventListener('pointerdown', onPointerDown);
+    deckEl.addEventListener('pointermove', onPointerMove);
+    deckEl.addEventListener('pointerup', onPointerUp);
+    deckEl.addEventListener('pointercancel', onPointerUp);
+    deckEl.addEventListener('touchstart', onPointerDown, { passive: true });
+    deckEl.addEventListener('touchmove', onPointerMove, { passive: false });
+    deckEl.addEventListener('touchend', onPointerUp);
+    deckEl.addEventListener('touchcancel', onPointerUp);
+
+    mq.addEventListener('change', function () {
+      animating = false;
+      dragging = false;
+      if (!mq.matches) resetDesktop();
+      else applyStack(true);
+    });
+
+    buildDots();
+    applyStack(true);
+  })();
+  </script>
 </body>
 </html>
