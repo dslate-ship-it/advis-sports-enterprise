@@ -364,6 +364,55 @@
   }
 
   // ============================================================
+  // RESPONSIVE COLLAPSIBLE ROWS: tap open, tap close, double-tap navigate
+  // ============================================================
+  function initResponsiveCollapsibles() {
+    const mq = window.matchMedia('(max-width: 1023px)');
+    const items = document.querySelectorAll('.rc-collapsible');
+
+    function collapseSiblings(item) {
+      const group = item.closest('.pathway-grid, .reveal, .services-preview-grid, .container, section');
+      if (!group) return;
+      group.querySelectorAll('.rc-collapsible.rc-expanded').forEach(function (sibling) {
+        if (sibling !== item) sibling.classList.remove('rc-expanded');
+      });
+    }
+
+    items.forEach(function (item) {
+      item.addEventListener('click', function (e) {
+        if (!mq.matches) return;
+        e.preventDefault();
+
+        if (!item.classList.contains('rc-expanded')) {
+          collapseSiblings(item);
+          item.classList.add('rc-expanded');
+          return;
+        }
+
+        item._tapCount = (item._tapCount || 0) + 1;
+
+        if (item._tapTimer) clearTimeout(item._tapTimer);
+
+        item._tapTimer = setTimeout(function () {
+          if (item._tapCount >= 2) {
+            var href = item.getAttribute('href') || item.getAttribute('data-href');
+            if (href) window.location.href = href;
+          } else {
+            item.classList.remove('rc-expanded');
+          }
+          item._tapCount = 0;
+        }, 320);
+      });
+
+      item.addEventListener('keydown', function (e) {
+        if (!mq.matches || (e.key !== 'Enter' && e.key !== ' ')) return;
+        e.preventDefault();
+        item.click();
+      });
+    });
+  }
+
+  // ============================================================
   // INIT ALL
   // ============================================================
   function init() {
@@ -378,6 +427,7 @@
     initVideoAutoplay();
     initSmoothScroll();
     initStaggerGroups();
+    initResponsiveCollapsibles();
   }
 
   if (document.readyState === 'loading') {
