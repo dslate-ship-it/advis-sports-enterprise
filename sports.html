@@ -140,7 +140,16 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: var(--space-4);
-      margin-top: var(--space-5);
+      margin-top: 0;
+    }
+
+    .approach-header {
+      grid-column: 1 / -1;
+      padding: var(--space-4) var(--space-3) var(--space-3) 0;
+    }
+
+    .approach-header .eyebrow {
+      margin-bottom: var(--space-2);
     }
 
     .approach-item {
@@ -187,12 +196,193 @@
       text-align: justify;
     }
 
-    /* ===== RESPONSIVE ===== */
-    @media (max-width: 1024px) {
+    .sports-cta-inner {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: var(--space-4);
+      align-items: center;
+    }
+
+    /* ===== TABLET AND BELOW (1023px and below) ===== */
+    @media (max-width: 1023px) {
       .pro-services-layout { grid-template-columns: 1fr; }
       .approach-grid { grid-template-columns: 1fr 1fr; }
       .approach-item { min-height: auto; }
       .approach-desc { min-height: auto; }
+
+      .sports-hero.page-hero--viewport {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        height: auto;
+        min-height: calc(55vh + var(--space-3));
+        max-height: none;
+        padding-top: calc(72px + var(--space-2));
+        padding-bottom: var(--space-3);
+        align-items: stretch;
+        overflow: hidden;
+      }
+
+      .sports-hero-stencil {
+        position: absolute;
+        inset: auto;
+        top: calc(72px + var(--space-1));
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: auto;
+        padding: 0 var(--container-padding);
+        align-items: center;
+        justify-content: center;
+      }
+
+      .sports-hero-stencil .stencil-text {
+        display: block;
+        width: 100%;
+        text-align: center;
+        font-size: clamp(2.75rem, 14.5vw, 6rem);
+        letter-spacing: -0.025em;
+        line-height: 1;
+      }
+
+      .sports-hero .page-hero__content {
+        position: relative;
+        flex: 0 0 auto;
+        margin-top: auto;
+        width: 100%;
+        padding: 0 var(--container-padding) var(--space-3);
+      }
+
+      .sports-hero .page-hero__layout {
+        row-gap: var(--space-3);
+      }
+
+      .sports-hero .page-hero__eyebrow {
+        margin-bottom: var(--space-2);
+      }
+
+      .sports-hero .page-hero__tagline {
+        margin-top: var(--space-2);
+      }
+
+      .sports-hero .page-hero__aside {
+        width: 100%;
+      }
+
+      .sports-hero .page-hero__actions {
+        flex-direction: row;
+        align-items: stretch;
+        justify-content: center;
+        width: 100%;
+        max-width: none;
+        gap: var(--space-2);
+      }
+
+      .sports-hero .page-hero__actions .btn {
+        flex: 1 1 50%;
+        min-width: 0;
+        min-height: 44px;
+        justify-content: center;
+        text-align: center;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+        font-size: clamp(0.6875rem, 1.6vw, 0.8125rem);
+      }
+
+      .approach-section {
+        padding: var(--space-5) 0 var(--space-4);
+      }
+
+      .approach-header {
+        padding: var(--space-3) 0 var(--space-2);
+      }
+
+      .approach-header .eyebrow {
+        margin-bottom: var(--space-2);
+      }
+
+      .approach-grid {
+        gap: var(--space-3);
+      }
+
+      .pro-services {
+        padding: var(--space-4) 0 var(--space-4);
+      }
+
+      .pro-services-layout {
+        gap: var(--space-3);
+      }
+
+      .pro-services .eyebrow {
+        margin-bottom: var(--space-2);
+      }
+
+      .pro-services .display-md {
+        margin-bottom: var(--space-2) !important;
+      }
+
+      .pro-services .btn--text {
+        margin-top: var(--space-2) !important;
+      }
+
+      .pro-services-layout > .reveal + .reveal {
+        margin-top: var(--space-1);
+      }
+
+      .proof-band {
+        padding: var(--space-5) 0;
+      }
+
+      .proof-band .btn--ghost {
+        display: flex;
+        width: fit-content;
+        max-width: 100%;
+        justify-content: center;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .sports-cta {
+        padding: var(--space-4) 0 var(--space-3) !important;
+      }
+
+      .sports-cta-inner {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: var(--space-3);
+      }
+
+      .sports-cta-inner h2 {
+        margin-bottom: 0 !important;
+      }
+
+      .sports-cta-desc {
+        max-width: none;
+      }
+
+      .sports-cta-inner .btn {
+        align-self: center;
+        display: inline-flex;
+        justify-content: center;
+        text-align: center;
+        padding: 0.65rem 1.25rem;
+        font-size: 0.75rem;
+      }
+
+      .page-sports .footer-brand {
+        display: none;
+      }
+
+      .page-sports .site-footer {
+        padding-top: var(--space-3);
+      }
+
+      .page-sports .footer-top {
+        margin-bottom: var(--space-3);
+        padding-bottom: var(--space-3);
+      }
     }
 
     @media (max-width: 600px) {
@@ -200,7 +390,7 @@
     }
   </style>
 </head>
-<body>
+<body class="page-sports">
 
   <!-- HEADER -->
   <header class="site-header" id="site-header">
@@ -285,6 +475,35 @@
             <a href="contact.html" class="btn btn--primary">Request Representation</a>
             <a href="services.html" class="btn btn--ghost">View Services</a>
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       HOW WE WORK
+  ============================================================ -->
+  <section class="approach-section">
+    <div class="container">
+      <div class="approach-grid">
+        <div class="approach-header reveal">
+          <div class="eyebrow"><span class="label">How We Work</span></div>
+          <h2 class="display-md text-white">A different standard<br>of representation.</h2>
+        </div>
+        <div class="approach-item reveal">
+          <div class="approach-num">Principle 01</div>
+          <div class="approach-title">Clear Swim Lanes</div>
+          <div class="approach-desc">You lead the relationship. We staff the workstreams and report to you. No confusion about who does what, ever.</div>
+        </div>
+        <div class="approach-item reveal reveal-delay-1">
+          <div class="approach-num">Principle 02</div>
+          <div class="approach-title">No Conflicts</div>
+          <div class="approach-desc">We do not earn commissions on investments we recommend. We do not represent brands you may endorse. Our only incentive is your outcome.</div>
+        </div>
+        <div class="approach-item reveal reveal-delay-2">
+          <div class="approach-num">Principle 03</div>
+          <div class="approach-title">Institutional Leverage</div>
+          <div class="approach-desc">We negotiate with the credibility of decades of elite representation. Led by Jimmie B. Strong, Harvard Law Valedictorian, Top 1% Financial Advisor, Vanderbilt Professor.</div>
         </div>
       </div>
     </div>
@@ -384,43 +603,14 @@
   </section>
 
   <!-- ============================================================
-       OUR APPROACH
-  ============================================================ -->
-  <section class="approach-section">
-    <div class="container">
-      <div class="reveal" style="margin-bottom: var(--space-5);">
-        <div class="eyebrow"><span class="label">How We Work</span></div>
-        <h2 class="display-md text-white">A different standard<br>of representation.</h2>
-      </div>
-      <div class="approach-grid">
-        <div class="approach-item reveal">
-          <div class="approach-num">Principle 01</div>
-          <div class="approach-title">Clear Swim Lanes</div>
-          <div class="approach-desc">You lead the relationship. We staff the workstreams and report to you. No confusion about who does what, ever.</div>
-        </div>
-        <div class="approach-item reveal reveal-delay-1">
-          <div class="approach-num">Principle 02</div>
-          <div class="approach-title">No Conflicts</div>
-          <div class="approach-desc">We do not earn commissions on investments we recommend. We do not represent brands you may endorse. Our only incentive is your outcome.</div>
-        </div>
-        <div class="approach-item reveal reveal-delay-2">
-          <div class="approach-num">Principle 03</div>
-          <div class="approach-title">Institutional Leverage</div>
-          <div class="approach-desc">We negotiate with the credibility of decades of elite representation. Led by Jimmie B. Strong, Harvard Law Valedictorian, Top 1% Financial Advisor, Vanderbilt Professor.</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================================
        CTA
   ============================================================ -->
-  <section class="section section--charcoal" style="padding: var(--space-8) 0;">
+  <section class="sports-cta section section--charcoal" style="padding: var(--space-8) 0;">
     <div class="container">
-      <div style="display: grid; grid-template-columns: 1fr auto; gap: var(--space-4); align-items: center;" class="reveal">
+      <div class="sports-cta-inner reveal">
         <div>
           <h2 class="display-md text-white" style="margin-bottom: 0.75rem;">Ready to build your enterprise?</h2>
-          <p class="sports-cta-desc">We work with a selective group of athletes and entrepreneurs each year.<br>Start a conversation to explore fit.</p>
+          <p class="sports-cta-desc">We work with a selective group of athletes and entrepreneurs each year. Start a conversation to explore fit.</p>
         </div>
         <a href="contact.html" class="btn btn--primary">Request Representation</a>
       </div>
