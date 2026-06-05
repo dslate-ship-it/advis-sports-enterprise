@@ -171,7 +171,7 @@ About → about.html
 3. **Contact form backend**: Connect the contact form to an email service (Formspree, EmailJS, or equivalent) for real submissions
 4. **Additional social proof images**: Add more event/client photos as they become available
 5. **Blog / press section**: Add a news or press releases page
-6. **Privacy Policy / Terms / Disclosures**: Write actual legal pages (currently linked as placeholders)
+6. **Privacy Policy / Terms / Disclosures**: Published at `privacy-policy.html`, `terms-of-use.html`, and `disclosures.html`
 7. **SEO meta optimization**: Add Open Graph tags and structured data for each page
 8. **Analytics**: Add Google Analytics or equivalent
 9. **Performance optimization**: Consider lazy loading refinements and image WebP conversion

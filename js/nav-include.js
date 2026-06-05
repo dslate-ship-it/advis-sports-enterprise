@@ -168,9 +168,9 @@
       <div class="footer-bottom">
         <p>&copy; 2026 The Advisory. All rights reserved.</p>
         <div class="footer-legal">
-          <a href="#">Privacy Policy</a>
-          <a href="#">Terms of Use</a>
-          <a href="#">Disclosures</a>
+          <a href="privacy-policy.html">Privacy Policy</a>
+          <a href="terms-of-use.html">Terms of Use</a>
+          <a href="disclosures.html">Disclosures</a>
         </div>
       </div>
     </div>

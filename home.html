@@ -155,6 +155,76 @@
       flex-shrink: 0;
     }
 
+    /* ===== FEATURED VIDEO MODAL ===== */
+    .featured-video-modal {
+      position: fixed;
+      inset: 0;
+      z-index: var(--z-modal);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-3);
+      background-color: rgba(13, 13, 13, 0.74);
+      backdrop-filter: blur(3px);
+    }
+
+    .featured-video-modal[hidden] {
+      display: none;
+    }
+
+    .featured-video-modal__dialog {
+      position: relative;
+      width: min(68vw, 800px);
+      max-height: calc(100vh - var(--space-6));
+      background-color: var(--near-black);
+      border: 1px solid rgba(184, 150, 90, 0.32);
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.55);
+    }
+
+    .featured-video-modal__frame {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      width: 100%;
+      overflow: hidden;
+      background-color: #000;
+    }
+
+    .featured-video-modal__frame iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .featured-video-modal__close {
+      position: absolute;
+      top: 0;
+      right: 0;
+      z-index: 2;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.75rem;
+      height: 2.75rem;
+      font-family: var(--font-sans);
+      font-size: 1.35rem;
+      line-height: 1;
+      color: var(--ivory);
+      background-color: rgba(13, 13, 13, 0.86);
+      border-left: 1px solid rgba(184, 150, 90, 0.28);
+      border-bottom: 1px solid rgba(184, 150, 90, 0.28);
+      transition: color var(--duration-fast) var(--ease-smooth),
+                  background-color var(--duration-fast) var(--ease-smooth);
+    }
+
+    .featured-video-modal__close:hover,
+    .featured-video-modal__close:focus-visible {
+      color: var(--gold);
+      background-color: rgba(13, 13, 13, 0.96);
+      outline: none;
+    }
+
     /* ===== SECTION: AUDIENCE PATHWAYS (tangible content early) ===== */
     .pathways {
       background-color: var(--charcoal);
@@ -611,6 +681,19 @@
       .stats-grid { grid-template-columns: 1fr 1fr; }
       .services-preview > .container > .reveal { margin-bottom: var(--space-3) !important; }
       .services-preview > .container > .reveal > div { grid-template-columns: 1fr !important; gap: var(--space-2) !important; }
+
+      .featured-video-modal {
+        padding: var(--space-2);
+      }
+
+      .featured-video-modal__dialog {
+        width: min(94vw, 800px);
+      }
+
+      .featured-video-modal__close {
+        width: 2.5rem;
+        height: 2.5rem;
+      }
     }
   </style>
 </head>
@@ -792,6 +875,31 @@
       <a href="https://theadvisorypllc.netlify.app/" class="header-cta-link" style="text-align:center;display:block;padding:0.5rem 0;">View Legal Offerings</a>
     </div>
   </nav>
+
+  <div
+    class="featured-video-modal"
+    id="featured-video-modal"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Featured athlete enterprise video"
+    aria-hidden="true"
+    hidden>
+    <div class="featured-video-modal__dialog" role="document">
+      <button type="button" class="featured-video-modal__close" aria-label="Close featured video">&times;</button>
+      <div class="featured-video-modal__frame">
+        <iframe
+          id="featured-video-player"
+          data-src="https://player.vimeo.com/video/1198830463?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;autoplay=1&amp;muted=1&amp;loop=1&amp;playsinline=1&amp;controls=1"
+          width="800"
+          height="450"
+          frameborder="0"
+          allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+          title="The Advisory athlete enterprise featured video"></iframe>
+      </div>
+    </div>
+  </div>
 
   <!-- ============================================================
        HERO
@@ -1260,9 +1368,9 @@
       <div class="footer-bottom">
         <p>&copy; 2026 The Advisory. All rights reserved.</p>
         <div class="footer-legal">
-          <a href="#">Privacy Policy</a>
-          <a href="#">Terms of Use</a>
-          <a href="#">Disclosures</a>
+          <a href="privacy-policy.html">Privacy Policy</a>
+          <a href="terms-of-use.html">Terms of Use</a>
+          <a href="disclosures.html">Disclosures</a>
           <a href="index.html">UNIFIED HOME PAGE</a>
         </div>
       </div>
@@ -1270,6 +1378,64 @@
     </div>
   </footer>
 
+  <script>
+    (function () {
+      'use strict';
+
+      var modal = document.getElementById('featured-video-modal');
+      if (!modal) return;
+
+      var iframe = modal.querySelector('#featured-video-player');
+      var closeButton = modal.querySelector('.featured-video-modal__close');
+      var videoSrc = iframe ? iframe.getAttribute('data-src') : '';
+      var previousOverflow = '';
+
+      function openFeaturedVideoModal() {
+        if (!iframe || !videoSrc) return;
+        previousOverflow = document.body.style.overflow;
+        iframe.setAttribute('src', videoSrc);
+        modal.hidden = false;
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+
+        if (closeButton) {
+          window.requestAnimationFrame(function () {
+            closeButton.focus({ preventScroll: true });
+          });
+        }
+      }
+
+      function closeFeaturedVideoModal() {
+        if (modal.hidden) return;
+        modal.hidden = true;
+        modal.setAttribute('aria-hidden', 'true');
+        if (iframe) iframe.removeAttribute('src');
+        document.body.style.overflow = previousOverflow;
+      }
+
+      if (closeButton) {
+        closeButton.addEventListener('click', closeFeaturedVideoModal);
+      }
+
+      modal.addEventListener('click', function (event) {
+        if (event.target === modal) {
+          closeFeaturedVideoModal();
+        }
+      });
+
+      document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape') {
+          closeFeaturedVideoModal();
+        }
+      });
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', openFeaturedVideoModal);
+      } else {
+        openFeaturedVideoModal();
+      }
+    })();
+  </script>
   <script src="js/main.js"></script>
 </body>
 </html>
