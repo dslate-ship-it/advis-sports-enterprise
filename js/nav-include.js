@@ -1,4 +1,4 @@
-/* ============================================================
+﻿/* ============================================================
    THE ADVISORY — Shared Navigation / Footer Injection
    Injects the same header and footer into every page
    ============================================================ */
@@ -69,7 +69,7 @@
       </div>
       </div>
 
-      <a href="https://theadvisorypllc.netlify.app/" class="header-cta-link">Visit Law Firm Side</a>
+      <a href="https://theadvisorypllc.netlify.app/" class="header-cta-link">View Legal Offerings</a>
 
       <button class="mobile-toggle" aria-label="Toggle menu" aria-expanded="false">
         <span></span><span></span><span></span>
@@ -120,7 +120,7 @@
     </ul>
     <div class="mobile-nav-cta">
       <a href="contact.html" class="btn btn--primary">Start a Conversation</a>
-      <a href="https://theadvisorypllc.netlify.app/" class="header-cta-link" style="text-align:center;display:block;padding:0.5rem 0;">Visit Law Firm Side</a>
+      <a href="https://theadvisorypllc.netlify.app/" class="header-cta-link" style="text-align:center;display:block;padding:0.5rem 0;">View Legal Offerings</a>
     </div>
   </nav>
   `;
