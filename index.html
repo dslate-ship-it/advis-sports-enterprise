@@ -141,7 +141,7 @@
       transition: width 0.75s var(--ease-expo);
     }
 
-    @media (hover: hover) and (min-width: 768px) {
+    @media (hover: hover) and (min-width: 1280px) {
       #split:has(.panel:hover) .panel       { width: 34%; }
       #split:has(.panel:hover) .panel:hover { width: 66%; }
     }
@@ -182,7 +182,7 @@
     .panel:hover .p-label { opacity: 1; visibility: visible; transform: translateY(0); }
 
     .p-label-line { display: block; width: 1.75rem; height: 1px; background: var(--gold); flex-shrink: 0; }
-    .p-label-text { font-family: var(--font-sans); font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); }
+    .p-label-text { font-family: var(--font-sans); font-size: 1.3rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); }
 
     /* Headline */
     .p-headline {
@@ -192,6 +192,7 @@
       color: var(--ivory); margin-bottom: 1.5rem;
       transition: transform 0.7s var(--ease-expo);
     }
+    .p-headline-line { display: block; }
     .panel:hover .p-headline { transform: translateY(-4px); }
 
     /* Body — truly invisible until hover */
@@ -323,28 +324,144 @@
     }
 
     /* ============================================================
-       LARGE MOBILE ONLY (below fold / phablet range)
+       STACKED MOBILE — law top / sports bottom (only breakpoint)
+       Default: titles + enter CTAs only. Body on tap. Labels hidden.
     ============================================================ */
     @media (max-width: 599px) {
       html, body { overflow: auto; }
       #split { flex-direction: column; height: auto; min-height: 100vh; }
-      .panel { width: 100% !important; height: 55vh; min-height: 340px; }
-      .p-label, .p-body, .p-cta { opacity: 1; visibility: visible; transform: none; }
+      .panel {
+        width: 100% !important;
+        height: 50vh;
+        height: 50dvh;
+        min-height: 320px;
+        overflow: hidden;
+      }
+      #top-mark { display: none !important; }
+      #split-divider { display: none; }
+
+      /* Backgrounds — full bleed, no scale crop; law tuned for short/wide panels */
+      .panel-bg {
+        transform: scale(1) !important;
+        background-size: cover;
+        background-repeat: no-repeat;
+      }
+      #panel-law .panel-bg {
+        background-position: center 35%;
+        filter: grayscale(15%) brightness(0.62);
+      }
+      #panel-ent .panel-bg {
+        background-position: center top;
+        filter: grayscale(5%) brightness(0.78);
+      }
+      #panel-law .panel-grad {
+        background: linear-gradient(to top,
+          rgba(13,13,13,0.96) 0%,
+          rgba(13,13,13,0.55) 28%,
+          rgba(13,13,13,0.12) 58%,
+          transparent 100%
+        );
+      }
+      #panel-ent .panel-grad {
+        background: linear-gradient(to top,
+          rgba(13,13,13,0.96) 0%,
+          rgba(13,13,13,0.5) 25%,
+          rgba(13,13,13,0.08) 55%,
+          transparent 100%
+        );
+      }
+      .law-wall-logo {
+        top: 18%;
+        opacity: 0.22;
+      }
+      .law-wall-logo img {
+        width: clamp(120px, 32vw, 200px);
+      }
+
+      /* Content lives in the bottom third of each panel (not the panel seam) */
+      .panel-content {
+        top: 67%;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 0 clamp(1.25rem, 5vw, 2rem) clamp(1rem, 3vh, 1.75rem);
+        overflow: visible;
+      }
+
       #panel-law .law-headline-group { transform: none; }
-      .p-headline { font-size: clamp(2.5rem, 12vw, 5.5rem); }
-      #top-mark { top: 0.75rem; transform: translateX(-50%); }
+
+      .p-headline {
+        font-size: clamp(2rem, 10vw, 3.5rem);
+        margin-bottom: 0.5rem;
+        flex-shrink: 0;
+      }
+      #panel-ent .p-headline {
+        font-size: clamp(1.65rem, 7.5vw, 2.75rem);
+        line-height: 0.92;
+        margin-bottom: 0.4rem;
+      }
+      #panel-law .p-headline { margin-bottom: 0.5rem; }
+
+      /* Category labels always hidden on stacked layout */
+      .p-label {
+        display: none !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
+      }
+
+      /* Descriptive copy — tap to reveal */
+      .p-body {
+        opacity: 0;
+        visibility: hidden;
+        max-width: 100%;
+        margin-bottom: 0.5rem;
+        flex-shrink: 0;
+        font-size: clamp(0.8rem, 2.8vw, 0.9rem);
+        transform: translateY(12px);
+        transition: opacity 0.55s var(--ease-expo) 0.08s,
+                    visibility 0.55s var(--ease-expo) 0.08s,
+                    transform 0.55s var(--ease-expo) 0.08s;
+      }
+      .panel.is-revealed .p-body {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+
+      /* Enter CTAs always visible — pinned below headline in bottom third */
+      .p-cta {
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        flex-shrink: 0;
+        position: relative;
+        z-index: 6;
+        margin-top: 0.15rem;
+      }
+      .p-cta-line { width: 4rem; background: var(--gold); }
+      .p-cta-text {
+        color: var(--ivory);
+        font-size: clamp(0.6rem, 2.5vw, 0.7rem);
+        letter-spacing: 0.12em;
+        white-space: nowrap;
+      }
+      .p-cta-arrow { transform: translateX(5px); }
     }
 
     /* ============================================================
-       FOLD / PHABLET + TABLET — side-by-side split (691×703, 768×1024)
+       COMPACT TABLET — side-by-side (600px–1279px, below laptop)
+       Bottom-third titles, enter CTAs always, body on tap, JS LAW align.
     ============================================================ */
-    @media (min-width: 600px) and (max-width: 1023px) {
+    @media (min-width: 600px) and (max-width: 1279px) {
       html, body { overflow: hidden; }
       #split { flex-direction: row; width: 100vw; height: 100vh; min-height: 0; }
       .panel { width: 50% !important; height: 100%; min-height: 0; }
 
-      /* Narrow half-panel: drop desktop headline offset (collides with wall logo) */
       #panel-law .law-headline-group,
+      #panel-law:hover .law-headline-group,
       #panel-law.is-revealed .law-headline-group {
         transform: none;
       }
@@ -353,34 +470,95 @@
         width: clamp(100px, 14vw, 200px);
       }
 
-      .panel.is-revealed .p-label {
-        opacity: 1; visibility: visible; transform: translateY(0);
+      .panel-content {
+        top: min(78vh, calc(100% - 12rem));
+        bottom: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        padding: 0 clamp(1.25rem, 3.5vw, 3rem);
+        overflow: visible;
       }
-      .panel.is-revealed .p-headline { transform: translateY(-4px); }
-      #panel-law.is-revealed .p-headline { transform: none; }
-      .panel.is-revealed .p-body {
-        opacity: 1; visibility: visible; transform: translateY(0);
-      }
-      .panel.is-revealed .p-cta {
-        opacity: 1; visibility: visible; transform: translateY(0);
-      }
-      .panel.is-revealed .p-cta-line { width: 4rem; background: var(--gold); }
-      .panel.is-revealed .p-cta-text { color: var(--ivory); }
-      .panel.is-revealed .p-cta-arrow { transform: translateX(5px); }
 
+      .law-primary-block,
+      .ent-primary-block {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        flex-shrink: 0;
+      }
+      .law-primary-block { will-change: transform; }
+
+      .p-headline {
+        font-size: clamp(2rem, 4.5vw, 5.5rem);
+        margin-bottom: 0.5rem;
+        transform: none;
+      }
+      .panel:hover .p-headline,
+      .panel.is-revealed .p-headline { transform: none; }
+      #panel-law .p-headline { margin-bottom: 0.45rem; }
+
+      /* Category labels hidden */
+      .p-label,
+      .panel:hover .p-label,
+      .panel.is-revealed .p-label {
+        display: none !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
+      }
+
+      /* Enter CTAs always visible under titles */
+      .p-cta,
+      .panel:hover .p-cta {
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        flex-shrink: 0;
+        gap: clamp(0.5rem, 1.1vw, 0.875rem);
+        margin: 0;
+      }
+      .p-cta-line,
+      .panel:hover .p-cta-line {
+        width: clamp(2.5rem, 6vw, 4rem);
+        background: var(--gold);
+      }
+      .p-cta-text,
+      .panel:hover .p-cta-text { color: var(--ivory); }
+      .p-cta-arrow,
+      .panel:hover .p-cta-arrow { transform: translateX(5px); }
+      .p-cta-text {
+        font-size: clamp(0.55rem, 1.05vw, 0.68rem);
+        letter-spacing: 0.1em;
+        white-space: nowrap;
+      }
+
+      /* Paragraphs hidden until tap */
+      .p-body,
+      .panel:hover .p-body {
+        display: none;
+        opacity: 0;
+        visibility: hidden;
+      }
+      .panel.is-revealed .p-body,
+      .panel.is-revealed:hover .p-body {
+        display: block;
+        opacity: 1;
+        visibility: visible;
+        max-width: 32ch;
+        margin-top: 0.55rem;
+        margin-bottom: 0;
+        transform: none;
+      }
+
+      .panel.is-revealed .panel-bg { transform: scale(1.0); }
       #panel-law.is-revealed .panel-bg {
-        transform: scale(1.0);
         filter: grayscale(15%) brightness(0.62);
       }
       #panel-law.is-revealed .law-wall-logo { opacity: 0.48; }
       #panel-ent.is-revealed .panel-bg {
-        transform: scale(1.0);
         filter: grayscale(0%) brightness(0.88);
       }
-    }
-
-    @media (min-width: 600px) and (max-width: 1100px) {
-      .p-headline { font-size: clamp(2rem, 4.5vw, 5.5rem); }
     }
 
   </style>
@@ -415,7 +593,7 @@
     <!-- LEFT: LAW -->
     <div class="panel" id="panel-law"
          role="link" tabindex="0"
-         aria-label="Enter The Advisory Law"
+         aria-label="Enter Enterprise Law"
          data-dest="https://theadvisorypllc.netlify.app/">
 
       <div class="panel-bg"></div>
@@ -427,22 +605,24 @@
       </div>
 
       <div class="panel-content">
-        <div class="law-headline-group">
-          <div class="p-label">
-            <span class="p-label-line"></span>
-            <span class="p-label-text">Legal Services</span>
+        <div class="law-primary-block">
+          <div class="law-headline-group">
+            <div class="p-label">
+              <span class="p-label-line"></span>
+              <span class="p-label-text">Legal Services</span>
+            </div>
+            <h2 class="p-headline">LAW</h2>
           </div>
-          <h2 class="p-headline">LAW</h2>
+          <a class="p-cta"
+            href="https://theadvisorypllc.netlify.app/"
+            onclick="handleCta(event, 'https://theadvisorypllc.netlify.app/', 'law')">
+            <span class="p-cta-line"></span>
+            <span class="p-cta-text">Enter Enterprise Law</span>
+            <span class="p-cta-arrow">→</span>
+          </a>
         </div>
         <p class="p-body">
           The Advisory PLLC delivers elite legal counsel business advisory services, and wealth. The Advisory is built for those whose stakes are highest.</p>
-        <a class="p-cta"
-          href="https://theadvisorypllc.netlify.app/"
-          onclick="handleCta(event, 'https://theadvisorypllc.netlify.app/', 'law')">
-          <span class="p-cta-line"></span>
-          <span class="p-cta-text">Enter</span>
-          <span class="p-cta-arrow">→</span>
-        </a>
       </div>
     </div>
 
@@ -460,19 +640,25 @@
           <span class="p-label-line"></span>
           <span class="p-label-text">Enterprise Management</span>
         </div>
-        <h2 class="p-headline">Athletes,<br>Entertainers<br>&amp; Moguls</h2>
+        <div class="ent-primary-block">
+          <h2 class="p-headline">
+            <span class="p-headline-line">Athletes,</span>
+            <span class="p-headline-line p-headline-line--align">Entertainers</span>
+            <span class="p-headline-line">&amp; Moguls</span>
+          </h2>
+          <a class="p-cta"
+             href="home.html"
+             onclick="handleCta(event, 'home.html', 'ent')">
+            <span class="p-cta-line"></span>
+            <span class="p-cta-text">Enter Enterprise Management</span>
+            <span class="p-cta-arrow">→</span>
+          </a>
+        </div>
         <p class="p-body">
           Full-service enterprise management for professional athletes, NIL athletes,
           entertainers, creatives, and high-net-worth entrepreneurs. Contracts, tax,
           brand, IP, and family governance. One firm. Every lane.
         </p>
-        <a class="p-cta"
-           href="home.html"
-           onclick="handleCta(event, 'home.html', 'ent')">
-          <span class="p-cta-line"></span>
-          <span class="p-cta-text">Learn More</span>
-          <span class="p-cta-arrow">→</span>
-        </a>
       </div>
     </div>
 
@@ -484,10 +670,37 @@
     window.addEventListener('load', function() { setTimeout(dismissSplash, 1400); });
     setTimeout(dismissSplash, 2300);
 
-    var splitTapQuery = window.matchMedia('(min-width: 600px) and (max-width: 1023px)');
+    var compactSplitQuery = window.matchMedia('(min-width: 600px) and (max-width: 1279px)');
+    var stackedTapQuery = window.matchMedia('(max-width: 599px)');
 
-    function isSplitTapLayout() {
-      return splitTapQuery.matches;
+    function isCompactSplitLayout() {
+      return compactSplitQuery.matches;
+    }
+
+    function isStackedTapLayout() {
+      return stackedTapQuery.matches;
+    }
+
+    function alignLawHeadline() {
+      var lawBlock = document.querySelector('#panel-law .law-primary-block');
+      var lawHeadline = document.querySelector('#panel-law .p-headline');
+      var alignTarget = document.querySelector('#panel-ent .p-headline-line--align');
+      if (!lawBlock || !lawHeadline || !alignTarget) return;
+
+      if (!isCompactSplitLayout()) {
+        lawBlock.style.transform = '';
+        return;
+      }
+
+      lawBlock.style.transform = '';
+      var offset = alignTarget.getBoundingClientRect().top - lawHeadline.getBoundingClientRect().top;
+      lawBlock.style.transform = offset ? ('translateY(' + offset + 'px)') : '';
+    }
+
+    function scheduleAlignLawHeadline() {
+      requestAnimationFrame(function() {
+        requestAnimationFrame(alignLawHeadline);
+      });
     }
 
     /* Navigate */
@@ -503,14 +716,25 @@
         p.classList.remove('is-revealed');
       });
       panel.classList.add('is-revealed');
+      scheduleAlignLawHeadline();
     }
 
-    function handlePanelActivate(panel, dest) {
-      if (isSplitTapLayout()) {
-        if (!panel.classList.contains('is-revealed')) {
-          revealPanel(panel);
+    function handlePanelActivate(panel, dest, fromCta) {
+      if (isStackedTapLayout()) {
+        if (fromCta) {
+          goTo(dest);
           return;
         }
+        revealPanel(panel);
+        return;
+      }
+      if (isCompactSplitLayout()) {
+        if (fromCta) {
+          goTo(dest);
+          return;
+        }
+        revealPanel(panel);
+        return;
       }
       goTo(dest);
     }
@@ -518,7 +742,7 @@
     function handleCta(e, dest) {
       e.stopPropagation();
       e.preventDefault();
-      handlePanelActivate(e.currentTarget.closest('.panel'), dest);
+      handlePanelActivate(e.currentTarget.closest('.panel'), dest, true);
     }
 
     /* Panel tap / click */
@@ -526,21 +750,31 @@
       panel.addEventListener('click', function(e) {
         if (e.target.closest('.p-cta')) return;
         e.preventDefault();
-        handlePanelActivate(panel, panel.dataset.dest);
+        handlePanelActivate(panel, panel.dataset.dest, false);
       });
 
       panel.addEventListener('keydown', function(e) {
         if (e.key !== 'Enter' && e.key !== ' ') return;
         e.preventDefault();
-        handlePanelActivate(panel, panel.dataset.dest);
+        handlePanelActivate(panel, panel.dataset.dest, false);
       });
     });
 
-    splitTapQuery.addEventListener('change', function() {
+    function resetPanelReveal() {
       document.querySelectorAll('.panel').forEach(function(p) {
         p.classList.remove('is-revealed');
       });
-    });
+      scheduleAlignLawHeadline();
+    }
+
+    compactSplitQuery.addEventListener('change', resetPanelReveal);
+    stackedTapQuery.addEventListener('change', resetPanelReveal);
+    window.addEventListener('load', scheduleAlignLawHeadline);
+    window.addEventListener('resize', scheduleAlignLawHeadline);
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(scheduleAlignLawHeadline);
+    }
+    setTimeout(scheduleAlignLawHeadline, 1600);
 
     /* Divider tracking */
     (function() {
