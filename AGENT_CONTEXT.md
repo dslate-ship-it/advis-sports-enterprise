@@ -7,7 +7,7 @@
 Multi-page static website. Pure HTML, CSS, and vanilla JavaScript — no build tools, no frameworks, no bundlers. Every page is a standalone `.html` file. Shared styles live in two CSS files (`css/design-system.css`, `css/nav.css`). All interactivity is handled by `js/main.js` and `js/nav-include.js`. The site is deployed as-is with no compilation step.
 
 There are two distinct entry points:
-- `index.html` — a cinematic split-screen landing page with a LAW panel (links externally to `https://theadvisorypllc.netlify.app/`) and an ENTERPRISE panel (links to `home.html`)
+- `index.html` — a cinematic split-screen landing page with a LAW panel (links externally to `https://theadvisorypllc.com/`) and an ENTERPRISE panel (links to `home.html`)
 - `home.html` — the main enterprise homepage
 
 ---
