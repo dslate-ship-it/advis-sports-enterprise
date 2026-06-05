@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About | The Advisory</title>
-  <meta name="description" content="Led by Jimmie B. Strong — Harvard Law Valedictorian, Vanderbilt Professor, Top 1% Financial Advisor. The Advisory builds institutional systems for athletes, entertainers, and entrepreneurs.">
+  <meta name="description" content="Jimmie B. Strong — Founder of The Advisory. Sports, entertainment, private client and family office advisory for athletes, entertainers, founders, investors and high net worth clients.">
   <link rel="stylesheet" href="css/design-system.css">
   <link rel="stylesheet" href="css/nav.css">
   <style>
@@ -94,16 +94,21 @@
 
     .founder-layout {
       display: grid;
-      grid-template-columns: 1fr 1.5fr;
-      gap: var(--space-6);
+      grid-template-columns: 5fr 7fr;
+      gap: var(--space-7);
       align-items: start;
+    }
+
+    .founder-photo-col {
+      position: sticky;
+      top: 100px;
     }
 
     .founder-image-wrap {
       position: relative;
       aspect-ratio: 3/4;
       overflow: hidden;
-      max-height: 600px;
+      max-height: 640px;
     }
 
     .founder-image-wrap img {
@@ -113,33 +118,122 @@
       filter: grayscale(20%) contrast(1.05);
     }
 
-    .founder-credentials {
-      margin-top: var(--space-4);
+    .founder-role {
+      font-family: var(--font-sans);
+      font-size: clamp(0.78rem, 1.05vw, 0.9rem);
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--gold);
+      line-height: 1.55;
+      margin-bottom: var(--space-3);
+      max-width: 42ch;
     }
 
-    .credential-item {
-      display: flex;
-      align-items: flex-start;
-      gap: var(--space-2);
-      padding: var(--space-2) 0;
+    .founder-intro {
+      font-size: 1rem;
+      color: var(--stone);
+      line-height: 1.75;
+      margin-bottom: var(--space-2);
+    }
+
+    .founder-block {
+      margin-bottom: var(--space-5);
+      padding-bottom: var(--space-4);
       border-bottom: 1px solid var(--border-dark);
     }
 
-    .credential-item:last-child { border-bottom: none; }
+    .founder-block:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
 
-    .cred-bullet {
+    .founder-block h3 {
+      font-family: var(--font-sans);
+      font-size: 0.8125rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: var(--space-2);
+    }
+
+    .founder-block h4 {
+      font-family: var(--font-display);
+      font-size: clamp(1.125rem, 1.45vw, 1.375rem);
+      color: var(--ivory);
+      margin: var(--space-3) 0 var(--space-2);
+      line-height: 1.25;
+    }
+
+    .founder-block h4:first-of-type {
+      margin-top: 0;
+    }
+
+    .founder-block p {
+      font-size: 0.9375rem;
+      color: var(--stone);
+      line-height: 1.7;
+      margin-bottom: var(--space-2);
+    }
+
+    .founder-block ul {
+      list-style: none;
+      margin: 0 0 var(--space-2);
+      padding: 0;
+    }
+
+    .founder-block li {
+      position: relative;
+      padding-left: 1.25rem;
+      font-size: 0.9375rem;
+      color: var(--stone);
+      line-height: 1.65;
+      margin-bottom: 0.5rem;
+    }
+
+    .founder-block li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.55em;
       width: 4px;
       height: 4px;
       border-radius: 50%;
       background-color: var(--gold);
-      flex-shrink: 0;
-      margin-top: 8px;
     }
 
-    .cred-text {
-      font-size: 0.9375rem;
-      color: var(--stone);
-      line-height: 1.5;
+    .founder-edu {
+      margin-bottom: var(--space-4);
+    }
+
+    .founder-edu:last-child {
+      margin-bottom: 0;
+    }
+
+    .founder-edu-school {
+      font-family: var(--font-display);
+      font-size: clamp(1.25rem, 1.6vw, 1.5rem);
+      color: var(--ivory);
+      margin-bottom: 0.35rem;
+      line-height: 1.2;
+    }
+
+    .founder-edu-degree {
+      font-size: 0.875rem;
+      color: var(--muted);
+      margin-bottom: var(--space-2);
+    }
+
+    .founder-edu-label {
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.75rem;
     }
 
     /* ===== PHILOSOPHY ===== */
@@ -221,6 +315,7 @@
     /* ===== RESPONSIVE ===== */
     @media (max-width: 1024px) {
       .founder-layout { grid-template-columns: 1fr; }
+      .founder-photo-col { position: static; }
       .philosophy-items { grid-template-columns: 1fr 1fr; }
       .legacy-layout { grid-template-columns: 1fr; }
     }
@@ -474,59 +569,195 @@
   </section>
 
   <!-- FOUNDER SECTION -->
-  <section class="founder-section">
+  <section class="founder-section" id="founder">
     <div class="container">
       <div class="founder-layout">
 
-        <div class="reveal">
+        <div class="founder-photo-col reveal">
           <div class="founder-image-wrap">
-            <img src="images/social-proof-enhanced-1.jpg"
-                 alt="Jimmie B. Strong, Founder — The Advisory"
-                 loading="lazy"
-                 onerror="this.src='images/social-proof-2.jpg'">
+            <img src="images/social-proof-2.jpg"
+                 alt="Jimmie B. Strong — Founder, The Advisory"
+                 loading="lazy">
             <div style="position:absolute;bottom:0;left:0;right:0;padding:1.5rem;background:linear-gradient(to top,rgba(13,13,13,0.9),transparent);">
               <span style="font-family:var(--font-sans);font-size:0.7rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--stone);">Jimmie B. Strong · Founder</span>
             </div>
           </div>
         </div>
 
-        <div class="reveal reveal-delay-1">
+        <div class="founder-bio-col reveal reveal-delay-1">
           <div class="eyebrow"><span class="label">Our Founder</span></div>
-          <h2 class="display-md text-white" style="margin-bottom: var(--space-3);">Jimmie B. Strong</h2>
-          <p class="body-md text-stone" style="margin-bottom: var(--space-3);">
-            Jimmie B. Strong built The Advisory from a conviction that the people who create the
-            most value in sports and entertainment deserve the same institutional protection
-            and intelligence that major corporations take for granted.
-          </p>
-          <p class="body-md text-stone" style="margin-bottom: var(--space-4);">
-            His unique combination of legal mastery, financial advisory expertise, and academic
-            leadership gives The Advisory a perspective that no single-discipline firm can match.
-            When you work with The Advisory, you work with someone who has been at the
-            intersection of law, finance, and elite performance for decades.
-          </p>
+          <h2 class="display-md text-white" style="margin-bottom: var(--space-2);">Jimmie B. Strong</h2>
+          <p class="founder-role">Founder | Sports, Entertainment, Private Client and Family Office Advisory</p>
 
-          <div class="founder-credentials">
-            <div class="credential-item">
-              <div class="cred-bullet"></div>
-              <div class="cred-text">Harvard Law School Grad &amp; record holder for most sports law credits in HLS history,</div>
+          <p class="founder-intro">Jimmie B. Strong advises athletes, entertainers, founders, investors, family offices and high net worth clients on the legal, business and financial architecture behind long term wealth.</p>
+          <p class="founder-intro" style="margin-bottom: var(--space-5);">His work sits at the intersection of sports law, entertainment, corporate transactions, investment strategy, family office design, brand monetization, tax aware planning and professional service provider management.</p>
+
+          <div class="founder-block">
+            <h3>Representative Focus</h3>
+
+            <h4>NIL, Student Athlete and Parent Advisory</h4>
+            <p>Jimmie advises high school athletes, college athletes and their families on the business and legal decisions that follow athletic visibility.</p>
+            <p>Areas of focus include:</p>
+            <ul>
+              <li>NIL contract review and negotiation</li>
+              <li>Brand partnership structure</li>
+              <li>Sponsorship and endorsement agreements</li>
+              <li>Agent selection and management</li>
+              <li>Investor and advisor screening</li>
+              <li>Parent education and decision support</li>
+              <li>School, booster, collective and third party relationship review</li>
+              <li>Career planning beyond eligibility</li>
+              <li>Tax, entity and payment structure coordination</li>
+              <li>Long term wealth planning before professional income arrives</li>
+            </ul>
+
+            <h4>Professional Athlete and Entertainer Advisory</h4>
+            <p>For professional athletes, entertainers and creators, Jimmie helps build the operating structure around the career, not just the contract.</p>
+            <p>Advisory areas include:</p>
+            <ul>
+              <li>Representation strategy</li>
+              <li>Agent, manager, attorney and advisor coordination</li>
+              <li>Family office setup and management</li>
+              <li>Endorsement and licensing opportunities</li>
+              <li>Business entity formation</li>
+              <li>Investment review and transaction structure</li>
+              <li>Private equity and venture capital access</li>
+              <li>Brand ownership and monetization</li>
+              <li>Real estate, operating business and startup investment review</li>
+              <li>Tax optimization in coordination with tax professionals</li>
+              <li>Succession, estate and legacy planning coordination</li>
+              <li>Professional service provider oversight</li>
+            </ul>
+
+            <h4>Family Office and Private Client Infrastructure</h4>
+            <p>Jimmie works with clients whose income, reputation, relationships and deal flow require more than traditional legal support.</p>
+            <p>His family office and private client work includes:</p>
+            <ul>
+              <li>Building the client&rsquo;s advisory team</li>
+              <li>Coordinating attorneys, accountants, agents, managers, bankers and investment professionals</li>
+              <li>Reviewing investment opportunities before capital is committed</li>
+              <li>Structuring operating companies, holding companies and affiliated entities</li>
+              <li>Designing governance around family, business and investment decisions</li>
+              <li>Managing conflicts between business partners, family members, investors and representatives</li>
+              <li>Supporting wealth preservation, growth and transfer planning</li>
+              <li>Creating systems that allow clients to evaluate opportunities without being overrun by them</li>
+            </ul>
+          </div>
+
+          <div class="founder-block">
+            <h3>Sports and Entertainment Experience</h3>
+            <p>Jimmie&rsquo;s sports and entertainment work includes advisory services for athletes, entertainers, college programs and student athletes.</p>
+            <p>Notable experience includes:</p>
+            <ul>
+              <li>First three sports and entertainment clients included Floyd Mayweather, Jim Brown and Mookie Betts</li>
+              <li>Adjunct Professor of Sports Law at Vanderbilt Law School</li>
+              <li>Recipient of Harvard Law School&rsquo;s Paul C. Weiler Sports and Entertainment Law Award</li>
+              <li>Earned extensive sports and entertainment law coursework while at Harvard Law School</li>
+              <li>Partner in ESQ Agency, a talent management agency representing athletes, writers, producers and creative artists</li>
+              <li>Provides curriculum development and career development services to college sports programs and student athletes</li>
+            </ul>
+          </div>
+
+          <div class="founder-block">
+            <h3>Corporate, Investment and Transactional Background</h3>
+            <p>Jimmie&rsquo;s private client work is supported by a corporate and investment background that includes securities law, mergers and acquisitions, private equity, venture capital, emerging companies and fund formation.</p>
+            <p>Experience includes:</p>
+            <ul>
+              <li>President and Chief Executive Officer of The Advisory Incorporated, The Advisory PLLC and The Advisory Fund</li>
+              <li>Former General Counsel of Rally Network, Inc., a creator economy platform focused on digital economies, cryptocurrencies and NFTs</li>
+              <li>Former Chief Legal Officer of Rosmar USA, Inc. and Grupo Rosmar</li>
+              <li>Former associate in Baker Donelson&rsquo;s securities, mergers and acquisitions and emerging companies practices</li>
+              <li>Advises venture capital funds, private equity funds, family offices, athletes, entertainers and entrepreneurs</li>
+              <li>Works on fund formation, fund management, transaction structure, investor relationships and growth strategy</li>
+              <li>Provides counsel on entity formation, intellectual property protection, capital strategy, governance and strategic expansion</li>
+            </ul>
+          </div>
+
+          <div class="founder-block">
+            <h3>Board, Investment and Operating Company Experience</h3>
+            <p>Jimmie&rsquo;s advisory work is shaped by firsthand experience as a lawyer, operator, investor and board member.</p>
+            <p>Current and prior roles include:</p>
+            <ul>
+              <li>Board Member, PRSM Healthcare</li>
+              <li>Board Member, MMCV, Inc., a venture capital investment holding company and wholly owned subsidiary of Meharry Medical College</li>
+              <li>Equity owner in Interventional Diabetes Center</li>
+              <li>Equity owner in Everoom</li>
+              <li>Investor and advisor to high growth technology startups</li>
+              <li>President of Elite Construction Contractors &amp; Design</li>
+              <li>Partner in ESQ Agency</li>
+            </ul>
+          </div>
+
+          <div class="founder-block">
+            <h3>Education</h3>
+
+            <div class="founder-edu">
+              <div class="founder-edu-school">Harvard Law School</div>
+              <div class="founder-edu-degree">Juris Doctor, 2014</div>
+              <div class="founder-edu-label">Honors and activities</div>
+              <ul>
+                <li>Paul C. Weiler Sports and Entertainment Law Award</li>
+                <li>Honors in Business and Finance for Lawyers</li>
+                <li>Honors in Revitalizing America&rsquo;s Cities</li>
+                <li>Honors in Advanced Intellectual Property Law</li>
+                <li>Harvard Association for Law and Business, Private Equity Chair</li>
+                <li>Harvard Law TaxHelp, IRS Volunteer Tax Assistance Program Tax Preparer</li>
+                <li>Bloomberg Law, Campus Representative</li>
+              </ul>
             </div>
-            <div class="credential-item">
-              <div class="cred-bullet"></div>
-              <div class="cred-text">Morehouse Law Valedictorian</div>
-            </div>
-            <div class="credential-item">
-              <div class="cred-bullet"></div>
-              <div class="cred-text">Top 1% Financial Advisor, nationally ranked</div>
-            </div>
-            <div class="credential-item">
-              <div class="cred-bullet"></div>
-              <div class="cred-text">Vanderbilt University — Faculty, Business and Legal Studies</div>
-            </div>
-            <div class="credential-item">
-              <div class="cred-bullet"></div>
-              <div class="cred-text">Specializations: Sports law, entertainment law, NIL, family governance, deal structuring, enterprise advisory</div>
+
+            <div class="founder-edu">
+              <div class="founder-edu-school">Morehouse College</div>
+              <div class="founder-edu-degree">Bachelor of Arts, Political Science, 2010</div>
+              <div class="founder-edu-label">Honors and activities</div>
+              <ul>
+                <li>Valedictorian</li>
+                <li>Phi Beta Kappa</li>
+                <li>Golden Key International, President</li>
+                <li>Kappa Alpha Psi Fraternity, Inc., President</li>
+                <li>Morehouse College Accreditation Committee, Student Body Representative</li>
+              </ul>
             </div>
           </div>
+
+          <div class="founder-block">
+            <h3>International, Policy and Research Training</h3>
+            <p>Jimmie&rsquo;s early training included international business, public policy and financial research through the Institute for International Public Policy Fellowship and Graduate School Scholarship.</p>
+            <p>Selected experience:</p>
+            <ul>
+              <li>World Bank and United Nations onsite training in international relations</li>
+              <li>International business and European Union economic structures coursework in Rome, Italy</li>
+              <li>Economics and statistics coursework at the University of Maryland Graduate School of Public Policy</li>
+              <li>Spanish immersion study in Santiago, Dominican Republic</li>
+              <li>Congressional Research Service summer analyst, International Trade and Finance Section</li>
+              <li>Georgia General Assembly intern supporting Banking, Economic Development and Regulated Industries Committees</li>
+            </ul>
+          </div>
+
+          <div class="founder-block">
+            <h3>How Jimmie Serves Clients</h3>
+            <p>Jimmie&rsquo;s work is built for clients whose careers, businesses and capital attract opportunity before they have the infrastructure to manage it.</p>
+            <p>He helps clients answer the questions that carry legal, financial and career consequences:</p>
+            <ul>
+              <li>Who should represent me</li>
+              <li>What should I sign</li>
+              <li>How should I get paid</li>
+              <li>Who should manage the money</li>
+              <li>Which opportunities deserve attention</li>
+              <li>Which investments should be declined</li>
+              <li>How should my business interests be structured</li>
+              <li>What needs to be protected before visibility increases</li>
+              <li>How do we build wealth without creating unnecessary risk</li>
+              <li>Who is accountable when advisors, agents, managers and investors are involved</li>
+            </ul>
+          </div>
+
+          <div class="founder-block">
+            <h3>Personal</h3>
+            <p>Jimmie resides in Memphis, Tennessee with his wife, Aftan, Chief Magistrate of Shelby County Juvenile Court, their son Jettsen and their daughter Ainsley.</p>
+            <p>His work is grounded in relationship building, disciplined structure and the belief that talent needs infrastructure before it can become legacy.</p>
+          </div>
+
         </div>
 
       </div>
@@ -600,7 +831,7 @@
         </div>
 
         <div class="reveal reveal-delay-2" style="position: relative; aspect-ratio: 4/3; overflow: hidden;">
-          <img src="images/social-proof-enhanced-2.jpg"
+          <img src="images/social-proof-3.jpg"
                alt="The Advisory founder with clients"
                loading="lazy"
                onerror="this.src='images/social-proof-3.jpg'"

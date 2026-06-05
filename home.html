@@ -12,11 +12,11 @@
   <meta property="og:title" content="The Advisory — Architecting the Athlete Enterprise">
   <meta property="og:description" content="Enterprise management for professional athletes, NIL athletes, entertainers, and high-net-worth entrepreneurs. Contracts, NIL, IP, tax, legal, and family governance.">
   <meta property="og:url" content="https://theadvisory.global/home.html">
-  <meta property="og:image" content="https://theadvisory.global/images/social-proof-enhanced-2.jpg">
+  <meta property="og:image" content="https://theadvisory.global/images/social-proof-3.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="The Advisory — Architecting the Athlete Enterprise">
   <meta name="twitter:description" content="Enterprise management for professional athletes, NIL athletes, entertainers, and high-net-worth entrepreneurs.">
-  <meta name="twitter:image" content="https://theadvisory.global/images/social-proof-enhanced-2.jpg">
+  <meta name="twitter:image" content="https://theadvisory.global/images/social-proof-3.jpg">
   <link rel="stylesheet" href="css/design-system.css?v=5">
   <link rel="stylesheet" href="css/nav.css">
   <style>
@@ -478,6 +478,10 @@
       right: 0;
       padding: var(--space-3);
       background: linear-gradient(to top, rgba(13,13,13,0.9), transparent);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.45rem 0.6rem;
     }
 
     .proof-image-caption span {
@@ -487,6 +491,32 @@
       letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--stone);
+    }
+
+    .proof-caption-tag {
+      color: var(--gold);
+    }
+
+    .proof-caption-sep {
+      color: var(--muted);
+      font-weight: 400;
+    }
+
+    .client-name--practice {
+      font-family: var(--font-sans);
+      font-size: clamp(0.8rem, 1.2vw, 0.95rem);
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .proof-section--cream .client-name--practice {
+      color: var(--gold);
+    }
+
+    .proof-section--cream .client-name--practice:hover {
+      color: var(--near-black);
     }
 
     .proof-text-col {
@@ -1012,12 +1042,13 @@
       <div class="proof-grid">
 
         <div class="proof-image-wrap reveal revealed">
-          <img src="images/social-proof-enhanced-2.jpg"
+          <img src="images/social-proof-3.jpg"
                alt="The Advisory founder at a courtside NBA event"
-               loading="lazy"
-               onerror="this.src='images/social-proof-3.jpg'">
+               loading="lazy">
           <div class="proof-image-caption">
             <span>Courtside — The Late Jim Brown</span>
+            <span class="proof-caption-sep">·</span>
+            <span class="proof-caption-tag">Complex Litigation</span>
           </div>
         </div>
 
@@ -1034,6 +1065,7 @@
           <div>
             <div class="label text-gold" style="margin-bottom: 0.5rem;">Notable Client Relationships</div>
             <div class="client-list">
+              <div class="client-name client-name--practice">Complex Litigation</div>
               <div class="client-name">Floyd Mayweather</div>
               <div class="client-name">Mookie Betts</div>
               <div class="client-name">Jalen Ramsey</div>
@@ -1103,12 +1135,13 @@
       <div class="proof-grid">
 
         <div class="proof-image-wrap reveal revealed">
-          <img src="images/social-proof-enhanced-1.jpg"
+          <img src="images/social-proof-2.jpg"
                alt="The Advisory founder with Floyd Mayweather and The Money Team"
-               loading="lazy"
-               onerror="this.src='images/social-proof-2.jpg'">
+               loading="lazy">
           <div class="proof-image-caption">
             <span>Success with Floyd 'Money' Mayweather and The Money Team</span>
+            <span class="proof-caption-sep">·</span>
+            <span class="proof-caption-tag">Complex Litigation</span>
           </div>
         </div>
 
