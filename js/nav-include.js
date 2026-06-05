@@ -19,6 +19,7 @@
         </div>
       </a>
 
+      <div class="header-center">
       <nav class="primary-nav" aria-label="Primary navigation">
         <ul>
           <li class="nav-item">
@@ -66,6 +67,9 @@
       <div class="header-cta">
         <a href="contact.html" class="btn btn--ghost">Start a Conversation</a>
       </div>
+      </div>
+
+      <a href="https://theadvisorypllc.netlify.app/" class="header-cta-link">Visit Law Firm Side</a>
 
       <button class="mobile-toggle" aria-label="Toggle menu" aria-expanded="false">
         <span></span><span></span><span></span>
@@ -116,6 +120,7 @@
     </ul>
     <div class="mobile-nav-cta">
       <a href="contact.html" class="btn btn--primary">Start a Conversation</a>
+      <a href="https://theadvisorypllc.netlify.app/" class="header-cta-link" style="text-align:center;display:block;padding:0.5rem 0;">Visit Law Firm Side</a>
     </div>
   </nav>
   `;

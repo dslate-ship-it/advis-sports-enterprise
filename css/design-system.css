@@ -1155,6 +1155,10 @@ button {
   color: var(--gold);
 }
 
+.footer-nav-cols {
+  display: contents;
+}
+
 .footer-bottom {
   display: flex;
   align-items: center;
@@ -1577,10 +1581,10 @@ button {
 }
 
 /* ============================================================
-   STANDARD / SMALL LAPTOP ONLY (1366×768, 1440×900)
-   Range: 1024px–1440px — does NOT affect tablet or desktop >1440
+   LAPTOP & DESKTOP (1025px+)
+   Footer nav columns horizontal; home pathway card alignment
    ============================================================ */
-@media (min-width: 1024px) and (max-width: 1440px) {
+@media (min-width: 1025px) {
   /* Home: uniform Explore link alignment across pathway cards */
   .pathway-item {
     display: flex;

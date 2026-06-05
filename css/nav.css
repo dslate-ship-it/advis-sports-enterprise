@@ -39,7 +39,21 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  max-width: 1600px;
   width: 100%;
+  gap: 1.5rem;
+  padding-left: clamp(1.5rem, 2vw, 2.5rem);
+  padding-right: clamp(1.5rem, 2vw, 2.5rem);
+}
+
+/* Logo (far left) · nav + CTA (center) · law firm link (far right) */
+.header-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  min-width: 0;
+  gap: 0.25rem;
 }
 
 /* ============================================================
@@ -104,6 +118,7 @@
   display: flex;
   align-items: center;
   gap: 0;
+  flex: 0 1 auto;
 }
 
 .primary-nav > ul {
@@ -272,13 +287,38 @@
 .header-cta {
   display: flex;
   align-items: center;
-  gap: var(--space-2);
   flex-shrink: 0;
 }
 
 .header-cta .btn {
   padding: 0.6rem 1.4rem;
   font-size: 0.75rem;
+  flex-shrink: 0;
+}
+
+.header-cta-link {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(250, 248, 245, 0.45);
+  white-space: nowrap;
+  transition: color var(--duration-base) var(--ease-smooth);
+  flex-shrink: 0;
+  margin-left: 0;
+}
+
+.header-cta-link:hover {
+  color: var(--gold);
+}
+
+.site-header.light-header .header-cta-link {
+  color: rgba(44, 44, 44, 0.45);
+}
+
+.site-header.light-header .header-cta-link:hover {
+  color: var(--gold);
 }
 
 /* ============================================================
@@ -469,7 +509,8 @@
 }
 
 @media (max-width: 600px) {
-  .header-cta {
+  .header-center .header-cta,
+  .header-cta-link {
     display: none;
   }
 }
